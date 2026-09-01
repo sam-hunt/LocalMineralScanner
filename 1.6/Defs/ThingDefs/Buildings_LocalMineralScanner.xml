@@ -7,14 +7,20 @@
 
        - scanFindMtbDays/scanFindGuaranteedDays 2/4 = half the long-range scanner's 4/8:
          each find costs ~50% of the effort by design.
-       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots
-         on the south face (offsets authored for North rotation; the game rotates them).
+       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots.
          This is the Biotech SchoolDesk pattern - each pawn reserves its CELL, not the
          building, so two pawns can scan at once, and CompScanner.Used() accumulating per
          worker per tick makes the second operator genuinely double progress. NOTE: an
          even-width face has no centered cell (Position is the min corner), hence the
          x=0 and x=1 columns. PathEndMode.InteractionCell cannot resolve multiple offsets,
          so the WorkGiver/JobDriver are custom (see WorkGiver_OperateLocalMineralScanner).
+       - The spots sit on the +z side (offsets authored for North rotation; the game
+         rotates them), because the borrowed vanilla scanner art fronts its NORTH sprite
+         toward a north-side operator: vanilla pairs offset (0,0,2) with defaultPlacingRot
+         South + interactionCellIconReverse, which we mirror. Authoring the spots on -z
+         (the SchoolDesk convention) renders the sprite 180 degrees away from the
+         operators. GenAdj.AdjustForRotation's even-size center shifts keep both cells
+         flush against the correct face at all four rotations (hand-verified).
        - PlaceWorker_PreventInteractionSpotOverlap checks multipleInteractionCellOffsets
          on both the placed def and neighbors, so it covers both spots.
        - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass), so
@@ -87,10 +93,12 @@
     <designationCategory>Misc</designationCategory>
     <rotatable>true</rotatable>
     <multipleInteractionCellOffsets>
-      <li>(0,0,-1)</li>
-      <li>(1,0,-1)</li>
+      <li>(0,0,2)</li>
+      <li>(1,0,2)</li>
     </multipleInteractionCellOffsets>
     <interactionCellIcon>DiningChair</interactionCellIcon>
+    <interactionCellIconReverse>true</interactionCellIconReverse>
+    <defaultPlacingRot>South</defaultPlacingRot>
     <canOverlapZones>false</canOverlapZones>
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <researchPrerequisites>
