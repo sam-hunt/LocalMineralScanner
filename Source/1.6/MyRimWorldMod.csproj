@@ -1,0 +1,188 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <!-- Release-only: 1.6/Assemblies/ holds the shipped DLL that StageMod globs.
+         Debug builds stay in the default bin/ so they can't swap a Debug DLL
+         into the mod layout. -->
+    <OutputPath Condition="'$(Configuration)' == 'Release'">../../1.6/Assemblies/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <!-- RimWorld Installation Path Configuration -->
+  <!-- Override with environment variables RIMWORLD_PATH / RIMWORLD_DATA_FOLDER or pass -p: properties to dotnet build -->
+  <PropertyGroup>
+    <RimWorldPath Condition="'$(RimWorldPath)' == ''">$(RIMWORLD_PATH)</RimWorldPath>
+  </PropertyGroup>
+
+  <!-- Platform-specific defaults if RIMWORLD_PATH not set -->
+  <PropertyGroup Condition="'$(RimWorldPath)' == '' And $([MSBuild]::IsOSPlatform('Windows'))">
+    <RimWorldPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimWorldPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldPath)' == '' And $([MSBuild]::IsOSPlatform('Linux'))">
+    <RimWorldPath>$(HOME)/.local/share/Steam/steamapps/common/RimWorld</RimWorldPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldPath)' == '' And $([MSBuild]::IsOSPlatform('OSX'))">
+    <RimWorldPath>$(HOME)/Library/Application Support/Steam/steamapps/common/RimWorld</RimWorldPath>
+  </PropertyGroup>
+
+  <!-- Platform-specific data folder names -->
+  <!-- Override with environment variable RIMWORLD_DATA_FOLDER or pass -p:RimWorldDataFolder="..." to dotnet build -->
+  <PropertyGroup>
+    <RimWorldDataFolder Condition="'$(RimWorldDataFolder)' == ''">$(RIMWORLD_DATA_FOLDER)</RimWorldDataFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldDataFolder)' == '' And $([MSBuild]::IsOSPlatform('Windows'))">
+    <RimWorldDataFolder>RimWorldWin64_Data</RimWorldDataFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldDataFolder)' == '' And $([MSBuild]::IsOSPlatform('Linux'))">
+    <RimWorldDataFolder>RimWorldLinux_Data</RimWorldDataFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldDataFolder)' == '' And $([MSBuild]::IsOSPlatform('OSX'))">
+    <RimWorldDataFolder>RimWorldMac_Data</RimWorldDataFolder>
+  </PropertyGroup>
+  <!-- WSL fallback: if Linux data folder not found, try Windows data folder -->
+  <PropertyGroup Condition="'$(RimWorldPath)' != '' And !Exists('$(RimWorldPath)/$(RimWorldDataFolder)/Managed/Assembly-CSharp.dll') And Exists('$(RimWorldPath)/RimWorldWin64_Data/Managed/Assembly-CSharp.dll')">
+    <RimWorldDataFolder>RimWorldWin64_Data</RimWorldDataFolder>
+  </PropertyGroup>
+
+  <!-- Detect if local RimWorld installation exists -->
+  <PropertyGroup>
+    <UseLocalRimWorld Condition="Exists('$(RimWorldPath)/$(RimWorldDataFolder)/Managed/Assembly-CSharp.dll')">true</UseLocalRimWorld>
+  </PropertyGroup>
+
+  <!-- Use local references when RimWorld is installed -->
+  <ItemGroup Condition="'$(UseLocalRimWorld)' == 'true'">
+    <Reference Include="Assembly-CSharp" Private="false">
+      <HintPath>$(RimWorldPath)/$(RimWorldDataFolder)/Managed/Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine" Private="false">
+      <HintPath>$(RimWorldPath)/$(RimWorldDataFolder)/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule" Private="false">
+      <HintPath>$(RimWorldPath)/$(RimWorldDataFolder)/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule" Private="false">
+      <HintPath>$(RimWorldPath)/$(RimWorldDataFolder)/Managed/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule" Private="false">
+      <HintPath>$(RimWorldPath)/$(RimWorldDataFolder)/Managed/UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Fall back to NuGet package for CI builds without local RimWorld -->
+  <ItemGroup Condition="'$(UseLocalRimWorld)' != 'true'">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.3.*">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Build-time code analysis (warnings only; never ships). Roslynator's analyzers run
+       on every build and surface in the IDE + build log; PrivateAssets="all" keeps them
+       out of the compiled DLL and out of any downstream reference. The global
+       `roslynator` CLI (installed separately) handles bulk fixes and CI gating.
+       Invoke the CLI against this csproj, never the .sln: roslynator 0.12's workspace
+       assemblies clash with current SDKs' Microsoft.Build in the solution-file parser
+       (MissingFieldException: MSBuildConstants.InvalidPathChars); loading a csproj
+       directly bypasses SolutionFile.Parse and works fine. -->
+  <ItemGroup>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- Guards against Roslynator's RCS1146 fixer (and anyone else) rewriting
+         null checks into ?. on UnityEngine.Object-derived receivers, where the
+         overloaded == (destroyed => "null") makes the rewrite change behavior.
+         UNT0008 flags null propagation on Unity objects; UNT0007 the same for
+         null coalescing. See the RCS1146 note in .editorconfig. -->
+    <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- ===== Mod packaging / deployment =====
+       The ItemGroup inside StageMod below is the SINGLE source of truth for what
+       files constitute the deployable mod. It feeds BOTH the post-build deploy into
+       the local RimWorld Mods folder AND the CI release (which invokes StageMod with
+       a -p:StageDir pointing at its staging dir). Add/remove shipped files here only. -->
+  <PropertyGroup>
+    <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)/../..'))</RepoRoot>
+    <ModDeployPath>$(RimWorldPath)/Mods/$(MSBuildProjectName)</ModDeployPath>
+    <!-- StageMod writes here. Defaults to the local Mods folder; CI overrides with -p:StageDir=... -->
+    <StageDir Condition="'$(StageDir)' == ''">$(ModDeployPath)</StageDir>
+  </PropertyGroup>
+
+  <!-- Wipe $(StageDir) then recopy the full mod from source: atomic and self-cleaning,
+       so renamed/deleted Defs/Patches/Textures never linger. Invoke directly for CI:
+         dotnet build Source/1.6/MyRimWorldMod.csproj -c Release \
+           -t:StageMod -p:StageDir=/path/to/release/MyRimWorldMod -->
+  <Target Name="StageMod">
+    <Error Condition="'$(StageDir)' == ''" Text="StageMod requires a non-empty -p:StageDir." />
+    <ItemGroup>
+      <!-- The deployable mod = the well-known RimWorld content folders, whitelisted to
+           only the file types the game loads at runtime (+ Workshop release metadata in
+           About/). Each content folder is matched at the mod root AND under any one
+           top-level subfolder ("$(RepoRoot)/*/<Folder>") — i.e. version folders (1.6/,
+           a future 1.7/) and Common/ — so content deploys wherever it lives and new
+           version folders need no change here. Source layout is mirrored verbatim into
+           $(StageDir), so e.g. Common/Textures/ stays under Common/ and 1.6/Defs/ stays
+           under 1.6/.
+
+           To support a new content type, add ONE <_ModFiles Include="..."/> line below.
+
+           Deliberately lean: ModContentLoader lists .psd/.dds among acceptable texture
+           extensions, but the runtime decode path (Texture2D.LoadImage) only handles
+           PNG/JPEG — a shipped .psd/.dds would fail to render AND bloat the download, so
+           only .png/.jpg/.jpeg are whitelisted. The DLL ships without its .pdb. OS junk,
+           editor backups, dev notes, and Source/ never match. -->
+
+      <!-- Root-only metadata -->
+      <_ModFiles Include="$(RepoRoot)/LoadFolders.xml" />
+      <_ModFiles Include="$(RepoRoot)/About/**/*.xml;$(RepoRoot)/About/**/*.png;$(RepoRoot)/About/**/*.txt" />
+
+      <!-- Code + content (matched at root and under any version / Common folder) -->
+      <_ModFiles Include="$(RepoRoot)/Assemblies/**/*.dll;$(RepoRoot)/*/Assemblies/**/*.dll" />
+      <_ModFiles Include="$(RepoRoot)/Defs/**/*.xml;$(RepoRoot)/*/Defs/**/*.xml;$(RepoRoot)/*/Mods/*/Defs/**/*.xml" />
+      <_ModFiles Include="$(RepoRoot)/Patches/**/*.xml;$(RepoRoot)/*/Patches/**/*.xml;$(RepoRoot)/*/Mods/*/Patches/**/*.xml" />
+      <_ModFiles Include="$(RepoRoot)/Textures/**/*.png;$(RepoRoot)/Textures/**/*.jpg;$(RepoRoot)/Textures/**/*.jpeg;$(RepoRoot)/*/Textures/**/*.png;$(RepoRoot)/*/Textures/**/*.jpg;$(RepoRoot)/*/Textures/**/*.jpeg;$(RepoRoot)/Mods/*/Textures/**/*.png;$(RepoRoot)/Mods/*/Textures/**/*.jpg;$(RepoRoot)/Mods/*/Textures/**/*.jpeg" />
+      <_ModFiles Include="$(RepoRoot)/Sounds/**/*.wav;$(RepoRoot)/Sounds/**/*.mp3;$(RepoRoot)/Sounds/**/*.ogg;$(RepoRoot)/*/Sounds/**/*.wav;$(RepoRoot)/*/Sounds/**/*.mp3;$(RepoRoot)/*/Sounds/**/*.ogg" />
+      <_ModFiles Include="$(RepoRoot)/Languages/**/*.xml;$(RepoRoot)/Languages/**/*.txt;$(RepoRoot)/*/Languages/**/*.xml;$(RepoRoot)/*/Languages/**/*.txt;$(RepoRoot)/*/Mods/*/Languages/**/*.xml;$(RepoRoot)/*/Mods/*/Languages/**/*.txt" />
+      <!-- The lines above also match under the gated compat load roots (see
+           LoadFolders.xml), which come in two flavours: version-specific ones nest
+           inside the version folder as <version>/Mods/<Mod Name>/ (Defs, Patches,
+           Languages), and version-independent ones sit at the mod root as
+           Mods/<Mod Name>/ (art, which is not version-scoped). Neither is reached by
+           the "$(RepoRoot)/*/<Folder>" wildcard, since both put <Folder> two levels
+           deep, so each needs its own explicit pattern. If a compat root ever ships
+           another content type (Sounds, ...), extend that type's line the same way —
+           a miss deploys nothing and fails silently in-game (missing textures render
+           as pink boxes), not at build. -->
+    </ItemGroup>
+    <!-- Mirror each file's path relative to the repo root into $(StageDir). Computed as
+         per-item metadata (MakeRelative inside a transform string evaluates only once,
+         not per item). %(FullPath) is concrete, so the version folder (1.6/) matched by
+         the "*/" wildcards is recovered here verbatim. -->
+    <ItemGroup>
+      <_ModFiles>
+        <Dest>$(StageDir)/$([MSBuild]::MakeRelative('$(RepoRoot)', '%(FullPath)'))</Dest>
+      </_ModFiles>
+    </ItemGroup>
+    <RemoveDir Directories="$(StageDir)" />
+    <Copy SourceFiles="@(_ModFiles)" DestinationFiles="@(_ModFiles->'%(Dest)')" />
+    <Message Text="Staged @(_ModFiles->Count()) mod files -> $(StageDir)" Importance="high" />
+  </Target>
+
+  <!-- After every local Release build, atomically redeploy into the RimWorld Mods
+       folder. Release-only: an ungated deploy would silently swap the played mod's
+       DLL for a Debug build (e.g. if a future Tests project's ProjectReference
+       builds Debug under `dotnet test`). -->
+  <Target Name="DeployToModFolder" AfterTargets="Build"
+          Condition="'$(UseLocalRimWorld)' == 'true' And '$(Configuration)' == 'Release'">
+    <CallTarget Targets="StageMod" />
+  </Target>
+</Project>
