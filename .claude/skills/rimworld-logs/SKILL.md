@@ -13,7 +13,7 @@ description: Find and read RimWorld's Player.log, or disassemble the RimWorld AP
    - **WSL:** `/mnt/c/Users/*/AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`
    - **Linux (Steam):** `~/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`
 
-Our own messages are prefixed `[MyRimWorldMod]`, so grep for that to isolate them from
+Our own messages are prefixed `[LocalMineralScanner]`, so grep for that to isolate them from
 vanilla and other mods' output.
 
 ## Inspecting the RimWorld API

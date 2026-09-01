@@ -119,8 +119,8 @@
 
   <!-- Wipe $(StageDir) then recopy the full mod from source: atomic and self-cleaning,
        so renamed/deleted Defs/Patches/Textures never linger. Invoke directly for CI:
-         dotnet build Source/1.6/MyRimWorldMod.csproj -c Release \
-           -t:StageMod -p:StageDir=/path/to/release/MyRimWorldMod -->
+         dotnet build Source/1.6/LocalMineralScanner.csproj -c Release \
+           -t:StageMod -p:StageDir=/path/to/release/LocalMineralScanner -->
   <Target Name="StageMod">
     <Error Condition="'$(StageDir)' == ''" Text="StageMod requires a non-empty -p:StageDir." />
     <ItemGroup>

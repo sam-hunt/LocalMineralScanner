@@ -17,4 +17,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[0.1.0]: https://github.com/yourname/MyRimWorldMod/releases/tag/v0.1.0
+[0.1.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v0.1.0

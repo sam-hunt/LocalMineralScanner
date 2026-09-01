@@ -15,14 +15,14 @@ work in other files.
 
 ```bash
 # Build (outputs to 1.6/Assemblies/ AND atomically redeploys to the RimWorld Mods folder)
-dotnet build MyRimWorldMod.sln -c Release
+dotnet build LocalMineralScanner.sln -c Release
 
 # Stage the mod into an arbitrary folder (used by CI; same manifest as the local deploy)
-dotnet build Source/1.6/MyRimWorldMod.csproj -c Release \
-  -t:StageMod -p:StageDir=/path/to/output/MyRimWorldMod
+dotnet build Source/1.6/LocalMineralScanner.csproj -c Release \
+  -t:StageMod -p:StageDir=/path/to/output/LocalMineralScanner
 
 # Override RimWorld install path
-RIMWORLD_PATH="/path/to/RimWorld" dotnet build MyRimWorldMod.sln -c Release
+RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Release
 # Or: dotnet build -p:RimWorldPath="/path/to/RimWorld"
 ```
 
@@ -39,7 +39,7 @@ The repo lives outside the Mods folder; every local Release build redeploys auto
 atomically.
 
 - **One manifest, one place:** the `_ModFiles` ItemGroup in the `StageMod` target of
-  `Source/1.6/MyRimWorldMod.csproj` — see that target's comments for how it globs and what it
+  `Source/1.6/LocalMineralScanner.csproj` — see that target's comments for how it globs and what it
   excludes. It is generic over folders, so a new `1.7/` or `Sounds/` needs no build change; only a
   brand-new *file type* does. Local deploy and CI release both call it, so they can't drift.
 - **Optional Stop hook:** sibling mods run a local-only `.claude/hooks/sync-mod.sh` (gitignored)
@@ -88,7 +88,7 @@ release if that section is missing**.
 2. **Log:** `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`
    (WSL: `/mnt/c/Users/*/AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`;
    Linux: `~/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`).
-3. **Logging convention:** `Log.Message("[MyRimWorldMod] ...")` — grep the prefix to isolate our
+3. **Logging convention:** `Log.Message("[LocalMineralScanner] ...")` — grep the prefix to isolate our
    output.
 4. **Inspect the API:** `monodis` for signatures, `ilspycmd -t "Namespace.ClassName"` for method
    bodies, both against the local install's `Assembly-CSharp.dll` (source of truth over the

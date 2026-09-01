@@ -2,7 +2,7 @@
 
 Bug reports, fixes, and features are welcome — open an issue or pull request.
 Build instructions are in README.md; the mod builds with
-`dotnet build MyRimWorldMod.sln -c Release`.
+`dotnet build LocalMineralScanner.sln -c Release`.
 
 ## Localization
 

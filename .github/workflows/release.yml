@@ -56,14 +56,14 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Build
-        run: dotnet build MyRimWorldMod.sln -c Release
+        run: dotnet build LocalMineralScanner.sln -c Release
 
       - name: Stage mod files
         # Reuse the .csproj's StageMod target — the single source of truth for what
         # files constitute the mod — so the release zip can never drift from the
         # local deploy (e.g. forget Patches). StageMod wipes + recopies $(StageDir).
         run: >
-          dotnet build Source/1.6/MyRimWorldMod.csproj -c Release
+          dotnet build Source/1.6/LocalMineralScanner.csproj -c Release
           -t:StageMod -p:StageDir=${{ github.workspace }}/release/${{ steps.modinfo.outputs.mod_name }}
 
       - name: Package mod

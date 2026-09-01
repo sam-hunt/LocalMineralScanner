@@ -1,106 +1,63 @@
-# RimWorld Mod Template
+# Local Mineral Scanner
 
-A ready-to-use template for creating RimWorld 1.6 mods with C# code.
+A RimWorld 1.6 mod adding a compact **local mineral scanner**: a pawn-operated 2×2 building
+that locates and reveals mineral deposits hidden in the uncharted (fogged) parts of your
+colony map.
 
-## Quick Start
+## Features
 
-1. **Use this template** - Click "Use this template" on GitHub or clone/download
-2. **Rename your mod** - See [Customization](#customization) below
-3. **Set up RimWorld path** - See [Build Setup](#build-setup)
-4. **Build** - Run `dotnet build MyRimWorldMod.sln -c Release`
+- **Reveals real ore.** Each successful scan unfogs one contiguous deposit of the targeted
+  mineral that map generation actually placed — nothing is conjured. Fully hidden deposits
+  are found first; partially exposed ones are the fallback.
+- **Tunable target.** Like the long-range mineral scanner, it can be tuned to a specific
+  mineral (gold, silver, steel, plasteel, components, uranium, jade).
+- **Two operators.** Twin consoles let two pawns scan simultaneously, each contributing
+  their full research speed — a genuine second seat, not queueing.
+- **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for
+  results limited to the current map.
+- **Knows when it's done.** When no undiscovered deposits of the tuned mineral remain, the
+  scanner pauses (progress retained) instead of wasting pawn labor — pawns report why.
+- **Minifiable**, so it can be re-deployed as the frontier is uncovered.
+- Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
 
-When a local RimWorld install is detected, every Release build automatically stages the mod
-into the game's `Mods/` folder — no manual copying. Debug builds never deploy.
+Requires [Harmony](https://github.com/pardeike/HarmonyRimWorld) (`brrainz.harmony`). No DLC
+required. Current art is a placeholder reusing the vanilla long-range scanner texture.
 
-## Build Setup
+## Building from source
 
-The project auto-detects your RimWorld installation on common Steam paths. If your installation is elsewhere, set the `RIMWORLD_PATH` environment variable:
-
-**Windows (PowerShell):**
-```powershell
-$env:RIMWORLD_PATH = "D:\Games\RimWorld"
-dotnet build MyRimWorldMod.sln
-```
-
-**Linux/macOS:**
 ```bash
-export RIMWORLD_PATH="$HOME/Games/RimWorld"
-dotnet build MyRimWorldMod.sln
+dotnet build LocalMineralScanner.sln -c Release
 ```
 
-Or pass it directly:
+The project auto-detects a RimWorld installation on common Steam paths (Windows, Linux,
+macOS, and WSL targeting a Windows install). When one is found, every Release build
+automatically stages the mod into the game's `Mods/` folder — no manual copying. Debug
+builds never deploy. If your installation is elsewhere:
+
 ```bash
-dotnet build MyRimWorldMod.sln -p:RimWorldPath="/path/to/RimWorld"
+RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Release
+# or: dotnet build LocalMineralScanner.sln -p:RimWorldPath="/path/to/RimWorld"
 ```
 
-### Default Paths
-
-| Platform | Default Path |
+| Platform | Default path |
 |----------|--------------|
 | Windows | `C:\Program Files (x86)\Steam\steamapps\common\RimWorld` |
 | Linux | `~/.local/share/Steam/steamapps/common/RimWorld` |
 | macOS | `~/Library/Application Support/Steam/steamapps/common/RimWorld` |
 
-## Customization
-
-When creating a new mod from this template, rename these files and update their contents:
-
-| File | What to Change |
-|------|----------------|
-| `About/About.xml` | `<name>`, `<author>`, `<packageId>`, `<modVersion>`, `<description>` |
-| `Source/1.6/ModInit.cs` | Namespace, Harmony id, log message |
-| `Source/1.6/Properties/AssemblyInfo.cs` | Title/product/description, fresh GUID, version |
-| `MyRimWorldMod.sln` | Rename file, update project name inside |
-| `Source/1.6/MyRimWorldMod.csproj` | Rename file |
-| `.github/workflows/release.yml` | The `.sln`/`.csproj` names in the Build and Stage steps |
-| `CHANGELOG.md` | The release-tag link's repository URL |
-| `.claude/skills/` | Mod name in `release` and `rimworld-logs` |
-| `.vscode/settings.json` | `dotnet.defaultSolution` |
-
-### Package ID Format
-
-Use the format `authorname.modname`, all lowercase (e.g., `johndoe.coolmod`) — the game's
-`MayRequire`/mod-list matching is case-sensitive-lowercase. It must be unique across all
-RimWorld mods.
-
-## Project Structure
+## Project structure
 
 ```
 About/              - Mod metadata (About.xml)
 Common/             - Version-independent assets (Languages, Textures)
 1.6/                - RimWorld 1.6 specific content
   Assemblies/       - Compiled DLLs (build output)
-  Defs/             - XML definitions (ThingDefs, etc.)
+  Defs/             - XML definitions (building, work giver, job)
   Patches/          - XML patches to modify base game/other mods
 Source/1.6/         - C# source code
 LoadFolders.xml     - Tells RimWorld which folders to load per game version
+docs/               - Design research against the decompiled 1.6 API
 ```
-
-## Adding Dependencies
-
-To require a DLC or another mod, add to `About/About.xml`:
-
-```xml
-<modDependencies>
-    <li>
-        <packageId>ludeon.rimworld.biotech</packageId>
-        <displayName>Biotech</displayName>
-    </li>
-</modDependencies>
-<loadAfter>
-    <li>ludeon.rimworld.biotech</li>
-</loadAfter>
-```
-
-The template already declares the [Harmony](https://github.com/pardeike/HarmonyRimWorld) mod
-(`brrainz.harmony`) as a dependency, since the C# side references `Lib.Harmony`.
-
-Common DLC package IDs:
-- `ludeon.rimworld.royalty`
-- `ludeon.rimworld.ideology`
-- `ludeon.rimworld.biotech`
-- `ludeon.rimworld.anomaly`
-- `ludeon.rimworld.odyssey`
 
 ## Releases
 

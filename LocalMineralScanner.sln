@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{789BA4C0-C461-413D-A593-54DBCADDEA88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRimWorldMod", "Source\1.6\MyRimWorldMod.csproj", "{602F10D4-48FB-4217-AFA8-60FCE43AAC36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalMineralScanner", "Source\1.6\LocalMineralScanner.csproj", "{602F10D4-48FB-4217-AFA8-60FCE43AAC36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

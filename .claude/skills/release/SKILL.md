@@ -7,7 +7,7 @@ argument-hint: "[major|minor|patch]"
 
 # Release
 
-Prepare and publish a new release for MyRimWorldMod.
+Prepare and publish a new release for LocalMineralScanner.
 
 The user may pass a bump type as `$ARGUMENTS` (one of `major`, `minor`, or `patch`). If omitted, ask which bump type they want (at step 3, where the version is first needed).
 
@@ -42,8 +42,8 @@ this is orientation, not a decision.
 
 Run:
 ```bash
-dotnet clean MyRimWorldMod.sln
-dotnet build MyRimWorldMod.sln -c Release
+dotnet clean LocalMineralScanner.sln
+dotnet build LocalMineralScanner.sln -c Release
 ```
 
 Report the build result. If the build fails, stop and help the user fix it.
@@ -76,7 +76,7 @@ Do all of the following, then present it as **one** confirmation:
 
 No further questions unless something is unexpected:
 
-- Rebuild (`dotnet build MyRimWorldMod.sln -c Release`) so the deployed
+- Rebuild (`dotnet build LocalMineralScanner.sln -c Release`) so the deployed
   DLL carries the bumped `AssemblyVersion`. Stop on failure.
 - Stage only the release files: `About/About.xml`,
   `Source/1.6/Properties/AssemblyInfo.cs`, `CHANGELOG.md`. If
