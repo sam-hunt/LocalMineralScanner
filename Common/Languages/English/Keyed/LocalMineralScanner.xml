@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The target-mineral gizmo reuses vanilla's CommandSelectMineralToScanFor keys, so only
+     mod-specific strings live here. LocalMineralScanner_NoFoggedDeposits is returned as the
+     CanUseNow AcceptanceReport reason, surfacing as the work-tab/job-fail tooltip while the
+     scanner is paused; scan progress is retained (CompScanner saves its accumulator). -->
+<LanguageData>
+  <LocalMineralScanner_LetterLabelFoundDeposit>Mineral deposit located</LocalMineralScanner_LetterLabelFoundDeposit>
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has pinpointed a deposit of {0} hidden in uncharted terrain using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
+  <LocalMineralScanner_NoFoggedDeposits>no undiscovered {0} deposits remain on this map</LocalMineralScanner_NoFoggedDeposits>
+</LanguageData>

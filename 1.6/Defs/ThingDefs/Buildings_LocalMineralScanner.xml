@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Local mineral scanner: 2x2 pawn-operated building that reveals (unfogs) one
+       contiguous fogged deposit of its targeted mineral per find. Modeled on vanilla's
+       LongRangeMineralScanner (Core Buildings_Misc.xml) with these deliberate deviations:
+
+       - scanFindMtbDays/scanFindGuaranteedDays 2/4 = half the long-range scanner's 4/8:
+         each find costs ~50% of the effort by design.
+       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots
+         on the south face (offsets authored for North rotation; the game rotates them).
+         This is the Biotech SchoolDesk pattern - each pawn reserves its CELL, not the
+         building, so two pawns can scan at once, and CompScanner.Used() accumulating per
+         worker per tick makes the second operator genuinely double progress. NOTE: an
+         even-width face has no centered cell (Position is the min corner), hence the
+         x=0 and x=1 columns. PathEndMode.InteractionCell cannot resolve multiple offsets,
+         so the WorkGiver/JobDriver are custom (see WorkGiver_OperateLocalMineralScanner).
+       - PlaceWorker_PreventInteractionSpotOverlap checks multipleInteractionCellOffsets
+         on both the placed def and neighbors, so it covers both spots.
+       - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass), so
+         terrainAffordanceNeeded is Medium rather than the immobile scanners' Heavy.
+       - Power 400W: between the deep drill (200) and the big scanners (700), for a
+         smaller unit.
+       - Texture: reuses the vanilla long-range scanner art (placeholder until custom art
+         is commissioned); drawSize scaled 3x3->2x2 (4 * 2/3 ~= 2.66).
+       - canBeUsedUnderRoof=false + PlaceWorker_NotUnderRoof is belt-and-suspenders with
+         CompScanner.CanUseNow's hardcoded RoofUtility check, same as vanilla scanners.
+  -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>LocalMineralScanner</defName>
+    <label>local mineral scanner</label>
+    <description>A compact seismic sensor array used by researchers to pinpoint mineral deposits hidden in uncharted parts of the local landscape. The chance to find a deposit depends on the operator's research ability. It can be tuned to a specific mineral type, and its twin consoles allow two operators to scan together. It doesn't work under a roof.</description>
+    <graphicData>
+      <texPath>Things/Building/Misc/LongRangeMineralScanner</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2.66, 2.66)</drawSize>
+      <shadowData>
+        <volume>(0.95, 0.35, 0.95)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <size>(2,2)</size>
+    <costList>
+      <Steel>120</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+    <building>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+    </building>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>400</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="LocalMineralScanner.CompProperties_LocalMineralScanner">
+        <scanSpeedStat>ResearchSpeed</scanSpeedStat>
+        <scanFindMtbDays>2</scanFindMtbDays>
+        <scanFindGuaranteedDays>4</scanFindGuaranteedDays>
+        <soundWorking>ScannerLongRangeMineral_Ambience</soundWorking>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <altitudeLayer>Building</altitudeLayer>
+    <canBeUsedUnderRoof>false</canBeUsedUnderRoof>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <WorkToBuild>8000</WorkToBuild>
+      <Flammability>0.5</Flammability>
+      <Beauty>-8</Beauty>
+      <Mass>40</Mass>
+    </statBases>
+    <fillPercent>0.40</fillPercent>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <designationCategory>Misc</designationCategory>
+    <rotatable>true</rotatable>
+    <multipleInteractionCellOffsets>
+      <li>(0,0,-1)</li>
+      <li>(1,0,-1)</li>
+    </multipleInteractionCellOffsets>
+    <interactionCellIcon>DiningChair</interactionCellIcon>
+    <canOverlapZones>false</canOverlapZones>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <researchPrerequisites>
+      <li>LongRangeMineralScanner</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+  </ThingDef>
+
+</Defs>
