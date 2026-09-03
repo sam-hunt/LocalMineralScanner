@@ -9,14 +9,14 @@ decompiling the local install's `Assembly-CSharp.dll` (source of truth) and read
 A local-map mineral scanner is **highly feasible with very little new C#**. Vanilla ships a
 generic, reusable scanner stack (`CompScanner` + `WorkGiver_OperateScanner` +
 `JobDriver_OperateScanner`, all def-driven) whose ground-penetrating variant is already a
-"local mineral scanner" in the *generate* sense. The one real design decision is the payload
+"local mineral scanner" in the _generate_ sense. The one real design decision is the payload
 (`DoFind` override): **generate** deep lumps like vanilla, or **reveal** existing minerals —
 and the two mineral domains behave oppositely:
 
-| Domain | Representation | Exists before scanning? | Fog interaction |
-|---|---|---|---|
-| Surface ore (MineableSteel etc.) | Real spawned `Mineable : Building` things | Yes — placed at mapgen by `GenStep_ScatterLumpsMineable` | Fog hides rendering only; things are always enumerable via `map.listerThings` |
-| Deep resources | `Verse.DeepResourceGrid` (per-cell `ushort` def-hash + count) | **No** — grid starts zeroed; nothing populates it at mapgen. `CompDeepScanner.DoFind` *conjures* lumps on success | Grid is fog-agnostic |
+| Domain                           | Representation                                                | Exists before scanning?                                                                                           | Fog interaction                                                               |
+| -------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Surface ore (MineableSteel etc.) | Real spawned `Mineable : Building` things                     | Yes — placed at mapgen by `GenStep_ScatterLumpsMineable`                                                          | Fog hides rendering only; things are always enumerable via `map.listerThings` |
+| Deep resources                   | `Verse.DeepResourceGrid` (per-cell `ushort` def-hash + count) | **No** — grid starts zeroed; nothing populates it at mapgen. `CompDeepScanner.DoFind` _conjures_ lumps on success | Grid is fog-agnostic                                                          |
 
 So "reveal what's underground" has no true hidden answer to reveal (deep veins don't exist
 until rolled), while "reveal surface ore through fog / map-wide" is trivially readable data
@@ -35,8 +35,8 @@ that vanilla merely chooses not to surface.
   days ≥ `scanFindGuaranteedDays`. Worker speed compounds through both the accumulator and
   the roll. No pawn ⇒ no progress.
 - `CanUseNow` (virtual `AcceptanceReport`): spawned + powered (if `CompPowerTrader` present)
-  + not roofed (`RoofUtility.IsAnyCellUnderRoof`, hardcoded) + not forbidden (if comp
-  present) + player faction. `CompDeepScanner` adds `Map.Biome.hasBedrock`.
+  - not roofed (`RoofUtility.IsAnyCellUnderRoof`, hardcoded) + not forbidden (if comp
+    present) + player faction. `CompDeepScanner` adds `Map.Biome.hasBedrock`.
 - Saved state: `daysWorkingSinceLastFinding`, `lastUserSpeed`, `lastScanTick` (floats).
 - Free from the base: dev "Find now" gizmo, inspect string (worker speed %, avg interval,
   % to guaranteed find).
@@ -84,7 +84,7 @@ that vanilla merely chooses not to surface.
   save-safe. One def+count per cell — no stacking.
 - **Only two writers in the game**: `CompDeepScanner.DoFind` (discovery) and
   `CompDeepDrill.TryProducePortion` (drain). No mapgen genstep pre-populates it.
-  `TileMutatorWorker_MineralRich` (Odyssey) only biases *surface* scatter.
+  `TileMutatorWorker_MineralRich` (Odyssey) only biases _surface_ scatter.
 - **Overlay is opt-in, gated by `AnyActiveDeepScannersOnMap()`** (≥1 player-owned, powered
   `CompDeepScanner`). Vanilla triggers `MarkForDraw()` from:
   `CompDeepScanner.PostDrawExtraSelectionOverlays` (scanner selected),
@@ -101,7 +101,7 @@ that vanilla merely chooses not to surface.
   cheap to recompute for display). Depletion auto-forbids nearby exhausted drills and
   messages `DeepDrillExhausted(NoFallback)`.
 - Risk precedent: `IncidentWorker_DeepDrillInfestation` + `CompProperties_CreatesInfestations`
-  + `StorytellerComp_DeepDrillInfestation` tie infestations to drilling *activity*.
+  - `StorytellerComp_DeepDrillInfestation` tie infestations to drilling _activity_.
 
 ## 3. Surface minerals
 

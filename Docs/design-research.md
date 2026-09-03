@@ -62,7 +62,7 @@ Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent,
 - `Thing.InteractionCell = def.interactionCellOffset.RotatedBy(rot) + Position`. Offset is
   authored for North and auto-rotated: E `(z,y,-x)`, S `(-x,y,-z)`, W `(-z,y,x)`. **Not
   separately configurable per rotation** in def-space — one offset, rotated.
-- **Even-size quirk:** `Position` is the footprint's *min-corner* cell for even sizes
+- **Even-size quirk:** `Position` is the footprint's _min-corner_ cell for even sizes
   (odd sizes center it). The offset is added to `Position` with no size compensation, so a
   2×2 has no centered interaction column — offset x picks the min (`x=0`) or max (`x=1`)
   column of a face. Vanilla 2×2 `hasInteractionCell` precedents: mortar base `(0,0,-1)`,
@@ -70,7 +70,7 @@ Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent,
 - `interactionCellIcon` (e.g. `DiningChair`) + `interactionCellIconReverse` drive the ghost
   icon (`GenDraw.DrawInteractionCells`); keep `PlaceWorker_PreventInteractionSpotOverlap`
   (it checks all cells incl. `multipleInteractionCellOffsets` of neighbors).
-- Reservations: scanner jobs reserve the *building* (`maxPawns=1`, hardcoded in both
+- Reservations: scanner jobs reserve the _building_ (`maxPawns=1`, hardcoded in both
   `WorkGiver_OperateScanner.HasJobOnThing` and `JobDriver_OperateScanner`'s
   `TryMakePreToilReservations`). `ReservationManager` additionally cross-checks that no one
   else has separately reserved the interaction cell.
@@ -80,7 +80,7 @@ Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent,
 - `ThingDef.multipleInteractionCellOffsets` (`List<IntVec3>`) is real 1.6 API, **mutually
   exclusive with `hasInteractionCell`** (ConfigErrors). Precedent: Biotech **SchoolDesk**
   (2×1, offsets `[(1,0,-1) student, (0,0,-1) teacher]`), consumed via
-  `Thing.InteractionCells[i]`; each pawn reserves its *cell* (`ReserveSittableOrSpot`) and
+  `Thing.InteractionCells[i]`; each pawn reserves its _cell_ (`ReserveSittableOrSpot`) and
   paths `GotoCell(spot, PathEndMode.OnCell)` — the desk Thing is never reserved.
 - The vanilla scanner trio cannot use it: `PathEndMode.InteractionCell` resolves only the
   singular `InteractionCell` (with multipleOffsets + no hasInteractionCell it falls back to

@@ -56,5 +56,3 @@ test_*.exe
 __pycache__/
 *.py[cod]
 
-# Research documentation (kept locally, not tracked)
-Docs/
