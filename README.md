@@ -21,7 +21,7 @@ colony map.
 - Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
 
 Requires [Harmony](https://github.com/pardeike/HarmonyRimWorld) (`brrainz.harmony`). No DLC
-required. Current art is a placeholder reusing the vanilla long-range scanner texture.
+required.
 
 ## Building from source
 

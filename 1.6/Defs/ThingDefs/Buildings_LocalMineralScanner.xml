@@ -15,20 +15,28 @@
          x=0 and x=1 columns. PathEndMode.InteractionCell cannot resolve multiple offsets,
          so the WorkGiver/JobDriver are custom (see WorkGiver_OperateLocalMineralScanner).
        - The spots sit on the +z side (offsets authored for North rotation; the game
-         rotates them), because the borrowed vanilla scanner art fronts its NORTH sprite
-         toward a north-side operator: vanilla pairs offset (0,0,2) with defaultPlacingRot
-         South + interactionCellIconReverse, which we mirror. Authoring the spots on -z
-         (the SchoolDesk convention) renders the sprite 180 degrees away from the
-         operators. GenAdj.AdjustForRotation's even-size center shifts keep both cells
-         flush against the correct face at all four rotations (hand-verified).
+         rotates them), because the art fronts its consoles toward a north-side operator
+         at North rotation, like vanilla's long-range scanner: vanilla pairs offset
+         (0,0,2) with defaultPlacingRot South + interactionCellIconReverse, which we
+         mirror. Authoring the spots on -z (the SchoolDesk convention) renders the sprite
+         180 degrees away from the operators. GenAdj.AdjustForRotation's even-size center
+         shifts keep both cells flush against the correct face at all four rotations
+         (hand-verified).
        - PlaceWorker_PreventInteractionSpotOverlap checks multipleInteractionCellOffsets
          on both the placed def and neighbors, so it covers both spots.
        - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass), so
          terrainAffordanceNeeded is Medium rather than the immobile scanners' Heavy.
        - Power 400W: between the deep drill (200) and the big scanners (700), for a
          smaller unit.
-       - Texture: reuses the vanilla long-range scanner art (placeholder until custom art
-         is commissioned); drawSize scaled 3x3->2x2 (4 * 2/3 ~= 2.66).
+       - Texture: commissioned art in Common/Textures, named after the defName per the
+         vanilla Things/Building/Misc/<DefName>_<rot> idiom. Only north/south/west ship:
+         the delivered side view has its consoles on -x, which is the WEST sprite under
+         the game's convention (Rot4.East rotates the +z offsets onto +x, so the East
+         face's consoles must sit on +x). Graphic_Multi synthesises the missing east
+         sprite by mirroring west (eastFlipped), so one file serves both sides.
+         drawSize 3.1: the chassis spans 163 of the 256px canvas (0.64), so
+         2 cells / 0.64 ~= 3.1 makes the footprint fill the 2x2; the dish overhangs
+         the back by ~0.2 cells, the console skirt the front by ~0.1.
        - canBeUsedUnderRoof=false + PlaceWorker_NotUnderRoof is belt-and-suspenders with
          CompScanner.CanUseNow's hardcoded RoofUtility check, same as vanilla scanners.
   -->
@@ -37,9 +45,9 @@
     <label>local mineral scanner</label>
     <description>A compact seismic sensor array used by researchers to pinpoint mineral deposits hidden in uncharted parts of the local landscape. The chance to find a deposit depends on the operator's research ability. It can be tuned to a specific mineral type, and its twin consoles allow two operators to scan together. It doesn't work under a roof.</description>
     <graphicData>
-      <texPath>Things/Building/Misc/LongRangeMineralScanner</texPath>
+      <texPath>Things/Building/Misc/LocalMineralScanner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(2.66, 2.66)</drawSize>
+      <drawSize>(3.1, 3.1)</drawSize>
       <shadowData>
         <volume>(0.95, 0.35, 0.95)</volume>
         <offset>(0,0,-0.1)</offset>
