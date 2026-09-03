@@ -2,8 +2,11 @@
 // progress from Used(Pawn) called every tick by the operating pawn's job toil: each call
 // adds scanSpeed/60000 worked-days and rolls Rand.MTBEventOccurs every 59 ticks, with a
 // forced success at scanFindGuaranteedDays. Two simultaneous operators therefore double
-// progress with no extra code here; the base comp's scalar lastUserSpeed/lastScanTick only
-// feed the inspect string, so concurrent Used() calls clobbering them is cosmetic.
+// progress with no extra code here. The base comp's scalar lastUserSpeed/lastScanTick only
+// feed its inspect string, but concurrent Used() calls clobber them so it flickers between
+// operators and reports one pawn's find interval instead of the pair's. Used() is
+// non-virtual, so the job driver calls Operate() (a wrapper) and CompInspectStringExtra is
+// overridden to report the per-tick combined speed that wrapper records.
 //
 // DoFind reveals (unfogs) one contiguous deposit of the targeted mineral instead of
 // generating deep resources like CompDeepScanner:
@@ -29,6 +32,7 @@
 // comp so multi-select tuning works across several scanners.
 
 using System.Collections.Generic;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -47,6 +51,13 @@ public class CompLocalMineralScanner : CompScanner
     // Cached in PostSpawnSetup (re-fetched on minify/reinstall like the base comp's
     // powerComp): Map.GetComponent is a linear scan, too heavy for CanUseNow's call rate.
     private MapComponent_FoggedMinerals foggedMinerals;
+
+    // Operators and summed scan speed for the most recent tick Operate() ran. Transient by
+    // design: the inspect string only reads them within a 30-tick grace of that tick (the
+    // vanilla window), so nothing stale survives a save/load.
+    private int operatingTick = -1;
+    private int operatorCount;
+    private float combinedSpeed;
 
     public override void Initialize(CompProperties props)
     {
@@ -90,6 +101,52 @@ public class CompLocalMineralScanner : CompScanner
             }
             return true;
         }
+    }
+
+    // The job driver's per-tick entry point, wrapping the non-virtual CompScanner.Used so the
+    // inspect string can report the combined rate. Summing speeds is exact, not an
+    // approximation: every operator rolls Rand.MTBEventOccurs at rate speed/scanFindMtbDays
+    // on the same hash-interval tick (rates of independent events add), and the worked-days
+    // accumulator gains speed/60000 per call. The speed lookup mirrors Used's.
+    public void Operate(Pawn worker)
+    {
+        int tick = Find.TickManager.TicksGame;
+        if (tick != operatingTick)
+        {
+            operatingTick = tick;
+            operatorCount = 0;
+            combinedSpeed = 0f;
+        }
+        operatorCount++;
+        combinedSpeed += Props.scanSpeedStat != null ? worker.GetStatValue(Props.scanSpeedStat) : 1f;
+        Used(worker);
+    }
+
+    // Replaces CompScanner's string (same lines and vanilla keys, plus a guaranteed-find ETA)
+    // with the combined figures from Operate(). ResearchSpeed has a 0.1 floor, so the
+    // divisions are safe. OnGUI runs after the frame's ticks, so the sum is never read half
+    // accumulated.
+    public override string CompInspectStringExtra()
+    {
+        StringBuilder sb = new StringBuilder();
+        if (operatorCount > 0 && operatingTick > Find.TickManager.TicksGame - 30)
+        {
+            TaggedString speedLabel = operatorCount == 1
+                ? "UserScanAbility".Translate()
+                : "LocalMineralScanner_CombinedScanSpeed".Translate(operatorCount);
+            sb.AppendLine(speedLabel + ": " + combinedSpeed.ToStringPercent());
+            sb.AppendLine("ScanAverageInterval".Translate() + ": "
+                + "PeriodDays".Translate((Props.scanFindMtbDays / combinedSpeed).ToString("F1")));
+            if (Props.scanFindGuaranteedDays > 0f)
+            {
+                float daysLeft = Mathf.Max(0f, (Props.scanFindGuaranteedDays - daysWorkingSinceLastFinding) / combinedSpeed);
+                sb.AppendLine("LocalMineralScanner_GuaranteedFindWithin".Translate() + ": "
+                    + "PeriodDays".Translate(daysLeft.ToString("F1")));
+            }
+        }
+        sb.Append("ScanningProgressToGuaranteedFind".Translate() + ": "
+            + (daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays).ToStringPercent());
+        return sb.ToString();
     }
 
     protected override void DoFind(Pawn worker)

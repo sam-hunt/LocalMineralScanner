@@ -2,11 +2,11 @@
 // the assigned operator cell (targetB) via ReserveSittableOrSpot and paths GotoCell/OnCell
 // instead of reserving the building and pathing to its singular InteractionCell - the
 // SchoolDesk (JobDriver_Lessontaking) pattern that lets two pawns work one building.
-// The work toil mirrors vanilla exactly: comp.Used(actor) every tick (that call IS the scan
-// progress), hardcoded 0.035 Intellectual XP/tick, chair comfort, working sustainer, fail
-// when CanUseNow flips (e.g. our "no deposits left" gate - progress is retained). Facing is
-// manual (handlingFacing + FaceTarget) since the engine only auto-faces single-cell
-// interaction buildings.
+// The work toil mirrors vanilla exactly: comp.Operate(actor) every tick (our wrapper around
+// CompScanner.Used, which IS the scan progress - see the comp for why), hardcoded 0.035
+// Intellectual XP/tick, chair comfort, working sustainer, fail when CanUseNow flips (e.g.
+// our "no deposits left" gate - progress is retained). Facing is manual (handlingFacing +
+// FaceTarget) since the engine only auto-faces single-cell interaction buildings.
 
 using RimWorld;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ public class JobDriver_OperateLocalMineralScanner : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        CompScanner scannerComp = Scanner.TryGetComp<CompScanner>();
+        CompLocalMineralScanner scannerComp = Scanner.TryGetComp<CompLocalMineralScanner>();
         this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
         this.FailOnBurningImmobile(TargetIndex.A);
         this.FailOn(() => !scannerComp.CanUseNow);
@@ -36,7 +36,7 @@ public class JobDriver_OperateLocalMineralScanner : JobDriver
         {
             Pawn actor = work.actor;
             actor.rotationTracker.FaceTarget(Scanner);
-            scannerComp.Used(actor);
+            scannerComp.Operate(actor);
             actor.skills.Learn(SkillDefOf.Intellectual, 0.035f);
             actor.GainComfortFromCellIfPossible(1, chairsOnly: true);
         };
