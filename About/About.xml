@@ -2,7 +2,6 @@
 <ModMetaData>
     <name>Local Mineral Scanner</name>
     <author>Sam Hunt</author>
-    <!-- Lowercase by convention: MayRequire/ModsConfig matching is case-exact-lowercase. -->
     <packageId>samhunt.localmineralscanner</packageId>
     <modVersion>0.1.0</modVersion>
     <description>Adds a compact local mineral scanner: a pawn-operated 2x2 building that locates and reveals fogged mineral deposits on the current map. Tune it to a specific mineral type; two pawns can operate it together to scan faster.</description>
