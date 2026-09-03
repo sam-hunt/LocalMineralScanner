@@ -56,7 +56,8 @@ whatever it automates (e.g. `/release` encodes the CHANGELOG layout).
 
 ```
 About/           - Mod metadata (About.xml)
-Common/          - Version-independent assets (Languages, Textures)
+Textures/        - Version-independent art (well-known folder at the mod root)
+Languages/       - Version-independent translations (well-known folder at the mod root)
 1.6/             - RimWorld 1.6 specific content
   Assemblies/    - Compiled DLLs (build output, gitignored)
   Defs/          - XML definitions (ThingDefs, etc.)

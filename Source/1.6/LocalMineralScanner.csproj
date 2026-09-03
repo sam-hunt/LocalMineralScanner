@@ -128,9 +128,9 @@
            only the file types the game loads at runtime (+ Workshop release metadata in
            About/). Each content folder is matched at the mod root AND under any one
            top-level subfolder ("$(RepoRoot)/*/<Folder>") — i.e. version folders (1.6/,
-           a future 1.7/) and Common/ — so content deploys wherever it lives and new
-           version folders need no change here. Source layout is mirrored verbatim into
-           $(StageDir), so e.g. Common/Textures/ stays under Common/ and 1.6/Defs/ stays
+           a future 1.7/) — so content deploys wherever it lives and new version
+           folders need no change here. Source layout is mirrored verbatim into
+           $(StageDir), so e.g. root Textures/ stays at the root and 1.6/Defs/ stays
            under 1.6/.
 
            To support a new content type, add ONE <_ModFiles Include="..."/> line below.
@@ -145,7 +145,7 @@
       <_ModFiles Include="$(RepoRoot)/LoadFolders.xml" />
       <_ModFiles Include="$(RepoRoot)/About/**/*.xml;$(RepoRoot)/About/**/*.png;$(RepoRoot)/About/**/*.txt" />
 
-      <!-- Code + content (matched at root and under any version / Common folder) -->
+      <!-- Code + content (matched at root and under any version folder) -->
       <_ModFiles Include="$(RepoRoot)/Assemblies/**/*.dll;$(RepoRoot)/*/Assemblies/**/*.dll" />
       <_ModFiles Include="$(RepoRoot)/Defs/**/*.xml;$(RepoRoot)/*/Defs/**/*.xml;$(RepoRoot)/*/Mods/*/Defs/**/*.xml" />
       <_ModFiles Include="$(RepoRoot)/Patches/**/*.xml;$(RepoRoot)/*/Patches/**/*.xml;$(RepoRoot)/*/Mods/*/Patches/**/*.xml" />

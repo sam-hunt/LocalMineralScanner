@@ -3,10 +3,9 @@
     <v1.6>
         <li>/</li>
         <!-- Once a LoadFolders.xml exists, ONLY the folders listed here load - the
-             game's default roots (version folder, Common, /) no longer apply. Common/
-             is documented in CLAUDE.md as the home for version-independent assets, so
-             it must be listed or its Languages/Textures silently never load. -->
-        <li>Common</li>
+             game's default roots (version folder, Common, /) no longer apply. "/" is
+             the version-independent root: the well-known folders directly under it
+             (Textures/, Languages/, ...) load for every game version. -->
         <li>1.6</li>
         <!-- Optional-mod/DLC compat roots, one gated entry each (the layout the wider
              ecosystem uses). Needed whenever content can't gate itself: defs support
@@ -21,7 +20,7 @@
              DefInjected that must sit in the same load root as the defs it targets).
              Both are safe to nest, because the game only scans well-known folders
              (Languages/, Defs/, Textures/, ...) directly under a load root - so the
-             plain "/", Common and 1.6 entries above never see Mods/. ModLister also
+             plain "/" and 1.6 entries above never see Mods/. ModLister also
              scans the game's Mods folder one level deep only, so a nested Mods/
              inside a deployed mod is never mistaken for a mod.
         <li IfModActive="ludeon.rimworld.biotech">Mods/Biotech</li>

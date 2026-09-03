@@ -49,7 +49,8 @@ RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Releas
 
 ```
 About/              - Mod metadata (About.xml)
-Common/             - Version-independent assets (Languages, Textures)
+Textures/           - Version-independent art
+Languages/          - Version-independent translations
 1.6/                - RimWorld 1.6 specific content
   Assemblies/       - Compiled DLLs (build output)
   Defs/             - XML definitions (building, work giver, job)

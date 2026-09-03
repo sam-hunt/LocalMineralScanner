@@ -28,8 +28,8 @@
          terrainAffordanceNeeded is Medium rather than the immobile scanners' Heavy.
        - Power 400W: between the deep drill (200) and the big scanners (700), for a
          smaller unit.
-       - Texture: commissioned art in Common/Textures, named after the defName per the
-         vanilla Things/Building/Misc/<DefName>_<rot> idiom. Only north/south/west ship:
+       - Texture: commissioned art in the root Textures/, named after the defName per
+         the vanilla Things/Building/Misc/<DefName>_<rot> idiom. Only north/south/west ship:
          the delivered side view has its consoles on -x, which is the WEST sprite under
          the game's convention (Rot4.East rotates the +z offsets onto +x, so the East
          face's consoles must sit on +x). Graphic_Multi synthesises the missing east
