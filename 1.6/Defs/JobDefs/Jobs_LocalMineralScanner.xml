@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Custom driver (not vanilla JobDriver_OperateScanner) because the vanilla driver
-       reserves the building (maxPawns=1) and paths via PathEndMode.InteractionCell; ours
-       reserves the specific operator cell carried in targetB and paths GotoCell/OnCell so
-       two pawns can work the building at once. targetA = scanner building, targetB =
-       assigned interaction cell. -->
+  <!-- Custom driver: reserves the operator cell in targetB rather than the building, so two
+       pawns can work one scanner (rationale in WorkGiver_OperateLocalMineralScanner.cs).
+       targetA = scanner building, targetB = assigned interaction cell. -->
   <JobDef>
     <defName>OperateLocalMineralScanner</defName>
     <driverClass>LocalMineralScanner.JobDriver_OperateLocalMineralScanner</driverClass>

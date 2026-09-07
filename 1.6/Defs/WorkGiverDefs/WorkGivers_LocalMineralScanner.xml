@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Custom giverClass (not vanilla WorkGiver_OperateScanner) because vanilla hardcodes a
-       building-level maxPawns=1 reservation and PathEndMode.InteractionCell, which only
-       resolves the SINGULAR interaction cell - both incompatible with two simultaneous
-       operators. Ours assigns each pawn a free cell from Thing.InteractionCells and the
-       matching JobDriver reserves that cell (SchoolDesk pattern). The scannerDef field is
-       vanilla WorkGiverDef API, reused so the class stays generic over future scanners.
-       workType Research keeps parity with vanilla scanners (Intellectual-priority work,
-       ResearchSpeed scan stat, Intellectual XP in the driver). -->
+  <!-- Custom giverClass: assigns each pawn a free cell from Thing.InteractionCells so two
+       pawns can work one scanner (rationale in WorkGiver_OperateLocalMineralScanner.cs).
+       scannerDef is vanilla WorkGiverDef API, reused so the class stays generic over future
+       scanners. workType Research keeps parity with vanilla scanners (Intellectual-priority
+       work, ResearchSpeed scan stat, Intellectual XP in the driver). -->
   <WorkGiverDef>
     <defName>LocalMineralScan</defName>
     <label>operate local mineral scanner</label>

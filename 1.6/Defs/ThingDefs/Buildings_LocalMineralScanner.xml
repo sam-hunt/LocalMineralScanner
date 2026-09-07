@@ -7,13 +7,12 @@
 
        - scanFindMtbDays/scanFindGuaranteedDays 2/4 = half the long-range scanner's 4/8:
          each find costs ~50% of the effort by design.
-       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots.
-         This is the Biotech SchoolDesk pattern - each pawn reserves its CELL, not the
-         building, so two pawns can scan at once, and CompScanner.Used() accumulating per
+       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots,
+         each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
+         WorkGiver_OperateLocalMineralScanner.cs); CompScanner.Used() accumulating per
          worker per tick makes the second operator genuinely double progress. NOTE: an
          even-width face has no centered cell (Position is the min corner), hence the
-         x=0 and x=1 columns. PathEndMode.InteractionCell cannot resolve multiple offsets,
-         so the WorkGiver/JobDriver are custom (see WorkGiver_OperateLocalMineralScanner).
+         x=0 and x=1 columns.
        - The spots sit on the +z side (offsets authored for North rotation; the game
          rotates them), because the art fronts its consoles toward a north-side operator
          at North rotation, like vanilla's long-range scanner: vanilla pairs offset

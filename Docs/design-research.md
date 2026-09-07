@@ -90,9 +90,10 @@ plumbing to the roofed/no-bedrock reasons; no auto-forbid, matching the drill's 
 branch since our gate already stops the work); add a standing inspect line; note "that was
 the last deposit" as a trailing paragraph of the find letter that exhausted the mineral
 (one persistent notification instead of a letter plus a fading message on the same tick);
-grey out exhausted minerals in the tuning menu. Rejected: auto-retune / "any" option
-(no precedent, silently overrides a player setting); an Alert (none for drills either;
-roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning like
+grey out exhausted minerals in the tuning menu (the disabled-`FloatMenuOption` idiom:
+`Building_Bed`'s "UseMedicalBed (NotInjured)", `Zone_Fishing`). Rejected: auto-retune /
+"any" option (no precedent, silently overrides a player setting); an Alert (none for drills
+either; roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning like
 `MessageGroundPenetratingScannerNoBedrock` (that condition is permanent, ours is fixed by
 retuning and is visible in the inspect pane).
 

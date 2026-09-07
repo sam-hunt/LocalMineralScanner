@@ -1,12 +1,11 @@
 // The scanner comp. Subclasses vanilla CompScanner (decompile-verified), which drives all
-// progress from Used(Pawn) called every tick by the operating pawn's job toil: each call
+// progress from Used(Pawn), called every tick by the operating pawn's job toil: each call
 // adds scanSpeed/60000 worked-days and rolls Rand.MTBEventOccurs every 59 ticks, with a
 // forced success at scanFindGuaranteedDays. Two simultaneous operators therefore double
-// progress with no extra code here. The base comp's scalar lastUserSpeed/lastScanTick only
-// feed its inspect string, but concurrent Used() calls clobber them so it flickers between
-// operators and reports one pawn's find interval instead of the pair's. Used() is
-// non-virtual, so the job driver calls Operate() (a wrapper) and CompInspectStringExtra is
-// overridden to report the per-tick combined speed that wrapper records.
+// progress with no extra code here. Used() is non-virtual and its scalar
+// lastUserSpeed/lastScanTick are clobbered by concurrent callers, so the job driver calls
+// Operate() (a wrapper that also sums the tick's operator speeds) and
+// CompInspectStringExtra is overridden to report that combined figure.
 //
 // DoFind reveals (unfogs) one contiguous deposit of the targeted mineral instead of
 // generating deep resources like CompDeepScanner:
@@ -16,50 +15,30 @@
 // - Clusters are contiguous same-def mineable cells (cardinal adjacency, matching
 //   Designator_MineVein's vein walk). Fully fogged clusters are preferred; partially
 //   fogged ones are the fallback, and only their fogged cells are revealed.
-// - Letter idiom copied from CompDeepScanner.DoFind: LetterDefOf.PositiveEvent (blue,
-//   non-bouncing, pauses only under the player's "pause on any letter" preference) with a
+// - Letter idiom copied from CompDeepScanner.DoFind: LetterDefOf.PositiveEvent with a
 //   cell-targeted LookTargets.
 //
-// Exhaustion (this scanner, unlike its vanilla siblings, can run out of targets). The
-// handling follows vanilla's own "ran dry" idioms, decompile-verified (Docs/design-research.md
-// has the precedent table):
-// - CanUseNow adds a "no undiscovered deposits of the tuned mineral remain" gate on top of
-//   the base power/roof/forbidden/faction checks - the same channel CompDeepScanner uses
-//   for its no-bedrock reason: the reason reaches the player as the forced-job fail text
-//   ("Cannot scan: ..."; the renderer CapitalizeFirst()s it), the running job ends via the
-//   driver's FailOn, and the saved progress accumulator simply freezes, exactly like
-//   vanilla's roofed scanner. Vanilla never auto-forbids here: CompDeepDrill forbids only
-//   when a fallback resource would otherwise keep pawns busy, and the no-fallback branch
-//   (ours) just lets its CanDrillNow go false. The gate must be O(1): idle pawns' job search
-//   calls WorkGiver.HasJobOnThing -> CanUseNow up to ~60x/sec, so the answer comes from
-//   MapComponent_FoggedMinerals' event-invalidated cache.
+// Exhaustion: unlike its vanilla siblings, this scanner can run out of targets. The
+// handling follows vanilla's "ran dry" idioms; Docs/design-research.md (Exhaustion UX)
+// holds the precedent survey and the rejected alternatives. As implemented:
+// - CanUseNow adds a "no undiscovered deposits of the tuned mineral remain" reason on top
+//   of the base checks, the same channel as CompDeepScanner's no-bedrock reason: it reaches
+//   the player as the forced-job fail text, the running job ends via the driver's FailOn,
+//   and the saved progress accumulator freezes. Nothing is auto-forbidden. The gate must be
+//   O(1): idle pawns' job search calls WorkGiver.HasJobOnThing -> CanUseNow up to ~60x/sec,
+//   so the answer comes from MapComponent_FoggedMinerals' event-invalidated cache.
 // - The inspect string carries a standing exhaustion line (CompDeepDrill's
-//   "DeepDrillNoResources", Zone_Fishing's "CannotFish (reason)"); vanilla CompScanner
-//   never renders CanUseNow reasons, but every vanilla building that can run permanently
-//   dry adds a channel beyond the job-fail text. No Alert: vanilla has none for an exhausted
-//   drill either, and the roofed case is already covered by Alert_CannotBeUsedRoofed.
-// - The find that reveals the LAST deposit says so in its letter (a trailing paragraph,
-//   the IncidentWorker_Raid* pattern) rather than firing a second, fading
-//   Messages.Message alongside it. This is the only edge-triggered exhaustion vanilla
-//   would notify (CompDeepDrill messages at the moment its last portion drains); the
-//   silent routes - the player explores or mines the last deposit, or retunes onto an
-//   exhausted mineral - are player-caused and, like a relocated drill, get only the
-//   inspect line and job-fail text.
-// - The tuning menu greys out exhausted minerals with a parenthesised reason, the
-//   disabled-FloatMenuOption idiom (Building_Bed "UseMedicalBed (NotInjured)",
-//   Zone_Fishing). No auto-retune and no "any mineral" option: no vanilla scanner has
-//   either, and vanilla never silently changes a player's tuning.
-// - Default target: gold for parity with CompLongRangeMineralScanner, but gold is ~2.9% of
-//   ore scatter, so a fresh scanner would often start exhausted. On its FIRST spawn only,
-//   a scanner whose target is exhausted tunes itself to the most valuable mineral that is
-//   still undiscovered (MapComponent_FoggedMinerals.MostValuableFoggedDeposit), so gold
-//   stays the starter wherever it exists. This is Zone_Growing's idiom - its default crop
-//   is resolved from map state (toxipotato on polluted ground) the first time it is read -
-//   and it never touches a choice the player made: the one-shot flag is set in Initialize
-//   (fresh construction, or a traded/quest MinifiedThing) and consumed by the first
-//   PostSpawnSetup, so a save-load (Initialize re-runs, respawningAfterLoad is true) and a
-//   reinstall (flag long consumed) leave the saved target alone. The flag is saved; see its
-//   declaration for the minified-across-a-load case.
+//   "DeepDrillNoResources" idiom). No Alert.
+// - The find that reveals the LAST deposit says so in a trailing paragraph of its letter.
+//   The other routes to exhaustion (exploring, mining, retuning) are player-caused and get
+//   only the inspect line and job-fail text.
+// - The tuning menu greys out exhausted minerals with a parenthesised reason (the disabled
+//   FloatMenuOption idiom). No auto-retune and no "any mineral" option.
+// - Default target: gold, for parity with CompLongRangeMineralScanner. Gold is rare (~2.9%
+//   of ore scatter), so on its FIRST spawn only, a scanner whose target is exhausted tunes
+//   itself to the most valuable mineral still undiscovered
+//   (MapComponent_FoggedMinerals.MostValuableFoggedDeposit). Save-load and reinstall never
+//   touch the saved target; pendingInitialTarget's declaration explains the one-shot plumbing.
 //
 // The target-mineral gizmo is CompLongRangeMineralScanner's verbatim (same candidate list,
 // GenStep_PreciousLump.mineables, and the same vanilla Keyed strings), retargeted at this
@@ -93,12 +72,14 @@ public class CompLocalMineralScanner : CompScanner
     private int operatorCount;
     private float combinedSpeed;
 
-    // Set by Initialize, cleared by the first PostSpawnSetup: see the header's default-target
-    // note. Saved, because Initialize also re-runs on load (ThingWithComps.ExposeData ->
-    // InitializeComps) and would re-arm it: harmless for a spawned scanner (the load-time
-    // PostSpawnSetup consumes it again) but a never-installed minified one - a trade or
-    // quest reward - has no spawn to consume it, and a fallback at install would override a
-    // tuning the player made while it sat in storage. The saved value wins over the re-arm.
+    // One-shot flag behind the header's default-target fallback: set by Initialize (fresh
+    // construction, or a traded/quest MinifiedThing), consumed by the first PostSpawnSetup,
+    // which applies the fallback only when !respawningAfterLoad. Saved, because Initialize
+    // also re-runs on load (ThingWithComps.ExposeData -> InitializeComps) and would re-arm
+    // it: harmless for a spawned scanner (the load-time PostSpawnSetup consumes it again),
+    // but a never-installed minified one - a trade or quest reward - has no spawn to consume
+    // it, and a fallback at install would override a tuning the player made while it sat in
+    // storage. The saved value wins over the re-arm.
     private bool pendingInitialTarget;
 
     public override void Initialize(CompProperties props)
