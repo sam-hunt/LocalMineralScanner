@@ -24,3 +24,4 @@ Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undisc
 
 [h1]Links[/h1]
 Source code, manual downloads and issue tracker: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
+Scanner art by [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
