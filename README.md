@@ -17,7 +17,7 @@ colony map.
   results limited to the current map.
 - **Knows when it's done.** When no undiscovered deposits of the tuned mineral remain, the
   scanner pauses (progress retained) instead of wasting pawn labor — pawns report why.
-- **Minifiable**, so it can be re-deployed as the frontier is uncovered.
+- **Minifiable**, can be re-deployed on new maps for mining trips etc as needed.
 - Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
 
 No dependencies: no Harmony, no DLC.
@@ -38,11 +38,11 @@ RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Releas
 # or: dotnet build LocalMineralScanner.sln -p:RimWorldPath="/path/to/RimWorld"
 ```
 
-| Platform | Default path |
-|----------|--------------|
-| Windows | `C:\Program Files (x86)\Steam\steamapps\common\RimWorld` |
-| Linux | `~/.local/share/Steam/steamapps/common/RimWorld` |
-| macOS | `~/Library/Application Support/Steam/steamapps/common/RimWorld` |
+| Platform | Default path                                                    |
+| -------- | --------------------------------------------------------------- |
+| Windows  | `C:\Program Files (x86)\Steam\steamapps\common\RimWorld`        |
+| Linux    | `~/.local/share/Steam/steamapps/common/RimWorld`                |
+| macOS    | `~/Library/Application Support/Steam/steamapps/common/RimWorld` |
 
 ## Project structure
 
@@ -70,7 +70,3 @@ builds, packages, and creates the release, using that CHANGELOG section as the r
 
 - .NET SDK (for building)
 - RimWorld 1.6 (for assembly references)
-
-## License
-
-[Choose a license for your mod]
