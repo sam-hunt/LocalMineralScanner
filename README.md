@@ -1,74 +1,80 @@
 # Local Mineral Scanner
 
-Never strip-mine again. A RimWorld 1.6 mod adding a compact **local mineral scanner**: a
-pawn-operated 2×2 building that reveals undiscovered mineral deposits on the current map.
+> A RimWorld mod adding a compact local mineral scanner that reveals undiscovered deposits on the current map
+
+[![RimWorld](https://img.shields.io/badge/RimWorld-1.6-blue.svg)](https://rimworldgame.com/)
+[![Version](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg)](https://github.com/sam-hunt/LocalMineralScanner/releases)
+[![Development Status](https://img.shields.io/badge/Status-In%20Development-yellow.svg)](https://github.com/sam-hunt/LocalMineralScanner/releases)
+
+![Preview](About/Preview.png)
+
+## About
+
+Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mountains, and the only ways to get at it are to tunnel blindly or to fetch it from another tile with the long-range mineral scanner. This mod adds the missing middle option: a pawn-operated 2×2 building that scans the map you are already on and unfogs the deposits map generation actually placed there.
+
+- **Reveals real ore** — each successful scan unfogs one contiguous deposit of the tuned mineral; nothing is conjured
+- **Tunable** — pick the mineral you want, exactly like the long-range mineral scanner
+- **Two operators** — twin consoles let two pawns scan at once, each contributing their full research speed
 
 ## Features
 
-- **Reveals real ore.** Each successful scan unfogs one contiguous deposit of the targeted
-  mineral that map generation actually placed — nothing is conjured. Fully hidden deposits
-  are found first; partially exposed ones are the fallback.
-- **Tunable target.** Like the long-range mineral scanner, it can be tuned to a specific
-  mineral (gold, silver, steel, plasteel, components, uranium, jade). A newly built scanner
-  starts on gold, or on the most valuable mineral still hidden on the map if no gold is.
-- **Two operators.** Twin consoles let two pawns scan simultaneously, each contributing
-  their full research speed — a genuine second seat, not queueing.
-- **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for
-  results limited to the current map.
-- **Knows when it's done.** When no undiscovered deposits of the tuned mineral remain, the
-  scanner pauses (progress retained) instead of wasting pawn labor. The find that reveals the
-  last deposit says so, the inspect pane shows why the scanner is idle, and the tuning menu
-  greys out exhausted minerals.
-- **Minifiable**, can be re-deployed on new maps for mining trips etc as needed.
-- Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
+### The Scanner
 
-No dependencies: no Harmony, no DLC.
+- **Real deposits only**: each find unfogs one contiguous deposit that map generation placed. Fully hidden deposits are found first; partially exposed ones are the fallback
+- **Tunable target**: gold, silver, steel, plasteel, components, uranium or jade. A newly built scanner starts on gold, or on the most valuable mineral still hidden on the map if there is no gold
+- **Two operators**: two pawns can scan simultaneously, each contributing their full research speed — a genuine second seat, not queueing
+- **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for results limited to the current map
 
-## Building from source
+### Knows When It's Done
 
-```bash
-dotnet build LocalMineralScanner.sln -c Release
-```
+- **Pauses when exhausted**: when no undiscovered deposits of the tuned mineral remain, the scanner stops consuming pawn labor and keeps its progress
+- **Says so everywhere**: the find that reveals the last deposit says it was the last, the inspect pane explains why the scanner is idle, and the tuning menu greys out exhausted minerals
 
-The project auto-detects a RimWorld installation on common Steam paths (Windows, Linux,
-macOS, and WSL targeting a Windows install). When one is found, every Release build
-automatically stages the mod into the game's `Mods/` folder — no manual copying. Debug
-builds never deploy. If your installation is elsewhere:
+### Placement & Progression
 
-```bash
-RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Release
-# or: dotnet build LocalMineralScanner.sln -p:RimWorldPath="/path/to/RimWorld"
-```
-
-| Platform | Default path                                                    |
-| -------- | --------------------------------------------------------------- |
-| Windows  | `C:\Program Files (x86)\Steam\steamapps\common\RimWorld`        |
-| Linux    | `~/.local/share/Steam/steamapps/common/RimWorld`                |
-| macOS    | `~/Library/Application Support/Steam/steamapps/common/RimWorld` |
-
-## Project structure
-
-```
-About/              - Mod metadata (About.xml)
-Textures/           - Version-independent art
-Languages/          - Version-independent translations
-1.6/                - RimWorld 1.6 specific content
-  Assemblies/       - Compiled DLLs (build output)
-  Defs/             - XML definitions (building, work giver, job)
-  Patches/          - XML patches to modify base game/other mods
-Source/1.6/         - C# source code
-LoadFolders.xml     - Tells RimWorld which folders to load per game version
-docs/               - Design research against the decompiled 1.6 API
-```
-
-## Releases
-
-Add the version's section to `CHANGELOG.md`, bump `<modVersion>` in `About/About.xml` and the
-versions in `Source/1.6/Properties/AssemblyInfo.cs`, then push a `v*.*.*` tag. GitHub Actions
-builds, packages, and creates the release, using that CHANGELOG section as the release body
-(and failing if it's missing). The `/release` Claude Code skill automates the whole flow.
+- **Minifiable**: uninstall it and take it along on mining trips or to a new map
+- **No new research**: unlocked by the vanilla long-range mineral scanner research
 
 ## Requirements
 
-- .NET SDK (for building)
-- RimWorld 1.6 (for assembly references)
+- **RimWorld 1.6** or later
+- No DLC required
+- No Harmony or other mod dependencies
+
+## Installation
+
+### Steam Workshop (Recommended)
+
+Coming with the first release.
+
+### Manual Installation
+
+1. Download the latest release from the [Releases](https://github.com/sam-hunt/LocalMineralScanner/releases) page
+2. Extract the `LocalMineralScanner` folder to your RimWorld `Mods` directory:
+   - **Windows**: `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\`
+   - **Mac**: `~/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/`
+   - **Linux**: `~/.steam/steam/steamapps/common/RimWorld/Mods/`
+3. Enable the mod in RimWorld's mod menu
+4. Restart RimWorld
+
+## Compatibility
+
+- **Safe to add** to existing saves.
+- **Not safe to remove** from saves (built scanners and the per-map scan bookkeeping would be orphaned).
+
+## Contributing
+
+Bug reports and feature requests welcome on [GitHub Issues](https://github.com/sam-hunt/LocalMineralScanner/issues).
+Please attach any relevant logs/stack traces/mod lists etc.
+
+Translations are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+For development setup, see [CLAUDE.md](CLAUDE.md).
+
+## Credits
+
+**Author**: Sam Hunt ([@sam-hunt](https://github.com/sam-hunt))
+
+**Special Thanks**:
+
+- [Ludeon Studios](https://ludeon.com) for RimWorld and modding API
+- [The RimWorld modding community](https://steamcommunity.com/app/294100/workshop/) for inspiration

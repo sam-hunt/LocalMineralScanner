@@ -1,8 +1,8 @@
 # Contributing
 
-Bug reports, fixes, and features are welcome — open an issue or pull request.
-Build instructions are in README.md; the mod builds with
-`dotnet build LocalMineralScanner.sln -c Release`.
+Thanks for your interest in improving Local Mineral Scanner! Bug reports,
+suggestions and pull requests are welcome. Build and development setup live
+in CLAUDE.md.
 
 ## Localization
 
