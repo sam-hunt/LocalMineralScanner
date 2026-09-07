@@ -4,10 +4,12 @@
 // PathFinderMapData applies to the same events (decompile-verified):
 // - map.events.CellFogChanged fires per cell from every FogGrid.Unfog/Refog, including
 //   mining through rock (Building.DeSpawn -> Notify_FogBlockerRemoved -> ...Unfog) and our
-//   own DoFind reveals; the handler only dirties when the cell holds a tracked mineable
-//   (EdificeGrid indexer lookup - at unfog time the rock is still spawned).
-// - ThingSpawned/ThingDespawned cover mineables being mined out or spawned; MapFogged
-//   covers full re-fogs (debug tools).
+//   own DoFind reveals; the handler only dirties when the cell still holds a tracked
+//   mineable (EdificeGrid indexer lookup). A rock being mined out is already deregistered
+//   when its own cell unfogs, so that case rides on BuildingDespawned instead.
+// - BuildingSpawned/BuildingDespawned cover mineables being mined out or spawned (Mineable
+//   is a Building, and these skip the mote/filth/item/pawn traffic ThingSpawned carries);
+//   MapFogged covers full re-fogs (debug tools).
 // Rebuild walks listerThings.ThingsOfDef per tracked def - maintained per-def lists, never
 // an AllThings scan (there is no ThingRequestGroup covering mineables; BuildingArtificial
 // explicitly excludes resource rock). Tracked defs = GenStep_PreciousLump.mineables, the
@@ -84,8 +86,8 @@ public class MapComponent_FoggedMinerals : MapComponent
             subscribed = true;
             map.events.CellFogChanged += Notify_CellFogChanged;
             map.events.MapFogged += Notify_MapFogged;
-            map.events.ThingSpawned += Notify_ThingChanged;
-            map.events.ThingDespawned += Notify_ThingChanged;
+            map.events.BuildingSpawned += Notify_BuildingChanged;
+            map.events.BuildingDespawned += Notify_BuildingChanged;
         }
         dirty = true;
     }
@@ -98,8 +100,8 @@ public class MapComponent_FoggedMinerals : MapComponent
             subscribed = false;
             map.events.CellFogChanged -= Notify_CellFogChanged;
             map.events.MapFogged -= Notify_MapFogged;
-            map.events.ThingSpawned -= Notify_ThingChanged;
-            map.events.ThingDespawned -= Notify_ThingChanged;
+            map.events.BuildingSpawned -= Notify_BuildingChanged;
+            map.events.BuildingDespawned -= Notify_BuildingChanged;
         }
     }
 
@@ -117,9 +119,9 @@ public class MapComponent_FoggedMinerals : MapComponent
         dirty = true;
     }
 
-    private void Notify_ThingChanged(Thing thing)
+    private void Notify_BuildingChanged(Building building)
     {
-        if (TrackedDefs.Contains(thing.def))
+        if (TrackedDefs.Contains(building.def))
         {
             dirty = true;
         }
