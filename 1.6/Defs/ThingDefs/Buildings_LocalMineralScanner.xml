@@ -24,8 +24,10 @@
          (hand-verified).
        - PlaceWorker_PreventInteractionSpotOverlap checks multipleInteractionCellOffsets
          on both the placed def and neighbors, so it covers both spots.
-       - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass), so
-         terrainAffordanceNeeded is Medium rather than the immobile scanners' Heavy.
+       - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass).
+         uninstallWork 1500 scales the drill's 1800-of-10000 to our 8000 WorkToBuild.
+         terrainAffordanceNeeded Medium, between the drill's Light and the fixed
+         scanners' Heavy, since a portable unit shouldn't demand a heavy foundation.
        - Power 400W: between the deep drill (200) and the big scanners (700), for a
          smaller unit.
        - Texture: commissioned art in the root Textures/, named after the defName per
@@ -62,6 +64,7 @@
     </costList>
     <building>
       <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <uninstallWork>1500</uninstallWork>
     </building>
     <thingCategories>
       <li>BuildingsMisc</li>
