@@ -1,0 +1,26 @@
+Local Mineral Scanner
+
+[h1]About[/h1]
+Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on, for half the work per find of the long-range mineral scanner.
+
+[h2]What it does[/h2]
+[list]
+[*]Each find unfogs one real deposit that map generation placed; nothing is conjured
+[*]Tune it to gold, silver, steel, plasteel, components, uranium or jade
+[*]Two pawns can operate it at once, each at full research speed
+[*]Pauses itself when no undiscovered deposits of the tuned mineral remain, and the tuning menu greys out exhausted minerals
+[*]Minifiable, so it can travel to new maps; unlocked by the vanilla long-range mineral scanner research
+[/list]
+
+[hr][/hr]
+
+[h1]Compatibility[/h1]
+[list]
+[*]Requires RimWorld 1.6. No DLC, no Harmony
+[*]Safe to add to existing saves; not safe to remove
+[/list]
+
+[hr][/hr]
+
+[h1]Links[/h1]
+Source code, manual downloads and issue tracker: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
