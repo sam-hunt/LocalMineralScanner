@@ -96,11 +96,22 @@ roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning 
 `MessageGroundPenetratingScannerNoBedrock` (that condition is permanent, ours is fixed by
 retuning and is visible in the inspect pane).
 
-Balance note: the default target is gold for vanilla parity with the long-range scanner,
-but `GenStep_ScatterLumpsMineable` weights gold at 0.07 of 2.405 (~2.9%) with 4–15 lumps
-per 10k cells by hilliness, so a 250×250 small-hills map averages ~1.5 gold lumps and a
-fresh scanner often starts exhausted. The greyed menu makes the switch obvious; changing
-the default is a one-line `SetDefaultTargetMineral` decision if that proves annoying.
+Default target: gold for vanilla parity with the long-range scanner, but
+`GenStep_ScatterLumpsMineable` weights gold at 0.07 of 2.405 (~2.9%) with 4–15 lumps per
+10k cells by hilliness, so a 250×250 small-hills map averages ~1.5 gold lumps and a fresh
+scanner would often start exhausted. Adopted: on its first spawn only, an exhausted scanner
+tunes itself to the most valuable undiscovered mineral. Precedent: `Zone_Growing.PlantDefToGrow`
+resolves its default from map state (toxipotato when entirely polluted) the first time it is
+read, and `DeepDrillUtility.GetNextResource` derives the drill's resource from the map; both
+are defaults chosen where the player has made no choice. Value ordering is per deposit cell,
+`mineableThing.BaseMarketValue * building.mineableYield`, the product `GenStep_PreciousLump`
+sizes lumps by (gold 400, plasteel 360, uranium 240, jade 200, steel 76, components 64,
+silver 40); raw market value would rank components (32) above gold (10). The one-shot flag
+is set in `Initialize` (runs on `PostMake` and on load) and consumed by the first
+`PostSpawnSetup`, so load (`respawningAfterLoad`) and reinstall (flag already consumed)
+never override a saved tuning. The flag is scribed because the load-time `Initialize`
+re-arms it, and a never-installed minified scanner (trade/quest reward) has no load-time
+spawn to consume it; the saved value overrides the re-arm.
 
 ## Interaction cell mechanics (verified)
 

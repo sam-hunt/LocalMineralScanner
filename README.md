@@ -10,7 +10,8 @@ of the current map.
   mineral that map generation actually placed — nothing is conjured. Fully hidden deposits
   are found first; partially exposed ones are the fallback.
 - **Tunable target.** Like the long-range mineral scanner, it can be tuned to a specific
-  mineral (gold, silver, steel, plasteel, components, uranium, jade).
+  mineral (gold, silver, steel, plasteel, components, uranium, jade). A newly built scanner
+  starts on gold, or on the most valuable mineral still hidden on the map if no gold is.
 - **Two operators.** Twin consoles let two pawns scan simultaneously, each contributing
   their full research speed — a genuine second seat, not queueing.
 - **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for

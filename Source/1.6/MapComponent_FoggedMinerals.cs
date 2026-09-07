@@ -13,12 +13,19 @@
 // explicitly excludes resource rock). Tracked defs = GenStep_PreciousLump.mineables, the
 // same list the tuning gizmo offers, resolved lazily since DefOf isn't ready at load time.
 //
+// MostValuableFoggedDeposit backs the fresh scanner's default target. Value is per deposit
+// cell, mineableThing.BaseMarketValue * building.mineableYield, the product
+// GenStep_PreciousLump sizes its lumps by; raw market value would rank components (32
+// silver each, 2 per cell) above gold. Vanilla order: gold 400, plasteel 360, uranium 240,
+// jade 200, steel 76, components 64, silver 40.
+//
 // RimWorld instantiates every MapComponent subclass on every map automatically, so no
 // registration is needed. Subscription happens in FinalizeInit (runs on both mapgen and
 // save-load, after map systems exist); queries before that still work off the initial
 // dirty flag. MapRemoved unsubscribes to keep a discarded map from pinning this component.
 
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -27,6 +34,7 @@ namespace LocalMineralScanner;
 public class MapComponent_FoggedMinerals : MapComponent
 {
     private static List<ThingDef> cachedTrackedDefs;
+    private static List<ThingDef> cachedDefsByValue;
 
     private readonly HashSet<ThingDef> defsWithFoggedCells = new HashSet<ThingDef>();
     private bool dirty = true;
@@ -39,6 +47,11 @@ public class MapComponent_FoggedMinerals : MapComponent
     private static List<ThingDef> TrackedDefs =>
         cachedTrackedDefs ??= ((GenStep_PreciousLump)GenStepDefOf.PreciousLump.genStep).mineables;
 
+    private static List<ThingDef> DefsByValueDescending =>
+        cachedDefsByValue ??= TrackedDefs
+            .OrderByDescending(def => def.building.mineableThing.BaseMarketValue * def.building.mineableYield)
+            .ToList();
+
     public bool AnyFoggedDepositOf(ThingDef mineableDef)
     {
         if (dirty)
@@ -46,6 +59,21 @@ public class MapComponent_FoggedMinerals : MapComponent
             Rebuild();
         }
         return defsWithFoggedCells.Contains(mineableDef);
+    }
+
+    // The tracked mineable with fogged cells whose deposits are worth most per cell, or null
+    // when nothing tracked remains undiscovered.
+    public ThingDef MostValuableFoggedDeposit()
+    {
+        List<ThingDef> byValue = DefsByValueDescending;
+        for (int i = 0; i < byValue.Count; i++)
+        {
+            if (AnyFoggedDepositOf(byValue[i]))
+            {
+                return byValue[i];
+            }
+        }
+        return null;
     }
 
     public override void FinalizeInit()

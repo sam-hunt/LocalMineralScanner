@@ -49,6 +49,17 @@
 //   disabled-FloatMenuOption idiom (Building_Bed "UseMedicalBed (NotInjured)",
 //   Zone_Fishing). No auto-retune and no "any mineral" option: no vanilla scanner has
 //   either, and vanilla never silently changes a player's tuning.
+// - Default target: gold for parity with CompLongRangeMineralScanner, but gold is ~2.9% of
+//   ore scatter, so a fresh scanner would often start exhausted. On its FIRST spawn only,
+//   a scanner whose target is exhausted tunes itself to the most valuable mineral that is
+//   still undiscovered (MapComponent_FoggedMinerals.MostValuableFoggedDeposit), so gold
+//   stays the starter wherever it exists. This is Zone_Growing's idiom - its default crop
+//   is resolved from map state (toxipotato on polluted ground) the first time it is read -
+//   and it never touches a choice the player made: the one-shot flag is set in Initialize
+//   (fresh construction, or a traded/quest MinifiedThing) and consumed by the first
+//   PostSpawnSetup, so a save-load (Initialize re-runs, respawningAfterLoad is true) and a
+//   reinstall (flag long consumed) leave the saved target alone. The flag is saved; see its
+//   declaration for the minified-across-a-load case.
 //
 // The target-mineral gizmo is CompLongRangeMineralScanner's verbatim (same candidate list,
 // GenStep_PreciousLump.mineables, and the same vanilla Keyed strings), retargeted at this
@@ -82,22 +93,40 @@ public class CompLocalMineralScanner : CompScanner
     private int operatorCount;
     private float combinedSpeed;
 
+    // Set by Initialize, cleared by the first PostSpawnSetup: see the header's default-target
+    // note. Saved, because Initialize also re-runs on load (ThingWithComps.ExposeData ->
+    // InitializeComps) and would re-arm it: harmless for a spawned scanner (the load-time
+    // PostSpawnSetup consumes it again) but a never-installed minified one - a trade or
+    // quest reward - has no spawn to consume it, and a fallback at install would override a
+    // tuning the player made while it sat in storage. The saved value wins over the re-arm.
+    private bool pendingInitialTarget;
+
     public override void Initialize(CompProperties props)
     {
         base.Initialize(props);
         SetDefaultTargetMineral();
+        pendingInitialTarget = true;
     }
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
         foggedMinerals = parent.Map.GetComponent<MapComponent_FoggedMinerals>();
+        if (pendingInitialTarget)
+        {
+            pendingInitialTarget = false;
+            if (!respawningAfterLoad && TargetExhausted)
+            {
+                targetMineable = foggedMinerals.MostValuableFoggedDeposit() ?? targetMineable;
+            }
+        }
     }
 
     public override void PostExposeData()
     {
         base.PostExposeData();
         Scribe_Defs.Look(ref targetMineable, "targetMineable");
+        Scribe_Values.Look(ref pendingInitialTarget, "pendingInitialTarget", defaultValue: false);
         if (Scribe.mode == LoadSaveMode.PostLoadInit && targetMineable == null)
         {
             SetDefaultTargetMineral();
