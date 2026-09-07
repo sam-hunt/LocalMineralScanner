@@ -16,7 +16,9 @@ of the current map.
 - **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for
   results limited to the current map.
 - **Knows when it's done.** When no undiscovered deposits of the tuned mineral remain, the
-  scanner pauses (progress retained) instead of wasting pawn labor — pawns report why.
+  scanner pauses (progress retained) instead of wasting pawn labor. The find that reveals the
+  last deposit says so, the inspect pane shows why the scanner is idle, and the tuning menu
+  greys out exhausted minerals.
 - **Minifiable**, can be re-deployed on new maps for mining trips etc as needed.
 - Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
 

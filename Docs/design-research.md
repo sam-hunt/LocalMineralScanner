@@ -57,6 +57,51 @@ Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent,
   (`Designator_MineVein` precedent walks contiguous same-ThingDef edifices), classify fully
   vs partially fogged, prioritize fully fogged.
 
+## Exhaustion UX (verified)
+
+This scanner can run out of targets; its vanilla siblings cannot (the long-range scanner
+spawns quests, the deep scanner conjures lumps). Survey of how vanilla handles a
+player-owned work source that runs dry, and what we adopted:
+
+| Precedent | Channel | When | Pauses/forbids? | Inspect line? |
+| --- | --- | --- | --- | --- |
+| `CompScanner` roofed / `CompDeepScanner` no bedrock | `CanUseNow` reason → `JobFailReason` ("Cannot scan: …"), `FailOn` ends the job | every job attempt | job refused; accumulator frozen | no |
+| `CompDeepScanner` spawned on no-bedrock map | `Messages.Message(NegativeEvent, historical:false)` | once, at spawn | — | no |
+| `CompDeepDrill` last portion drained, fallback stone exists | `Messages.Message(TaskCompletion)` "…drill automatically forbidden…" + `SetForbidden(true)` on drained neighbours | edge-triggered | forbid (else pawns keep drilling chunks) | `DeepDrillNoResources` |
+| `CompDeepDrill` last portion drained, no fallback | `Messages.Message(TaskCompletion)` only | edge-triggered | `CanDrillNow` false, no forbid | `DeepDrillNoResources` |
+| `Zone_Fishing` under population target | inspect "CannotFish (reason)" + greyed float-menu option | standing | work flag false | yes |
+| `Bill` missing ingredients | `JobFailReason` (forced only) + 500–600 tick re-search cooldown | standing | — | no |
+| `Bill_Production` repeat count hits 0 | `Messages.Message(TaskCompletion)` | edge-triggered | bill stops | no |
+| Research bench, no project | standing `Alert_NeedResearchProject` | standing | — | "Current project: None" |
+| `CompToxifier` cannot pollute | standing `Alert_ToxifierGeneratorStopped` | standing | — | no (silent) |
+| `IncidentWorker_Raid*`, `CompBiosculpterPod_*` | conditional trailing `"\n\n" + extra` paragraph on the letter | with the letter | — | — |
+
+Findings: vanilla's term is "exhausted"; every "ran dry" *event* is a `TaskCompletion`
+message; standing conditions get an inspect line or an Alert, never both for the same
+thing; no vanilla scanner offers an "any mineral" target or retunes itself, and the only
+automatic resource switch (`DeepDrillUtility.GetNextResource`) concerns a resource the
+player never chose. `CompScanner.CompInspectStringExtra` never renders `CanUseNow`.
+Forced-job fail text is `CapitalizeFirst()`ed by `FloatMenuOptionProvider_WorkGivers`, so
+fragment keys may be lower-case (vanilla mixes: `CannotUseScannerRoofed` = "Blocked by
+roof", `FishingSpotUnderTargetPopulation` = "below minimum fish population").
+
+Adopted (see `CompLocalMineralScanner.cs` header): keep the `CanUseNow` gate (identical
+plumbing to the roofed/no-bedrock reasons; no auto-forbid, matching the drill's no-fallback
+branch since our gate already stops the work); add a standing inspect line; note "that was
+the last deposit" as a trailing paragraph of the find letter that exhausted the mineral
+(one persistent notification instead of a letter plus a fading message on the same tick);
+grey out exhausted minerals in the tuning menu. Rejected: auto-retune / "any" option
+(no precedent, silently overrides a player setting); an Alert (none for drills either;
+roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning like
+`MessageGroundPenetratingScannerNoBedrock` (that condition is permanent, ours is fixed by
+retuning and is visible in the inspect pane).
+
+Balance note: the default target is gold for vanilla parity with the long-range scanner,
+but `GenStep_ScatterLumpsMineable` weights gold at 0.07 of 2.405 (~2.9%) with 4–15 lumps
+per 10k cells by hilliness, so a 250×250 small-hills map averages ~1.5 gold lumps and a
+fresh scanner often starts exhausted. The greyed menu makes the switch obvious; changing
+the default is a one-line `SetDefaultTargetMineral` decision if that proves annoying.
+
 ## Interaction cell mechanics (verified)
 
 - `Thing.InteractionCell = def.interactionCellOffset.RotatedBy(rot) + Position`. Offset is

@@ -20,12 +20,35 @@
 //   non-bouncing, pauses only under the player's "pause on any letter" preference) with a
 //   cell-targeted LookTargets.
 //
-// CanUseNow adds a "no undiscovered deposits of the tuned mineral remain" gate on top of
-// the base power/roof/forbidden/faction checks. It must be O(1): idle pawns' job search
-// calls WorkGiver.HasJobOnThing -> CanUseNow up to ~60x/sec, so the answer comes from
-// MapComponent_FoggedMinerals' event-invalidated cache. While gated, no jobs are issued and
-// the saved progress accumulator simply freezes (the "paused at current progress" behavior
-// comes free from the base class).
+// Exhaustion (this scanner, unlike its vanilla siblings, can run out of targets). The
+// handling follows vanilla's own "ran dry" idioms, decompile-verified (Docs/design-research.md
+// has the precedent table):
+// - CanUseNow adds a "no undiscovered deposits of the tuned mineral remain" gate on top of
+//   the base power/roof/forbidden/faction checks - the same channel CompDeepScanner uses
+//   for its no-bedrock reason: the reason reaches the player as the forced-job fail text
+//   ("Cannot scan: ..."; the renderer CapitalizeFirst()s it), the running job ends via the
+//   driver's FailOn, and the saved progress accumulator simply freezes, exactly like
+//   vanilla's roofed scanner. Vanilla never auto-forbids here: CompDeepDrill forbids only
+//   when a fallback resource would otherwise keep pawns busy, and the no-fallback branch
+//   (ours) just lets its CanDrillNow go false. The gate must be O(1): idle pawns' job search
+//   calls WorkGiver.HasJobOnThing -> CanUseNow up to ~60x/sec, so the answer comes from
+//   MapComponent_FoggedMinerals' event-invalidated cache.
+// - The inspect string carries a standing exhaustion line (CompDeepDrill's
+//   "DeepDrillNoResources", Zone_Fishing's "CannotFish (reason)"); vanilla CompScanner
+//   never renders CanUseNow reasons, but every vanilla building that can run permanently
+//   dry adds a channel beyond the job-fail text. No Alert: vanilla has none for an exhausted
+//   drill either, and the roofed case is already covered by Alert_CannotBeUsedRoofed.
+// - The find that reveals the LAST deposit says so in its letter (a trailing paragraph,
+//   the IncidentWorker_Raid* pattern) rather than firing a second, fading
+//   Messages.Message alongside it. This is the only edge-triggered exhaustion vanilla
+//   would notify (CompDeepDrill messages at the moment its last portion drains); the
+//   silent routes - the player explores or mines the last deposit, or retunes onto an
+//   exhausted mineral - are player-caused and, like a relocated drill, get only the
+//   inspect line and job-fail text.
+// - The tuning menu greys out exhausted minerals with a parenthesised reason, the
+//   disabled-FloatMenuOption idiom (Building_Bed "UseMedicalBed (NotInjured)",
+//   Zone_Fishing). No auto-retune and no "any mineral" option: no vanilla scanner has
+//   either, and vanilla never silently changes a player's tuning.
 //
 // The target-mineral gizmo is CompLongRangeMineralScanner's verbatim (same candidate list,
 // GenStep_PreciousLump.mineables, and the same vanilla Keyed strings), retargeted at this
@@ -95,13 +118,20 @@ public class CompLocalMineralScanner : CompScanner
             {
                 return baseReport;
             }
-            if (!foggedMinerals.AnyFoggedDepositOf(targetMineable))
+            if (TargetExhausted)
             {
-                return "LocalMineralScanner_NoFoggedDeposits".Translate(targetMineable.building.mineableThing.label);
+                return ExhaustedReason(targetMineable);
             }
             return true;
         }
     }
+
+    // True when no fogged cell of the tuned mineral remains on the map. Only meaningful while
+    // spawned: foggedMinerals is the spawn-time map's component.
+    private bool TargetExhausted => !foggedMinerals.AnyFoggedDepositOf(targetMineable);
+
+    private static TaggedString ExhaustedReason(ThingDef mineable) =>
+        "LocalMineralScanner_NoFoggedDeposits".Translate(mineable.building.mineableThing.label);
 
     // The job driver's per-tick entry point, wrapping the non-virtual CompScanner.Used so the
     // inspect string can report the combined rate. Summing speeds is exact, not an
@@ -146,6 +176,11 @@ public class CompLocalMineralScanner : CompScanner
         }
         sb.Append("ScanningProgressToGuaranteedFind".Translate() + ": "
             + (daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays).ToStringPercent());
+        if (parent.Spawned && TargetExhausted)
+        {
+            sb.AppendLine();
+            sb.Append(ExhaustedReason(targetMineable).CapitalizeFirst());
+        }
         return sb.ToString();
     }
 
@@ -162,9 +197,14 @@ public class CompLocalMineralScanner : CompScanner
             map.fogGrid.Unfog(cell);
         }
         ThingDef mineral = targetMineable.building.mineableThing;
+        TaggedString text = "LocalMineralScanner_LetterFoundDeposit".Translate(mineral.label, worker.Named("FINDER"));
+        if (TargetExhausted)
+        {
+            text += "\n\n" + "LocalMineralScanner_LetterFoundDepositLast".Translate(mineral.label);
+        }
         Find.LetterStack.ReceiveLetter(
             "LocalMineralScanner_LetterLabelFoundDeposit".Translate() + ": " + mineral.LabelCap,
-            "LocalMineralScanner_LetterFoundDeposit".Translate(mineral.label, worker.Named("FINDER")),
+            text,
             LetterDefOf.PositiveEvent,
             new LookTargets(revealCells[revealCells.Count / 2], map));
     }
@@ -264,7 +304,16 @@ public class CompLocalMineralScanner : CompScanner
                 foreach (ThingDef mineable in mineables)
                 {
                     ThingDef localMineable = mineable;
-                    options.Add(new FloatMenuOption(localMineable.building.mineableThing.LabelCap, delegate
+                    string label = localMineable.building.mineableThing.LabelCap;
+                    if (!foggedMinerals.AnyFoggedDepositOf(localMineable))
+                    {
+                        options.Add(new FloatMenuOption(
+                            label + " (" + "LocalMineralScanner_NoneUndiscovered".Translate() + ")", null,
+                            MenuOptionPriority.Default, null, null, 29f,
+                            (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, localMineable.building.mineableThing)));
+                        continue;
+                    }
+                    options.Add(new FloatMenuOption(label, delegate
                     {
                         foreach (object selectedObject in Find.Selector.SelectedObjects)
                         {

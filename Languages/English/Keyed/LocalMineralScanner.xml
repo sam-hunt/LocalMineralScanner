@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- The target-mineral gizmo reuses vanilla's CommandSelectMineralToScanFor keys, so only
      mod-specific strings live here. LocalMineralScanner_NoFoggedDeposits is returned as the
-     CanUseNow AcceptanceReport reason, surfacing as the work-tab/job-fail tooltip while the
-     scanner is paused; scan progress is retained (CompScanner saves its accumulator).
+     CanUseNow AcceptanceReport reason: it surfaces as the forced-job fail text ("Cannot
+     scan: ...", CapitalizeFirst()ed by the renderer, hence the lower-case fragment like
+     vanilla's fishing FishingSpotUnderTargetPopulation) and, capitalised, as a standing
+     inspect-string line (the DeepDrillNoResources idiom). Scan progress is retained
+     (CompScanner saves its accumulator). LetterFoundDepositLast is appended as a trailing
+     paragraph to the find letter whose reveal exhausted the tuned mineral; NoneUndiscovered
+     is the parenthesised reason on greyed-out tuning-menu entries.
      The inspect string reuses vanilla's UserScanAbility / ScanAverageInterval /
      ScanningProgressToGuaranteedFind / PeriodDays keys; only the two-operator speed label
      and the guaranteed-find ETA are ours. -->
 <LanguageData>
   <LocalMineralScanner_LetterLabelFoundDeposit>Mineral deposit located</LocalMineralScanner_LetterLabelFoundDeposit>
   <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has pinpointed a deposit of {0} hidden in uncharted terrain using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
+  <LocalMineralScanner_LetterFoundDepositLast>That was the last undiscovered {0} deposit on this map. The scanner will stand idle until it is tuned to another mineral.</LocalMineralScanner_LetterFoundDepositLast>
   <LocalMineralScanner_NoFoggedDeposits>no undiscovered {0} deposits remain on this map</LocalMineralScanner_NoFoggedDeposits>
+  <LocalMineralScanner_NoneUndiscovered>none undiscovered</LocalMineralScanner_NoneUndiscovered>
   <LocalMineralScanner_CombinedScanSpeed>Combined scanning speed ({0} operators)</LocalMineralScanner_CombinedScanSpeed>
   <LocalMineralScanner_GuaranteedFindWithin>Guaranteed find within</LocalMineralScanner_GuaranteedFindWithin>
 </LanguageData>
