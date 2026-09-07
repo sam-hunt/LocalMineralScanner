@@ -4,7 +4,7 @@
   <author>Sam Hunt</author>
   <packageId>samhunt.localmineralscanner</packageId>
   <modVersion>0.1.0</modVersion>
-  <description>Never strip-mine again. Adds a compact local mineral scanner: a pawn-operated 2x2 building that locates and reveals fogged mineral deposits on the current map. Tune it to a specific mineral type; two pawns can operate it together to scan faster.</description>
+  <description>Never strip-mine again. Adds a compact local mineral scanner: a pawn-operated 2x2 building that reveals undiscovered mineral deposits on the current map. Tune it to a specific mineral type; two pawns can operate it together to scan faster.</description>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>

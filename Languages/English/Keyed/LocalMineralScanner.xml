@@ -13,8 +13,8 @@
      and the guaranteed-find ETA are ours. -->
 <LanguageData>
   <LocalMineralScanner_LetterLabelFoundDeposit>Mineral deposit located</LocalMineralScanner_LetterLabelFoundDeposit>
-  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has pinpointed a deposit of {0} hidden in uncharted terrain using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
-  <LocalMineralScanner_LetterFoundDepositLast>That was the last undiscovered {0} deposit on this map. The scanner will stand idle until it is tuned to another mineral.</LocalMineralScanner_LetterFoundDepositLast>
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
+  <LocalMineralScanner_LetterFoundDepositLast>This was the last undiscovered {0} deposit on this map. The scanner will remain idle until it is tuned to another mineral.</LocalMineralScanner_LetterFoundDepositLast>
   <LocalMineralScanner_NoFoggedDeposits>no undiscovered {0} deposits remain on this map</LocalMineralScanner_NoFoggedDeposits>
   <LocalMineralScanner_NoneUndiscovered>none undiscovered</LocalMineralScanner_NoneUndiscovered>
   <LocalMineralScanner_CombinedScanSpeed>Combined scanning speed ({0} operators)</LocalMineralScanner_CombinedScanSpeed>

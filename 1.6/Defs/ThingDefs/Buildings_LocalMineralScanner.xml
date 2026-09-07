@@ -44,7 +44,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>LocalMineralScanner</defName>
     <label>local mineral scanner</label>
-    <description>A compact seismic sensor array used by researchers to pinpoint mineral deposits hidden in uncharted parts of the local landscape. The chance to find a deposit depends on the operator's research ability. It can be tuned to a specific mineral type, and its twin consoles allow two operators to scan together. It doesn't work under a roof.</description>
+    <description>A compact seismic sensor unit used by researchers to detect mineral deposits in undiscovered areas nearby. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof.</description>
     <graphicData>
       <texPath>Things/Building/Misc/LocalMineralScanner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>

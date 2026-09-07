@@ -1,8 +1,7 @@
 # Local Mineral Scanner
 
 Never strip-mine again. A RimWorld 1.6 mod adding a compact **local mineral scanner**: a
-pawn-operated 2×2 building that locates and reveals mineral deposits hidden in fogged parts
-of the current map.
+pawn-operated 2×2 building that reveals undiscovered mineral deposits on the current map.
 
 ## Features
 
