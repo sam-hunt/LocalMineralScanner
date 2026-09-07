@@ -42,14 +42,16 @@ Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent,
 - **`Verse.MapEvents` provides public C# events — no Harmony needed**:
   `CellFogChanged (Action<IntVec3,bool>)` fired by every `Unfog`/`Refog` (mining through
   rock included, via `Building.DeSpawn → Notify_FogBlockerRemoved → …Unfog`), plus
-  `MapFogged`, `ThingSpawned`, `ThingDespawned`. Vanilla's `PathFinderMapData` subscribes to
-  these for the same dirty-flag/lazy-recompute pattern.
-- Plan: a `MapComponent` owns the cache — set of fogged mineable cells / cluster index —
-  incrementally maintained from `ThingSpawned`/`ThingDespawned` (def.mineable) and
-  `CellFogChanged`; `CanUseNow` reads a cached bool and returns a translated
-  `AcceptanceReport` reason when false (shows as job-fail tooltip). Defensive full recompute
-  on a rare tick interval only as self-healing. Progress pause is automatic: when no jobs
-  are issued, `daysWorkingSinceLastFinding` (saved) simply stops moving.
+  `MapFogged`, `ThingSpawned`/`ThingDespawned` and their `Building*` counterparts. Vanilla's
+  `PathFinderMapData` subscribes to these for the same dirty-flag/lazy-recompute pattern.
+- Resolved (`MapComponent_FoggedMinerals`): a per-def "any fogged cell remains" set behind a
+  dirty flag, invalidated by `CellFogChanged`, `BuildingSpawned`/`BuildingDespawned` and
+  `MapFogged`, rebuilt lazily from `listerThings.ThingsOfDef`. The cluster index and the
+  periodic self-healing recompute considered here were not built: the events are exhaustive,
+  and clusters are only needed at find time (`CompLocalMineralScanner.FindDepositToReveal`).
+  `CanUseNow` returns a translated `AcceptanceReport` reason when the set is empty (shows as
+  job-fail text). Progress pause is automatic: when no jobs are issued,
+  `daysWorkingSinceLastFinding` (saved) simply stops moving.
 - Enumeration without scans: no `ThingRequestGroup` covers mineables
   (`BuildingArtificial` explicitly excludes resource rock); use
   `map.listerThings.ThingsOfDef(def)` (maintained dict lookup) per targeted mineable def.
@@ -160,14 +162,21 @@ spawn to consume it; the saved value overrides the re-arm.
   Open question: `MineableComponentsIndustrial` never spawns as ambient scatter — filter to
   `building.mineableScatterCommonality > 0`, add an "any" option, or keep vanilla-identical.
 
-## Open design decisions
+## Design decisions (resolved)
 
-1. **Multi-operator**: ship single-operator v1 (pure vanilla-trio reuse) vs invest in the
-   SchoolDesk-pattern stack now. Recommendation: single operator v1; the multi-op stack is
-   additive later.
-2. **Interaction offset column** for the 2×2 (x=0 vs x=1) and face (front `-z` vs back `+z`).
-3. **Target list semantics** (vanilla-identical vs scatter-filtered vs "any mineral").
-4. **Partially-fogged fallback definition**: cluster with ≥1 fogged cell; reveal only its
-   fogged cells. "Fully fogged" = every cell of the cluster fogged.
-5. Whether the letter should target the cluster's cell list (multi-cell highlight) or just
-   its center.
+1. **Multi-operator**: shipped the SchoolDesk-pattern stack in v0.1.0 rather than a
+   single-operator v1 — `WorkGiver_OperateLocalMineralScanner`,
+   `JobDriver_OperateLocalMineralScanner`, and `CompLocalMineralScanner.Operate` for the
+   combined-speed inspect string. Vanilla's trio is reused only through `CompScanner`.
+2. **Interaction offsets**: `(0,0,2)` and `(1,0,2)`, both on the `+z` face, so the operators
+   stand where the commissioned art fronts its consoles (see the ThingDef comment).
+3. **Target list**: vanilla-identical (`GenStep_PreciousLump.mineables`, components
+   included). Exhausted entries are greyed out rather than filtered; no "any mineral" option
+   (see Exhaustion UX).
+4. **Partially-fogged fallback**: as proposed — a cluster with ≥1 fogged cell, revealing only
+   its fogged cells; "fully fogged" means every cell of the cluster is fogged.
+5. **Letter target**: a single cell (the middle of the reveal list), not the cell list.
+6. **Forced jobs**: a player-forced scan with both seats taken evicts a sitter, via
+   `CanReserveSittableOrSpot(ignoreOtherReservations: forced)` and
+   `ReservationManager.Reserve`'s `job.playerForced` branch — the same eviction vanilla's
+   forced scanner job performs on its single seat.
