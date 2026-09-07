@@ -52,12 +52,12 @@ public class WorkGiver_OperateLocalMineralScanner : WorkGiver_Scanner
             }
             return false;
         }
-        return TryFindFreeOperatorCell(pawn, building, out _);
+        return TryFindOperatorCell(pawn, building, forced, out _);
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (!TryFindFreeOperatorCell(pawn, (Building)t, out IntVec3 cell))
+        if (!TryFindOperatorCell(pawn, (Building)t, forced, out IntVec3 cell))
         {
             return null;
         }
@@ -66,7 +66,18 @@ public class WorkGiver_OperateLocalMineralScanner : WorkGiver_Scanner
         return job;
     }
 
-    private static bool TryFindFreeOperatorCell(Pawn pawn, Building building, out IntVec3 cell)
+    // The cell carried in targetB: the first free seat, or, for a player-forced job with
+    // every seat taken, the first occupied one. Vanilla's scanner giver likewise passes
+    // forced through as ignoreOtherReservations; the driver's ReserveSittableOrSpot then
+    // reaches ReservationManager.Reserve's job.playerForced branch, which seats the forced
+    // pawn and ends the sitter's job with JobCondition.InterruptForced.
+    private static bool TryFindOperatorCell(Pawn pawn, Building building, bool forced, out IntVec3 cell)
+    {
+        return TryFindReservableCell(pawn, building, ignoreOtherReservations: false, out cell)
+            || (forced && TryFindReservableCell(pawn, building, ignoreOtherReservations: true, out cell));
+    }
+
+    private static bool TryFindReservableCell(Pawn pawn, Building building, bool ignoreOtherReservations, out IntVec3 cell)
     {
         List<IntVec3> cells = building.InteractionCells;
         for (int i = 0; i < cells.Count; i++)
@@ -75,7 +86,7 @@ public class WorkGiver_OperateLocalMineralScanner : WorkGiver_Scanner
             if (!candidate.InBounds(pawn.Map)
                 || !candidate.Standable(pawn.Map)
                 || candidate.IsForbidden(pawn)
-                || !pawn.CanReserveSittableOrSpot(candidate)
+                || !pawn.CanReserveSittableOrSpot(candidate, ignoreOtherReservations)
                 || !pawn.CanReach(candidate, PathEndMode.OnCell, Danger.Deadly))
             {
                 continue;
