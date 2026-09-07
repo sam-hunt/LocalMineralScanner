@@ -73,8 +73,10 @@ CHANGELOG.md     - Keep a Changelog format; load-bearing for releases (see below
 - References RimWorld assemblies via cross-platform paths in .csproj
 - Uses `Verse` namespace for core modding APIs
 - `[StaticConstructorOnStartup]` attribute triggers code at game startup
-- Harmony is referenced (`Lib.Harmony`, compile-only) and bootstrapped in `ModInit.cs`; the
-  runtime DLL comes from the `brrainz.harmony` mod dependency declared in About.xml
+- No Harmony. The mod needs no runtime patches (`Verse.MapEvents` exposes the hooks it uses;
+  see `Docs/design-research.md`), so the template's `Lib.Harmony` reference, `PatchAll()`
+  bootstrap, and `brrainz.harmony` dependency were removed. If a patch ever becomes necessary,
+  restore all three from the template or a sibling mod (e.g. UniqueMeleeWeapons).
 - XML Defs define game objects; Patches modify existing Defs via XPath
 
 **Releases:** run the `/release` skill, or by hand: add the version's `## [X.Y.Z]` section to
@@ -108,7 +110,7 @@ release if that section is missing**.
 
 When creating a new mod from this template, update:
 1. `About/About.xml` - mod name, author, packageId (keep it lowercase), modVersion, description
-2. `Source/1.6/ModInit.cs` - namespace, Harmony id (= packageId), log message
+2. `Source/1.6/ModInit.cs` - namespace, log message
 3. `Source/1.6/Properties/AssemblyInfo.cs` - title/description/product, a freshly generated GUID, version
 4. `MyRimWorldMod.sln` - rename file and update project name
 5. `Source/1.6/MyRimWorldMod.csproj` - rename file (deploy folder name follows the project name)

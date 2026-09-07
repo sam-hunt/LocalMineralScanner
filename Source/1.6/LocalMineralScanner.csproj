@@ -75,12 +75,6 @@
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.3.*">
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
   <!-- Build-time code analysis (warnings only; never ships). Roslynator's analyzers run
        on every build and surface in the IDE + build log; PrivateAssets="all" keeps them
        out of the compiled DLL and out of any downstream reference. The global

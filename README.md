@@ -20,8 +20,7 @@ colony map.
 - **Minifiable**, so it can be re-deployed as the frontier is uncovered.
 - Unlocked by the vanilla **long-range mineral scanner** research; no new research project.
 
-Requires [Harmony](https://github.com/pardeike/HarmonyRimWorld) (`brrainz.harmony`). No DLC
-required.
+No dependencies: no Harmony, no DLC.
 
 ## Building from source
 
