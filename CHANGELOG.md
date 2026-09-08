@@ -28,5 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   idles with its progress kept, the inspect pane says why, the letter for the last deposit
   says it was the last, and the tuning menu greys out exhausted minerals.
 - Unlocked by the vanilla long-range mineral scanner research. No Harmony, no DLC.
+- Sits directly after the long-range mineral scanner in the Architect > Misc tab.
 
 [0.1.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v0.1.0

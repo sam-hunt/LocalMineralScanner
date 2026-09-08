@@ -44,6 +44,9 @@
          2x2 buildings. 3.1 (chassis exactly 2 cells) spilled past the footprint.
        - canBeUsedUnderRoof=false + PlaceWorker_NotUnderRoof is belt-and-suspenders with
          CompScanner.CanUseNow's hardcoded RoofUtility check, same as vanilla scanners.
+       - uiOrder 2993 slots the build gizmo directly after the long-range scanner in
+         Architect > Misc; the ordering scheme and the vanilla values it relies on live in
+         Patches/ArchitectMenuOrder.xml.
   -->
   <ThingDef ParentName="BuildingBase">
     <defName>LocalMineralScanner</defName>
@@ -105,6 +108,7 @@
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <designationCategory>Misc</designationCategory>
+    <uiOrder>2993</uiOrder>
     <rotatable>true</rotatable>
     <multipleInteractionCellOffsets>
       <li>(0,0,2)</li>
