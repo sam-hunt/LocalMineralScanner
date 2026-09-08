@@ -18,15 +18,17 @@
   <!-- Appended to a slider label; keep the leading space. -->
   <LocalMineralScanner_DefaultSuffix> (default)</LocalMineralScanner_DefaultSuffix>
 
+  <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <LocalMineralScanner_RequireUnroofed>Doesn't work under a roof</LocalMineralScanner_RequireUnroofed>
-  <LocalMineralScanner_RequireUnroofedDesc>Like the vanilla scanners, it can't be placed or operated under a roof. Turn off to allow.</LocalMineralScanner_RequireUnroofedDesc>
+  <LocalMineralScanner_RequireUnroofedDesc>Like the {0}, it can't be placed or operated under a roof. Turn off to allow.</LocalMineralScanner_RequireUnroofedDesc>
   <LocalMineralScanner_Minifiable>Can be uninstalled</LocalMineralScanner_Minifiable>
-  <LocalMineralScanner_MinifiableDesc>Lets the scanner be uninstalled and moved, like a deep drill. Turn off and it can only be deconstructed.</LocalMineralScanner_MinifiableDesc>
+  <LocalMineralScanner_MinifiableDesc>Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed.</LocalMineralScanner_MinifiableDesc>
   <LocalMineralScanner_MassDesc>Weight of the uninstalled scanner when hauled or carried by a caravan.</LocalMineralScanner_MassDesc>
 
-  <LocalMineralScanner_FindMtbDaysDesc>Average working days between finds for one operator at 100% research speed. The long-range mineral scanner uses 4.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Average working days between finds for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindMtbDaysDesc>
   <LocalMineralScanner_FindGuaranteedDays>Guaranteed find within</LocalMineralScanner_FindGuaranteedDays>
-  <LocalMineralScanner_FindGuaranteedDaysDesc>Working days after which a find is guaranteed, for one operator at 100% research speed. The long-range mineral scanner uses 8.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <LocalMineralScanner_ResourceCost>{0} cost: {1}</LocalMineralScanner_ResourceCost>

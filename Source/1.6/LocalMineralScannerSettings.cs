@@ -164,14 +164,16 @@ public class LocalMineralScannerSettings : ModSettings
     {
         SectionHeader(listing, "LocalMineralScanner_SettingsPlacement".Translate());
 
+        // Tooltips name the vanilla buildings they compare against by def label, so
+        // translators get those names (and the vanilla timings below) for free.
         listing.CheckboxLabeled(
             "LocalMineralScanner_RequireUnroofed".Translate(),
             ref requireUnroofed,
-            "LocalMineralScanner_RequireUnroofedDesc".Translate());
+            "LocalMineralScanner_RequireUnroofedDesc".Translate(LocalMineralScannerDefOf.LongRangeMineralScanner.label));
         listing.CheckboxLabeled(
             "LocalMineralScanner_Minifiable".Translate(),
             ref minifiable,
-            "LocalMineralScanner_MinifiableDesc".Translate());
+            "LocalMineralScanner_MinifiableDesc".Translate(ThingDefOf.DeepDrill.label));
 
         // Rendered as the info card renders the stat ("Mass: 40 kg"), from the stat's own
         // label and format string.
@@ -190,13 +192,15 @@ public class LocalMineralScannerSettings : ModSettings
     {
         SectionHeader(listing, "LocalMineralScanner_SettingsScanning".Translate());
 
+        ThingDef vanilla = LocalMineralScannerDefOf.LongRangeMineralScanner;
+        CompProperties_Scanner vanillaProps = vanilla.GetCompProperties<CompProperties_Scanner>();
         findMtbDays = SliderRow(listing,
             "ScanAverageInterval".Translate() + ": " + "PeriodDays".Translate(findMtbDays.ToString("0.#")),
-            "LocalMineralScanner_FindMtbDaysDesc".Translate(),
+            "LocalMineralScanner_FindMtbDaysDesc".Translate(vanilla.label, vanillaProps.scanFindMtbDays.ToString("0.#")),
             findMtbDays, FindMtbDaysDefault, min: 0.5f, max: 30f, step: 0.5f);
         findGuaranteedDays = SliderRow(listing,
             "LocalMineralScanner_FindGuaranteedDays".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.#")),
-            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(),
+            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(vanilla.label, vanillaProps.scanFindGuaranteedDays.ToString("0.#")),
             findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.5f, max: 60f, step: 0.5f);
 
         listing.Gap(SectionGap);
