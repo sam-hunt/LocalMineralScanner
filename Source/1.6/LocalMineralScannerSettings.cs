@@ -183,8 +183,9 @@ public class LocalMineralScannerSettings : ModSettings
         listing.Gap(SectionGap);
     }
 
-    // The two CompScanner timings, labelled with the same vanilla and mod Keyed strings the
-    // inspect pane uses for them.
+    // The two CompScanner timings. The interval row reuses the inspect pane's vanilla label;
+    // the guaranteed-days row needs its own, since vanilla only ever shows that value as a
+    // progress percentage.
     private void DrawScanningSection(Listing_Standard listing)
     {
         SectionHeader(listing, "LocalMineralScanner_SettingsScanning".Translate());
@@ -194,7 +195,7 @@ public class LocalMineralScannerSettings : ModSettings
             "LocalMineralScanner_FindMtbDaysDesc".Translate(),
             findMtbDays, FindMtbDaysDefault, min: 0.5f, max: 30f, step: 0.5f);
         findGuaranteedDays = SliderRow(listing,
-            "LocalMineralScanner_GuaranteedFindWithin".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.#")),
+            "LocalMineralScanner_FindGuaranteedDays".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.#")),
             "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(),
             findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.5f, max: 60f, step: 0.5f);
 

@@ -194,10 +194,9 @@ public class CompLocalMineralScanner : CompScanner
         Used(worker);
     }
 
-    // Replaces CompScanner's string (same lines and vanilla keys, plus a guaranteed-find ETA)
-    // with the combined figures from Operate(). ResearchSpeed has a 0.1 floor, so the
-    // divisions are safe. OnGUI runs after the frame's ticks, so the sum is never read half
-    // accumulated.
+    // Replaces CompScanner's string (same three lines and vanilla keys) with the combined
+    // figures from Operate(). ResearchSpeed has a 0.1 floor, so the divisions are safe. OnGUI
+    // runs after the frame's ticks, so the sum is never read half accumulated.
     public override string CompInspectStringExtra()
     {
         StringBuilder sb = new StringBuilder();
@@ -209,12 +208,6 @@ public class CompLocalMineralScanner : CompScanner
             sb.AppendLine(speedLabel + ": " + combinedSpeed.ToStringPercent());
             sb.AppendLine("ScanAverageInterval".Translate() + ": "
                 + "PeriodDays".Translate((Props.scanFindMtbDays / combinedSpeed).ToString("F1")));
-            if (Props.scanFindGuaranteedDays > 0f)
-            {
-                float daysLeft = Mathf.Max(0f, (Props.scanFindGuaranteedDays - daysWorkingSinceLastFinding) / combinedSpeed);
-                sb.AppendLine("LocalMineralScanner_GuaranteedFindWithin".Translate() + ": "
-                    + "PeriodDays".Translate(daysLeft.ToString("F1")));
-            }
         }
         sb.Append("ScanningProgressToGuaranteedFind".Translate() + ": "
             + (daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays).ToStringPercent());

@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   long-range mineral scanner. A newly built scanner starts on gold, or on the most valuable
   mineral still hidden on the map when no gold remains.
 - Two operator seats: two pawns can scan at once, each contributing their full research
-  speed. The inspect pane shows the combined speed and time to a guaranteed find.
+  speed. The inspect pane shows the combined speed.
 - Same per-find effort as the long-range mineral scanner (4/8 days).
 - Exhaustion handling: when no undiscovered deposits of the tuned mineral remain the scanner
   idles with its progress kept, a message announces the last deposit being uncovered (by the
