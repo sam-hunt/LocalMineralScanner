@@ -18,11 +18,14 @@
        There is no value strictly between two tied defs, so the only way in is to lower
        the long-range scanner below 2999 and place ours just above it.
 
-       The values below (2990/2991/2992, ours 2993 in Buildings_LocalMineralScanner.xml)
-       are position-preserving for vanilla: those three are already first in the 2999
-       group and stay first, in the same relative order, still behind Odyssey's 2500/2600
-       entries. The moisture pump is included only for that reason: leaving it at 2999
-       would move it from ahead of the scanners to behind ours.
+       All four defs share 2998 (ours is set in Buildings_LocalMineralScanner.xml), so the
+       tie-break that orders them today keeps ordering them: the three vanilla defs stay
+       first, in the same relative order, and ours follows as the first mod def. One value
+       keeps the cluster a single concept and lets another mod join it by picking 2998.
+       Staying just under the default keeps the trio as close as possible to their
+       original place among other mods' deliberately chosen values. The moisture pump is
+       included only because leaving it at 2999 would move it from ahead of the scanners
+       to behind ours.
 
        Each def is patched via PatchOperationConditional so the operation replaces an
        existing uiOrder rather than adding a duplicate node, which the XML loader rejects
@@ -32,11 +35,11 @@
     <xpath>Defs/ThingDef[defName="MoisturePump"]/uiOrder</xpath>
     <match Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="MoisturePump"]/uiOrder</xpath>
-      <value><uiOrder>2990</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="MoisturePump"]</xpath>
-      <value><uiOrder>2990</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </nomatch>
   </Operation>
 
@@ -44,11 +47,11 @@
     <xpath>Defs/ThingDef[defName="GroundPenetratingScanner"]/uiOrder</xpath>
     <match Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="GroundPenetratingScanner"]/uiOrder</xpath>
-      <value><uiOrder>2991</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="GroundPenetratingScanner"]</xpath>
-      <value><uiOrder>2991</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </nomatch>
   </Operation>
 
@@ -56,11 +59,11 @@
     <xpath>Defs/ThingDef[defName="LongRangeMineralScanner"]/uiOrder</xpath>
     <match Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="LongRangeMineralScanner"]/uiOrder</xpath>
-      <value><uiOrder>2992</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="LongRangeMineralScanner"]</xpath>
-      <value><uiOrder>2992</uiOrder></value>
+      <value><uiOrder>2998</uiOrder></value>
     </nomatch>
   </Operation>
 
