@@ -89,15 +89,22 @@ roof", `FishingSpotUnderTargetPopulation` = "below minimum fish population").
 
 Adopted (see `CompLocalMineralScanner.cs` header): keep the `CanUseNow` gate (identical
 plumbing to the roofed/no-bedrock reasons; no auto-forbid, matching the drill's no-fallback
-branch since our gate already stops the work); add a standing inspect line; note "that was
-the last deposit" as a trailing paragraph of the find letter that exhausted the mineral
-(one persistent notification instead of a letter plus a fading message on the same tick);
-grey out exhausted minerals in the tuning menu (the disabled-`FloatMenuOption` idiom:
-`Building_Bed`'s "UseMedicalBed (NotInjured)", `Zone_Fishing`). Rejected: auto-retune /
-"any" option (no precedent, silently overrides a player setting); an Alert (none for drills
-either; roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning like
-`MessageGroundPenetratingScannerNoBedrock` (that condition is permanent, ours is fixed by
-retuning and is visible in the inspect pane).
+branch since our gate already stops the work); add a standing inspect line; post the
+drill's edge-triggered `Messages.Message(TaskCompletion)` targeting a tuned scanner the
+tick after the tuned mineral runs out, by whatever route (scanner find, mining, exploring),
+from `MapComponent_FoggedMinerals.MapComponentTick` behind its existing dirty flag (queries
+stay side-effect free; no rarer MapComponent hook exists and a tick modulo costs more than
+the bool); grey out exhausted minerals in the tuning menu (the disabled-`FloatMenuOption`
+idiom: `Building_Bed`'s "UseMedicalBed (NotInjured)", `Zone_Fishing`). Rejected:
+auto-retune / "any" option (no precedent, silently overrides a player setting); an Alert
+(none for drills either; roofing is already covered by `Alert_CannotBeUsedRoofed`); a
+spawn-time warning like `MessageGroundPenetratingScannerNoBedrock` (that condition is
+permanent, ours is fixed by retuning and is visible in the inspect pane); a "that was the
+last deposit" trailing paragraph on the find letter (it covered only the scanner-caused
+route and would pair a letter with the message on the same event, which vanilla never
+does); `tickerType=Rare` on the building or `LongEventHandler.ExecuteWhenFinished` from
+the fog events (both cheaper on paper, neither measurably, and both move the diff off the
+map component that owns the set).
 
 Default target: gold for vanilla parity with the long-range scanner, but
 `GenStep_ScatterLumpsMineable` weights gold at 0.07 of 2.405 (~2.9%) with 4–15 lumps per

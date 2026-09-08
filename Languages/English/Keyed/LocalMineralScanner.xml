@@ -5,9 +5,10 @@
      scan: ...", CapitalizeFirst()ed by the renderer, hence the lower-case fragment like
      vanilla's fishing FishingSpotUnderTargetPopulation) and, capitalised, as a standing
      inspect-string line (the DeepDrillNoResources idiom). Scan progress is retained
-     (CompScanner saves its accumulator). LetterFoundDepositLast is appended as a trailing
-     paragraph to the find letter whose reveal exhausted the tuned mineral; NoneUndiscovered
-     is the parenthesised reason on greyed-out tuning-menu entries.
+     (CompScanner saves its accumulator). MessageExhausted is the one-shot top-left message
+     MapComponent_FoggedMinerals posts when the tuned mineral runs out (the DeepDrillExhausted
+     idiom, full sentences like vanilla's); NoneUndiscovered is the parenthesised reason on
+     greyed-out tuning-menu entries.
      The inspect string reuses vanilla's UserScanAbility / ScanAverageInterval /
      ScanningProgressToGuaranteedFind / PeriodDays keys; only the two-operator speed label
      and the guaranteed-find ETA are ours (GuaranteedFindWithin also labels the matching
@@ -15,7 +16,7 @@
 <LanguageData>
   <LocalMineralScanner_LetterLabelFoundDeposit>Mineral deposit located</LocalMineralScanner_LetterLabelFoundDeposit>
   <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
-  <LocalMineralScanner_LetterFoundDepositLast>This was the last undiscovered {0} deposit on this map. The scanner will remain idle until it is tuned to another mineral.</LocalMineralScanner_LetterFoundDepositLast>
+  <LocalMineralScanner_MessageExhausted>No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral.</LocalMineralScanner_MessageExhausted>
   <LocalMineralScanner_NoFoggedDeposits>no undiscovered {0} deposits left</LocalMineralScanner_NoFoggedDeposits>
   <LocalMineralScanner_NoneUndiscovered>none undiscovered</LocalMineralScanner_NoneUndiscovered>
   <LocalMineralScanner_CombinedScanSpeed>Combined scanning speed ({0} operators)</LocalMineralScanner_CombinedScanSpeed>

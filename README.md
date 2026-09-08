@@ -28,7 +28,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 ### Knows When It's Done
 
 - **Pauses when exhausted**: when no undiscovered deposits of the tuned mineral remain, the scanner stops consuming pawn labor and keeps its progress
-- **Says so everywhere**: the find that reveals the last deposit says it was the last, the inspect pane explains why the scanner is idle, and the tuning menu greys out exhausted minerals
+- **Says so everywhere**: a message announces when the last deposit of the tuned mineral is uncovered, whether by the scanner or by your miners, the inspect pane explains why the scanner is idle, and the tuning menu greys out exhausted minerals
 
 ### Placement & Progression
 
