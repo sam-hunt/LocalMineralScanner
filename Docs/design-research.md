@@ -2,7 +2,7 @@
 
 Companion to `vanilla-scanner-survey.md`. Spec as directed: a **2×2, minifiable,
 pawn-operated surface-ore revealer**, unlocked by the existing `LongRangeMineralScanner`
-research project, tunable to the same resource types as the long-range scanner, ~50% of its
+research project, tunable to the same resource types as the long-range scanner, the same
 per-find effort. On a find: unfog one contiguous block of fogged mineral cells on the
 current map (fully fogged nodes first, partially fogged as fallback) and pop a non-pausing
 blue letter with a jump-to link. All claims below verified by decompile (see survey doc for
@@ -153,7 +153,13 @@ spawn to consume it; the saved value overrides the re-arm.
 ## Def-space tuning (from spec)
 
 - Research: `<researchPrerequisites><li>LongRangeMineralScanner</li></...>` — no new project.
-- ~50% effort per find: `scanFindMtbDays 2`, `scanFindGuaranteedDays 4` (long-range is 4/8).
+- Same effort per find as the long-range scanner: `scanFindMtbDays 4`,
+  `scanFindGuaranteedDays 8`. The two-seat design, the 2x2 footprint and minifiability are
+  the local unit's whole advantage; a cheaper find on top of them overtunes it. Two
+  operators do not out-produce two single-seat buildings: each find is a renewal at
+  min(Exp(λ), cap) with λ = Σspeed / mtbDays and cap = guaranteedDays / Σspeed, so λ·cap =
+  guaranteedDays / mtbDays is speed-invariant and the long-run rate λ / (1 - e^(-λ·cap)) is
+  linear in Σspeed. The shared accumulator only tightens the worst-case gap between finds.
 - Minifiable: `<minifiedDef>MinifiedThing</minifiedDef>` + `uninstallWork` + `Mass`
   (deep-drill precedent).
 - Resource tuning gizmo: mirror `CompLongRangeMineralScanner`'s FloatMenu over

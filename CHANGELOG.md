@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   mineral still hidden on the map when no gold remains.
 - Two operator seats: two pawns can scan at once, each contributing their full research
   speed. The inspect pane shows the combined speed and time to a guaranteed find.
-- Half the per-find effort of the long-range mineral scanner (2/4 days vs 4/8).
+- Same per-find effort as the long-range mineral scanner (4/8 days).
 - Exhaustion handling: when no undiscovered deposits of the tuned mineral remain the scanner
   idles with its progress kept, the inspect pane says why, the letter for the last deposit
   says it was the last, and the tuning menu greys out exhausted minerals.

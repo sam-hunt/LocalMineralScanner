@@ -5,8 +5,11 @@
        contiguous fogged deposit of its targeted mineral per find. Modeled on vanilla's
        LongRangeMineralScanner (Core Buildings_Misc.xml) with these deliberate deviations:
 
-       - scanFindMtbDays/scanFindGuaranteedDays 2/4 = half the long-range scanner's 4/8:
-         each find costs ~50% of the effort by design.
+       - scanFindMtbDays/scanFindGuaranteedDays 4/8 match the long-range scanner exactly:
+         same effort per find, so the local unit's advantages are the second seat, the
+         2x2 footprint and portability, not a cheaper find. Two operators halve the time
+         to a find at no throughput gain over two separate buildings; see
+         Docs/design-research.md (Def-space tuning) for why the guarantee is rate-neutral.
        - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots,
          each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
          WorkGiver_OperateLocalMineralScanner.cs); CompScanner.Used() accumulating per
@@ -79,8 +82,8 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="LocalMineralScanner.CompProperties_LocalMineralScanner">
         <scanSpeedStat>ResearchSpeed</scanSpeedStat>
-        <scanFindMtbDays>2</scanFindMtbDays>
-        <scanFindGuaranteedDays>4</scanFindGuaranteedDays>
+        <scanFindMtbDays>4</scanFindMtbDays>
+        <scanFindGuaranteedDays>8</scanFindGuaranteedDays>
         <soundWorking>ScannerLongRangeMineral_Ambience</soundWorking>
       </li>
     </comps>

@@ -1,7 +1,7 @@
 Local Mineral Scanner
 
 [h1]About[/h1]
-Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on, for half the work per find of the long-range mineral scanner.
+Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on. Same work per find as the long-range mineral scanner, in a smaller footprint with room for two operators.
 
 [h2]What it does[/h2]
 [list]

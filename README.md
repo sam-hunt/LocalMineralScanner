@@ -23,7 +23,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 - **Real deposits only**: each find unfogs one contiguous deposit that map generation placed. Fully hidden deposits are found first; partially exposed ones are the fallback
 - **Tunable target**: gold, silver, steel, plasteel, components, uranium or jade. A newly built scanner starts on gold, or on the most valuable mineral still hidden on the map if there is no gold
 - **Two operators**: two pawns can scan simultaneously, each contributing their full research speed — a genuine second seat, not queueing
-- **Half the effort per find** of the vanilla long-range mineral scanner, in exchange for results limited to the current map
+- **Same effort per find** as the vanilla long-range mineral scanner, with results limited to the current map
 
 ### Knows When It's Done
 
