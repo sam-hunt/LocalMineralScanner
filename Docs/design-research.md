@@ -180,7 +180,7 @@ spawn to consume it; the saved value overrides the re-arm.
    `JobDriver_OperateLocalMineralScanner`, and `CompLocalMineralScanner.Operate` for the
    combined-speed inspect string. Vanilla's trio is reused only through `CompScanner`.
 2. **Interaction offsets**: `(0,0,2)` and `(1,0,2)`, both on the `+z` face, so the operators
-   stand where the commissioned art fronts its consoles (see the ThingDef comment).
+   stand where the commissioned art fronts its consoles (see ThingDef values below).
 3. **Target list**: vanilla-identical (`GenStep_PreciousLump.mineables`, components
    included). Exhausted entries are greyed out rather than filtered; no "any mineral" option
    (see Exhaustion UX).
@@ -191,3 +191,86 @@ spawn to consume it; the saved value overrides the re-arm.
    `CanReserveSittableOrSpot(ignoreOtherReservations: forced)` and
    `ReservationManager.Reserve`'s `job.playerForced` branch — the same eviction vanilla's
    forced scanner job performs on its single seat.
+
+## ThingDef values (Buildings_LocalMineralScanner.xml)
+
+The def is modeled on vanilla's `LongRangeMineralScanner` (Core `Buildings_Misc.xml`). Where
+it deviates, this is why:
+
+- **`scanFindMtbDays` 4 / `scanFindGuaranteedDays` 8** match the long-range scanner exactly:
+  same effort per find, so the local unit's advantages are the second seat, the 2x2 footprint
+  and portability, not a cheaper find. Two operators halve the time to a find at no
+  throughput gain over two separate buildings (rate-neutrality argument under Def-space
+  tuning above).
+- **`multipleInteractionCellOffsets` instead of `hasInteractionCell`:** two operator spots,
+  each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
+  `WorkGiver_OperateLocalMineralScanner.cs`); `CompScanner.Used()` accumulating per worker
+  per tick makes the second operator genuinely double progress. An even-width face has no
+  centered cell (`Position` is the min corner), hence the x=0 and x=1 columns.
+- **Spots on the +z face** (offsets authored for North rotation; the game rotates them),
+  because the art fronts its consoles toward a north-side operator at North rotation, like
+  vanilla's long-range scanner: vanilla pairs offset `(0,0,2)` with `defaultPlacingRot South`
+  + `interactionCellIconReverse`, which we mirror. Authoring the spots on -z (the SchoolDesk
+  convention) renders the sprite 180 degrees away from the operators.
+  `GenAdj.AdjustForRotation`'s even-size center shifts keep both cells flush against the
+  correct face at all four rotations (hand-verified).
+- **`PlaceWorker_PreventInteractionSpotOverlap`** checks `multipleInteractionCellOffsets` on
+  both the placed def and neighbors, so it covers both spots.
+- **Minifiable** (deep-drill precedent: `MinifiedThing` + `uninstallWork` + `Mass`).
+  `uninstallWork` 1500 scales the drill's 1800-of-10000 to our 8000 `WorkToBuild`.
+  `terrainAffordanceNeeded Medium` sits between the drill's Light and the fixed scanners'
+  Heavy, since a portable unit shouldn't demand a heavy foundation.
+- **Power 400W:** between the deep drill (200) and the big scanners (700), for a smaller
+  unit.
+- **Texture:** commissioned art in the root `Textures/`, named after the defName per the
+  vanilla `Things/Building/Misc/<DefName>_<rot>` idiom. Only north/south/west ship: the
+  delivered side view has its consoles on -x, which is the WEST sprite under the game's
+  convention (`Rot4.East` rotates the +z offsets onto +x, so the East face's consoles must
+  sit on +x). `Graphic_Multi` synthesises the missing east sprite by mirroring west
+  (`eastFlipped`), so one file serves both sides. `drawSize` 2.8: the sprite's full alpha
+  extent (dish tip to console skirt) is 188 of the 256px canvas, so 2.8 keeps that inside
+  ~2.05 cells; the chassis itself (163px) then sits at ~1.8 cells with a small margin, like
+  vanilla 2x2 buildings. 3.1 (chassis exactly 2 cells) spilled past the footprint.
+- **`uiOrder` 2998** slots the build gizmo directly after the long-range scanner (see
+  Architect menu order below).
+- **Roof rule** is a mod setting (on by default). `canBeUsedUnderRoof` feeds only vanilla's
+  `Alert_CannotBeUsedRoofed`; the rule itself is `PlaceWorker_NotUnderRoofIfRequired`
+  (vanilla's `PlaceWorker_NotUnderRoof` behind the setting) plus the comp's `CanUseNow`,
+  which bypasses `CompScanner`'s hardcoded `RoofUtility` check when the setting is off.
+- **Settings overwrite** `costList`, `Mass`, `minifiedDef`, `canBeUsedUnderRoof`,
+  `scanFindMtbDays` and `scanFindGuaranteedDays` at startup and on settings-window close.
+  The XML values are the defaults and must equal the `*Default` consts in
+  `LocalMineralScannerSettings.cs`, whose header says which game reads make each write take
+  effect live.
+
+## Architect menu order (Patches/ArchitectMenuOrder.xml)
+
+Goal: the local scanner sits directly after vanilla's long-range mineral scanner in
+Architect > Misc.
+
+How the grid orders build gizmos (decompile-verified, 1.6):
+
+- `Designator_Build.Order` returns `BuildableDef.uiOrder` (float, default 2999f).
+- `GizmoGridDrawer.DrawGizmoGrid` stable-sorts the tab's designators by Order
+  (`GenCollection.SortStable`); `DesignationCategoryDef` and `ArchitectCategoryTab` do no
+  ordering of their own.
+- Ties keep `DefDatabase` order: Core, then DLCs, then mods. A modded def tied on `uiOrder`
+  therefore always lands after every vanilla def sharing the value.
+
+Core leaves six Misc buildings on the 2999 default, in this XML order: MoisturePump,
+GroundPenetratingScanner, LongRangeMineralScanner, MultiAnalyzer, VitalsMonitor,
+ToolCabinet. With no `uiOrder` of our own we'd tie at 2999 and sort after all six. There is
+no value strictly between two tied defs, so the only way in is to lower the long-range
+scanner below 2999 and place ours just above it.
+
+All four defs share 2998 (ours is set in the ThingDef), so the tie-break that orders them
+today keeps ordering them: the three vanilla defs stay first, in the same relative order,
+and ours follows as the first mod def. One value keeps the cluster a single concept and lets
+another mod join it by picking 2998. Staying just under the default keeps the trio as close
+as possible to their original place among other mods' deliberately chosen values. The
+moisture pump is included only because leaving it at 2999 would move it from ahead of the
+scanners to behind ours.
+
+Each def is patched via `PatchOperationConditional` so the operation replaces an existing
+`uiOrder` rather than adding a duplicate node, which the XML loader rejects ("defines the
+same field twice").

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Custom giverClass: assigns each pawn a free cell from Thing.InteractionCells so two
-       pawns can work one scanner (rationale in WorkGiver_OperateLocalMineralScanner.cs).
-       scannerDef is vanilla WorkGiverDef API, reused so the class stays generic over future
-       scanners. workType Research keeps parity with vanilla scanners (Intellectual-priority
-       work, ResearchSpeed scan stat, Intellectual XP in the driver). -->
+  <!-- Two-operator variant of vanilla's scanner giver; see
+       WorkGiver_OperateLocalMineralScanner.cs. workType Research matches vanilla scanners. -->
   <WorkGiverDef>
     <defName>LocalMineralScan</defName>
     <label>operate local mineral scanner</label>

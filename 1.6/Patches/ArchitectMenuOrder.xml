@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-  <!-- Architect > Misc ordering: slot the local scanner directly after vanilla's
-       long-range mineral scanner.
-
-       How the grid orders build gizmos (decompile-verified, 1.6):
-       - Designator_Build.Order returns BuildableDef.uiOrder (float, default 2999f).
-       - GizmoGridDrawer.DrawGizmoGrid stable-sorts the tab's designators by Order
-         (GenCollection.SortStable); DesignationCategoryDef and ArchitectCategoryTab do
-         no ordering of their own.
-       - Ties keep DefDatabase order: Core, then DLCs, then mods. A modded def tied on
-         uiOrder therefore always lands after every vanilla def sharing the value.
-
-       Core leaves six Misc buildings on the 2999 default, in this XML order: MoisturePump,
-       GroundPenetratingScanner, LongRangeMineralScanner, MultiAnalyzer, VitalsMonitor,
-       ToolCabinet. With no uiOrder of our own we'd tie at 2999 and sort after all six.
-       There is no value strictly between two tied defs, so the only way in is to lower
-       the long-range scanner below 2999 and place ours just above it.
-
-       All four defs share 2998 (ours is set in Buildings_LocalMineralScanner.xml), so the
-       tie-break that orders them today keeps ordering them: the three vanilla defs stay
-       first, in the same relative order, and ours follows as the first mod def. One value
-       keeps the cluster a single concept and lets another mod join it by picking 2998.
-       Staying just under the default keeps the trio as close as possible to their
-       original place among other mods' deliberately chosen values. The moisture pump is
-       included only because leaving it at 2999 would move it from ahead of the scanners
-       to behind ours.
-
-       Each def is patched via PatchOperationConditional so the operation replaces an
-       existing uiOrder rather than adding a duplicate node, which the XML loader rejects
-       ("defines the same field twice"). -->
+  <!-- Architect > Misc: slot the local scanner directly after vanilla's long-range mineral
+       scanner. Gizmos sort by uiOrder with ties in load order, so the three vanilla defs
+       are lowered from the 2999 default to our 2998; see Docs/design-research.md (Architect
+       menu order). Conditional so an existing uiOrder is replaced, not duplicated. -->
 
   <Operation Class="PatchOperationConditional">
     <xpath>Defs/ThingDef[defName="MoisturePump"]/uiOrder</xpath>

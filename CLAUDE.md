@@ -9,9 +9,11 @@ current map. Player-facing summary in `README.md`; decompile-verified design rat
 vanilla precedent in `Docs/`.
 
 **Where documentation lives:** this file holds only cross-cutting rules and rationale. Per-item
-values and decompile-verified call paths belong in the header comment of the file they describe.
-When adding or changing something, put the *why* there and only add a line here if it constrains
-work in other files.
+values and decompile-verified call paths belong in the header comment of the file they describe,
+with one exception: shipped XML (Defs, Patches, Languages) is downloaded by every player, so it
+carries only a terse pointer, and its rationale lives in `Docs/design-research.md` under a
+section named for the file. When adding or changing something, put the *why* there and only add
+a line here if it constrains work in other files.
 
 ## Build Commands
 

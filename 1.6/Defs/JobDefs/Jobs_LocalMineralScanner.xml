@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Custom driver: reserves the operator cell in targetB rather than the building, so two
-       pawns can work one scanner (rationale in WorkGiver_OperateLocalMineralScanner.cs).
-       targetA = scanner building, targetB = assigned interaction cell. -->
+  <!-- targetA = scanner, targetB = the operator cell the driver reserves instead of the
+       building (see WorkGiver_OperateLocalMineralScanner.cs). -->
   <JobDef>
     <defName>OperateLocalMineralScanner</defName>
     <driverClass>LocalMineralScanner.JobDriver_OperateLocalMineralScanner</driverClass>

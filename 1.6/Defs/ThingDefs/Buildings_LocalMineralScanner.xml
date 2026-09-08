@@ -1,61 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Local mineral scanner: 2x2 pawn-operated building that reveals (unfogs) one
-       contiguous fogged deposit of its targeted mineral per find. Modeled on vanilla's
-       LongRangeMineralScanner (Core Buildings_Misc.xml) with these deliberate deviations:
-
-       - scanFindMtbDays/scanFindGuaranteedDays 4/8 match the long-range scanner exactly:
-         same effort per find, so the local unit's advantages are the second seat, the
-         2x2 footprint and portability, not a cheaper find. Two operators halve the time
-         to a find at no throughput gain over two separate buildings; see
-         Docs/design-research.md (Def-space tuning) for why the guarantee is rate-neutral.
-       - multipleInteractionCellOffsets instead of hasInteractionCell: two operator spots,
-         each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
-         WorkGiver_OperateLocalMineralScanner.cs); CompScanner.Used() accumulating per
-         worker per tick makes the second operator genuinely double progress. NOTE: an
-         even-width face has no centered cell (Position is the min corner), hence the
-         x=0 and x=1 columns.
-       - The spots sit on the +z side (offsets authored for North rotation; the game
-         rotates them), because the art fronts its consoles toward a north-side operator
-         at North rotation, like vanilla's long-range scanner: vanilla pairs offset
-         (0,0,2) with defaultPlacingRot South + interactionCellIconReverse, which we
-         mirror. Authoring the spots on -z (the SchoolDesk convention) renders the sprite
-         180 degrees away from the operators. GenAdj.AdjustForRotation's even-size center
-         shifts keep both cells flush against the correct face at all four rotations
-         (hand-verified).
-       - PlaceWorker_PreventInteractionSpotOverlap checks multipleInteractionCellOffsets
-         on both the placed def and neighbors, so it covers both spots.
-       - Minifiable (deep-drill precedent: MinifiedThing + uninstallWork + Mass).
-         uninstallWork 1500 scales the drill's 1800-of-10000 to our 8000 WorkToBuild.
-         terrainAffordanceNeeded Medium, between the drill's Light and the fixed
-         scanners' Heavy, since a portable unit shouldn't demand a heavy foundation.
-       - Power 400W: between the deep drill (200) and the big scanners (700), for a
-         smaller unit.
-       - Texture: commissioned art in the root Textures/, named after the defName per
-         the vanilla Things/Building/Misc/<DefName>_<rot> idiom. Only north/south/west ship:
-         the delivered side view has its consoles on -x, which is the WEST sprite under
-         the game's convention (Rot4.East rotates the +z offsets onto +x, so the East
-         face's consoles must sit on +x). Graphic_Multi synthesises the missing east
-         sprite by mirroring west (eastFlipped), so one file serves both sides.
-         drawSize 2.8: the sprite's full alpha extent (dish tip to console skirt) is
-         188 of the 256px canvas, so 2.8 keeps that inside ~2.05 cells; the chassis
-         itself (163px) then sits at ~1.8 cells with a small margin, like vanilla
-         2x2 buildings. 3.1 (chassis exactly 2 cells) spilled past the footprint.
-       - uiOrder 2998 slots the build gizmo directly after the long-range scanner in
-         Architect > Misc; the ordering scheme and the vanilla values it relies on live in
-         Patches/ArchitectMenuOrder.xml.
-       - The roof rule is a mod setting (on by default). canBeUsedUnderRoof feeds only
-         vanilla's Alert_CannotBeUsedRoofed; the rule itself is
-         PlaceWorker_NotUnderRoofIfRequired (vanilla's PlaceWorker_NotUnderRoof behind the
-         setting) plus the comp's CanUseNow, which bypasses CompScanner's hardcoded
-         RoofUtility check when the setting is off.
-       - Mod settings override some of these values at startup and on settings-window
-         close: costList, Mass, minifiedDef, canBeUsedUnderRoof, scanFindMtbDays and
-         scanFindGuaranteedDays. The XML values are the defaults and must equal the
-         *Default consts in LocalMineralScannerSettings.cs, whose header says which game
-         reads make each write take effect live.
-  -->
+  <!-- Pawn-operated 2x2 scanner that unfogs one deposit of its tuned mineral per find.
+       Modeled on vanilla's LongRangeMineralScanner; every deviation is explained in
+       Docs/design-research.md (ThingDef values). Mod settings overwrite costList, Mass,
+       minifiedDef, canBeUsedUnderRoof and the scanFind* days at startup, so those XML
+       values must equal the *Default consts in LocalMineralScannerSettings.cs. -->
   <ThingDef ParentName="BuildingBase">
     <defName>LocalMineralScanner</defName>
     <label>local mineral scanner</label>
