@@ -5,9 +5,9 @@
      scan: ...", CapitalizeFirst()ed by the renderer, hence the lower-case fragment like
      vanilla's fishing FishingSpotUnderTargetPopulation) and, capitalised, as a standing
      inspect-string line (the DeepDrillNoResources idiom). Scan progress is retained
-     (CompScanner saves its accumulator). MessageExhausted is the one-shot top-left message
-     MapComponent_FoggedMinerals posts when the tuned mineral runs out (the DeepDrillExhausted
-     idiom, full sentences like vanilla's); NoneUndiscovered is the parenthesised reason on
+     (CompScanner saves its accumulator). MessageExhausted is the top-left message the find
+     that reveals the last deposit posts beside its letter (the DeepDrillExhausted idiom,
+     full sentences like vanilla's); NoneUndiscovered is the parenthesised reason on
      greyed-out tuning-menu entries.
      The inspect string reuses vanilla's UserScanAbility / ScanAverageInterval /
      ScanningProgressToGuaranteedFind / PeriodDays keys; only the two-operator speed label is

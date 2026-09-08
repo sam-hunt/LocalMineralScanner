@@ -25,9 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   speed. The inspect pane shows the combined speed.
 - Same per-find effort as the long-range mineral scanner (4/8 days).
 - Exhaustion handling: when no undiscovered deposits of the tuned mineral remain the scanner
-  idles with its progress kept, a message announces the last deposit being uncovered (by the
-  scanner or by your miners), the inspect pane says why, and the tuning menu greys out
-  exhausted minerals.
+  idles with its progress kept, the find that reveals the last deposit says so in a message,
+  the inspect pane says why, and the tuning menu greys out exhausted minerals.
 - Mod settings: toggles for the roof rule and for uninstalling, sliders for the random find
   interval, the guaranteed-find time, the build cost and the mass. Applied when the settings
   window closes; no restart needed.

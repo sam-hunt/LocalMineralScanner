@@ -29,11 +29,10 @@
 //   so the answer comes from MapComponent_FoggedMinerals' event-invalidated cache.
 // - The inspect string carries a standing exhaustion line (CompDeepDrill's
 //   "DeepDrillNoResources" idiom). No Alert.
-// - The moment the tuned mineral runs out, by whatever route (a scanner find, a pawn mining
-//   or exploring into the last deposit), MapComponent_FoggedMinerals posts one
-//   TaskCompletion message targeting a tuned scanner, the DeepDrillExhausted idiom. The find
-//   letter itself stays a plain find letter: vanilla never pairs a letter and a message for
-//   one event, and the message is what makes the two routes look the same to the player.
+// - The find that reveals the LAST deposit also posts a TaskCompletion message targeting
+//   the scanner (the DeepDrillExhausted idiom), alongside its find letter. The other routes
+//   to exhaustion (a pawn mining or exploring into the last deposit) are rare and
+//   player-caused; they get only the inspect line and job-fail text.
 // - The tuning menu greys out exhausted minerals with a parenthesised reason (the disabled
 //   FloatMenuOption idiom). No auto-retune and no "any mineral" option.
 // - Default target: gold, for parity with CompLongRangeMineralScanner. Gold is rare (~2.9%
@@ -62,9 +61,6 @@ public class CompProperties_LocalMineralScanner : CompProperties_Scanner
 public class CompLocalMineralScanner : CompScanner
 {
     private ThingDef targetMineable;
-
-    // Read by MapComponent_FoggedMinerals to pick which scanner an exhaustion message targets.
-    public ThingDef TargetMineable => targetMineable;
 
     // Cached in PostSpawnSetup (re-fetched on minify/reinstall like the base comp's
     // powerComp): Map.GetComponent is a linear scan, too heavy for CanUseNow's call rate.
@@ -237,6 +233,15 @@ public class CompLocalMineralScanner : CompScanner
             "LocalMineralScanner_LetterFoundDeposit".Translate(mineral.label, worker.Named("FINDER")),
             LetterDefOf.PositiveEvent,
             new LookTargets(revealCells[revealCells.Count / 2], map));
+        // The Unfog calls above already dirtied the fogged-minerals cache, so this reads the
+        // post-reveal state.
+        if (TargetExhausted)
+        {
+            Messages.Message(
+                "LocalMineralScanner_MessageExhausted".Translate(mineral.label),
+                parent,
+                MessageTypeDefOf.TaskCompletion);
+        }
     }
 
     // Returns the fogged cells of one chosen deposit: a random fully-fogged cluster of the
