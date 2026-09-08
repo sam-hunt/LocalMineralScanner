@@ -27,6 +27,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Exhaustion handling: when no undiscovered deposits of the tuned mineral remain the scanner
   idles with its progress kept, the inspect pane says why, the letter for the last deposit
   says it was the last, and the tuning menu greys out exhausted minerals.
+- Mod settings: toggles for the roof rule and for uninstalling, sliders for the random find
+  interval, the guaranteed-find time, the build cost and the mass. Applied when the settings
+  window closes; no restart needed.
 - Unlocked by the vanilla long-range mineral scanner research. No Harmony, no DLC.
 - Sits directly after the long-range mineral scanner in the Architect > Misc tab.
 

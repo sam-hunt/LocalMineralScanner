@@ -42,11 +42,19 @@
          188 of the 256px canvas, so 2.8 keeps that inside ~2.05 cells; the chassis
          itself (163px) then sits at ~1.8 cells with a small margin, like vanilla
          2x2 buildings. 3.1 (chassis exactly 2 cells) spilled past the footprint.
-       - canBeUsedUnderRoof=false + PlaceWorker_NotUnderRoof is belt-and-suspenders with
-         CompScanner.CanUseNow's hardcoded RoofUtility check, same as vanilla scanners.
        - uiOrder 2998 slots the build gizmo directly after the long-range scanner in
          Architect > Misc; the ordering scheme and the vanilla values it relies on live in
          Patches/ArchitectMenuOrder.xml.
+       - The roof rule is a mod setting (on by default). canBeUsedUnderRoof feeds only
+         vanilla's Alert_CannotBeUsedRoofed; the rule itself is
+         PlaceWorker_NotUnderRoofIfRequired (vanilla's PlaceWorker_NotUnderRoof behind the
+         setting) plus the comp's CanUseNow, which bypasses CompScanner's hardcoded
+         RoofUtility check when the setting is off.
+       - Mod settings override some of these values at startup and on settings-window
+         close: costList, Mass, minifiedDef, canBeUsedUnderRoof, scanFindMtbDays and
+         scanFindGuaranteedDays. The XML values are the defaults and must equal the
+         *Default consts in LocalMineralScannerSettings.cs, whose header says which game
+         reads make each write take effect live.
   -->
   <ThingDef ParentName="BuildingBase">
     <defName>LocalMineralScanner</defName>
@@ -91,7 +99,7 @@
       </li>
     </comps>
     <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
+      <li>LocalMineralScanner.PlaceWorker_NotUnderRoofIfRequired</li>
       <li>PlaceWorker_PreventInteractionSpotOverlap</li>
     </placeWorkers>
     <altitudeLayer>Building</altitudeLayer>

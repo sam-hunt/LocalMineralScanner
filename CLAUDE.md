@@ -80,6 +80,14 @@ CHANGELOG.md     - Keep a Changelog format; load-bearing for releases (see below
   bootstrap, and `brrainz.harmony` dependency were removed. If a patch ever becomes necessary,
   restore all three from the template or a sibling mod (e.g. UniqueMeleeWeapons).
 - XML Defs define game objects; Patches modify existing Defs via XPath
+- Mod settings are def-field writes, not patches: `LocalMineralScannerSettings.Apply()` writes
+  the settings onto the live def at startup (`ModInit`) and on settings-window close
+  (`WriteSettings`). Only settings whose def field the game reads live belong there; the
+  settings header records the decompile evidence per field. Consequences: the XML values are
+  defaults that must equal the `*Default` consts, and every setting appears in three places
+  with the same default (field initializer, `ExposeData`, `ResetToDefaults`). A rule vanilla
+  hardcodes (the roof check) is made optional by a subclass that consults the setting, not
+  by a def write.
 
 **Releases:** run the `/release` skill, or by hand: add the version's `## [X.Y.Z]` section to
 `CHANGELOG.md`, bump `About/About.xml` `<modVersion>` and `Source/1.6/Properties/AssemblyInfo.cs`,

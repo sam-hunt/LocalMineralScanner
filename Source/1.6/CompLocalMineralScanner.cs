@@ -123,7 +123,9 @@ public class CompLocalMineralScanner : CompScanner
     {
         get
         {
-            AcceptanceReport baseReport = base.CanUseNow;
+            AcceptanceReport baseReport = LocalMineralScannerMod.Settings.requireUnroofed
+                ? base.CanUseNow
+                : CanUseNowIgnoringRoof;
             if (!baseReport.Accepted)
             {
                 return baseReport;
@@ -133,6 +135,31 @@ public class CompLocalMineralScanner : CompScanner
                 return ExhaustedReason(targetMineable);
             }
             return true;
+        }
+    }
+
+    // CompScanner.CanUseNow (decompile-verified, 1.6) minus its RoofUtility.IsAnyCellUnderRoof
+    // check, which is hardcoded there rather than read from def.canBeUsedUnderRoof, so the
+    // "doesn't work under a roof" setting has to bypass the whole property. The other checks
+    // are the base's (spawned, powered, not forbidden, player-owned); keep them in step with
+    // it if it changes.
+    private AcceptanceReport CanUseNowIgnoringRoof
+    {
+        get
+        {
+            if (!parent.Spawned)
+            {
+                return false;
+            }
+            if (powerComp?.PowerOn == false)
+            {
+                return false;
+            }
+            if (forbiddable?.Forbidden == true)
+            {
+                return false;
+            }
+            return parent.Faction == Faction.OfPlayer;
         }
     }
 

@@ -8,5 +8,7 @@ public static class LocalMineralScannerDefOf
 {
     public static JobDef OperateLocalMineralScanner;
 
+    public static ThingDef LocalMineralScanner;
+
     static LocalMineralScannerDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(LocalMineralScannerDefOf));
 }

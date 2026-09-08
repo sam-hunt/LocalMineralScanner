@@ -10,6 +10,7 @@ Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undisc
 [*]Two pawns can operate it at once, each at full research speed
 [*]Pauses itself when no undiscovered deposits of the tuned mineral remain, and the tuning menu greys out exhausted minerals
 [*]Minifiable, so it can travel to new maps; unlocked by the vanilla long-range mineral scanner research
+[*]Mod settings for the roof rule, uninstalling, scan times, build cost and mass
 [/list]
 
 [hr][/hr]

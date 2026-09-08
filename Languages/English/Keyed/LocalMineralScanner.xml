@@ -10,7 +10,8 @@
      is the parenthesised reason on greyed-out tuning-menu entries.
      The inspect string reuses vanilla's UserScanAbility / ScanAverageInterval /
      ScanningProgressToGuaranteedFind / PeriodDays keys; only the two-operator speed label
-     and the guaranteed-find ETA are ours. -->
+     and the guaranteed-find ETA are ours (GuaranteedFindWithin also labels the matching
+     settings slider). -->
 <LanguageData>
   <LocalMineralScanner_LetterLabelFoundDeposit>Mineral deposit located</LocalMineralScanner_LetterLabelFoundDeposit>
   <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner.</LocalMineralScanner_LetterFoundDeposit>
@@ -19,4 +20,29 @@
   <LocalMineralScanner_NoneUndiscovered>none undiscovered</LocalMineralScanner_NoneUndiscovered>
   <LocalMineralScanner_CombinedScanSpeed>Combined scanning speed ({0} operators)</LocalMineralScanner_CombinedScanSpeed>
   <LocalMineralScanner_GuaranteedFindWithin>Guaranteed find within</LocalMineralScanner_GuaranteedFindWithin>
+
+  <!-- Settings window (LocalMineralScannerSettings.cs). Labels stay terse; the *Desc keys
+       are hover tooltips only, one or two sentences. Vanilla keys cover the rest: the reset
+       button (RestoreToDefaultSettings), the Cost header (Cost), the mass row (the Mass
+       stat's label and format) and the find-interval rows (ScanAverageInterval, PeriodDays).
+       SettingsCategory is the mod-list entry; it doubles as the Steam Workshop title, so it
+       must equal the first line of .steamworkshop/Description/<Language>.txt. -->
+  <LocalMineralScanner_SettingsCategory>Local Mineral Scanner</LocalMineralScanner_SettingsCategory>
+  <LocalMineralScanner_SettingsPlacement>Placement</LocalMineralScanner_SettingsPlacement>
+  <LocalMineralScanner_SettingsScanning>Scanning</LocalMineralScanner_SettingsScanning>
+  <!-- Appended to a slider label when its value is the default; includes the leading space. -->
+  <LocalMineralScanner_DefaultSuffix> (default)</LocalMineralScanner_DefaultSuffix>
+
+  <LocalMineralScanner_RequireUnroofed>Doesn't work under a roof</LocalMineralScanner_RequireUnroofed>
+  <LocalMineralScanner_RequireUnroofedDesc>Like the vanilla scanners, it can't be placed or operated under a roof. Turn off to allow both.</LocalMineralScanner_RequireUnroofedDesc>
+  <LocalMineralScanner_Minifiable>Can be uninstalled</LocalMineralScanner_Minifiable>
+  <LocalMineralScanner_MinifiableDesc>Lets the scanner be uninstalled and moved, like a deep drill. Turn off and it can only be deconstructed.</LocalMineralScanner_MinifiableDesc>
+  <LocalMineralScanner_MassDesc>Weight of the uninstalled scanner when hauled or carried by a caravan.</LocalMineralScanner_MassDesc>
+
+  <LocalMineralScanner_FindMtbDaysDesc>Average working days between finds for one operator at 100% research speed. The long-range mineral scanner uses 4.</LocalMineralScanner_FindMtbDaysDesc>
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Working days after which a find is guaranteed, for one operator at 100% research speed. The long-range mineral scanner uses 8.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} is the resource's def label (lower case; the row is CapitalizeFirst()ed), {1} the count. -->
+  <LocalMineralScanner_ResourceCost>{0} cost: {1}</LocalMineralScanner_ResourceCost>
+  <LocalMineralScanner_ResourceCostDesc>Amount of {0} needed to build one scanner. 0 removes it from the cost.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

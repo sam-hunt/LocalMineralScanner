@@ -35,6 +35,14 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 - **Minifiable**: uninstall it and take it along on mining trips or to a new map
 - **No new research**: unlocked by the vanilla long-range mineral scanner research
 
+### Mod Settings
+
+- **Roof rule**: let it be placed and operated under a roof
+- **Uninstalling**: make it a fixed installation instead
+- **Scan times**: the random find interval and the guaranteed-find time
+- **Cost and mass**: steel, component and advanced component counts, and the uninstalled weight
+- All settings take effect as soon as the window closes, no restart needed
+
 ## Requirements
 
 - **RimWorld 1.6** or later
