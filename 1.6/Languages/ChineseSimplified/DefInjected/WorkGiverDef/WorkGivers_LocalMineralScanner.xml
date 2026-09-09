@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: operate local mineral scanner -->
+  <LocalMineralScan.label>操作本地矿物扫描仪</LocalMineralScan.label>
+  <!-- EN: scan at -->
+  <LocalMineralScan.verb>扫描矿物于</LocalMineralScan.verb>
+  <!-- EN: scanning at -->
+  <LocalMineralScan.gerund>扫描矿物于</LocalMineralScan.gerund>
+</LanguageData>
