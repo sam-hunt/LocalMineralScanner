@@ -21,6 +21,8 @@
   <LocalMineralScanner_SettingsScanning>탐색</LocalMineralScanner_SettingsScanning>
   <!-- EN:  (default) -->
   <LocalMineralScanner_DefaultSuffix> (기본값)</LocalMineralScanner_DefaultSuffix>
+  <!-- EN:  ({0}) -->
+  <LocalMineralScanner_VanillaSuffix> ({0})</LocalMineralScanner_VanillaSuffix>
 
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>지붕 아래에서 작동 불가</LocalMineralScanner_RequireUnroofed>

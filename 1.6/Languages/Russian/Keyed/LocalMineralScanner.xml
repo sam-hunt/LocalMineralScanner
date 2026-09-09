@@ -27,6 +27,8 @@
   <LocalMineralScanner_SettingsScanning>Сканирование</LocalMineralScanner_SettingsScanning>
   <!-- EN:  (default) -->
   <LocalMineralScanner_DefaultSuffix> (по умолчанию)</LocalMineralScanner_DefaultSuffix>
+  <!-- EN:  ({0}) -->
+  <LocalMineralScanner_VanillaSuffix> ({0})</LocalMineralScanner_VanillaSuffix>
 
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->

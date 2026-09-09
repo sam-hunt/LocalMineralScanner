@@ -3,7 +3,7 @@ Escáner de minerales local
 Nunca más tengas que excavar el mapa entero en busca de minerales.
 
 [h1]Acerca de[/h1]
-Un escáner compacto de 2x2, operado por colonos, que revela depósitos minerales sin descubrir en el mapa en el que ya estás. El mismo trabajo por hallazgo que el escáner de minerales de largo alcance (valor predeterminado ajustable), pero ocupando menos espacio y con sitio para dos operadores.
+Un escáner compacto de 2x2, operado por colonos, que revela depósitos minerales sin descubrir en el mapa en el que ya estás. El mismo trabajo por hallazgo que el escáner de profundidad (valor predeterminado ajustable), pero ocupando menos espacio y con sitio para dos operadores.
 
 Perfecto para ese momento crítico en el que te quedas sin componentes, para los asaltos a asentamientos enemigos, o para las oportunidades de minería en asteroides cuando apenas aparece mineral expuesto.
 
@@ -29,7 +29,7 @@ Perfecto para ese momento crítico en el que te quedas sin componentes, para los
 [hr][/hr]
 
 [b]P: ¿Esto no está desequilibrado?[/b]
-R: Eso depende de ti. Pensando en los viajes en gravinave, ocupa mucho menos espacio que el escáner de minerales de largo alcance del juego base, pero el coste de trabajo por hallazgo predeterminado es equivalente. Si lo quieres más difícil, alarga los tiempos de escaneo o sube los costes desde los ajustes del mod. Si lo quieres más fácil, redúcelos. Tu colonia, tus reglas.
+R: Eso depende de ti. Pensando en los viajes en gravinave, ocupa mucho menos espacio que el escáner de minerales de largo alcance del juego base, pero el coste de trabajo por hallazgo predeterminado es equivalente al del escáner de profundidad. Si lo quieres más difícil, alarga los tiempos de escaneo o sube los costes desde los ajustes del mod. Si lo quieres más fácil, redúcelos. Tu colonia, tus reglas.
 
 [b]P: ¿Puede encontrar minerales añadidos por otros mods?[/b]
 R: Sí. Todo lo que el juego clasifique como mineral extraíble en zonas sin revelar del mapa del escáner es escaneable.

@@ -21,6 +21,8 @@
   <LocalMineralScanner_SettingsScanning>Escaneo</LocalMineralScanner_SettingsScanning>
   <!-- EN:  (default) -->
   <LocalMineralScanner_DefaultSuffix> (por defecto)</LocalMineralScanner_DefaultSuffix>
+  <!-- EN:  ({0}) -->
+  <LocalMineralScanner_VanillaSuffix> ({0})</LocalMineralScanner_VanillaSuffix>
 
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>No funciona bajo techo</LocalMineralScanner_RequireUnroofed>

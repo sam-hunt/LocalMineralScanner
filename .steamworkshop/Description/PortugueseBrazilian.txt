@@ -3,7 +3,7 @@ Escaneadora Local de Minerais
 Nunca mais escave o mapa inteiro atrás de minérios.
 
 [h1]Sobre[/h1]
-Uma escaneadora compacta 2x2, operada por colonos, que revela depósitos minerais inexplorados no mapa em que você já está. Mesmo custo de trabalho por localização que a escaneadora de minerais de longo alcance (padrão ajustável), em um espaço menor e com lugar para dois operadores.
+Uma escaneadora compacta 2x2, operada por colonos, que revela depósitos minerais inexplorados no mapa em que você já está. Mesmo custo de trabalho por localização que a escaneadora penetradora subterrânea (padrão ajustável), em um espaço menor e com lugar para dois operadores.
 
 Perfeita para aquele momento crítico em que você fica sem componentes, para invasões ao mapa de um assentamento inimigo, ou para mapas de mineração de asteroides onde pouco ou nenhum minério aparece exposto.
 
@@ -29,7 +29,7 @@ Perfeita para aquele momento crítico em que você fica sem componentes, para in
 [hr][/hr]
 
 [b]P: Isso não deixa o jogo desbalanceado?[/b]
-R: Isso depende de você. Pensando em viagens de gravinave, ela ocupa muito menos espaço do que a escaneadora de longo alcance padrão do jogo, mas o custo de trabalho por localização é equivalente por padrão. Se quiser mais difícil, aumente os tempos de escaneamento ou os custos nas configurações do mod. Se quiser mais fácil, reduza-os. Sua colônia, suas regras.
+R: Isso depende de você. Pensando em viagens de gravinave, ela ocupa muito menos espaço do que a escaneadora de longo alcance padrão do jogo, mas o custo de trabalho por localização é equivalente ao da escaneadora penetradora subterrânea por padrão. Se quiser mais difícil, aumente os tempos de escaneamento ou os custos nas configurações do mod. Se quiser mais fácil, reduza-os. Sua colônia, suas regras.
 
 [b]P: Ela consegue encontrar minérios adicionados por outros mods?[/b]
 R: Sim. Qualquer minério minerável que o jogo classifique como inexplorado no mapa da escaneadora pode ser escaneado.

@@ -3,7 +3,7 @@ Local Mineral Scanner
 Never strip-mine again.
 
 [h1]About[/h1]
-A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on. Same work per find as the long-range mineral scanner (tunable default), in a smaller footprint with room for two operators.
+A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on. Same work per find as the ground-penetrating scanner (tunable default), in a smaller footprint with room for two operators.
 
 Perfect for that clutch moment you run out of components, enemy settlement raids, or asteroid mining opportunities when little-no ore spawns exposed.
 
@@ -29,7 +29,7 @@ Perfect for that clutch moment you run out of components, enemy settlement raids
 [hr][/hr]
 
 [b]Q: Isn't this imbalanced?[/b]
-A: That's up to you. With gravship-travel in mind, it's much more space-efficient than Vanilla's long-distance scanner, but default find work cost is equivalent. If you want it harder, stretch the scan times or raise the costs via mod settings. If you want it easier, wind them down. Your colony, your rules.
+A: That's up to you. With gravship-travel in mind, it's much more space-efficient than Vanilla's long-distance scanner, but default find work cost is equivalent to the ground-penetrating scanner. If you want it harder, stretch the scan times or raise the costs via mod settings. If you want it easier, wind them down. Your colony, your rules.
 
 [b]Q: Can it find ore added by other mods?[/b]
 A: Yes. Anything the game classes as fogged mineable ore on the scanner's map is scannable.

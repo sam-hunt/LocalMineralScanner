@@ -15,8 +15,10 @@
   <LocalMineralScanner_SettingsCategory>Local Mineral Scanner</LocalMineralScanner_SettingsCategory>
   <LocalMineralScanner_SettingsPlacement>Placement</LocalMineralScanner_SettingsPlacement>
   <LocalMineralScanner_SettingsScanning>Scanning</LocalMineralScanner_SettingsScanning>
-  <!-- Appended to a slider label; keep the leading space. -->
+  <!-- Appended to a slider label; keep the leading space. VanillaSuffix marks a value one of
+       vanilla's scanners uses; {0} = that scanner's label. -->
   <LocalMineralScanner_DefaultSuffix> (default)</LocalMineralScanner_DefaultSuffix>
+  <LocalMineralScanner_VanillaSuffix> ({0})</LocalMineralScanner_VanillaSuffix>
 
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <LocalMineralScanner_RequireUnroofed>Doesn't work under a roof</LocalMineralScanner_RequireUnroofed>

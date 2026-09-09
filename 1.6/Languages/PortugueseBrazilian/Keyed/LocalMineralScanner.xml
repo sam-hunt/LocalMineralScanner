@@ -25,8 +25,11 @@
   <!-- EN: Scanning -->
   <LocalMineralScanner_SettingsScanning>Escaneamento</LocalMineralScanner_SettingsScanning>
   <!-- EN:  (default) -->
-  <!-- Appended to a slider label; keep the leading space. -->
+  <!-- Appended to a slider label; keep the leading space. VanillaSuffix marks a value one of
+       vanilla's scanners uses; {0} = that scanner's label. -->
   <LocalMineralScanner_DefaultSuffix> (padrão)</LocalMineralScanner_DefaultSuffix>
+  <!-- EN:  ({0}) -->
+  <LocalMineralScanner_VanillaSuffix> ({0})</LocalMineralScanner_VanillaSuffix>
 
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->

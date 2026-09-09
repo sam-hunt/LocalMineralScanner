@@ -3,7 +3,7 @@ Lokaler Mineralscanner
 Nie wieder die ganze Karte abtragen.
 
 [h1]Über[/h1]
-Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Gleicher Arbeitsaufwand pro Fund wie beim Langstreckenscanner (anpassbarer Standardwert), aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
+Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Gleicher Arbeitsaufwand pro Fund wie beim Tiefenscanner (anpassbarer Standardwert), aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
 
 Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Überfälle auf feindliche Siedlungen oder für den Abbau auf Asteroiden, wo kaum oder gar kein Erz frei zutage liegt.
 
@@ -29,7 +29,7 @@ Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Üb
 [hr][/hr]
 
 [b]F: Ist das nicht unausgeglichen?[/b]
-A: Das liegt bei dir. Mit Blick auf Reisen per Gravschiff ist er deutlich platzsparender als der Langstreckenscanner des Grundspiels, aber der Arbeitsaufwand pro Fund entspricht in der Standardeinstellung dem Original. Wenn es dir zu leicht ist, verlängere die Scanzeiten oder erhöhe die Kosten über die Mod-Einstellungen. Wenn es dir zu schwer ist, verkürze bzw. senke sie. Deine Kolonie, deine Regeln.
+A: Das liegt bei dir. Mit Blick auf Reisen per Gravschiff ist er deutlich platzsparender als der Langstreckenscanner des Grundspiels, aber der Arbeitsaufwand pro Fund entspricht in der Standardeinstellung dem des Tiefenscanners. Wenn es dir zu leicht ist, verlängere die Scanzeiten oder erhöhe die Kosten über die Mod-Einstellungen. Wenn es dir zu schwer ist, verkürze bzw. senke sie. Deine Kolonie, deine Regeln.
 
 [b]F: Kann er Erz finden, das von anderen Mods hinzugefügt wurde?[/b]
 A: Ja. Alles, was das Spiel als unentdecktes, abbaubares Erz auf der Karte des Scanners einstuft, ist scannbar.

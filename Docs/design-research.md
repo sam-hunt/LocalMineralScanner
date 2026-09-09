@@ -163,10 +163,11 @@ inner-comp gizmos.)
 ## Def-space tuning (from spec)
 
 - Research: `<researchPrerequisites><li>LongRangeMineralScanner</li></...>` — no new project.
-- Same effort per find as the long-range scanner: `scanFindMtbDays 4`,
-  `scanFindGuaranteedDays 8`. The two-seat design, the 2x2 footprint and minifiability are
-  the local unit's whole advantage; a cheaper find on top of them overtunes it. Two
-  operators do not out-produce two single-seat buildings: each find is a renewal at
+- Same effort per find as the ground-penetrating scanner: `scanFindMtbDays 3`,
+  `scanFindGuaranteedDays 6`. Vanilla's own on-map scanner is the reference point; the
+  long-range scanner's 4/8 is too slow for finds capped by what mapgen already placed. The
+  settings sliders label the values either vanilla scanner uses, read live off their defs.
+  Two operators do not out-produce two single-seat buildings: each find is a renewal at
   min(Exp(λ), cap) with λ = Σspeed / mtbDays and cap = guaranteedDays / Σspeed, so λ·cap =
   guaranteedDays / mtbDays is speed-invariant and the long-run rate λ / (1 - e^(-λ·cap)) is
   linear in Σspeed. The shared accumulator only tightens the worst-case gap between finds.
@@ -221,11 +222,9 @@ inner-comp gizmos.)
 The def is modeled on vanilla's `LongRangeMineralScanner` (Core `Buildings_Misc.xml`). Where
 it deviates, this is why:
 
-- **`scanFindMtbDays` 4 / `scanFindGuaranteedDays` 8** match the long-range scanner exactly:
-  same effort per find, so the local unit's advantages are the second seat, the 2x2 footprint
-  and portability, not a cheaper find. Two operators halve the time to a find at no
-  throughput gain over two separate buildings (rate-neutrality argument under Def-space
-  tuning above).
+- **`scanFindMtbDays` 3 / `scanFindGuaranteedDays` 6** match the ground-penetrating scanner
+  (rationale under Def-space tuning above). Two operators halve the time to a find at no
+  throughput gain over two separate buildings (rate-neutrality argument, same section).
 - **`multipleInteractionCellOffsets` instead of `hasInteractionCell`:** two operator spots,
   each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
   `WorkGiver_OperateLocalMineralScanner.cs`); `CompScanner.Used()`'s per-worker-per-tick

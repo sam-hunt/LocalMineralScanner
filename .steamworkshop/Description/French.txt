@@ -3,7 +3,7 @@ Scanner géologique local
 Plus besoin de creuser toute la carte à l'aveugle.
 
 [h1]À propos[/h1]
-Un scanner compact 2x2, actionné par un colon, qui révèle des gisements minéraux inexplorés sur la carte où vous vous trouvez déjà. Même charge de travail par découverte que le scanner géologique à longue portée (valeur par défaut réglable), dans un format plus compact avec de la place pour deux opérateurs.
+Un scanner compact 2x2, actionné par un colon, qui révèle des gisements minéraux inexplorés sur la carte où vous vous trouvez déjà. Même charge de travail par découverte que le scanner géologique (valeur par défaut réglable), dans un format plus compact avec de la place pour deux opérateurs.
 
 Idéal pour ce moment critique où vous manquez de composants, lors d'un raid sur une colonie ennemie, ou lors de l'exploitation d'un astéroïde où peu ou pas de minerai apparaît à découvert.
 
@@ -29,7 +29,7 @@ Idéal pour ce moment critique où vous manquez de composants, lors d'un raid su
 [hr][/hr]
 
 [b]Q : Est-ce que ça ne déséquilibre pas le jeu ?[/b]
-R : À vous de voir. En pensant aux voyages en vaisseau gravitationnel, il occupe bien moins de place que le scanner longue distance du jeu de base, mais le coût de travail par défaut par découverte est équivalent. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
+R : À vous de voir. En pensant aux voyages en vaisseau gravitationnel, il occupe bien moins de place que le scanner longue distance du jeu de base, mais le coût de travail par défaut par découverte est équivalent à celui du scanner géologique. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
 
 [b]Q : Peut-il détecter les minerais ajoutés par d'autres mods ?[/b]
 R : Oui. Tout ce que le jeu considère comme un minerai exploitable inexploré sur la carte du scanner est détectable.

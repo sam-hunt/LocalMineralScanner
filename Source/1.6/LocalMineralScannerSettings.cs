@@ -38,8 +38,9 @@ public class LocalMineralScannerSettings : ModSettings
 {
     public const bool RequireUnroofedDefault = true;
     public const bool MinifiableDefault = true;
-    public const float FindMtbDaysDefault = 4f;
-    public const float FindGuaranteedDaysDefault = 8f;
+    // Vanilla's ground-penetrating scanner timings (Docs/design-research.md, "Def-space tuning").
+    public const float FindMtbDaysDefault = 3f;
+    public const float FindGuaranteedDaysDefault = 6f;
     public const int SteelCostDefault = 120;
     public const int ComponentCostDefault = 4;
     public const int AdvancedComponentCostDefault = 1;
@@ -197,23 +198,40 @@ public class LocalMineralScannerSettings : ModSettings
 
     // The two CompScanner timings. The interval row reuses the inspect pane's vanilla label;
     // the guaranteed-days row needs its own, since vanilla only ever shows that value as a
-    // progress percentage.
+    // progress percentage. Each row tags the values vanilla's two scanners use with that
+    // scanner's label, read live off their defs, so a player tuning the slider sees where the
+    // base game sits (and the tags follow any mod that retunes those scanners).
     private void DrawScanningSection(Listing_Standard listing)
     {
         SectionHeader(listing, "LocalMineralScanner_SettingsScanning".Translate());
 
-        ThingDef vanilla = LocalMineralScannerDefOf.LongRangeMineralScanner;
-        CompProperties_Scanner vanillaProps = vanilla.GetCompProperties<CompProperties_Scanner>();
+        ThingDef longRange = LocalMineralScannerDefOf.LongRangeMineralScanner;
+        ThingDef deep = LocalMineralScannerDefOf.GroundPenetratingScanner;
+        CompProperties_Scanner longRangeProps = longRange.GetCompProperties<CompProperties_Scanner>();
+        CompProperties_Scanner deepProps = deep.GetCompProperties<CompProperties_Scanner>();
         findMtbDays = SliderRow(listing,
-            "ScanAverageInterval".Translate() + ": " + "PeriodDays".Translate(findMtbDays.ToString("0.#")),
-            "LocalMineralScanner_FindMtbDaysDesc".Translate(vanilla.label, vanillaProps.scanFindMtbDays.ToString("0.#")),
-            findMtbDays, FindMtbDaysDefault, min: 0.5f, max: 30f, step: 0.5f);
+            "ScanAverageInterval".Translate() + ": " + "PeriodDays".Translate(findMtbDays.ToString("0.##"))
+                + VanillaTag(findMtbDays, longRange, longRangeProps.scanFindMtbDays)
+                + VanillaTag(findMtbDays, deep, deepProps.scanFindMtbDays),
+            "LocalMineralScanner_FindMtbDaysDesc".Translate(longRange.label, longRangeProps.scanFindMtbDays.ToString("0.##")),
+            findMtbDays, FindMtbDaysDefault, min: 0.25f, max: 15f, step: 0.25f);
         findGuaranteedDays = SliderRow(listing,
-            "LocalMineralScanner_FindGuaranteedDays".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.#")),
-            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(vanilla.label, vanillaProps.scanFindGuaranteedDays.ToString("0.#")),
-            findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.5f, max: 60f, step: 0.5f);
+            "LocalMineralScanner_FindGuaranteedDays".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.##"))
+                + VanillaTag(findGuaranteedDays, longRange, longRangeProps.scanFindGuaranteedDays)
+                + VanillaTag(findGuaranteedDays, deep, deepProps.scanFindGuaranteedDays),
+            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(longRange.label, longRangeProps.scanFindGuaranteedDays.ToString("0.##")),
+            findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.25f, max: 30f, step: 0.25f);
 
         listing.Gap(SectionGap);
+    }
+
+    // " (<scanner label>)" when the slider sits on that vanilla scanner's value, else
+    // empty. Mathf.Approximately for the same reason SliderRow uses it.
+    private static string VanillaTag(float value, ThingDef scanner, float scannerValue)
+    {
+        return Mathf.Approximately(value, scannerValue)
+            ? "LocalMineralScanner_VanillaSuffix".Translate(scanner.label).ToString()
+            : string.Empty;
     }
 
     // One row per costList resource, labelled from the resource's own def label.
