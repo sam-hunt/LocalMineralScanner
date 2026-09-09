@@ -228,8 +228,9 @@ it deviates, this is why:
   tuning above).
 - **`multipleInteractionCellOffsets` instead of `hasInteractionCell`:** two operator spots,
   each reserved per pawn by the custom WorkGiver/JobDriver (rationale in
-  `WorkGiver_OperateLocalMineralScanner.cs`); `CompScanner.Used()` accumulating per worker
-  per tick makes the second operator genuinely double progress. An even-width face has no
+  `WorkGiver_OperateLocalMineralScanner.cs`); `CompScanner.Used()`'s per-worker-per-tick
+  accumulation (kept verbatim in `Operate`) makes the second operator genuinely double
+  progress. An even-width face has no
   centered cell (`Position` is the min corner), hence the x=0 and x=1 columns.
 - **Spots on the +z face** (offsets authored for North rotation; the game rotates them),
   because the art fronts its consoles toward a north-side operator at North rotation, like

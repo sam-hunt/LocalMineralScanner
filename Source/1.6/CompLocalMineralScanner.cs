@@ -2,12 +2,13 @@
 // progress from Used(Pawn), called every tick by the operating pawn's job toil: each call
 // adds scanSpeed/60000 worked-days and rolls Rand.MTBEventOccurs every 59 ticks, with a
 // forced success at scanFindGuaranteedDays. Two simultaneous operators therefore double
-// progress with no extra code here. Used() is non-virtual and its scalar
+// progress with no extra code here. Used() is non-virtual, looks the scan speed up itself
+// with an uncached GetStatValue every tick (the driver header has the cost), and its scalar
 // lastUserSpeed/lastScanTick are clobbered by concurrent callers, so the job driver calls
-// Operate() (a wrapper that also sums the tick's operator speeds) and
-// CompInspectStringExtra is overridden to report that combined figure. Both operators roll
-// on the same hash-interval tick, so two rolls can succeed at once; DoFind reveals for the
-// first and ignores the second (Used has already reset the accumulator for it).
+// Operate() instead: Used's body with the speed passed in, which also sums the tick's
+// operator speeds for the overridden CompInspectStringExtra. Both operators roll on the
+// same hash-interval tick, so two rolls can succeed at once; DoFind reveals for the first
+// and ignores the second (Operate has already reset the accumulator for it).
 //
 // DoFind reveals (unfogs) one contiguous deposit of the targeted mineral instead of
 // generating deep resources like CompDeepScanner:
@@ -183,14 +184,17 @@ public class CompLocalMineralScanner : CompScanner
     private static TaggedString ExhaustedReason(ThingDef mineable) =>
         "LocalMineralScanner_NoFoggedDeposits".Translate(mineable.building.mineableThing.label);
 
-    // The job driver's per-tick entry point, wrapping the non-virtual CompScanner.Used so the
-    // inspect string can report the combined rate. Summing speeds is exact, not an
-    // approximation: every operator rolls Rand.MTBEventOccurs at rate speed/scanFindMtbDays
-    // on the same hash-interval tick (rates of independent events add), and the worked-days
-    // accumulator gains speed/60000 per call. Used stores the speed it looked up in the
-    // base's lastUserSpeed; reading that back avoids a second uncached GetStatValue per
-    // operator per tick and keeps the reported figure identical to the one the roll used.
-    public void Operate(Pawn worker)
+    // The job driver's per-tick entry point, replacing CompScanner.Used: its body verbatim
+    // (decompile-verified, 1.6: stamp lastScanTick/lastUserSpeed, add speed/60000 worked
+    // days, TickDoesFind -> DoFind and reset; keep in step if it changes) except that the
+    // speed arrives from the driver's cache instead of a per-tick stat lookup, and without
+    // the "Used while CanUseNow is false" error guard, which the job's two fail conditions
+    // already enforce. Summing speeds is exact, not an approximation: every operator rolls
+    // Rand.MTBEventOccurs at rate speed/scanFindMtbDays on the same hash-interval tick (rates
+    // of independent events add), and the worked-days accumulator gains speed/60000 per
+    // call. lastUserSpeed keeps Used's meaning (the last operator's speed) for the base
+    // class; the reported figure is combinedSpeed.
+    public void Operate(Pawn worker, float speed)
     {
         int tick = Find.TickManager.TicksGame;
         if (tick != operatingTick)
@@ -200,9 +204,21 @@ public class CompLocalMineralScanner : CompScanner
             combinedSpeed = 0f;
         }
         operatorCount++;
-        Used(worker);
-        combinedSpeed += lastUserSpeed;
+        combinedSpeed += speed;
+        lastScanTick = tick;
+        lastUserSpeed = speed;
+        daysWorkingSinceLastFinding += speed / 60000f;
+        if (TickDoesFind(speed))
+        {
+            DoFind(worker);
+            daysWorkingSinceLastFinding = 0f;
+        }
     }
+
+    // The speed Used would look up: Props.scanSpeedStat (ResearchSpeed for this def), 1 when
+    // the def sets none. Uncached and costly; the driver calls it on its refresh interval.
+    public float ScanSpeedOf(Pawn worker) =>
+        Props.scanSpeedStat != null ? worker.GetStatValue(Props.scanSpeedStat) : 1f;
 
     // Replaces CompScanner's string (same three lines and vanilla keys) with the combined
     // figures from Operate(). ResearchSpeed has a 0.1 floor, so the divisions are safe. OnGUI
@@ -242,7 +258,7 @@ public class CompLocalMineralScanner : CompScanner
         if (revealCells.NullOrEmpty())
         {
             // Unreachable while the CanUseNow gate and FindDepositToReveal agree on what counts
-            // as undiscovered; Used still resets the accumulator, so say so if it ever happens.
+            // as undiscovered; Operate still resets the accumulator, so say so if it ever happens.
             Log.Warning("[LocalMineralScanner] Find succeeded but no undiscovered "
                 + targetMineable.defName + " deposit was found on " + map + "; progress reset.");
             return;
