@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only mod-specific strings live here; the tuning gizmo, inspect string and settings window
+     reuse vanilla keys where the text is identical. NoFoggedDeposits is a lower-case fragment:
+     it is CapitalizeFirst()ed where shown (forced-job fail text, inspect line). -->
+<LanguageData>
+  <!-- EN: Mineral deposit located -->
+  <LocalMineralScanner_LetterLabelFoundDeposit>Depósito Mineral Localizado</LocalMineralScanner_LetterLabelFoundDeposit>
+  <!-- EN: {FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner. -->
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} localizou um depósito de {0} em uma área inexplorada usando a escaneadora local de minerais.</LocalMineralScanner_LetterFoundDeposit>
+  <!-- EN: No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral. -->
+  <LocalMineralScanner_MessageExhausted>Não restam mais depósitos inexplorados de {0} neste mapa. A escaneadora local de minerais permanecerá ociosa até ser sintonizada para outro mineral.</LocalMineralScanner_MessageExhausted>
+  <!-- EN: no undiscovered {0} deposits left -->
+  <LocalMineralScanner_NoFoggedDeposits>nenhum depósito inexplorado de {0} restante</LocalMineralScanner_NoFoggedDeposits>
+  <!-- EN: none undiscovered -->
+  <LocalMineralScanner_NoneUndiscovered>nenhum inexplorado</LocalMineralScanner_NoneUndiscovered>
+  <!-- EN: Combined scanning speed ({0} operators) -->
+  <LocalMineralScanner_CombinedScanSpeed>Velocidade de escaneamento combinada ({0} operadores)</LocalMineralScanner_CombinedScanSpeed>
+
+  <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
+       title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
+  <!-- EN: Local Mineral Scanner -->
+  <LocalMineralScanner_SettingsCategory>Escaneadora Local de Minerais</LocalMineralScanner_SettingsCategory>
+  <!-- EN: Placement -->
+  <LocalMineralScanner_SettingsPlacement>Posicionamento</LocalMineralScanner_SettingsPlacement>
+  <!-- EN: Scanning -->
+  <LocalMineralScanner_SettingsScanning>Escaneamento</LocalMineralScanner_SettingsScanning>
+  <!-- EN:  (default) -->
+  <!-- Appended to a slider label; keep the leading space. -->
+  <LocalMineralScanner_DefaultSuffix> (padrão)</LocalMineralScanner_DefaultSuffix>
+
+  <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
+  <!-- EN: Doesn't work under a roof -->
+  <LocalMineralScanner_RequireUnroofed>Não funciona debaixo de um telhado</LocalMineralScanner_RequireUnroofed>
+  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
+  <LocalMineralScanner_RequireUnroofedDesc>Assim como a {0}, ela não pode ser colocada nem operada debaixo de um telhado. Desative para permitir.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: Can be uninstalled -->
+  <LocalMineralScanner_Minifiable>Pode ser desinstalada</LocalMineralScanner_Minifiable>
+  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>Permite que a escaneadora seja desinstalada e movida, assim como a {0}. Desative e ela só poderá ser desconstruída.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>Peso da escaneadora desinstalada quando transportada ou carregada por uma caravana.</LocalMineralScanner_MassDesc>
+
+  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
+  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Média de dias de trabalho entre localizações para um operador a 100% de velocidade de pesquisa. A {0} usa {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find within -->
+  <LocalMineralScanner_FindGuaranteedDays>Localização garantida em até</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Dias de trabalho após os quais uma localização é garantida, para um operador a 100% de velocidade de pesquisa. A {0} usa {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
+  <!-- EN: {0} cost: {1} -->
+  <LocalMineralScanner_ResourceCost>Custo de {0}: {1}</LocalMineralScanner_ResourceCost>
+  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>Quantidade de {0} necessária para construir uma escaneadora. 0 remove o item do custo.</LocalMineralScanner_ResourceCostDesc>
+</LanguageData>

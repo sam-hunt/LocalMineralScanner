@@ -19,7 +19,7 @@ welcome too.
 | German               | Machine-assisted | Sonnet 5 |
 | Spanish              | Machine-assisted | Sonnet 5 |
 | French               | Machine-assisted | Sonnet 5 |
-| Brazilian Portuguese | Planned          | —        |
+| Brazilian Portuguese | Machine-assisted | Sonnet 5 |
 | Japanese             | Planned          | —        |
 | Traditional Chinese  | Planned          | —        |
 

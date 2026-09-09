@@ -1,0 +1,46 @@
+Escaneadora Local de Minerais
+
+[h1]Sobre[/h1]
+Nunca mais escave o mapa inteiro atrás de minérios. Uma escaneadora compacta 2x2, operada por colonos, que revela depósitos minerais inexplorados no mapa em que você já está. Mesmo custo de trabalho por localização que a escaneadora de minerais de longo alcance, em um espaço menor e com lugar para dois operadores.
+
+[h2]O que ela faz[/h2]
+[list]
+[*]Cada localização revela um depósito real posicionado pela geração do mapa. Nada é inventado
+[*]Sintonize-a para ouro, prata, aço, plastiaço, componentes, urânio ou jade
+[*]Dois colonos podem operá-la ao mesmo tempo, cada um na velocidade máxima de pesquisa
+[*]Pausa automaticamente quando não restam mais depósitos inexplorados do mineral sintonizado, e o menu de sintonia esmaece os minerais esgotados
+[*]Pode ser desinstalada, podendo viajar para novos mapas. Desbloqueada pela pesquisa da escaneadora de minerais de longo alcance padrão do jogo
+[*]Configurações do mod para a regra do telhado, desinstalação, tempos de escaneamento, custo de construção e massa
+[/list]
+
+[hr][/hr]
+
+[h1]Compatibilidade[/h1]
+[list]
+[*]Requer apenas RimWorld 1.6+. Sem DLC, sem Harmony
+[*]Seguro para adicionar a jogos salvos existentes
+[*]Seguro para remover assim que todas as escaneadoras forem desconstruídas (alguns erros pontuais em vermelho no próximo carregamento, apenas)
+[/list]
+
+[hr][/hr]
+
+[b]P: Isso não deixa o jogo desbalanceado?[/b]
+R: Isso depende de você. Ela é mais barata, menor e mais leve que a escaneadora de longo alcance padrão do jogo, mas o custo de trabalho por localização é equivalente por padrão. Se quiser mais difícil, aumente os tempos de escaneamento ou os custos nas configurações do mod. Se quiser mais fácil, reduza-os. Sua colônia, suas regras.
+
+[b]P: Ela consegue encontrar minérios adicionados por outros mods?[/b]
+R: Não. Ela se sintoniza para a mesma lista que o jogo base usa para depósitos preciosos: ouro, prata, aço, plastiaço, componentes, urânio e jade.
+
+[b]P: Por que ninguém está usando a escaneadora?[/b]
+R: O painel de inspeção mostra o motivo. Geralmente o mineral sintonizado já foi totalmente revelado, a escaneadora está coberta por um telhado ou sem energia, ou ninguém está com o trabalho de pesquisa habilitado.
+
+[b]P: Isso foi feito usando LLMs!?[/b]
+R: Parte do código mais repetitivo, e a maioria das localizações. Sou engenheiro de software de profissão e escrevo código há 25 anos. Todo o código é revisado e testado manualmente. Todos os relatos de bugs e conflitos de mods são acompanhados pessoalmente, conforme o tempo e os detalhes permitirem. Toda a arte é encomendada de humanos, feita à mão no Krita, ou ambos.
+
+[b]P: Combat Extended?[/b]
+R: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
+
+[hr][/hr]
+
+[h1]Links[/h1]
+Código-fonte, downloads manuais e rastreador de problemas: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
+Arte da escaneadora por [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
