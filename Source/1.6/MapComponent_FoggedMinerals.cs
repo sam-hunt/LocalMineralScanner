@@ -13,7 +13,12 @@
 // Rebuild walks listerThings.ThingsOfDef per tracked def - maintained per-def lists, never
 // an AllThings scan (there is no ThingRequestGroup covering mineables; BuildingArtificial
 // explicitly excludes resource rock). Tracked defs = GenStep_PreciousLump.mineables, the
-// same list the tuning gizmo offers, resolved lazily since DefOf isn't ready at load time.
+// same list the tuning gizmo offers, read through GenStepDefOf on every use. Nothing
+// def-derived is cached in a static: an in-process play-data reload (a mid-session language
+// change) rebuilds the DefDatabase with new instances, and a static holding the old ones
+// would never match a live building.def again, reporting every mineral exhausted until the
+// process restarts. DefOf fields are rebound on that reload, and this component's instance
+// caches die with the map, so both are safe.
 //
 // MostValuableFoggedDeposit backs the fresh scanner's default target. Value is per deposit
 // cell, mineableThing.BaseMarketValue * building.mineableYield, the product
@@ -35,22 +40,27 @@ namespace LocalMineralScanner;
 
 public class MapComponent_FoggedMinerals : MapComponent
 {
-    private static List<ThingDef> cachedTrackedDefs;
-    private static List<ThingDef> cachedDefsByValue;
-
     private readonly HashSet<ThingDef> defsWithFoggedCells = new HashSet<ThingDef>();
     private bool dirty = true;
     private bool subscribed;
+
+    // Per-map views of TrackedDefs (see the header for why they are not static): a set for
+    // the event handlers' membership tests, and the value ordering behind
+    // MostValuableFoggedDeposit.
+    private HashSet<ThingDef> trackedDefSet;
+    private List<ThingDef> defsByValueDescending;
 
     public MapComponent_FoggedMinerals(Map map) : base(map)
     {
     }
 
     private static List<ThingDef> TrackedDefs =>
-        cachedTrackedDefs ??= ((GenStep_PreciousLump)GenStepDefOf.PreciousLump.genStep).mineables;
+        ((GenStep_PreciousLump)GenStepDefOf.PreciousLump.genStep).mineables;
 
-    private static List<ThingDef> DefsByValueDescending =>
-        cachedDefsByValue ??= TrackedDefs
+    private HashSet<ThingDef> TrackedDefSet => trackedDefSet ??= new HashSet<ThingDef>(TrackedDefs);
+
+    private List<ThingDef> DefsByValueDescending =>
+        defsByValueDescending ??= TrackedDefs
             .OrderByDescending(def => def.building.mineableThing.BaseMarketValue * def.building.mineableYield)
             .ToList();
 
@@ -108,7 +118,7 @@ public class MapComponent_FoggedMinerals : MapComponent
     private void Notify_CellFogChanged(IntVec3 cell, bool fogged)
     {
         Building edifice = map.edificeGrid[cell];
-        if (edifice != null && TrackedDefs.Contains(edifice.def))
+        if (edifice != null && TrackedDefSet.Contains(edifice.def))
         {
             dirty = true;
         }
@@ -121,7 +131,7 @@ public class MapComponent_FoggedMinerals : MapComponent
 
     private void Notify_BuildingChanged(Building building)
     {
-        if (TrackedDefs.Contains(building.def))
+        if (TrackedDefSet.Contains(building.def))
         {
             dirty = true;
         }
