@@ -175,7 +175,9 @@ public class CompLocalMineralScanner : CompScanner
     // inspect string can report the combined rate. Summing speeds is exact, not an
     // approximation: every operator rolls Rand.MTBEventOccurs at rate speed/scanFindMtbDays
     // on the same hash-interval tick (rates of independent events add), and the worked-days
-    // accumulator gains speed/60000 per call. The speed lookup mirrors Used's.
+    // accumulator gains speed/60000 per call. Used stores the speed it looked up in the
+    // base's lastUserSpeed; reading that back avoids a second uncached GetStatValue per
+    // operator per tick and keeps the reported figure identical to the one the roll used.
     public void Operate(Pawn worker)
     {
         int tick = Find.TickManager.TicksGame;
@@ -186,8 +188,8 @@ public class CompLocalMineralScanner : CompScanner
             combinedSpeed = 0f;
         }
         operatorCount++;
-        combinedSpeed += Props.scanSpeedStat != null ? worker.GetStatValue(Props.scanSpeedStat) : 1f;
         Used(worker);
+        combinedSpeed += lastUserSpeed;
     }
 
     // Replaces CompScanner's string (same three lines and vanilla keys) with the combined
