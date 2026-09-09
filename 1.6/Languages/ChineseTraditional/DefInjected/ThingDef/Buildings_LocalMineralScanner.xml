@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: local mineral scanner -->
+  <LocalMineralScanner.label>在地礦物掃描器</LocalMineralScanner.label>
+  <!-- EN: A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely. -->
+  <LocalMineralScanner.description>研究人員用來探測周圍地形中隱藏礦物礦脈的短程掃描裝置。找到礦脈的機率取決於操作員的研究能力。可以調整掃描器來找到特定礦物種類，其雙控制台可讓兩位操作員同時進行掃描。它無法在屋頂下運作。可以重新放置安裝。</LocalMineralScanner.description>
+</LanguageData>

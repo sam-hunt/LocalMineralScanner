@@ -21,7 +21,7 @@ welcome too.
 | French               | Machine-assisted | Sonnet 5 |
 | Brazilian Portuguese | Machine-assisted | Sonnet 5 |
 | Japanese             | Machine-assisted | Sonnet 5 |
-| Traditional Chinese  | Planned          | —        |
+| Traditional Chinese  | Machine-assisted | Sonnet 5 |
 
 Statuses: **Source** (the authoritative English strings), **Machine-assisted**
 (generated with terminology grounded against the official RimWorld

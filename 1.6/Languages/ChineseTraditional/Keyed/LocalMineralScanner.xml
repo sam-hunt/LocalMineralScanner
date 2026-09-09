@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only mod-specific strings live here; the tuning gizmo, inspect string and settings window
+     reuse vanilla keys where the text is identical. NoFoggedDeposits is a lower-case fragment:
+     it is CapitalizeFirst()ed where shown (forced-job fail text, inspect line). -->
+<LanguageData>
+  <!-- EN: Mineral deposit located -->
+  <LocalMineralScanner_LetterLabelFoundDeposit>礦脈尋獲</LocalMineralScanner_LetterLabelFoundDeposit>
+  <!-- EN: {FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner. -->
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef}透過在地礦物掃描器，在未探索的區域中發現了一處{0}礦脈。</LocalMineralScanner_LetterFoundDeposit>
+  <!-- EN: No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral. -->
+  <LocalMineralScanner_MessageExhausted>此地圖上已無未探索的{0}礦脈。在地礦物掃描器將保持閒置，直到被調整為其他礦物為止。</LocalMineralScanner_MessageExhausted>
+  <!-- EN: no undiscovered {0} deposits left -->
+  <LocalMineralScanner_NoFoggedDeposits>已無未探索的{0}礦脈</LocalMineralScanner_NoFoggedDeposits>
+  <!-- EN: none undiscovered -->
+  <LocalMineralScanner_NoneUndiscovered>無未探索</LocalMineralScanner_NoneUndiscovered>
+  <!-- EN: Combined scanning speed ({0} operators) -->
+  <LocalMineralScanner_CombinedScanSpeed>綜合掃描速度({0}位操作員)</LocalMineralScanner_CombinedScanSpeed>
+
+  <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
+       title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
+  <!-- EN: Local Mineral Scanner -->
+  <LocalMineralScanner_SettingsCategory>在地礦物掃描器</LocalMineralScanner_SettingsCategory>
+  <!-- EN: Placement -->
+  <LocalMineralScanner_SettingsPlacement>放置</LocalMineralScanner_SettingsPlacement>
+  <!-- EN: Scanning -->
+  <LocalMineralScanner_SettingsScanning>掃描</LocalMineralScanner_SettingsScanning>
+  <!-- Appended to a slider label; keep the leading space. -->
+  <!-- EN:  (default) -->
+  <LocalMineralScanner_DefaultSuffix> (預設)</LocalMineralScanner_DefaultSuffix>
+
+  <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
+  <!-- EN: Doesn't work under a roof -->
+  <LocalMineralScanner_RequireUnroofed>無法在屋頂下運作</LocalMineralScanner_RequireUnroofed>
+  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
+  <LocalMineralScanner_RequireUnroofedDesc>如同{0}，它無法在屋頂下放置或操作。關閉後即可允許。</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: Can be uninstalled -->
+  <LocalMineralScanner_Minifiable>可以移除</LocalMineralScanner_Minifiable>
+  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>讓掃描器可以像{0}一樣被移除並搬運。關閉後就只能拆除。</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>移除安裝後的掃描器，由搬運或旅隊攜帶時的質量。</LocalMineralScanner_MassDesc>
+
+  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
+  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>單一操作員在研究速度100%時，兩次尋獲之間的平均工作天數。{0}使用{1}。</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find within -->
+  <LocalMineralScanner_FindGuaranteedDays>保證尋獲期限</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>單一操作員在研究速度100%時，經過此工作天數後必定尋獲。{0}使用{1}。</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
+  <!-- EN: {0} cost: {1} -->
+  <LocalMineralScanner_ResourceCost>{0}消費：{1}</LocalMineralScanner_ResourceCost>
+  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>建造一台掃描器所需的{0}數量。設為0則會從建造成本中移除。</LocalMineralScanner_ResourceCostDesc>
+</LanguageData>
