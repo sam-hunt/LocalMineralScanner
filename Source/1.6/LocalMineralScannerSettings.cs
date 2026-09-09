@@ -92,13 +92,23 @@ public class LocalMineralScannerSettings : ModSettings
     public void Apply()
     {
         ThingDef def = LocalMineralScannerDefOf.LocalMineralScanner;
-        CompProperties_LocalMineralScanner props = def.GetCompProperties<CompProperties_LocalMineralScanner>();
 
         def.canBeUsedUnderRoof = !requireUnroofed;
         def.minifiedDef = minifiable ? ThingDefOf.MinifiedThing : null;
-        props.scanFindMtbDays = findMtbDays;
-        props.scanFindGuaranteedDays = findGuaranteedDays;
         def.SetStatBaseValue(StatDefOf.Mass, mass);
+
+        // Null only if another mod patched the scanner comp off the def; the building is
+        // inert then anyway, so skip its timings rather than fail the startup constructor.
+        CompProperties_LocalMineralScanner props = def.GetCompProperties<CompProperties_LocalMineralScanner>();
+        if (props != null)
+        {
+            props.scanFindMtbDays = findMtbDays;
+            props.scanFindGuaranteedDays = findGuaranteedDays;
+        }
+        else
+        {
+            Log.Warning("[LocalMineralScanner] " + def.defName + " has no CompProperties_LocalMineralScanner; scan time settings not applied.");
+        }
 
         // Zero-count entries are dropped rather than written: construction treats a 0 count as
         // already delivered, but the build menu's cost readout and the info card would still
