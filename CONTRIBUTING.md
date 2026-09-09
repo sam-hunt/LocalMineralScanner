@@ -20,7 +20,7 @@ welcome too.
 | Spanish              | Machine-assisted | Sonnet 5 |
 | French               | Machine-assisted | Sonnet 5 |
 | Brazilian Portuguese | Machine-assisted | Sonnet 5 |
-| Japanese             | Planned          | —        |
+| Japanese             | Machine-assisted | Sonnet 5 |
 | Traditional Chinese  | Planned          | —        |
 
 Statuses: **Source** (the authoritative English strings), **Machine-assisted**

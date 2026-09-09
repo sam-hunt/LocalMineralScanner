@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Mineral deposit located -->
+  <LocalMineralScanner_LetterLabelFoundDeposit>鉱床を発見</LocalMineralScanner_LetterLabelFoundDeposit>
+  <!-- EN: {FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner. -->
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef}は近距離鉱物探査スキャナーを使用して,未知の区域で{0}鉱床を発見した.</LocalMineralScanner_LetterFoundDeposit>
+  <!-- EN: No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral. -->
+  <LocalMineralScanner_MessageExhausted>このマップには,これ以上未知の{0}鉱床は残っていません.近距離鉱物探査スキャナーは,別の鉱物に調整されるまで待機します.</LocalMineralScanner_MessageExhausted>
+  <!-- EN: no undiscovered {0} deposits left -->
+  <LocalMineralScanner_NoFoggedDeposits>未知の{0}鉱床が残っていない</LocalMineralScanner_NoFoggedDeposits>
+  <!-- EN: none undiscovered -->
+  <LocalMineralScanner_NoneUndiscovered>未知なし</LocalMineralScanner_NoneUndiscovered>
+  <!-- EN: Combined scanning speed ({0} operators) -->
+  <LocalMineralScanner_CombinedScanSpeed>合計スキャン速度(オペレーター{0}人)</LocalMineralScanner_CombinedScanSpeed>
+
+  <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
+       title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
+  <!-- EN: Local Mineral Scanner -->
+  <LocalMineralScanner_SettingsCategory>近距離鉱物探査スキャナー</LocalMineralScanner_SettingsCategory>
+  <!-- EN: Placement -->
+  <LocalMineralScanner_SettingsPlacement>設置</LocalMineralScanner_SettingsPlacement>
+  <!-- EN: Scanning -->
+  <LocalMineralScanner_SettingsScanning>スキャン</LocalMineralScanner_SettingsScanning>
+  <!-- Appended to a slider label; keep the leading space. -->
+  <!-- EN:  (default) -->
+  <LocalMineralScanner_DefaultSuffix> (デフォルト)</LocalMineralScanner_DefaultSuffix>
+
+  <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
+  <!-- EN: Doesn't work under a roof -->
+  <LocalMineralScanner_RequireUnroofed>屋根の下では機能しない</LocalMineralScanner_RequireUnroofed>
+  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
+  <LocalMineralScanner_RequireUnroofedDesc>{0}と同様に,屋根の下では設置も稼働もできません.オフにすると許可されます.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: Can be uninstalled -->
+  <LocalMineralScanner_Minifiable>撤去可能</LocalMineralScanner_Minifiable>
+  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>{0}と同様に,スキャナーを撤去して移動できるようにします.オフにすると解体のみ可能になります.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>撤去したスキャナーを運搬したり,キャラバン隊で持ち運んだりする際の重量です.</LocalMineralScanner_MassDesc>
+
+  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
+  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>研究速度100%のオペレーター1人あたりの,発見までの平均稼働日数です.{0}は{1}を使用しています.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find within -->
+  <LocalMineralScanner_FindGuaranteedDays>確実な発見まで</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>研究速度100%のオペレーター1人が確実に発見できるようになるまでの稼働日数です.{0}は{1}を使用しています.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
+  <!-- EN: {0} cost: {1} -->
+  <LocalMineralScanner_ResourceCost>{0}のコスト: {1}</LocalMineralScanner_ResourceCost>
+  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>スキャナーを1台建造するために必要な{0}の量です.0にするとコストから除外されます.</LocalMineralScanner_ResourceCostDesc>
+</LanguageData>

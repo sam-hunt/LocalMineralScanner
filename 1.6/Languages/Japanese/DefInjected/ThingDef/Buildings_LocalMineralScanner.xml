@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: local mineral scanner -->
+  <LocalMineralScanner.label>近距離鉱物探査スキャナー</LocalMineralScanner.label>
+  <!-- EN: A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely. -->
+  <LocalMineralScanner.description>研究者が使用することで,周辺の地形に隠れた鉱物資源を探知できる,近距離側面センサーユニットです.発見できるかどうかは,オペレーターの研究能力に左右されます.このセンサーは特定の鉱物の種類に調整することができ,2基のコンソールにより2人のオペレーターが同時にスキャンできます.屋根の下では機能しません.自由に再配置することができます.</LocalMineralScanner.description>
+</LanguageData>
