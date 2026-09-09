@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: scanning at -->
+  <LocalMineralScan.gerund>에서 탐색</LocalMineralScan.gerund>
+  <!-- EN: operate local mineral scanner -->
+  <LocalMineralScan.label>근거리 광물 탐색기 조작</LocalMineralScan.label>
+  <!-- EN: scan at -->
+  <LocalMineralScan.verb>탐색</LocalMineralScan.verb>
+</LanguageData>

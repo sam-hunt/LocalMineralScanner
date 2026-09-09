@@ -15,7 +15,7 @@ welcome too.
 | English              | Source           | —        |
 | Simplified Chinese   | Machine-assisted | Sonnet 5 |
 | Russian              | Machine-assisted | Sonnet 5 |
-| Korean               | Planned          | —        |
+| Korean               | Machine-assisted | Sonnet 5 |
 | German               | Planned          | —        |
 | Spanish              | Planned          | —        |
 | French               | Planned          | —        |

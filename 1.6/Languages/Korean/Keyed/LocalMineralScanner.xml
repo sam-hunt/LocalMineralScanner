@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Mineral deposit located -->
+  <LocalMineralScanner_LetterLabelFoundDeposit>광물 매장지 발견</LocalMineralScanner_LetterLabelFoundDeposit>
+  <!-- EN: {FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner. -->
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef}(이)가 근거리 광물 탐색기를 사용해 안개에 덮인 지역에서 {0} 매장지를 발견했습니다.</LocalMineralScanner_LetterFoundDeposit>
+  <!-- EN: No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral. -->
+  <LocalMineralScanner_MessageExhausted>이 맵에는 더 이상 미발견 {0} 매장지가 남아 있지 않습니다. 다른 광물로 조정하기 전까지 근거리 광물 탐색기는 대기 상태로 남습니다.</LocalMineralScanner_MessageExhausted>
+  <!-- EN: no undiscovered {0} deposits left -->
+  <LocalMineralScanner_NoFoggedDeposits>미발견 {0} 매장지 없음</LocalMineralScanner_NoFoggedDeposits>
+  <!-- EN: none undiscovered -->
+  <LocalMineralScanner_NoneUndiscovered>미발견 없음</LocalMineralScanner_NoneUndiscovered>
+  <!-- EN: Combined scanning speed ({0} operators) -->
+  <LocalMineralScanner_CombinedScanSpeed>합산 탐색 속도 (조작자 {0}명)</LocalMineralScanner_CombinedScanSpeed>
+
+  <!-- EN: Local Mineral Scanner -->
+  <LocalMineralScanner_SettingsCategory>근거리 광물 탐색기</LocalMineralScanner_SettingsCategory>
+  <!-- EN: Placement -->
+  <LocalMineralScanner_SettingsPlacement>배치</LocalMineralScanner_SettingsPlacement>
+  <!-- EN: Scanning -->
+  <LocalMineralScanner_SettingsScanning>탐색</LocalMineralScanner_SettingsScanning>
+  <!-- EN:  (default) -->
+  <LocalMineralScanner_DefaultSuffix> (기본값)</LocalMineralScanner_DefaultSuffix>
+
+  <!-- EN: Doesn't work under a roof -->
+  <LocalMineralScanner_RequireUnroofed>지붕 아래에서 작동 불가</LocalMineralScanner_RequireUnroofed>
+  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
+  <LocalMineralScanner_RequireUnroofedDesc>{0}처럼 지붕 아래에는 설치하거나 조작할 수 없습니다. 끄면 허용됩니다.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: Can be uninstalled -->
+  <LocalMineralScanner_Minifiable>포장 가능</LocalMineralScanner_Minifiable>
+  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>{0}처럼 탐색기를 포장하여 옮길 수 있게 합니다. 끄면 해체만 가능합니다.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>포장된 탐색기를 운반하거나 상단이 휴대할 때의 무게입니다.</LocalMineralScanner_MassDesc>
+
+  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>조작자 한 명이 연구 속도 100%로 작업할 때 발견 사이의 평균 근무일입니다. {0}(은)는 {1}일을 사용합니다.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find within -->
+  <LocalMineralScanner_FindGuaranteedDays>확실한 발견까지</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>조작자 한 명이 연구 속도 100%로 작업할 때 발견이 확실해지는 근무일입니다. {0}(은)는 {1}일을 사용합니다.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- EN: {0} cost: {1} -->
+  <LocalMineralScanner_ResourceCost>{0} 비용: {1}</LocalMineralScanner_ResourceCost>
+  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>탐색기 한 개를 건설하는 데 필요한 {0}의 양입니다. 0으로 설정하면 비용에서 제외됩니다.</LocalMineralScanner_ResourceCostDesc>
+</LanguageData>
