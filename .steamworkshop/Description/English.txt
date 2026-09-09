@@ -17,16 +17,27 @@ Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undisc
 
 [h1]Compatibility[/h1]
 [list]
-[*]Requires RimWorld 1.6. No DLC, no Harmony
+[*]Requires RimWorld 1.6+ only; No DLC, no Harmony
 [*]Safe to add to existing saves
-[*]Safe to remove once every scanner is deconstructed (a few one-off red errors on the first load)
+[*]Safe to remove once every scanner is deconstructed (a few one-off red errors on next load only)
 [/list]
 
 [hr][/hr]
 
-[h1]FAQ[/h1]
+[b]Q: Isn't this imbalanced?[/b]
+A: That's up to you. It's cheaper/smaller/lighter than Vanilla's long-distance scanner, but default find work cost is equivalent. If you want it harder, stretch the scan times or raise the costs via mod settings. If you want it easier, wind them down. Your colony, your rules.
+
+[b]Q: Can it find ore added by other mods?[/b]
+A: No. It tunes to the same list vanilla uses for precious deposits: gold, silver, steel, plasteel, components, uranium and jade.
+
+[b]Q: Why is nobody using the scanner?[/b]
+A: The inspect pane says why. Usually the tuned mineral is fully revealed, the scanner is roofed or unpowered, or nobody has Research work enabled.
+
 [b]Q: Was this made using LLMs!?[/b]
 A: Some of the grunt code, and most localizations. I'm a software engineer by trade, and have been writing code for 25 years. All code is manually reviewed and tested; all bug reports and mod-conflicts followed up personally as time and detail allows. All art is either commissioned from humans, hand-authored in Krita, or both.
+
+[b]Q: Combat Extended?[/b]
+A: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 
 [hr][/hr]
 
