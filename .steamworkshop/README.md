@@ -21,8 +21,9 @@ that language's vanilla-localized "mineral scanner" term paired with its
 ordinary word for local/nearby. Titles are fully localized with no English
 brand appended: Workshop search is language-agnostic (any language's title
 matches regardless of UI language, verified 2026-08-12) and the preview
-thumbnail already carries the English name. The mod has no settings page, so
-the only in-game counterpart the title must match is the building's label.
+thumbnail already carries the English name. The title must equal the
+`LocalMineralScanner_SettingsCategory` Keyed value for that language, so the
+in-game settings entry and the Workshop page read the same.
 
 The description is deliberately short: the mod is one building with one job,
 and the page should read that way. Add sections only for things a subscriber
