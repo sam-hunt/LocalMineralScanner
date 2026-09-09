@@ -13,7 +13,7 @@
 Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mountains, and the only ways to get at it are to tunnel blindly or to fetch it from another tile with the long-range mineral scanner. This mod adds the missing middle option: a pawn-operated 2×2 building that scans the map you are already on and unfogs the deposits map generation actually placed there.
 
 - **Reveals real ore** — each successful scan unfogs one contiguous deposit of the tuned mineral; nothing is conjured
-- **Tunable** — pick the mineral you want, exactly like the long-range mineral scanner
+- **Tunable** — pick the mineral you want, like the long-range mineral scanner, plus any modded ore the map holds
 - **Two operators** — twin consoles let two pawns scan at once, each contributing their full research speed
 
 ## Features
@@ -21,7 +21,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 ### The Scanner
 
 - **Real deposits only**: each find unfogs one contiguous deposit that map generation placed. Fully hidden deposits are found first; partially exposed ones are the fallback
-- **Tunable target**: gold, silver, steel, plasteel, components, uranium or jade. A newly built scanner starts on gold, or on the most valuable mineral still hidden on the map if there is no gold
+- **Tunable target**: every ore the current map holds, vanilla or modded, asteroid ores included. A newly built scanner starts on gold, or on the most valuable mineral still hidden on the map if there is no gold
 - **Two operators**: two pawns can scan simultaneously, each contributing their full research speed — a genuine second seat, not queueing
 - **Same effort per find** as the vanilla long-range mineral scanner, with results limited to the current map
 

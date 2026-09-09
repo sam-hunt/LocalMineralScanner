@@ -43,9 +43,13 @@
 //   (MapComponent_FoggedMinerals.MostValuableFoggedDeposit). Save-load and reinstall never
 //   touch the saved target; pendingInitialTarget's declaration explains the one-shot plumbing.
 //
-// The target-mineral gizmo is CompLongRangeMineralScanner's verbatim (same candidate list,
-// GenStep_PreciousLump.mineables, and the same vanilla Keyed strings), retargeted at this
-// comp so multi-select tuning works across several scanners.
+// The target-mineral gizmo follows CompLongRangeMineralScanner's (same FloatMenu idiom and
+// vanilla Keyed strings), retargeted at this comp so multi-select tuning works across
+// several scanners, over MapComponent_FoggedMinerals.TrackedDefs instead of the long-range
+// scanner's fixed list (that header has the rationale). The menu lists the ores this map
+// holds, plus the current target so the button's label always has a row and the menu is
+// never empty (vanilla's FloatMenu errors and closes on zero options); rows whose every
+// cell is already revealed are greyed, never hidden.
 
 using System.Collections.Generic;
 using System.Text;
@@ -354,11 +358,14 @@ public class CompLocalMineralScanner : CompScanner
             iconOffset = mineableThing.uiIconOffset,
             action = delegate
             {
-                List<ThingDef> mineables = ((GenStep_PreciousLump)GenStepDefOf.PreciousLump.genStep).mineables;
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
-                foreach (ThingDef mineable in mineables)
+                foreach (ThingDef mineable in foggedMinerals.TrackedDefs)
                 {
                     ThingDef localMineable = mineable;
+                    if (localMineable != targetMineable && !foggedMinerals.IsPresent(localMineable))
+                    {
+                        continue;
+                    }
                     string label = localMineable.building.mineableThing.LabelCap;
                     if (!foggedMinerals.AnyFoggedDepositOf(localMineable))
                     {

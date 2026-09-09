@@ -18,9 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Local mineral scanner: a minifiable, pawn-operated 2x2 building that reveals one
   contiguous undiscovered deposit of its tuned mineral per find, on the current map.
   Fully hidden deposits are found first; partially exposed ones are the fallback.
-- Tunable target (gold, silver, steel, plasteel, components, uranium, jade), matching the
-  long-range mineral scanner. A newly built scanner starts on gold, or on the most valuable
-  mineral still hidden on the map when no gold remains.
+- Tunable target: every ore the current map holds, vanilla or modded, asteroid ores
+  included, most valuable first. A newly built scanner starts on gold, or on the most
+  valuable mineral still hidden on the map when no gold remains.
 - Two operator seats: two pawns can scan at once, each contributing their full research
   speed. The inspect pane shows the combined speed.
 - Same per-find effort as the long-range mineral scanner (4/8 days).

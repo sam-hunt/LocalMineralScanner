@@ -114,7 +114,8 @@ read, and `DeepDrillUtility.GetNextResource` derives the drill's resource from t
 are defaults chosen where the player has made no choice. Value ordering is per deposit cell,
 `mineableThing.BaseMarketValue * building.mineableYield`, the product `GenStep_PreciousLump`
 sizes lumps by (gold 400, plasteel 360, uranium 240, jade 200, steel 76, components 64,
-silver 40); raw market value would rank components (32) above gold (10). The one-shot flag
+silver 40; modded ores rank by the same product); raw market value would rank components
+(32) above gold (10). The one-shot flag
 is set in `Initialize` (runs on `PostMake` and on load) and consumed by the first
 `PostSpawnSetup`, so load (`respawningAfterLoad`) and reinstall (flag already consumed)
 never override a saved tuning. The flag is scribed because the load-time `Initialize`
@@ -171,11 +172,10 @@ inner-comp gizmos.)
   linear in Σspeed. The shared accumulator only tightens the worst-case gap between finds.
 - Minifiable: `<minifiedDef>MinifiedThing</minifiedDef>` + `uninstallWork` + `Mass`
   (deep-drill precedent).
-- Resource tuning gizmo: mirror `CompLongRangeMineralScanner`'s FloatMenu over
-  `GenStep_PreciousLump.mineables` = MineableGold, MineableSilver, MineableSteel,
-  MineablePlasteel, MineableComponentsIndustrial, MineableUranium, MineableJade.
-  Open question: `MineableComponentsIndustrial` never spawns as ambient scatter — filter to
-  `building.mineableScatterCommonality > 0`, add an "any" option, or keep vanilla-identical.
+- Resource tuning gizmo: mirror `CompLongRangeMineralScanner`'s FloatMenu. Its candidate
+  list, `GenStep_PreciousLump.mineables`, is MineableGold, MineableSilver, MineableSteel,
+  MineablePlasteel, MineableComponentsIndustrial, MineableUranium, MineableJade; ours is
+  wider (decision 3).
 
 ## Design decisions (resolved)
 
@@ -185,9 +185,29 @@ inner-comp gizmos.)
    combined-speed inspect string. Vanilla's trio is reused only through `CompScanner`.
 2. **Interaction offsets**: `(0,0,2)` and `(1,0,2)`, both on the `+z` face, so the operators
    stand where the commissioned art fronts its consoles (see ThingDef values below).
-3. **Target list**: vanilla-identical (`GenStep_PreciousLump.mineables`, components
-   included). Exhausted entries are greyed out rather than filtered; no "any mineral" option
-   (see Exhaustion UX).
+3. **Target list**: every ore def, meaning `building.isResourceRock` with a `mineableThing`,
+   the test vanilla itself applies for "ore" (`TileMutatorWorker_MineralRich`'s candidate
+   enumeration, `ThingSetMaker_Meteorite`'s ore/rock split; decompile-verified), rather than
+   `GenStep_PreciousLump.mineables` alone. Survey of 358 installed Workshop mods (2026-09):
+   four add resource rock, eleven defs in all. Only RimForge patches its copper and tin into
+   the precious-lump list (so they worked before this decision). The other nine (Vanilla
+   Psycasts Expanded eltex, Vanilla Gravship Expanded's six compressed ores, Vanilla
+   Landmarks Expanded spacer components and jadeite) set `mineableScatterCommonality` 0 and
+   are placed by quest sites, asteroid quest nodes or tile mutators, exactly like Odyssey's
+   own `MineableObsidian`; a commonality filter would miss precisely the asteroid ores this
+   mod wants to reach. Menu: ordered by per-cell value (the default-target ranking below),
+   not the long-range scanner's XML order, which stops meaning anything once modded ores
+   interleave; an ore is listed only while `map.listerThings` holds some, vanilla and modded
+   alike (a vanilla-always/modded-when-present split was built first and dropped: the player
+   cannot see which list an ore belongs to, so it reads as arbitrary), plus the scanner's
+   current target, the dropdown convention that also keeps the button label and the menu in
+   agreement after a reinstall and guarantees a non-empty menu (`FloatMenu` logs an error
+   and closes on zero options); exhausted entries are greyed out rather than filtered; no
+   "any mineral" option (see Exhaustion UX). Presence and fog both come from the event-invalidated
+   cache in `MapComponent_FoggedMinerals`, so ore added to a live map by any route (skyfaller,
+   mod mechanic, debug spawn then refog) is offered at the next query. Rejected filters:
+   `mineableScatterCommonality > 0` (misses asteroid and landmark ores) and `mineable &&
+   !isNaturalRock` (catches chunk-dropping stone variants).
 4. **Partially-fogged fallback**: as proposed — a cluster with ≥1 fogged cell, revealing only
    its fogged cells; "fully fogged" means every cell of the cluster is fogged.
 5. **Letter target**: a single cell (the middle of the reveal list), not the cell list.
