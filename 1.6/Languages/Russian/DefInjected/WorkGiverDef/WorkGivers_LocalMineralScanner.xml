@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine-assisted first pass (see l10n/process.md); pending native review. -->
+<LanguageData>
+  <!-- EN: operate local mineral scanner -->
+  <LocalMineralScan.label>работать с локальным сканером минералов</LocalMineralScan.label>
+  <!-- EN: scan at -->
+  <LocalMineralScan.verb>сканировать, используя</LocalMineralScan.verb>
+  <!-- EN: scanning at -->
+  <LocalMineralScan.gerund>сканировать, используя</LocalMineralScan.gerund>
+</LanguageData>

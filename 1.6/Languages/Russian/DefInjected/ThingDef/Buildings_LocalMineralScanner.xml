@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine-assisted first pass (see l10n/process.md); pending native review. -->
+<LanguageData>
+  <!-- EN: local mineral scanner -->
+  <LocalMineralScanner.label>локальный сканер минералов</LocalMineralScanner.label>
+  <!-- EN: A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely. -->
+  <LocalMineralScanner.description>Латеральный сенсор малого радиуса действия, используемый учёными для обнаружения скоплений минералов, скрытых в окружающей местности. Эффективность поиска зависит от исследовательских способностей оператора. Этот сенсор можно настроить на поиск конкретного минерала, а два пульта управления позволяют одновременно сканировать двум операторам. Не работает под крышей. Можно перемещать с места на место.</LocalMineralScanner.description>
+</LanguageData>

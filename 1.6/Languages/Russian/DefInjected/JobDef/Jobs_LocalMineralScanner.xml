@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine-assisted first pass (see l10n/process.md); pending native review. -->
+<LanguageData>
+  <!-- EN: scanning at TargetA. -->
+  <OperateLocalMineralScanner.reportString>выполняет сканирование, используя TargetA</OperateLocalMineralScanner.reportString>
+</LanguageData>
