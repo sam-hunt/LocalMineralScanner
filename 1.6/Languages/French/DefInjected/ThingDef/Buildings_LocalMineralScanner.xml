@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: local mineral scanner -->
+  <LocalMineralScanner.label>scanner géologique local</LocalMineralScanner.label>
+  <!-- EN: A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely. -->
+  <LocalMineralScanner.description>Une unité de capteurs latéraux à courte portée utilisée par les chercheurs pour détecter des gisements minéraux dissimulés dans le terrain environnant. Les chances de trouver un gisement dépendent de la compétence en recherche de l'opérateur. Ce capteur peut être réglé pour cibler un type de minéral spécifique, et ses consoles jumelles permettent à deux opérateurs d'analyser en même temps. Il ne fonctionne pas sous un toit. Peut être repositionné librement.</LocalMineralScanner.description>
+</LanguageData>

@@ -1,0 +1,46 @@
+Scanner géologique local
+
+[h1]À propos[/h1]
+Plus besoin de creuser toute la carte à l'aveugle. Un scanner compact 2x2, actionné par un colon, qui révèle des gisements minéraux inexplorés sur la carte où vous vous trouvez déjà. Même charge de travail par découverte que le scanner géologique à longue portée, dans un format plus compact avec de la place pour deux opérateurs.
+
+[h2]Fonctionnalités[/h2]
+[list]
+[*]Chaque découverte révèle un gisement réel placé par la génération de la carte. Rien n'est inventé de toutes pièces
+[*]Réglez-le sur l'or, l'argent, l'acier, le plastacier, les composants, l'uranium ou le jade
+[*]Deux colons peuvent l'utiliser en même temps, chacun à sa pleine vitesse de recherche
+[*]Se met en pause lorsqu'il ne reste plus de gisement inexploré du minéral réglé, et grise les minéraux épuisés dans le menu de réglage
+[*]Peut être désinstallé et transporté vers de nouvelles cartes. Débloqué par la recherche « scanner géologique à longue portée » du jeu de base
+[*]Paramètres du mod pour la règle du toit, la désinstallation, les temps de détection, le coût de construction et le poids
+[/list]
+
+[hr][/hr]
+
+[h1]Compatibilité[/h1]
+[list]
+[*]Nécessite uniquement RimWorld 1.6 ou supérieur. Aucune extension, pas de Harmony
+[*]Peut être ajouté sans risque à une partie en cours
+[*]Peut être retiré sans risque une fois tous les scanners démolis (quelques erreurs rouges ponctuelles au chargement suivant uniquement)
+[/list]
+
+[hr][/hr]
+
+[b]Q : Est-ce que ça ne déséquilibre pas le jeu ?[/b]
+R : À vous de voir. Il est moins cher, plus petit et plus léger que le scanner longue distance du jeu de base, mais le temps de travail nécessaire par défaut pour une découverte est équivalent. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
+
+[b]Q : Peut-il détecter les minerais ajoutés par d'autres mods ?[/b]
+R : Non. Il se règle sur la même liste que le jeu de base utilise pour les gisements précieux : l'or, l'argent, l'acier, le plastacier, les composants, l'uranium et le jade.
+
+[b]Q : Pourquoi personne n'utilise le scanner ?[/b]
+R : Le panneau d'inspection en indique la raison. Généralement, le minéral réglé est entièrement révélé, le scanner est sous un toit ou n'est pas alimenté, ou personne n'a activé le travail de Recherche.
+
+[b]Q : Est-ce que ça a été fait avec des IA !?[/b]
+R : Une partie du code répétitif, et la plupart des localisations. Je suis ingénieur logiciel de métier, et j'écris du code depuis 25 ans. Tout le code est relu et testé manuellement. Tous les rapports de bugs et les conflits entre mods sont suivis personnellement, selon le temps et les détails disponibles. Tous les visuels sont soit commandés à des artistes humains, soit réalisés à la main dans Krita, soit les deux.
+
+[b]Q : Combat Extended ?[/b]
+R : [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
+
+[hr][/hr]
+
+[h1]Liens[/h1]
+Code source, téléchargements manuels et suivi des problèmes : [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
+Illustrations du scanner par [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
