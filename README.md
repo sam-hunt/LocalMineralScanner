@@ -3,8 +3,10 @@
 > A RimWorld mod adding a compact local mineral scanner that reveals undiscovered deposits on the current map
 
 [![RimWorld](https://img.shields.io/badge/RimWorld-1.6-blue.svg)](https://rimworldgame.com/)
-[![Version](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg)](https://github.com/sam-hunt/LocalMineralScanner/releases)
-[![Development Status](https://img.shields.io/badge/Status-In%20Development-yellow.svg)](https://github.com/sam-hunt/LocalMineralScanner/releases)
+[![Subscribers](https://img.shields.io/steam/subscriptions/3798782281?logo=steam&label=subscribers)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
+[![Downloads](https://img.shields.io/steam/downloads/3798782281?logo=steam&label=downloads)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
+[![Favorites](https://img.shields.io/steam/favorites/3798782281?logo=steam&label=favorites)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
+[![Views](https://img.shields.io/steam/views/3798782281?logo=steam&label=views)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
 
 ![Preview](About/Preview.png)
 
@@ -53,7 +55,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 
 ### Steam Workshop (Recommended)
 
-Coming with the first release.
+Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281) and it will auto-download.
 
 ### Manual Installation
 
