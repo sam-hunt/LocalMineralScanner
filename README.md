@@ -12,7 +12,7 @@
 
 Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mountains, and the only ways to get at it are to tunnel blindly or to fetch it from another tile with the long-range mineral scanner. This mod adds the missing middle option: a pawn-operated 2×2 building that scans the map you are already on and unfogs the deposits map generation actually placed there.
 
-- **Reveals real ore** — each successful scan unfogs one contiguous deposit of the tuned mineral; nothing is conjured
+- **Reveals real ore** — each successful scan unfogs one contiguous deposit of the tuned mineral; nothing is spawned new
 - **Tunable** — pick the mineral you want, like the long-range mineral scanner, plus any modded ore the map holds
 - **Two operators** — twin consoles let two pawns scan at once, each contributing their full research speed
 

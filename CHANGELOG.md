@@ -11,26 +11,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
      body verbatim and FAILS the release if the section is missing, so write the
      section before tagging. The /release skill walks through all of this. -->
 
-## [0.1.0] - TBD
+## [1.0.0] - 2026-09-09
 
 ### Added
 
-- Local mineral scanner: a minifiable, pawn-operated 2x2 building that reveals one
-  contiguous undiscovered deposit of its tuned mineral per find, on the current map.
-  Fully hidden deposits are found first; partially exposed ones are the fallback.
-- Tunable target: every ore the current map holds, vanilla or modded, asteroid ores
-  included, most valuable first. A newly built scanner starts on gold, or on the most
-  valuable mineral still hidden on the map when no gold remains.
-- Two operator seats: two pawns can scan at once, each contributing their full research
-  speed. The inspect pane shows the combined speed.
-- Same per-find effort as the long-range mineral scanner (4/8 days).
-- Exhaustion handling: when no undiscovered deposits of the tuned mineral remain the scanner
-  idles with its progress kept, the find that reveals the last deposit says so in a message,
-  the inspect pane says why, and the tuning menu greys out exhausted minerals.
-- Mod settings: toggles for the roof rule and for uninstalling, sliders for the random find
-  interval, the guaranteed-find time, the build cost and the mass. Applied when the settings
-  window closes; no restart needed.
-- Unlocked by the vanilla long-range mineral scanner research. No Harmony, no DLC.
-- Sits directly after the long-range mineral scanner in the Architect > Misc tab.
+- Pawn-operated 2x2 building that reveals undiscovered mineral deposits on the current map.
+- Reveals one deposit per find, fully hidden deposits before partially exposed ones.
+- Minifiable default, so a scanner can be uninstalled and moved.
+- Tunable to every ore the map holds: vanilla, modded and asteroid ores alike.
+- Targets ore types listed in order of most valuable first.
+- Two operator seats; each pawn contributes their full research speed.
+- Scanner inspect pane shows the combined scan speed.
+- Same default per-find effort as the long-range mineral scanner (4/8 days).
+- Stop message when the last undiscovered deposit is revealed.
+- Exhausted minerals greyed/disabled in the tuning gizmo menu.
+- Mod settings for the roof rule, uninstalling, scan times, build cost and mass.
+- Settings apply when the window closes; no restart needed.
+- Unlocked by the vanilla long-range mineral scanner research.
+- Sits directly after the long-range mineral scanner in Architect > Misc.
 
-[0.1.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v0.1.0
+[1.0.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.0.0
