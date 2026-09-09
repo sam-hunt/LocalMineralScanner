@@ -43,13 +43,6 @@ jobs:
           echo "Release notes for $version:"
           cat RELEASE_NOTES.md
 
-      - name: Get mod info
-        id: modinfo
-        run: |
-          MOD_NAME=$(grep -oP '(?<=<name>).*(?=</name>)' About/About.xml | head -1)
-          MOD_NAME_SAFE=$(echo "$MOD_NAME" | tr ' ' '_' | tr -cd '[:alnum:]_-')
-          echo "mod_name=$MOD_NAME_SAFE" >> $GITHUB_OUTPUT
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
@@ -62,19 +55,21 @@ jobs:
         # Reuse the .csproj's StageMod target — the single source of truth for what
         # files constitute the mod — so the release zip can never drift from the
         # local deploy (e.g. forget Patches). StageMod wipes + recopies $(StageDir).
+        # The folder name is the project name, matching the local deploy folder
+        # ($(MSBuildProjectName)) and the README's install instructions.
         run: >
           dotnet build Source/1.6/LocalMineralScanner.csproj -c Release
-          -t:StageMod -p:StageDir=${{ github.workspace }}/release/${{ steps.modinfo.outputs.mod_name }}
+          -t:StageMod -p:StageDir=${{ github.workspace }}/release/LocalMineralScanner
 
       - name: Package mod
         run: |
           set -e
-          cd release && zip -r "../${{ steps.modinfo.outputs.mod_name }}-${GITHUB_REF_NAME}.zip" "${{ steps.modinfo.outputs.mod_name }}"
+          cd release && zip -r ../LocalMineralScanner-${GITHUB_REF_NAME}.zip LocalMineralScanner
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
-          files: ${{ steps.modinfo.outputs.mod_name }}-${{ github.ref_name }}.zip
+          files: LocalMineralScanner-${{ github.ref_name }}.zip
           # body_path is pre-pended to the auto-generated notes by the GitHub API,
           # so the curated CHANGELOG prose leads and the compare link (plus any
           # contributor PRs) follows it - not the other way round.
