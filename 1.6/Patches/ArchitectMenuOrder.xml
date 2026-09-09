@@ -4,7 +4,8 @@
   <!-- Architect > Misc: slot the local scanner directly after vanilla's long-range mineral
        scanner. Gizmos sort by uiOrder with ties in load order, so the three vanilla defs
        are lowered from the 2999 default to our 2998; see Docs/design-research.md (Architect
-       menu order). Conditional so an existing uiOrder is replaced, not duplicated. -->
+       menu order). Conditional so an existing uiOrder is replaced, not duplicated; the Add
+       succeeds Always so a mod that removes one of these defs logs no patch error. -->
 
   <Operation Class="PatchOperationConditional">
     <xpath>Defs/ThingDef[defName="MoisturePump"]/uiOrder</xpath>
@@ -13,6 +14,7 @@
       <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
+      <success>Always</success>
       <xpath>Defs/ThingDef[defName="MoisturePump"]</xpath>
       <value><uiOrder>2998</uiOrder></value>
     </nomatch>
@@ -25,6 +27,7 @@
       <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
+      <success>Always</success>
       <xpath>Defs/ThingDef[defName="GroundPenetratingScanner"]</xpath>
       <value><uiOrder>2998</uiOrder></value>
     </nomatch>
@@ -37,6 +40,7 @@
       <value><uiOrder>2998</uiOrder></value>
     </match>
     <nomatch Class="PatchOperationAdd">
+      <success>Always</success>
       <xpath>Defs/ThingDef[defName="LongRangeMineralScanner"]</xpath>
       <value><uiOrder>2998</uiOrder></value>
     </nomatch>
