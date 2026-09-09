@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "gameBuild": "1.6.4871 rev591",
+    "activeDlcs": [
+      "Core"
+    ],
+    "modPackageId": "samhunt.localmineralscanner",
+    "modName": "Local Mineral Scanner",
+    "activeMods": [
+      "ludeon.rimworld",
+      "samhunt.localmineralscanner",
+      "shunter.l10nprobe"
+    ]
+  },
+  "defInjections": {
+    "JobDef": {
+      "OperateLocalMineralScanner.reportString": {
+        "english": "scanning at TargetA.",
+        "required": true
+      }
+    },
+    "ThingDef": {
+      "LocalMineralScanner.description": {
+        "english": "A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely.",
+        "required": true
+      },
+      "LocalMineralScanner.label": {
+        "english": "local mineral scanner",
+        "required": true
+      }
+    },
+    "WorkGiverDef": {
+      "LocalMineralScan.gerund": {
+        "english": "scanning at",
+        "required": true
+      },
+      "LocalMineralScan.label": {
+        "english": "operate local mineral scanner",
+        "required": true
+      },
+      "LocalMineralScan.verb": {
+        "english": "scan at",
+        "required": true
+      }
+    }
+  }
+}
