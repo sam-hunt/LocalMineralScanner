@@ -18,6 +18,7 @@ live in `l10n/languages/German.md`.
 | can be uninstalled / uninstalling | kann demontiert werden / Demontieren | Reuses vanilla's `DesignatorUninstall` = "Demontieren" verbatim. |
 | deconstructed | abgerissen | Reuses vanilla's `DesignatorDeconstruct` = "Abreißen". |
 | WorkGiver verb/gerund/label; JobDef reportString | siehe unten | Mirrored exactly from vanilla's own `LongRangeScan`/`OperateScanner` (identical English source for all four fields): `verb` = "zum Scannen nutzen", `gerund` = "Scannen an", `reportString` = "scannt mit TargetA.", `label` pattern = "{Buildingname} bedienen" → "Lokalen Mineralscanner bedienen" (accusative, no article, strong ending `-en`, matching `Langstreckenscanner bedienen`). |
+| ore vein (Workshop description, "contiguous ore vein") | Erzader | Not vanilla-attested (this mechanic is mod-specific), but built on the real German mining word `Ader` (vein), as in the everyday compound `Goldader` (gold vein) — reads as ordinary German mining vocabulary rather than a calque. |
 
 ## Pending native review
 

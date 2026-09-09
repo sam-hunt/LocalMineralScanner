@@ -19,6 +19,8 @@ mechanics (josa markers, register, dash policy) live in `l10n/languages/Korean.m
 | deconstructed | 해체 | Core `DesignatorDeconstruct` |
 | caravan | 상단 | Core, per `l10n/languages/Korean.md`'s grounded table |
 | resource labels ({0} in cost rows) | 강철/부품/고급 부품/금/은/플라스틸/우라늄/비취옥 | Core `Steel`/`ComponentIndustrial`/`ComponentSpacer`/`Gold`/`Silver`/`Plasteel`/`Uranium`/`Jade` labels, verbatim |
+| ore vein (contiguous find unit) | 광맥 | standard Korean mining noun (lode/vein); no vanilla RimWorld string names this concept directly — coined for this mod, flagged for review |
+| mineable ore (generic, any type) | 채굴 가능한 광석 | 채굴 (mining) + 광석 ("ore", per this mod's grounded gold-ore precedent); replaces the old fixed resource list now that the mod tunes to any mineable ore, vanilla or modded |
 
 ## Pending native review
 

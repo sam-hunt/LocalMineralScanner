@@ -15,6 +15,8 @@ below). Grounded against Core's Castilian tar only (no domain DLC).
 | guaranteed find | descubrimiento garantizado | `ScanningProgressToGuaranteedFind` = "Progreso hasta descubrimiento garantizado" — reused rather than coining "hallazgo garantizado" |
 | combined scanning speed | velocidad de escaneo combinada | "escaneo" built from `escanear`, the verb vanilla's `WorkGiverDef.verb`/`.gerund` use (`LongRangeScan.verb` = "escanear en") |
 | Workshop title | Escáner de minerales local | byte-identical to `LocalMineralScanner_SettingsCategory` |
+| ore vein (Workshop copy, "contiguous ore vein") | veta de mineral | no vanilla term found; "veta" is standard Spanish mining vocabulary for a mineral vein, paired with the existing "mineral" noun |
+| mineable ore (type) (Workshop copy, "any mineable ore type") | mineral extraíble | describes the post-update any-ore tuning (no longer a fixed vanilla list); "extraíble" avoids inventing an adjective on "minable" |
 
 ## Grounding decisions
 

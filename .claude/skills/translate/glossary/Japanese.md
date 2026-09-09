@@ -13,6 +13,9 @@ grounding decisions only; family-wide mechanics live in `l10n/languages/Japanese
 | guaranteed find | 確実な発見 | 確実 (certain/guaranteed) drawn from vanilla `ScanningProgressToGuaranteedFind` = 確実な鉱脈検出までの進捗 |
 | combined scanning speed | 合計スキャン速度 | スキャン速度 reused verbatim from vanilla `UserScanAbility`; 合計 (total/combined) is a plain, uncoined modifier |
 | the Workshop title | 近距離鉱物探査スキャナー | Byte-identical to `LocalMineralScanner_SettingsCategory`, per `workshop.md`'s title-settings coupling rule |
+| "Never strip-mine again." (Workshop tagline) | もう乱掘は不要です. | Mod-coined slogan; 乱掘 (indiscriminate/strip mining) is the natural noun for the English idiom, no vanilla precedent needed for a marketing tagline |
+| contiguous ore vein (Workshop feature bullet) | 鉱脈 | Reuses the already-grounded 鉱脈 (see `確実な発見` row, from `ScanningProgressToGuaranteedFind`) rather than coining a new word |
+| fogged mineable ore (Workshop FAQ: modded ore) | 「霧に覆われた採掘可能な鉱石」 | Mod-coined descriptive phrase for the in-game classification; quoted with 「」 per `l10n/languages/Japanese.md`'s rule that 「」 marks quoted text/labels in descriptive prose (this is not a clickable UI element, so not ASCII quotes) |
 
 ## Other decisions
 

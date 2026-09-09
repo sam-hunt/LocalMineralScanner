@@ -16,6 +16,9 @@ below). Grounded against Core's French tar only (no domain DLC).
 | guaranteed find | découverte garantie | pairs with "Découverte garantie sous [N] jours" ("sous" = idiomatic French "within", cf. "livraison sous 48h") |
 | combined scanning speed | vitesse de détection combinée | vanilla `UserScanAbility` ("User scanning speed") = "Vitesse de détection" — reused as the noun for "scan speed" throughout |
 | Workshop title | Scanner géologique local | byte-identical to `LocalMineralScanner_SettingsCategory` |
+| ore vein (Workshop copy) | gisement | reuses the existing "deposit" mapping rather than coining "filon"; the Workshop page doesn't distinguish "vein" from "deposit" |
+| fogged mineable ore (Workshop FAQ) | minerai exploitable inexploré | reuses vanilla `Undiscovered` = "Inexploré" for "fogged"; "minerai exploitable" mirrors the mineable-ore stat wording |
+| minifiable (Workshop copy) | miniaturisé | matches vanilla `MinifiedThing` = "objet miniaturisé" |
 
 ## Grounding decisions
 

@@ -15,6 +15,7 @@ against Core-only vanilla data (this mod requires no DLC).
 | guaranteed find | 保证发现 | Reuses vanilla `ScanningProgressToGuaranteedFind`=扫描进度's own "guaranteed find" concept name; our `FindGuaranteedDays` label 保证发现时限 ("guaranteed-find deadline") is coined to fit the settings-slider slot (label + ASCII ": " + `PeriodDays`-formatted value, so the label itself carries no trailing colon or unit). |
 | combined scanning speed | 合计扫描速度 | Paired with vanilla `UserScanAbility`=扫描速度 (reused unchanged for the single-operator case); 合计 ("combined/total") prefixed only for the multi-operator inspect line, with the operator count in full-width parens: 合计扫描速度（{0}名操作者）. |
 | the Workshop title | 本地矿物扫描仪 | Identical to `LocalMineralScanner_SettingsCategory` (byte-for-byte), per `.steamworkshop/README.md`. |
+| ore vein (Workshop description) | 矿脉 | Reuses one of Core `LongRangeMineralScannerLump`'s own `questNameRules` `lump` variants (矿脉/矿块/矿产/矿藏/矿层/原矿), already cited above for "deposit" (矿藏); "vein" specifically maps to 矿脉 since the Workshop copy now distinguishes "contiguous ore vein" from the general "deposit" wording used elsewhere. |
 
 ## Grounding decisions
 

@@ -1,16 +1,20 @@
 Local Mineral Scanner
 
+Never strip-mine again.
+
 [h1]About[/h1]
-Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on. Same work per find as the long-range mineral scanner, in a smaller footprint with room for two operators.
+A compact, pawn-operated 2x2 scanner that reveals undiscovered mineral deposits on the map you are already on. Same work per find as the long-range mineral scanner (tunable default), in a smaller footprint with room for two operators.
+
+Perfect for that clutch moment you run out of components, enemy settlement raids, or asteroid mining opportunities when little-no ore spawns exposed.
 
 [h2]What it does[/h2]
 [list]
-[*]Each find unfogs one real deposit that map generation placed; nothing is conjured
-[*]Tune it to gold, silver, steel, plasteel, components, uranium or jade
+[*]Each find unfogs a contiguous ore vein that existing generation/events placed; nothing new is spawned
+[*]Tune it to any mineable ore type, vanilla or modded
 [*]Two pawns can operate it at once, each at full research speed
-[*]Pauses itself when no undiscovered deposits of the tuned mineral remain, and the tuning menu greys out exhausted minerals
-[*]Minifiable, so it can travel to new maps; unlocked by the vanilla long-range mineral scanner research
-[*]Mod settings for the roof rule, uninstalling, scan times, build cost and mass
+[*]Minifiable to fit in a caravan, shuttle, or transport-pod if needed
+[*]No new research: unlocked by vanilla's long-range mineral scanner project
+[*]Mod settings for the roof rule, scan times, uninstallation, build cost, and mass
 [/list]
 
 [hr][/hr]
@@ -25,15 +29,15 @@ Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undisc
 [hr][/hr]
 
 [b]Q: Isn't this imbalanced?[/b]
-A: That's up to you. It's cheaper/smaller/lighter than Vanilla's long-distance scanner, but default find work cost is equivalent. If you want it harder, stretch the scan times or raise the costs via mod settings. If you want it easier, wind them down. Your colony, your rules.
+A: That's up to you. With gravship-travel in mind, it's much more space-efficient than Vanilla's long-distance scanner, but default find work cost is equivalent. If you want it harder, stretch the scan times or raise the costs via mod settings. If you want it easier, wind them down. Your colony, your rules.
 
 [b]Q: Can it find ore added by other mods?[/b]
-A: No. It tunes to the same list vanilla uses for precious deposits: gold, silver, steel, plasteel, components, uranium and jade.
+A: Yes. Anything the game classes as fogged mineable ore on the scanner's map is scannable.
 
 [b]Q: Why is nobody using the scanner?[/b]
 A: The inspect pane says why. Usually the tuned mineral is fully revealed, the scanner is roofed or unpowered, or nobody has Research work enabled.
 
-[b]Q: Was this made using LLMs!?[/b]
+[b]Q: Was this made with LLM assistance?[/b]
 A: Some of the grunt code, and most localizations. I'm a software engineer by trade, and have been writing code for 25 years. All code is manually reviewed and tested; all bug reports and mod-conflicts followed up personally as time and detail allows. All art is either commissioned from humans, hand-authored in Krita, or both.
 
 [b]Q: Combat Extended?[/b]
@@ -43,4 +47,4 @@ A: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 
 [h1]Links[/h1]
 Source code, manual downloads and issue tracker: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
-Scanner art by [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
+Art by [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

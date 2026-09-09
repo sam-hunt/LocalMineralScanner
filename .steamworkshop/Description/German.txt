@@ -1,16 +1,20 @@
 Lokaler Mineralscanner
 
+Nie wieder die ganze Karte abtragen.
+
 [h1]Über[/h1]
-Nie wieder die ganze Karte abtragen. Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Gleicher Arbeitsaufwand pro Fund wie beim Langstreckenscanner, aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
+Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Gleicher Arbeitsaufwand pro Fund wie beim Langstreckenscanner (anpassbarer Standardwert), aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
+
+Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Überfälle auf feindliche Siedlungen oder für den Abbau auf Asteroiden, wo kaum oder gar kein Erz frei zutage liegt.
 
 [h2]Was er kann[/h2]
 [list]
-[*]Jeder Fund deckt ein echtes Vorkommen auf, das bei der Kartenerstellung platziert wurde; nichts wird herbeigezaubert
-[*]Einstellbar auf Gold, Silber, Stahl, Plastahl, Bauteile, Uran oder Jade
+[*]Jeder Fund deckt eine zusammenhängende Erzader auf, die von der bestehenden Kartenerstellung oder von Ereignissen platziert wurde; nichts wird neu erzeugt
+[*]Einstellbar auf jeden abbaubaren Erztyp, ob aus dem Grundspiel oder von Mods
 [*]Zwei Kolonisten können ihn gleichzeitig bedienen, jeder mit voller Forschungsgeschwindigkeit
-[*]Pausiert automatisch, wenn keine unentdeckten Vorkommen des eingestellten Minerals mehr übrig sind, und im Auswahlmenü werden erschöpfte Minerale ausgegraut
-[*]Demontierbar, sodass er auf neue Karten mitgenommen werden kann; wird durch die normale Erforschung des Langstreckenscanners freigeschaltet
-[*]Mod-Einstellungen für die Dachregel, das Demontieren, die Scanzeiten, die Baukosten und die Masse
+[*]Demontierbar, um bei Bedarf in eine Karawane, Raumfähre oder Transportkapsel zu passen
+[*]Keine neue Forschung: wird durch das Forschungsprojekt des Langstreckenscanners aus dem Grundspiel freigeschaltet
+[*]Mod-Einstellungen für die Dachregel, die Scanzeiten, das Demontieren, die Baukosten und die Masse
 [/list]
 
 [hr][/hr]
@@ -25,15 +29,15 @@ Nie wieder die ganze Karte abtragen. Ein kompakter, von Kolonisten bedienter 2x2
 [hr][/hr]
 
 [b]F: Ist das nicht unausgeglichen?[/b]
-A: Das liegt bei dir. Er ist günstiger/kleiner/leichter als der Langstreckenscanner des Grundspiels, aber der Arbeitsaufwand pro Fund entspricht in der Standardeinstellung dem Original. Wenn es dir zu leicht ist, verlängere die Scanzeiten oder erhöhe die Kosten über die Mod-Einstellungen. Wenn es dir zu schwer ist, verkürze bzw. senke sie. Deine Kolonie, deine Regeln.
+A: Das liegt bei dir. Mit Blick auf Reisen per Gravschiff ist er deutlich platzsparender als der Langstreckenscanner des Grundspiels, aber der Arbeitsaufwand pro Fund entspricht in der Standardeinstellung dem Original. Wenn es dir zu leicht ist, verlängere die Scanzeiten oder erhöhe die Kosten über die Mod-Einstellungen. Wenn es dir zu schwer ist, verkürze bzw. senke sie. Deine Kolonie, deine Regeln.
 
 [b]F: Kann er Erz finden, das von anderen Mods hinzugefügt wurde?[/b]
-A: Nein. Er nutzt dieselbe Liste wertvoller Vorkommen wie das Grundspiel: Gold, Silber, Stahl, Plastahl, Bauteile, Uran und Jade.
+A: Ja. Alles, was das Spiel als unentdecktes, abbaubares Erz auf der Karte des Scanners einstuft, ist scannbar.
 
 [b]F: Warum benutzt ihn niemand?[/b]
 A: Die Infoleiste verrät den Grund. Meist ist das eingestellte Mineral bereits vollständig aufgedeckt, der Scanner steht unter einem Dach oder ohne Strom, oder niemand hat die Arbeit 'Forschen' aktiviert.
 
-[b]F: Wurde das mit LLMs erstellt!?[/b]
+[b]F: Wurde das mit LLM-Unterstützung erstellt?[/b]
 A: Ein Teil der Fleißarbeit im Code, und die meisten Lokalisierungen. Ich bin von Beruf Softwareentwickler und schreibe seit 25 Jahren Code. Aller Code wird manuell überprüft und getestet; alle Fehlermeldungen und Mod-Konflikte werden persönlich nachverfolgt, soweit Zeit und Details es zulassen. Alle Grafiken sind entweder bei Menschen in Auftrag gegeben, von Hand in Krita erstellt, oder beides.
 
 [b]F: Combat Extended?[/b]
@@ -43,4 +47,4 @@ A: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 
 [h1]Links[/h1]
 Quellcode, manuelle Downloads und Fehler-Tracker: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
-Scanner-Grafik von [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
+Grafik von [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

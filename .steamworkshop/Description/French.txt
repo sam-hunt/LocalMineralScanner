@@ -1,16 +1,20 @@
 Scanner géologique local
 
+Plus besoin de creuser toute la carte à l'aveugle.
+
 [h1]À propos[/h1]
-Plus besoin de creuser toute la carte à l'aveugle. Un scanner compact 2x2, actionné par un colon, qui révèle des gisements minéraux inexplorés sur la carte où vous vous trouvez déjà. Même charge de travail par découverte que le scanner géologique à longue portée, dans un format plus compact avec de la place pour deux opérateurs.
+Un scanner compact 2x2, actionné par un colon, qui révèle des gisements minéraux inexplorés sur la carte où vous vous trouvez déjà. Même charge de travail par découverte que le scanner géologique à longue portée (valeur par défaut réglable), dans un format plus compact avec de la place pour deux opérateurs.
+
+Idéal pour ce moment critique où vous manquez de composants, lors d'un raid sur une colonie ennemie, ou lors de l'exploitation d'un astéroïde où peu ou pas de minerai apparaît à découvert.
 
 [h2]Fonctionnalités[/h2]
 [list]
-[*]Chaque découverte révèle un gisement réel placé par la génération de la carte. Rien n'est inventé de toutes pièces
-[*]Réglez-le sur l'or, l'argent, l'acier, le plastacier, les composants, l'uranium ou le jade
+[*]Chaque découverte révèle un gisement de minerai contigu placé par la génération de la carte ou des événements existants. Rien de nouveau n'est généré
+[*]Réglez-le sur n'importe quel type de minerai exploitable, du jeu de base ou ajouté par un mod
 [*]Deux colons peuvent l'utiliser en même temps, chacun à sa pleine vitesse de recherche
-[*]Se met en pause lorsqu'il ne reste plus de gisement inexploré du minéral réglé, et grise les minéraux épuisés dans le menu de réglage
-[*]Peut être désinstallé et transporté vers de nouvelles cartes. Débloqué par la recherche « scanner géologique à longue portée » du jeu de base
-[*]Paramètres du mod pour la règle du toit, la désinstallation, les temps de détection, le coût de construction et le poids
+[*]Peut être miniaturisé pour tenir dans une caravane, une navette ou une capsule de transport si besoin
+[*]Aucune nouvelle recherche : débloqué par le projet de recherche « scanner géologique à longue portée » du jeu de base
+[*]Paramètres du mod pour la règle du toit, les temps de détection, la désinstallation, le coût de construction et le poids
 [/list]
 
 [hr][/hr]
@@ -25,15 +29,15 @@ Plus besoin de creuser toute la carte à l'aveugle. Un scanner compact 2x2, acti
 [hr][/hr]
 
 [b]Q : Est-ce que ça ne déséquilibre pas le jeu ?[/b]
-R : À vous de voir. Il est moins cher, plus petit et plus léger que le scanner longue distance du jeu de base, mais le temps de travail nécessaire par défaut pour une découverte est équivalent. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
+R : À vous de voir. En pensant aux voyages en vaisseau gravitationnel, il occupe bien moins de place que le scanner longue distance du jeu de base, mais le coût de travail par défaut par découverte est équivalent. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
 
 [b]Q : Peut-il détecter les minerais ajoutés par d'autres mods ?[/b]
-R : Non. Il se règle sur la même liste que le jeu de base utilise pour les gisements précieux : l'or, l'argent, l'acier, le plastacier, les composants, l'uranium et le jade.
+R : Oui. Tout ce que le jeu considère comme un minerai exploitable inexploré sur la carte du scanner est détectable.
 
 [b]Q : Pourquoi personne n'utilise le scanner ?[/b]
 R : Le panneau d'inspection en indique la raison. Généralement, le minéral réglé est entièrement révélé, le scanner est sous un toit ou n'est pas alimenté, ou personne n'a activé le travail de Recherche.
 
-[b]Q : Est-ce que ça a été fait avec des IA !?[/b]
+[b]Q : Est-ce que ça a été fait avec l'aide d'une IA ?[/b]
 R : Une partie du code répétitif, et la plupart des localisations. Je suis ingénieur logiciel de métier, et j'écris du code depuis 25 ans. Tout le code est relu et testé manuellement. Tous les rapports de bugs et les conflits entre mods sont suivis personnellement, selon le temps et les détails disponibles. Tous les visuels sont soit commandés à des artistes humains, soit réalisés à la main dans Krita, soit les deux.
 
 [b]Q : Combat Extended ?[/b]
@@ -43,4 +47,4 @@ R : [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 
 [h1]Liens[/h1]
 Code source, téléchargements manuels et suivi des problèmes : [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
-Illustrations du scanner par [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
+Illustrations par [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

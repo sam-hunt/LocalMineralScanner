@@ -22,6 +22,7 @@ live in `l10n/languages/Russian.md`.
 | WorkGiver verb/gerund; JobDef reportString | сканировать, используя / выполняет сканирование, используя TargetA | Mirrored exactly from vanilla's `LongRangeScan`/`GroundPenetratingScan`/`OperateScanner` (identical English source for verb, gerund and reportString): both vanilla WorkGivers use the same string for `verb` and `gerund`. `reportString`s take no trailing period per `l10n/languages/Russian.md`, confirmed directly against `OperateScanner.reportString`'s own Russian translation, whose English source (`scanning at TargetA.`) is byte-identical to ours. |
 | WorkGiver label | работать с локальным сканером минералов | Mirrors vanilla's `работать со сканером дальнего действия` / `работать с глубинным сканером` pattern ("work with the [instrumental-case scanner]"). |
 | Research (work type, cited in FAQ) | «Учёный» | Core's `WorkTypeDef` `Research.label` is actually "Учёный" (a profession noun, like `Smithing.label` = "Кузнец"), not an activity noun — the work-tab column really does say "Учёный". Quoted in guillemets per the family's UI-citation convention. |
+| ore vein (Workshop description, "contiguous ore vein") | рудная жила | Plain geological term for a contiguous ore body, distinct from `скопление` (the broader "deposit" used elsewhere in this mod); used once, where the English specifically calls out contiguity rather than the general deposit concept. |
 
 ## Pending native review
 

@@ -17,6 +17,8 @@ Machine-assisted first pass (2026-09-09), pending native review. Family mechanic
 | deposit | depósito | Not vanilla-attested — vanilla itself avoids the word here (`GroundPenetratingScanner`/`LongRangeMineralScanner` descriptions say "resource"/"buried resource"; `depósito` elsewhere in Core means "warehouse", not "ore deposit"). English's own text already deviates from vanilla by choosing "deposit", so `depósito` is an ordinary, unambiguous literal translation rather than a coined term |
 | combined scanning speed | velocidade de escaneamento combinada | `velocidade de escaneamento` grounded via `UserScanAbility`="Velocidade de escaneamento do usuário" |
 | vanilla (the base game, in Workshop-description prose only) | padrão do jogo / jogo base | No vanilla pt-BR precedent for the modding-jargon "vanilla" (Core never refers to itself that way); avoided the English loanword in player-facing prose in favor of an ordinary phrase, flagged here since a different translator might reasonably keep "vanilla" as an accepted loanword instead |
+| ore vein (Workshop description, "What it does" bullet) | veio de minério | Not vanilla-attested (vanilla's own scanner descriptions say "resource"/"buried resource", never "vein"); `veio` is the ordinary Portuguese geological term for a mineral vein/lode, chosen as the literal analog to English's own choice of "vein" over "deposit" in this one bullet |
+| minifiable (Workshop description, "What it does" bullet) | miniaturizável | Not vanilla-attested in this file's sources; derived adjective from `miniaturizar`/`miniaturizado` (RimWorld's own minification mechanic), parallel formation to `sintonizável`-style coinages already implicit in this glossary |
 
 ## Grounding decisions worth double-checking
 
