@@ -61,7 +61,10 @@ Do all of the following, then present it as **one** confirmation:
   directly below the Keep a Changelog intro paragraph, using today's date
   (this changelog carries no `[Unreleased]` heading; don't add one), plus a
   `[X.Y.Z]: https://github.com/<owner>/<repo>/releases/tag/vX.Y.Z`
-  link reference at the bottom, above any older ones.
+  link reference at the bottom, above any older ones. If a `## [X.Y.Z] - TBD`
+  section for this version was drafted ahead of time (the first release does
+  this), replace `TBD` with today's date in place instead of adding a second
+  heading, and fold the drafted notes and the log-derived ones together.
 - Bump the version string in both files: `About/About.xml`
   (`<modVersion>`), `Source/1.6/Properties/AssemblyInfo.cs`
   (`AssemblyVersion` and `AssemblyFileVersion`, four-part `X.Y.Z.0`).
