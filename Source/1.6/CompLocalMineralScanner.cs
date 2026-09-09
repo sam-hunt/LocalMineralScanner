@@ -5,7 +5,9 @@
 // progress with no extra code here. Used() is non-virtual and its scalar
 // lastUserSpeed/lastScanTick are clobbered by concurrent callers, so the job driver calls
 // Operate() (a wrapper that also sums the tick's operator speeds) and
-// CompInspectStringExtra is overridden to report that combined figure.
+// CompInspectStringExtra is overridden to report that combined figure. Both operators roll
+// on the same hash-interval tick, so two rolls can succeed at once; DoFind reveals for the
+// first and ignores the second (Used has already reset the accumulator for it).
 //
 // DoFind reveals (unfogs) one contiguous deposit of the targeted mineral instead of
 // generating deep resources like CompDeepScanner:
@@ -82,6 +84,10 @@ public class CompLocalMineralScanner : CompScanner
     // it, and a fallback at install would override a tuning the player made while it sat in
     // storage. The saved value wins over the re-arm.
     private bool pendingInitialTarget;
+
+    // Tick of the last DoFind reveal, so a second same-tick success (see the header) is a
+    // no-op rather than a second deposit and letter. Transient: nothing spans a tick.
+    private int lastFindTick = -1;
 
     public override void Initialize(CompProperties props)
     {
@@ -219,10 +225,20 @@ public class CompLocalMineralScanner : CompScanner
 
     protected override void DoFind(Pawn worker)
     {
+        int tick = Find.TickManager.TicksGame;
+        if (tick == lastFindTick)
+        {
+            return;
+        }
+        lastFindTick = tick;
         Map map = parent.Map;
         List<IntVec3> revealCells = FindDepositToReveal(map);
         if (revealCells.NullOrEmpty())
         {
+            // Unreachable while the CanUseNow gate and FindDepositToReveal agree on what counts
+            // as undiscovered; Used still resets the accumulator, so say so if it ever happens.
+            Log.Warning("[LocalMineralScanner] Find succeeded but no undiscovered "
+                + targetMineable.defName + " deposit was found on " + map + "; progress reset.");
             return;
         }
         foreach (IntVec3 cell in revealCells)
@@ -248,7 +264,7 @@ public class CompLocalMineralScanner : CompScanner
 
     // Returns the fogged cells of one chosen deposit: a random fully-fogged cluster of the
     // target mineable, falling back to a random partially-fogged one; null when none remain
-    // (only reachable through a same-tick race with the CanUseNow gate, so no fallback).
+    // (the CanUseNow gate applies the same test, so DoFind only warns).
     private List<IntVec3> FindDepositToReveal(Map map)
     {
         List<Thing> things = map.listerThings.ThingsOfDef(targetMineable);
