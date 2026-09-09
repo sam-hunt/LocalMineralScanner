@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: local mineral scanner -->
+  <LocalMineralScanner.label>lokaler Mineralscanner</LocalMineralScanner.label>
+  <!-- EN: A short-range lateral sensor unit used by researchers to detect mineral deposits hidden in the surrounding terrain. The chance to find a deposit depends on the operator's research ability. This sensor can be tuned to target a specific mineral type, and its twin consoles allow two operators to scan at once. It doesn't work under a roof. Can be repositioned freely. -->
+  <LocalMineralScanner.description>Eine Nahbereichs-Sensoreinheit, die deine Forscher nutzen können, um verborgene Mineralvorkommen im umliegenden Gelände aufzuspüren. Die Fundchance hängt von der Forschungsfähigkeit des Benutzers ab. Dieser Sensor kann auf einen bestimmten Mineraltyp ausgerichtet werden, und seine zwei Konsolen ermöglichen es zwei Benutzern, gleichzeitig zu scannen. Funktioniert nicht unter einem Dach. Kann frei versetzt werden.</LocalMineralScanner.description>
+</LanguageData>

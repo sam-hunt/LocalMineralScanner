@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: scanning at -->
+  <LocalMineralScan.gerund>Scannen an</LocalMineralScan.gerund>
+  <!-- EN: operate local mineral scanner -->
+  <LocalMineralScan.label>Lokalen Mineralscanner bedienen</LocalMineralScan.label>
+  <!-- EN: scan at -->
+  <LocalMineralScan.verb>zum Scannen nutzen</LocalMineralScan.verb>
+</LanguageData>
