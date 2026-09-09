@@ -10,18 +10,18 @@ The mod targets the languages below, chosen by RimWorld's per-language
 audience size. Contributions for any other language RimWorld supports are
 welcome too.
 
-| Language             | Status           | Credit   |
-| -------------------- | ---------------- | -------- |
-| English              | Source           | —        |
-| Simplified Chinese   | Machine-assisted | Sonnet 5 |
-| Russian              | Machine-assisted | Sonnet 5 |
-| Korean               | Machine-assisted | Sonnet 5 |
-| German               | Machine-assisted | Sonnet 5 |
-| Spanish              | Machine-assisted | Sonnet 5 |
-| French               | Machine-assisted | Sonnet 5 |
-| Brazilian Portuguese | Machine-assisted | Sonnet 5 |
-| Japanese             | Machine-assisted | Sonnet 5 |
-| Traditional Chinese  | Machine-assisted | Sonnet 5 |
+| Language             | Status           | Credit  |
+| -------------------- | ---------------- | ------- |
+| English              | Source           | —       |
+| Simplified Chinese   | Machine-assisted | Fable 5 |
+| Russian              | Machine-assisted | Fable 5 |
+| Korean               | Machine-assisted | Fable 5 |
+| German               | Machine-assisted | Fable 5 |
+| Spanish              | Machine-assisted | Fable 5 |
+| French               | Machine-assisted | Fable 5 |
+| Brazilian Portuguese | Machine-assisted | Fable 5 |
+| Japanese             | Machine-assisted | Fable 5 |
+| Traditional Chinese  | Machine-assisted | Fable 5 |
 
 Statuses: **Source** (the authoritative English strings), **Machine-assisted**
 (generated with terminology grounded against the official RimWorld
