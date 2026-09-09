@@ -45,7 +45,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 
 ## Requirements
 
-- **RimWorld 1.6** or later
+- **RimWorld 1.6**
 - No DLC required
 - No Harmony or other mod dependencies
 
