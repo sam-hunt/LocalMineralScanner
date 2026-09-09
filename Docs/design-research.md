@@ -118,8 +118,12 @@ silver 40); raw market value would rank components (32) above gold (10). The one
 is set in `Initialize` (runs on `PostMake` and on load) and consumed by the first
 `PostSpawnSetup`, so load (`respawningAfterLoad`) and reinstall (flag already consumed)
 never override a saved tuning. The flag is scribed because the load-time `Initialize`
-re-arms it, and a never-installed minified scanner (trade/quest reward) has no load-time
-spawn to consume it; the saved value overrides the re-arm.
+re-arms it, and a scanner that was installed, tuned and uninstalled before the save has
+no load-time spawn to consume it, so the re-armed flag would override the tuning at
+reinstall; the saved value overrides the re-arm. (A never-installed minified scanner -
+trade or quest reward - saves the flag still set and correctly gets the fallback at its
+first install; it cannot have been tuned, as `MinifiedThing.GetGizmos` does not forward
+inner-comp gizmos.)
 
 ## Interaction cell mechanics (verified)
 

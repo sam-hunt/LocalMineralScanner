@@ -80,9 +80,11 @@ public class CompLocalMineralScanner : CompScanner
     // which applies the fallback only when !respawningAfterLoad. Saved, because Initialize
     // also re-runs on load (ThingWithComps.ExposeData -> InitializeComps) and would re-arm
     // it: harmless for a spawned scanner (the load-time PostSpawnSetup consumes it again),
-    // but a never-installed minified one - a trade or quest reward - has no spawn to consume
-    // it, and a fallback at install would override a tuning the player made while it sat in
-    // storage. The saved value wins over the re-arm.
+    // but a scanner that was installed, tuned, uninstalled and then saved has no load-time
+    // spawn to consume it, and a re-armed flag would override the player's tuning at
+    // reinstall. The saved value (false, consumed at its first spawn) wins over the re-arm.
+    // A never-installed minified one saves true and correctly gets the fallback when first
+    // installed; it cannot have been tuned, since MinifiedThing shows no inner-comp gizmos.
     private bool pendingInitialTarget;
 
     // Tick of the last DoFind reveal, so a second same-tick success (see the header) is a
