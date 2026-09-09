@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Mineral deposit located -->
+  <LocalMineralScanner_LetterLabelFoundDeposit>Depósito mineral localizado</LocalMineralScanner_LetterLabelFoundDeposit>
+  <!-- EN: {FINDER_nameDef} has located a deposit of {0} in an undiscovered area using the local mineral scanner. -->
+  <LocalMineralScanner_LetterFoundDeposit>{FINDER_nameDef} ha localizado un depósito de {0} en un área sin revelar usando el escáner de minerales local.</LocalMineralScanner_LetterFoundDeposit>
+  <!-- EN: No more undiscovered {0} deposits remain on this map. The local mineral scanner will remain idle until it is tuned to another mineral. -->
+  <LocalMineralScanner_MessageExhausted>Ya no quedan depósitos de {0} sin descubrir en este mapa. El escáner de minerales local permanecerá inactivo hasta que esté sintonizado para otro mineral.</LocalMineralScanner_MessageExhausted>
+  <!-- EN: no undiscovered {0} deposits left -->
+  <LocalMineralScanner_NoFoggedDeposits>no quedan depósitos de {0} sin descubrir</LocalMineralScanner_NoFoggedDeposits>
+  <!-- EN: none undiscovered -->
+  <LocalMineralScanner_NoneUndiscovered>nada sin descubrir</LocalMineralScanner_NoneUndiscovered>
+  <!-- EN: Combined scanning speed ({0} operators) -->
+  <LocalMineralScanner_CombinedScanSpeed>Velocidad de escaneo combinada ({0} operadores)</LocalMineralScanner_CombinedScanSpeed>
+
+  <!-- EN: Local Mineral Scanner -->
+  <LocalMineralScanner_SettingsCategory>Escáner de minerales local</LocalMineralScanner_SettingsCategory>
+  <!-- EN: Placement -->
+  <LocalMineralScanner_SettingsPlacement>Colocación</LocalMineralScanner_SettingsPlacement>
+  <!-- EN: Scanning -->
+  <LocalMineralScanner_SettingsScanning>Escaneo</LocalMineralScanner_SettingsScanning>
+  <!-- EN:  (default) -->
+  <LocalMineralScanner_DefaultSuffix> (por defecto)</LocalMineralScanner_DefaultSuffix>
+
+  <!-- EN: Doesn't work under a roof -->
+  <LocalMineralScanner_RequireUnroofed>No funciona bajo techo</LocalMineralScanner_RequireUnroofed>
+  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
+  <LocalMineralScanner_RequireUnroofedDesc>Al igual que {0}, no se puede colocar ni operar bajo techo. Desactívalo para permitirlo.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: Can be uninstalled -->
+  <LocalMineralScanner_Minifiable>Se puede desinstalar</LocalMineralScanner_Minifiable>
+  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>Permite desinstalar y trasladar el escáner, igual que {0}. Desactívalo y solo podrá ser desarmado.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>Masa del escáner desinstalado al ser transportado o llevado en una caravana.</LocalMineralScanner_MassDesc>
+
+  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Media de días laborables entre hallazgos para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find within -->
+  <LocalMineralScanner_FindGuaranteedDays>Descubrimiento garantizado en</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Días laborables tras los cuales un descubrimiento está garantizado, para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- EN: {0} cost: {1} -->
+  <LocalMineralScanner_ResourceCost>Coste de {0}: {1}</LocalMineralScanner_ResourceCost>
+  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>Cantidad de {0} necesaria para construir un escáner. 0 lo elimina del coste.</LocalMineralScanner_ResourceCostDesc>
+</LanguageData>

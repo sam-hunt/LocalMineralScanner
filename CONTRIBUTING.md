@@ -17,7 +17,7 @@ welcome too.
 | Russian              | Machine-assisted | Sonnet 5 |
 | Korean               | Machine-assisted | Sonnet 5 |
 | German               | Machine-assisted | Sonnet 5 |
-| Spanish              | Planned          | —        |
+| Spanish              | Machine-assisted | Sonnet 5 |
 | French               | Planned          | —        |
 | Brazilian Portuguese | Planned          | —        |
 | Japanese             | Planned          | —        |

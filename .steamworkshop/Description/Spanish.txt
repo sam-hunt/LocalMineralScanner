@@ -1,0 +1,46 @@
+Escáner de minerales local
+
+[h1]Acerca de[/h1]
+Nunca más tengas que excavar el mapa entero en busca de minerales. Un escáner compacto de 2x2, operado por colonos, que revela depósitos minerales sin descubrir en el mapa en el que ya estás. El mismo trabajo por hallazgo que el escáner de minerales de largo alcance, pero ocupando menos espacio y con sitio para dos operadores.
+
+[h2]Qué hace[/h2]
+[list]
+[*]Cada hallazgo revela un depósito real que la generación del mapa ya colocó; no se inventa nada
+[*]Sintonízalo con oro, plata, acero, plastiacero, componentes, uranio o jade
+[*]Dos colonos pueden operarlo a la vez, cada uno a máxima velocidad de investigación
+[*]Se detiene solo cuando no quedan depósitos sin descubrir del mineral sintonizado, y el menú de sintonización muestra en gris los minerales agotados
+[*]Se puede desinstalar, así puede viajar a mapas nuevos; se desbloquea con la investigación del escáner de minerales de largo alcance
+[*]Ajustes del mod para la regla del techo, la desinstalación, los tiempos de escaneo, el coste de construcción y la masa
+[/list]
+
+[hr][/hr]
+
+[h1]Compatibilidad[/h1]
+[list]
+[*]Solo requiere RimWorld 1.6+; sin DLC, sin Harmony
+[*]Seguro de añadir a partidas existentes
+[*]Seguro de quitar una vez desarmados todos los escáneres (solo unos pocos errores puntuales en rojo la siguiente vez que cargues)
+[/list]
+
+[hr][/hr]
+
+[b]P: ¿Esto no está desequilibrado?[/b]
+R: Eso depende de ti. Es más barato, más pequeño y más ligero que el escáner de minerales de largo alcance del juego base, pero el coste de trabajo por hallazgo predeterminado es equivalente. Si lo quieres más difícil, alarga los tiempos de escaneo o sube los costes desde los ajustes del mod. Si lo quieres más fácil, redúcelos. Tu colonia, tus reglas.
+
+[b]P: ¿Puede encontrar minerales añadidos por otros mods?[/b]
+R: No. Se sintoniza con la misma lista que usa el juego base para los depósitos preciosos: oro, plata, acero, plastiacero, componentes, uranio y jade.
+
+[b]P: ¿Por qué no lo usa nadie?[/b]
+R: El panel de inspección indica el motivo. Normalmente es porque el mineral sintonizado ya está totalmente revelado, el escáner está bajo techo o sin energía, o nadie tiene activado el trabajo de Investigador.
+
+[b]P: ¿Esto se hizo usando LLM?[/b]
+R: Parte del código más mecánico, y la mayoría de las localizaciones. Soy ingeniero de software de profesión y llevo 25 años escribiendo código. Todo el código se revisa y se prueba manualmente; todos los informes de errores y conflictos entre mods se atienden personalmente según el tiempo y el detalle lo permitan. Todo el arte está encargado a personas, hecho a mano en Krita, o ambas cosas.
+
+[b]P: ¿Combat Extended?[/b]
+R: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
+
+[hr][/hr]
+
+[h1]Enlaces[/h1]
+Código fuente, descargas manuales y seguimiento de incidencias: [url=https://github.com/sam-hunt/LocalMineralScanner]GitHub[/url]
+Arte del escáner por [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]
