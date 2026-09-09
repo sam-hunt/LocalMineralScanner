@@ -10,5 +10,10 @@
   </supportedVersions>
   <loadAfter>
     <li>ludeon.rimworld</li>
+    <li>ludeon.rimworld.royalty</li>
+    <li>ludeon.rimworld.ideology</li>
+    <li>ludeon.rimworld.biotech</li>
+    <li>ludeon.rimworld.anomaly</li>
+    <li>ludeon.rimworld.odyssey</li>
   </loadAfter>
 </ModMetaData>
