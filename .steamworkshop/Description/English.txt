@@ -18,7 +18,8 @@ Never strip-mine again. A compact, pawn-operated 2x2 scanner that reveals undisc
 [h1]Compatibility[/h1]
 [list]
 [*]Requires RimWorld 1.6. No DLC, no Harmony
-[*]Safe to add to existing saves; not safe to remove
+[*]Safe to add to existing saves
+[*]Safe to remove once every scanner is deconstructed (a few one-off red errors on the first load)
 [/list]
 
 [hr][/hr]

@@ -68,7 +68,9 @@ Coming with the first release.
 ## Compatibility
 
 - **Safe to add** to existing saves.
-- **Not safe to remove** from saves (built scanners and the per-map scan bookkeeping would be orphaned).
+- **Safe to remove** from saves once every scanner has been deconstructed. The first load
+  afterwards logs a few one-off red errors that do not recur. Removing the mod while a pawn is
+  operating a scanner leaves that pawn stuck on a phantom job.
 
 ## Contributing
 
