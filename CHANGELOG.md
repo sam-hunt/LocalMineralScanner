@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
      body verbatim and FAILS the release if the section is missing, so write the
      section before tagging. The /release skill walks through all of this. -->
 
+## [1.1.0] - 2026-09-10
+
+### Changed
+
+- Faster default scans: 3 days average / 6 guaranteed, matching vanilla's ground-penetrating scanner.
+- Scan-time sliders step in quarter days and tag both vanilla scanners' values.
+- Scanner outlines evened out to match vanilla line weight.
+
 ## [1.0.0] - 2026-09-09
 
 ### Added
@@ -30,4 +38,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unlocked by the vanilla long-range mineral scanner research.
 - Sits directly after the long-range mineral scanner in Architect > Misc.
 
+[1.1.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.1.0
 [1.0.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.0.0
