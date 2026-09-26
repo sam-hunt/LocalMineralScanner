@@ -49,7 +49,9 @@ atomically.
 - **Optional Stop hook:** sibling mods run a local-only `.claude/hooks/sync-mod.sh` (gitignored)
   that rebuilds+redeploys after a Claude turn when mod-relevant files changed, wired via a `Stop`
   hook in `.claude/settings.local.json`. Copy both from a sibling mod (e.g. UniqueMeleeWeapons) if
-  wanted.
+  wanted. Its `find` watch list must cover every content root `StageMod` ships (root, any version
+  folder, and the compat roots `Mods/` and `*/Mods/`), or edits under a missed root silently stop
+  redeploying.
 
 **`.claude/` is only partly gitignored.** `.gitignore` carries `.claude/*` followed by
 `!.claude/skills/`, so the skills are tracked and shared while hooks and settings are local
