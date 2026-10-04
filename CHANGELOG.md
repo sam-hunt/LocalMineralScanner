@@ -10,8 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- Convention: no [Unreleased] heading — each release adds its section at the top,
      directly below this intro, with a link reference at the bottom of the file.
      The release workflow lifts the tagged version's section into the GitHub release
-     body verbatim and FAILS the release if the section is missing, so write the
-     section before tagging. The /release skill walks through all of this. -->
+     body verbatim and FAILS a stable release if the section is missing, so write the
+     section before tagging. Release candidates (X.Y.Z-rc.N) get no section: their
+     changes land in the stable version's section at promotion. The /release skill
+     walks through all of this. -->
 
 ## [1.1.0] - 2026-09-10
 
