@@ -32,7 +32,7 @@ cannot infer from the feature list.
 Steam has no API for per-language Workshop text, so updated files are pasted
 manually into the Workshop page's edit UI (note Steam's own language names
 differ: schinese, koreana, brazilian, latam, ...). The `release` skill diffs
-`English.txt` against the last release tag and refreshes the translations
+`English.txt` against the last stable release tag and refreshes the translations
 whenever it changed.
 
 The non-English files are machine-assisted first passes pending native review.
