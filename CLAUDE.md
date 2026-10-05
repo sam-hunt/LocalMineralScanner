@@ -95,6 +95,9 @@ CHANGELOG.md     - Keep a Changelog format; load-bearing for releases (see below
   with the same default (field initializer, `ExposeData`, `ResetToDefaults`). A rule vanilla
   hardcodes (the roof check) is made optional by a subclass that consults the setting, not
   by a def write.
+- **Warnings are build errors.** The csproj sets `TreatWarningsAsErrors`, so every compiler and
+  analyzer warning fails the build. Severities are pinned in `.editorconfig`: `warning` blocks the
+  build, `suggestion` is IDE-only. Fix the code, not the severity, unless the rule is wrong here.
 
 **Releases:** run the `/release` skill, or by hand: add the version's `## [X.Y.Z]` section to
 `CHANGELOG.md`, bump `About/About.xml` `<modVersion>` and `Source/1.6/Properties/AssemblyInfo.cs`,
