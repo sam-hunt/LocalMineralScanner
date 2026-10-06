@@ -19,6 +19,7 @@ below). Grounded against Core's French tar only (no domain DLC).
 | ore vein (Workshop copy) | gisement | reuses the existing "deposit" mapping rather than coining "filon"; the Workshop page doesn't distinguish "vein" from "deposit" |
 | fogged mineable ore (Workshop FAQ) | minerai exploitable inexploré | reuses vanilla `Undiscovered` = "Inexploré" for "fogged"; "minerai exploitable" mirrors the mineable-ore stat wording |
 | minifiable (Workshop copy) | miniaturisé | matches vanilla `MinifiedThing` = "objet miniaturisé" |
+| unfog / fogged (Workshop description) | dissipe le brouillard de guerre / sous le brouillard de guerre | Core's French tar attests no fog-of-war term (`TriggerUnfogged.label` is mistranslated; bare `brouillard` is the Fog weather), so the established French gaming term is used. Never collapse to `révèle`/`inexploré` alone: those lose *where* the ore hides (see the Russian glossary's matching row). |
 
 ## Grounding decisions
 

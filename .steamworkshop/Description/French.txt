@@ -9,7 +9,7 @@ Idéal pour ce moment critique où vous manquez de composants, lors d'un raid su
 
 [h2]Fonctionnalités[/h2]
 [list]
-[*]Chaque découverte révèle un gisement de minerai contigu placé par la génération de la carte ou des événements existants. Rien de nouveau n'est généré
+[*]Chaque découverte dissipe le brouillard de guerre sur un gisement de minerai contigu placé par la génération de la carte ou des événements existants. Rien de nouveau n'est généré
 [*]Réglez-le sur n'importe quel type de minerai exploitable, du jeu de base ou ajouté par un mod
 [*]Deux colons peuvent l'utiliser en même temps, chacun à sa pleine vitesse de recherche
 [*]Peut être miniaturisé pour tenir dans une caravane, une navette ou une capsule de transport si besoin
@@ -32,7 +32,7 @@ Idéal pour ce moment critique où vous manquez de composants, lors d'un raid su
 R : À vous de voir. En pensant aux voyages en vaisseau gravitationnel, il occupe bien moins de place que le scanner longue distance du jeu de base, mais le coût de travail par défaut par découverte est équivalent à celui du scanner géologique. Pour le rendre plus difficile, augmentez les temps de détection ou les coûts dans les paramètres du mod. Pour le rendre plus facile, réduisez-les. Votre colonie, vos règles.
 
 [b]Q : Peut-il détecter les minerais ajoutés par d'autres mods ?[/b]
-R : Oui. Tout ce que le jeu considère comme un minerai exploitable inexploré sur la carte du scanner est détectable.
+R : Oui. Tout ce que le jeu considère comme un minerai exploitable sous le brouillard de guerre sur la carte du scanner est détectable.
 
 [b]Q : Pourquoi personne n'utilise le scanner ?[/b]
 R : Le panneau d'inspection en indique la raison. Généralement, le minéral réglé est entièrement révélé, le scanner est sous un toit ou n'est pas alimenté, ou personne n'a activé le travail de Recherche.

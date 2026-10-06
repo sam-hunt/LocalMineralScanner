@@ -16,6 +16,7 @@ against Core-only vanilla data (this mod requires no DLC).
 | combined scanning speed | 合计扫描速度 | Paired with vanilla `UserScanAbility`=扫描速度 (reused unchanged for the single-operator case); 合计 ("combined/total") prefixed only for the multi-operator inspect line, with the operator count in full-width parens: 合计扫描速度（{0}名操作者）. |
 | the Workshop title | 本地矿物扫描仪 | Identical to `LocalMineralScanner_SettingsCategory` (byte-for-byte), per `.steamworkshop/README.md`. |
 | ore vein (Workshop description) | 矿脉 | Reuses one of Core `LongRangeMineralScannerLump`'s own `questNameRules` `lump` variants (矿脉/矿块/矿产/矿藏/矿层/原矿), already cited above for "deposit" (矿藏); "vein" specifically maps to 矿脉 since the Workshop copy now distinguishes "contiguous ore vein" from the general "deposit" wording used elsewhere. |
+| unfog / fogged (Workshop description) | 解除……上的迷雾 / 被迷雾覆盖的 | Grounded against `TriggerUnfogged.label` = "触发解除迷雾". Never collapse to `揭示`/`尚未被揭示`: those lose *where* the ore hides (see the Russian glossary's matching row). |
 
 ## Grounding decisions
 

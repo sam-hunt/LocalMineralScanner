@@ -9,7 +9,7 @@ Perfecto para ese momento crítico en el que te quedas sin componentes, para los
 
 [h2]Qué hace[/h2]
 [list]
-[*]Cada hallazgo revela una veta de mineral contigua que la generación del mapa o los eventos ya colocaron; no se genera nada nuevo
+[*]Cada hallazgo despeja la niebla de guerra de una veta de mineral contigua que la generación del mapa o los eventos ya colocaron; no se genera nada nuevo
 [*]Sintonízalo con cualquier tipo de mineral extraíble, del juego base o añadido por mods
 [*]Dos colonos pueden operarlo a la vez, cada uno a máxima velocidad de investigación
 [*]Se puede desinstalar para llevarlo en una caravana, un transbordador o una cápsula de transporte si hace falta
