@@ -4,8 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RimWorld 1.6 mod: a pawn-operated 2x2 building that reveals (unfogs) mineral deposits on the
-current map. Player-facing summary in `README.md`; decompile-verified design rationale and
+RimWorld 1.6 and 1.7 mod: a pawn-operated 2x2 building that reveals (unfogs) mineral deposits on
+the current map. Player-facing summary in `README.md`; decompile-verified design rationale and
 vanilla precedent in `Docs/`.
 
 **Where documentation lives:** this file holds only cross-cutting rules and rationale. Per-item
@@ -118,14 +118,21 @@ treats any suffixed tag as a prerelease with a stub body to match.
 ## Debugging
 
 1. **Dev Mode:** Settings > Dev Mode > Logging.
-2. **Log:** `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`
-   (WSL: `/mnt/c/Users/*/AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`;
-   Linux: `~/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios/Player.log`).
+2. **Log:** under `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\`
+   (WSL: `/mnt/c/Users/*/AppData/LocalLow/Ludeon Studios/RimWorld by Ludeon Studios/`; Linux:
+   `~/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios/`). On 1.7 it is
+   `Logs/Player.log`, with a timestamp and level (`ERROR`, `WARN`, `INFO`) on every entry and
+   `    at ...` stack frames under it; on 1.6 it is `Player.log` one level up. A 1.7 install leaves
+   the 1.6 file in place, stale.
 3. **Logging convention:** `Log.Message("[LocalMineralScanner] ...")` — grep the prefix to isolate our
    output.
 4. **Inspect the API:** `monodis` for signatures, `ilspycmd -t "Namespace.ClassName"` for method
    bodies, both against the local install's `Assembly-CSharp.dll` (source of truth over the
-   Krafs ref package). The `rimworld-logs` skill covers both.
+   Krafs ref package). On 1.7 it sits flat in the install root with `UnityStubs.dll` beside it
+   for Unity-facing signatures; on 1.6 it is under `RimWorldWin64_Data/Managed/`. The local
+   install's assembly is now the 1.7 one, so a decompile-verified call path in a def or code
+   header that was verified on 1.6 should say so if it is re-verified on 1.7 and differs. The
+   `rimworld-logs` skill covers both.
 5. **Startup smoke test (pre-release):** `python3 Scripts/integration-smoke-test.py` (game
    closed) boots the mod on a pinned Core-only list, then classifies logged errors by origin and
    fails on anything attributed to this mod. Wired into the release skill; thin shim over the

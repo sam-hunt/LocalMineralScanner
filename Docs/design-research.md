@@ -298,3 +298,12 @@ scanners to behind ours.
 Each def is patched via `PatchOperationConditional` so the operation replaces an existing
 `uiOrder` rather than adding a duplicate node, which the XML loader rejects ("defines the
 same field twice").
+
+## Load folders (LoadFolders.xml)
+
+`<v1.7>` lists the same roots as `<v1.6>`: 1.7 runs the 1.6 tree unchanged, because the
+Waylith CLR maps every UnityEngine reference onto UnityStubs and the net472 assembly loads
+as-is. The block is explicit rather than left to the game's fallback (with no exact block,
+`ModContentPack.InitLoadFolders` takes the highest defined version at or below the running
+one), so the intent is readable and the translation checker, which resolves roots for the
+sidecar's game version, sees the same roots either way.

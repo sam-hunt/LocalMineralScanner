@@ -2,7 +2,7 @@
 
 > A RimWorld mod adding a compact local mineral scanner that reveals undiscovered deposits on the current map
 
-[![RimWorld](https://img.shields.io/badge/RimWorld-1.6-blue.svg)](https://rimworldgame.com/)
+[![RimWorld](https://img.shields.io/badge/RimWorld-1.6%20%7C%201.7-blue.svg)](https://rimworldgame.com/)
 [![Subscribers](https://img.shields.io/steam/subscriptions/3798782281?logo=steam&label=subscribers)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
 [![Downloads](https://img.shields.io/steam/downloads/3798782281?logo=steam&label=downloads)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
 [![Favorites](https://img.shields.io/steam/favorites/3798782281?logo=steam&label=favorites)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798782281)
@@ -47,7 +47,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 
 ## Requirements
 
-- **RimWorld 1.6**
+- **RimWorld 1.6** or **1.7**
 - No DLC required
 - No Harmony or other mod dependencies
 
