@@ -30,9 +30,13 @@ RIMWORLD_PATH="/path/to/RimWorld" dotnet build LocalMineralScanner.sln -c Releas
 # Or: dotnet build -p:RimWorldPath="/path/to/RimWorld"
 ```
 
-The build auto-detects the RimWorld install (Windows/Linux/Mac, including WSL targeting a Windows
-install), falling back to the `Krafs.Rimworld.Ref` NuGet package in CI. Debug builds go to the
-default `bin/` and never deploy — only Release builds touch `1.6/Assemblies/` and the Mods folder.
+The build compiles against the `Krafs.Rimworld.Ref` NuGet package (pinned to the final 1.6
+build, `1.6.4871`) everywhere, locally and in CI; the local install is never referenced, only
+deployed to and decompiled. The install path (auto-detected on Windows/Linux/Mac, including WSL
+targeting a Windows install, or `RIMWORLD_PATH`) decides only whether the build deploys, gated on
+the game's `Mods/` folder so it works on the 1.6 Unity layout and the flat 1.7 Waylith layout
+alike. Debug builds go to the default `bin/` and never deploy — only Release builds touch
+`1.6/Assemblies/` and the Mods folder.
 
 **WSL setup:** `RIMWORLD_PATH` in `~/.bashrc` pointing at the Windows install, e.g.
 `/mnt/c/Program Files (x86)/Steam/steamapps/common/RimWorld`.
