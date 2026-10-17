@@ -13,9 +13,10 @@
   <!-- Ancient cryptosleep caskets (opt-in target). The letter's {0} arrives with its article
        ("an ancient cryptosleep casket"); the other two take the plural ("ancient cryptosleep
        caskets"), both formed by the game's language worker. NoFoggedCaskets is a lower-case
-       fragment like NoFoggedDeposits. -->
-  <LocalMineralScanner_LetterLabelFoundCasket>Ancient danger located</LocalMineralScanner_LetterLabelFoundCasket>
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} has located {0} sealed inside an undiscovered structure using the local mineral scanner. Whatever has slept in there has slept a very long time, and may be dangerous.</LocalMineralScanner_LetterFoundCasket>
+       fragment like NoFoggedDeposits. The letter stays neutral: caskets also sit in ruins
+       and quest structures that hold nothing dangerous, so it must not call them a danger. -->
+  <LocalMineralScanner_LetterLabelFoundCasket>Casket located</LocalMineralScanner_LetterLabelFoundCasket>
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies in there with it, will only be known once the area is opened up.</LocalMineralScanner_LetterFoundCasket>
   <LocalMineralScanner_MessageExhaustedCaskets>No more undiscovered {0} remain on this map. The local mineral scanner will remain idle until it is tuned to something else.</LocalMineralScanner_MessageExhaustedCaskets>
   <LocalMineralScanner_NoFoggedCaskets>no undiscovered {0} left</LocalMineralScanner_NoFoggedCaskets>
   <!-- Shown in place of NoFoggedCaskets / NoneUndiscovered for a scanner still tuned to a

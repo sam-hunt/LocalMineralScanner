@@ -31,8 +31,9 @@
 // cell (an inactive-minded pawn, or a thing whose CompCanBeDormant is asleep) is skipped, and
 // caskets covering the centre cell of a live destroy-if-unfogged RectTrigger (vanilla's
 // "ancient danger" warning, which self-destructs when that cell unfogs) rank behind the
-// rest; disarming one is accepted when nothing else remains, and the find letter is worded
-// as a warning so nothing is lost by it.
+// rest; disarming one is accepted when nothing else remains, since by then our own letters
+// have already pointed at the structure. The find letter stays neutral (no "danger"): the
+// same defs sit in ruins and quest rooms that never spawn the warning and may hold nothing.
 //
 // Exhaustion: unlike its vanilla siblings, this scanner can run out of targets. The
 // handling follows vanilla's "ran dry" idioms; Docs/design-research.md (Exhaustion UX)

@@ -189,7 +189,10 @@ Side effects accepted or handled:
   danger" letter. Handled by preference, not exclusion: `FindCasketToReveal` ranks caskets
   covering a live trigger's centre cell behind all others and reveals one only when nothing
   else remains, which by then the player has already been told about by our own letters.
-  The casket find letter is worded as a warning for the same reason.
+  The find letter itself stays neutral, no "danger" in label or text: the same casket defs
+  sit in Odyssey ruin rooms, Ideology and Biotech quest complexes and modded rooms, none of
+  which spawn the vanilla warning and some of which hold nothing dangerous, so a letter
+  implying an ancient danger would mislead as often as it warned.
 - An unfogged casket is selectable, with `containedPawnsSelectable`, exactly as vanilla
   shows it once a wall is breached; the scanner only brings that moment forward.
 
