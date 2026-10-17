@@ -179,6 +179,19 @@ the check anyway (an inactive-minded pawn or a sleeping `CompCanBeDormant` on a 
 cell skips that casket), as insurance against mods that place things differently. Mods that
 patch `Notify_Unfogged` are the one thing the survey cannot rule out.
 
+Modded caskets (Vanilla Quests Expanded, 1.6 assemblies as loaded on 1.7.4981): the
+Generator, Cryptoforge, Deadlife and Ancients quest maps each hold a casket on a custom
+subclass of the vanilla casket (`Building_Genetron_AncientCryptosleepPod`,
+`FrozenFadingCryptosleepPod`, `EerieSarcophagus`, `Building_ContainmentCasket` and its
+`Building_CandidateCryptosleepCasket`), so the def test already lists them. None overrides
+`Notify_Unfogged`. Their overrides fill the casket in `SpawnSetup` and add quest side effects
+to `EjectContents` (faction change, letter, swap to an empty plain-`Building` variant), so the
+vanilla ejection triggers still apply. The exception is `EerieSarcophagus`, whose `Tick` opens
+it 600 to 1500 ticks after spawn whatever the fog. A reveal can neither cause nor stop that,
+and once open it is swapped out and no longer tracked. Across those mods, Drone Factory and
+Vanilla Expanded Framework, no assembly subscribes to `CellFogChanged` or patches the unfog
+path; the framework's KCSG and the quest buildings only call `Unfog`/`FloodUnfog` themselves.
+
 Side effects accepted or handled:
 
 - The casket's `fillPercent` is 0.5 (`Fillage.Partial`, `MakeFog` false), so `Unfog(c)`
