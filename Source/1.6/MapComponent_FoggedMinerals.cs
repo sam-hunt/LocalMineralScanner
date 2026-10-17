@@ -43,6 +43,21 @@
 // 400, plasteel 360, uranium 240, jade 200, steel 76, components 64, silver 40; modded ores
 // rank by the same product.
 //
+// Ancient cryptosleep caskets are a second, opt-in kind of target (the scanAncientCaskets
+// setting; Docs/design-research.md, "Ancient cryptosleep caskets", has the decompile
+// evidence that revealing one wakes nothing). Tracked defs: every ThingDef whose thingClass
+// is Building_AncientCryptosleepCasket or a subclass, so Core's casket and pod and any
+// modded casket on the vanilla class all count, by the same "whichever mod defines it"
+// logic as the ore test. They sit after the ores, by defName, and never back the default
+// target. Rebuild tracks them whether or not the setting is on (two extra per-def list
+// lookups), and the setting gates the queries instead: with it off, IsPresent and
+// AnyFoggedDepositOf answer false for a casket def, so the menu drops the rows and a
+// scanner still tuned to one stops through the exhaustion gate (the comp words the reason
+// after the setting), with no settings-to-map plumbing. A casket
+// is an edifice and a Building, so the event handlers below cover it unchanged. DisplayDef
+// is the def whose label and icon stand for a target: the ore itself for a mineable, the
+// casket def for a casket.
+//
 // RimWorld instantiates every MapComponent subclass on every map automatically, so no
 // registration is needed. Subscription happens in FinalizeInit (runs on both mapgen and
 // save-load, after map systems exist); queries before that still work off the initial
@@ -77,45 +92,63 @@ public class MapComponent_FoggedMinerals : MapComponent
     private static bool IsOre(ThingDef def) =>
         def.building?.isResourceRock == true && def.building.mineableThing != null;
 
+    public static bool IsAncientCasket(ThingDef def) =>
+        def.thingClass != null && typeof(Building_AncientCryptosleepCasket).IsAssignableFrom(def.thingClass);
+
+    // The def whose label and icon represent a target in the UI (see the header).
+    public static ThingDef DisplayDef(ThingDef target) =>
+        IsAncientCasket(target) ? target : target.building.mineableThing;
+
     private static float ValuePerCell(ThingDef def) =>
         def.building.mineableThing.BaseMarketValue * def.building.mineableYield;
 
-    // Every tracked mineable def, most valuable per cell first (see the header).
+    // Every tracked def: mineables most valuable per cell first, then caskets (see the header).
     public List<ThingDef> TrackedDefs =>
         trackedDefs ??= LongRangeScannerDefs
             .Union(DefDatabase<ThingDef>.AllDefsListForReading.Where(IsOre))
             .OrderByDescending(ValuePerCell)
             .ThenBy(def => def.defName)
+            .Concat(DefDatabase<ThingDef>.AllDefsListForReading.Where(IsAncientCasket).OrderBy(def => def.defName))
             .ToList();
 
     private HashSet<ThingDef> TrackedDefSet => trackedDefSet ??= new HashSet<ThingDef>(TrackedDefs);
 
-    // True when the map holds at least one cell of this mineable, fogged or not.
-    public bool IsPresent(ThingDef mineableDef)
+    private static bool Enabled(ThingDef def) =>
+        LocalMineralScannerMod.Settings.scanAncientCaskets || !IsAncientCasket(def);
+
+    // True when the map holds at least one of this target, fogged or not (always false for
+    // a casket while the setting is off).
+    public bool IsPresent(ThingDef targetDef)
     {
         if (dirty)
         {
             Rebuild();
         }
-        return defsPresent.Contains(mineableDef);
+        return Enabled(targetDef) && defsPresent.Contains(targetDef);
     }
 
-    public bool AnyFoggedDepositOf(ThingDef mineableDef)
+    // True when at least one cell of this target remains fogged (always false for a casket
+    // while the setting is off).
+    public bool AnyFoggedDepositOf(ThingDef targetDef)
     {
         if (dirty)
         {
             Rebuild();
         }
-        return defsWithFoggedCells.Contains(mineableDef);
+        return Enabled(targetDef) && defsWithFoggedCells.Contains(targetDef);
     }
 
     // The tracked mineable with fogged cells whose deposits are worth most per cell, or null
-    // when nothing tracked remains undiscovered.
+    // when no mineable remains undiscovered. Caskets are never a default.
     public ThingDef MostValuableFoggedDeposit()
     {
         List<ThingDef> byValue = TrackedDefs;
         for (int i = 0; i < byValue.Count; i++)
         {
+            if (IsAncientCasket(byValue[i]))
+            {
+                return null;
+            }
             if (AnyFoggedDepositOf(byValue[i]))
             {
                 return byValue[i];
@@ -191,12 +224,30 @@ public class MapComponent_FoggedMinerals : MapComponent
             defsPresent.Add(def);
             for (int i = 0; i < things.Count; i++)
             {
-                if (fog.IsFogged(things[i].Position))
+                if (AnyCellFogged(things[i], fog))
                 {
                     defsWithFoggedCells.Add(def);
                     break;
                 }
             }
         }
+    }
+
+    // A mineable is one cell; a casket is two, and a partial reveal (our own, or a debug
+    // tool's) can leave either one fogged, so multi-cell things are tested cell by cell.
+    private static bool AnyCellFogged(Thing thing, FogGrid fog)
+    {
+        if (thing.def.size == IntVec2.One)
+        {
+            return fog.IsFogged(thing.Position);
+        }
+        foreach (IntVec3 cell in thing.OccupiedRect())
+        {
+            if (fog.IsFogged(cell))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

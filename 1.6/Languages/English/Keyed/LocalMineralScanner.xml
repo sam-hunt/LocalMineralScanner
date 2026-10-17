@@ -10,6 +10,18 @@
   <LocalMineralScanner_NoneUndiscovered>none undiscovered</LocalMineralScanner_NoneUndiscovered>
   <LocalMineralScanner_CombinedScanSpeed>Combined scanning speed ({0} operators)</LocalMineralScanner_CombinedScanSpeed>
 
+  <!-- Ancient cryptosleep caskets (opt-in target). The letter's {0} arrives with its article
+       ("an ancient cryptosleep casket"); the other two take the plural ("ancient cryptosleep
+       caskets"), both formed by the game's language worker. NoFoggedCaskets is a lower-case
+       fragment like NoFoggedDeposits. -->
+  <LocalMineralScanner_LetterLabelFoundCasket>Ancient danger located</LocalMineralScanner_LetterLabelFoundCasket>
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} has located {0} sealed inside an undiscovered structure using the local mineral scanner. Whatever has slept in there has slept a very long time, and may be dangerous.</LocalMineralScanner_LetterFoundCasket>
+  <LocalMineralScanner_MessageExhaustedCaskets>No more undiscovered {0} remain on this map. The local mineral scanner will remain idle until it is tuned to something else.</LocalMineralScanner_MessageExhaustedCaskets>
+  <LocalMineralScanner_NoFoggedCaskets>no undiscovered {0} left</LocalMineralScanner_NoFoggedCaskets>
+  <!-- Shown in place of NoFoggedCaskets / NoneUndiscovered for a scanner still tuned to a
+       casket after the setting is turned off. Lower-case fragment. -->
+  <LocalMineralScanner_CasketsDisabled>casket scanning is turned off in the mod settings</LocalMineralScanner_CasketsDisabled>
+
   <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
        title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
   <LocalMineralScanner_SettingsCategory>Local Mineral Scanner</LocalMineralScanner_SettingsCategory>
@@ -31,6 +43,10 @@
   <LocalMineralScanner_FindMtbDaysDesc>Average working days between finds for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindMtbDaysDesc>
   <LocalMineralScanner_FindGuaranteedDays>Guaranteed find within</LocalMineralScanner_FindGuaranteedDays>
   <LocalMineralScanner_FindGuaranteedDaysDesc>Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
+  <LocalMineralScanner_ScanAncientCaskets>Can scan for ancient cryptosleep caskets</LocalMineralScanner_ScanAncientCaskets>
+  <LocalMineralScanner_ScanAncientCasketsDesc>Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever sleeps around it.</LocalMineralScanner_ScanAncientCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <LocalMineralScanner_ResourceCost>{0} cost: {1}</LocalMineralScanner_ResourceCost>

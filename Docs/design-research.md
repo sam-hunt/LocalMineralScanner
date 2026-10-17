@@ -126,6 +126,86 @@ trade or quest reward - saves the flag still set and correctly gets the fallback
 first install; it cannot have been tuned, as `MinifiedThing.GetGizmos` does not forward
 inner-comp gizmos.)
 
+## Ancient cryptosleep caskets (verified, 1.7.4981; the types involved are identical on 1.6)
+
+Opt-in second target kind (`scanAncientCaskets`, off by default): the tuning menu lists
+each ancient-casket def the map holds, and a find unfogs the two cells of one fogged casket.
+The feature's premise is that this cannot wake what the structure holds, so the wake paths
+were decompiled first.
+
+How an ancient danger is built (`GenStep_ScatterShrines` → BaseGen `ancientTemple` →
+`interior_ancientTemple`): a sealed monument sketch, loot, exactly one threat (Anomaly
+fleshbeasts 50% when active, else mechanoids 65%, else dormant hives; none at all on
+peaceful-temples difficulty), and up to six `ancientShrine`s, each spawning one
+`AncientCryptosleepCasket` at Rot4.East. The `ancientTemple` resolver also spawns the
+warning: a `RectTrigger` over the temple rect expanded by 1 with `destroyIfUnfogged`, and a
+`SignalAction_Letter` (`LetterDefOf.ThreatBig`, `AncientShrineWarning`). The temple path never
+uses `AncientCryptosleepPod` (Ideology and Biotech complexes do) and never sets a casket
+open signal.
+
+What wakes the occupants, and why a two-cell reveal cannot:
+
+- **Mechanoids** sleep under `LordJob_SleepThenAssaultColony` with `wakeOnPawnUnfogged`
+  set (the temple passes `wakeSleepingMechanoidsOnUnfogged = true`), `mindState.Active`
+  false. The sleep toil's only exits are `Trigger_PawnHarmed` and a `DormancyWakeup` signal
+  (clamor is off for temples). `DormancyWakeup` comes from `CompCanBeDormant.WakeUp`
+  (damage, a wake signal, a delayed wake, or a player-owned building reachable within
+  `wakeUpOnThingConstructedRadius` 3) and from `Pawn.Notify_Unfogged`, which fires only when
+  the **pawn's own cell** is unfogged (via `FogGrid.Unfog` → `Notify_Unfogged` on that cell's
+  things) and then wakes the whole lord. Line of sight is consulted only behind
+  `wakeUpIfAnyTargetClose`, which only `GenStep_SleepingMechanoids` sets. So a wall breach
+  wakes them because the flood unfog reaches their cells, not because of the breach itself.
+- **Hives** spawn dormant with no insects (`CompSpawnerPawn.Active` is false while dormant);
+  `Hive.TickInterval` wakes the hive once **its own cell** is unfogged, and damage or a nearby
+  player building do the same. Insects spawn only after that.
+- **Fleshbeasts** spawn awake and active; unfog changes nothing.
+- **Caskets**: no class in `Building_Casket` → `Building_CryptosleepCasket` →
+  `Building_AncientCryptosleepCasket` (→ `..Pod`, which only hides float-menu options)
+  overrides `Notify_Unfogged` or ticks its contents; contents sit unspawned in
+  `innerContainer` and never see fog events. Only `Open`, a faction-instigated damaging hit
+  (`PreApplyDamage`) and dev tools eject them. `EjectContents` on an unopened casket opens
+  every casket sharing its `groupID` and gives hostile ancients an assault lord; it never
+  signals the mech or hive lords.
+- **Nothing else** reacts to unfog: the live assembly has exactly two `Notify_Unfogged`
+  overrides (`Thing`, `Pawn`), `MapEvents.CellFogChanged` has one vanilla subscriber
+  (`PathFinderMapData`), and the warning trigger's signal tag matches nothing.
+
+The structural guarantee: mechs and hives are placed on `Standable` cells
+(`SymbolResolver_SinglePawn`, `SymbolResolver_Hives`), the casket is `PassThroughOnly`, and a
+sleeping mech has no jobs to walk anywhere, so no dormant thing ever shares a casket cell.
+`FogGrid.Unfog` is non-cascading (see Unfog mechanics), so revealing the casket's cells cannot
+reach a neighbouring mech cell either. `CompLocalMineralScanner.HoldsDormantOccupant` keeps
+the check anyway (an inactive-minded pawn or a sleeping `CompCanBeDormant` on a fogged casket
+cell skips that casket), as insurance against mods that place things differently. Mods that
+patch `Notify_Unfogged` are the one thing the survey cannot rule out.
+
+Side effects accepted or handled:
+
+- The casket's `fillPercent` is 0.5 (`Fillage.Partial`, `MakeFog` false), so `Unfog(c)`
+  clears only `c` (the whole-`OccupiedRect` branch is for `Fillage.Full`); the reveal lists
+  both cells itself. The result is a one-by-two window in the fog.
+- `RectTrigger.Tick` destroys the trigger as soon as `rect.CenterCell` is unfogged, and the
+  shrine grid can put a casket on that cell, so revealing it cancels the vanilla "Ancient
+  danger" letter. Handled by preference, not exclusion: `FindCasketToReveal` ranks caskets
+  covering a live trigger's centre cell behind all others and reveals one only when nothing
+  else remains, which by then the player has already been told about by our own letters.
+  The casket find letter is worded as a warning for the same reason.
+- An unfogged casket is selectable, with `containedPawnsSelectable`, exactly as vanilla
+  shows it once a wall is breached; the scanner only brings that moment forward.
+
+Def selection and UI: every ThingDef whose `thingClass` is `Building_AncientCryptosleepCasket`
+or a subclass (Core's casket and pod; modded caskets on the vanilla class), mirroring the
+"whichever mod defines it" ore test. The pod def lives in Core, so no DLC gate is needed.
+Caskets list after the ores, by defName, only while the map holds some (the ore rule), and
+never back a fresh scanner's default target, which stays a mineral. The setting gates the
+queries rather than the tracked list, so turning it off needs no map plumbing: the rows
+vanish and a scanner still tuned to a casket stops through the exhaustion gate, with a
+reason naming the setting rather than a false "none undiscovered". The per-def cache tests
+every cell of a multi-cell thing, since a partial reveal can leave either casket cell
+fogged. Strings take the plural
+and the indefinite article from the active `LanguageWorker` so translators get vanilla's
+forms.
+
 ## Interaction cell mechanics (verified)
 
 - `Thing.InteractionCell = def.interactionCellOffset.RotatedBy(rot) + Position`. Offset is

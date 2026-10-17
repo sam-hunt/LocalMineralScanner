@@ -43,6 +43,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 - **Uninstalling**: make it a fixed installation instead
 - **Scan times**: the random find interval and the guaranteed-find time
 - **Cost and mass**: steel, component and advanced component counts, and the uninstalled weight
+- **Ancient caskets** (off by default): let the scanner also be tuned to ancient cryptosleep caskets, revealing one sealed inside an undiscovered structure such as an ancient danger without waking anything
 - All settings take effect as soon as the window closes, no restart needed
 
 ## Requirements

@@ -21,6 +21,19 @@
 // - Letter idiom copied from CompDeepScanner.DoFind: LetterDefOf.PositiveEvent with a
 //   cell-targeted LookTargets.
 //
+// Ancient cryptosleep caskets (opt-in; MapComponent_FoggedMinerals says which defs count and
+// how the setting gates them) reveal by the same rules with the casket's OccupiedRect as the
+// cluster. A casket's fillPercent is 0.5, so it is no fog blocker and Unfog clears only the
+// cell it is given: FindCasketToReveal lists both cells itself. Docs/design-research.md
+// ("Ancient cryptosleep caskets") holds the decompile evidence that this wakes nothing: a
+// temple's mechanoids wake only when THEIR OWN cell is unfogged, a hive likewise, and neither
+// can occupy a casket cell. Two guards anyway: a casket with a dormant occupant on a fogged
+// cell (an inactive-minded pawn, or a thing whose CompCanBeDormant is asleep) is skipped, and
+// caskets covering the centre cell of a live destroy-if-unfogged RectTrigger (vanilla's
+// "ancient danger" warning, which self-destructs when that cell unfogs) rank behind the
+// rest; disarming one is accepted when nothing else remains, and the find letter is worded
+// as a warning so nothing is lost by it.
+//
 // Exhaustion: unlike its vanilla siblings, this scanner can run out of targets. The
 // handling follows vanilla's "ran dry" idioms; Docs/design-research.md (Exhaustion UX)
 // holds the precedent survey and the rejected alternatives. As implemented:
@@ -181,8 +194,23 @@ public class CompLocalMineralScanner : CompScanner
     // spawned: foggedMinerals is the spawn-time map's component.
     private bool TargetExhausted => !foggedMinerals.AnyFoggedDepositOf(targetMineable);
 
-    private static TaggedString ExhaustedReason(ThingDef mineable) =>
-        "LocalMineralScanner_NoFoggedDeposits".Translate(mineable.building.mineableThing.label);
+    // Why the target yields nothing: the setting is off (a casket target only), or no fogged
+    // cell of it remains. The menu's greyed rows use the same text in parentheses.
+    private static TaggedString ExhaustedReason(ThingDef target)
+    {
+        if (!MapComponent_FoggedMinerals.IsAncientCasket(target))
+        {
+            return "LocalMineralScanner_NoFoggedDeposits".Translate(target.building.mineableThing.label);
+        }
+        return LocalMineralScannerMod.Settings.scanAncientCaskets
+            ? "LocalMineralScanner_NoFoggedCaskets".Translate(PluralLabel(target))
+            : "LocalMineralScanner_CasketsDisabled".Translate();
+    }
+
+    // The casket strings take the plural ("ancient cryptosleep caskets"); vanilla's
+    // LanguageWorker forms it per language, resolving the noun's gender itself.
+    private static string PluralLabel(ThingDef casket) =>
+        Find.ActiveLanguageWorker.Pluralize(casket.label);
 
     // The job driver's per-tick entry point, replacing CompScanner.Used: its body verbatim
     // (decompile-verified, 1.6: stamp lastScanTick/lastUserSpeed, add speed/60000 worked
@@ -254,34 +282,135 @@ public class CompLocalMineralScanner : CompScanner
         }
         lastFindTick = tick;
         Map map = parent.Map;
-        List<IntVec3> revealCells = FindDepositToReveal(map);
+        bool casket = MapComponent_FoggedMinerals.IsAncientCasket(targetMineable);
+        List<IntVec3> revealCells = casket ? FindCasketToReveal(map) : FindDepositToReveal(map);
         if (revealCells.NullOrEmpty())
         {
-            // Unreachable while the CanUseNow gate and FindDepositToReveal agree on what counts
-            // as undiscovered; Operate still resets the accumulator, so say so if it ever happens.
+            // Unreachable while the CanUseNow gate and the Find*ToReveal methods agree on what
+            // counts as undiscovered (the casket guard is the one deliberate gap, see the
+            // header); Operate still resets the accumulator, so say so if it ever happens.
             Log.Warning("[LocalMineralScanner] Find succeeded but no undiscovered "
-                + targetMineable.defName + " deposit was found on " + map + "; progress reset.");
+                + targetMineable.defName + " was found on " + map + "; progress reset.");
             return;
         }
         foreach (IntVec3 cell in revealCells)
         {
             map.fogGrid.Unfog(cell);
         }
-        ThingDef mineral = targetMineable.building.mineableThing;
-        Find.LetterStack.ReceiveLetter(
-            "LocalMineralScanner_LetterLabelFoundDeposit".Translate() + ": " + mineral.LabelCap,
-            "LocalMineralScanner_LetterFoundDeposit".Translate(mineral.label, worker.Named("FINDER")),
-            LetterDefOf.PositiveEvent,
+        ThingDef display = MapComponent_FoggedMinerals.DisplayDef(targetMineable);
+        string letterLabel;
+        TaggedString letterText;
+        if (casket)
+        {
+            letterLabel = "LocalMineralScanner_LetterLabelFoundCasket".Translate() + ": " + display.LabelCap;
+            letterText = "LocalMineralScanner_LetterFoundCasket".Translate(
+                Find.ActiveLanguageWorker.WithIndefiniteArticle(display.label), worker.Named("FINDER"));
+        }
+        else
+        {
+            letterLabel = "LocalMineralScanner_LetterLabelFoundDeposit".Translate() + ": " + display.LabelCap;
+            letterText = "LocalMineralScanner_LetterFoundDeposit".Translate(display.label, worker.Named("FINDER"));
+        }
+        Find.LetterStack.ReceiveLetter(letterLabel, letterText, LetterDefOf.PositiveEvent,
             new LookTargets(revealCells[revealCells.Count / 2], map));
         // The Unfog calls above already dirtied the fogged-minerals cache, so this reads the
         // post-reveal state.
         if (TargetExhausted)
         {
             Messages.Message(
-                "LocalMineralScanner_MessageExhausted".Translate(mineral.label),
+                casket
+                    ? "LocalMineralScanner_MessageExhaustedCaskets".Translate(PluralLabel(display))
+                    : "LocalMineralScanner_MessageExhausted".Translate(display.label),
                 parent,
                 MessageTypeDefOf.TaskCompletion);
         }
+    }
+
+    // Returns the fogged cells of one chosen casket of the target def, or null when none
+    // remain. Candidates rank by tier, lowest first, random within a tier: 0 fully fogged,
+    // 1 partially fogged, each +2 when a fogged cell is the centre of a live warning trigger
+    // (see the header). A casket with a dormant occupant on a fogged cell is skipped outright.
+    private List<IntVec3> FindCasketToReveal(Map map)
+    {
+        HashSet<IntVec3> warningCentres = null;
+        List<List<IntVec3>>[] tiers = new List<List<IntVec3>>[4];
+        foreach (Thing casket in map.listerThings.ThingsOfDef(targetMineable))
+        {
+            List<IntVec3> fogged = null;
+            bool disarmsWarning = false;
+            bool blocked = false;
+            int size = 0;
+            foreach (IntVec3 cell in casket.OccupiedRect())
+            {
+                size++;
+                if (!map.fogGrid.IsFogged(cell))
+                {
+                    continue;
+                }
+                if (HoldsDormantOccupant(cell, map))
+                {
+                    blocked = true;
+                    break;
+                }
+                warningCentres ??= WarningTriggerCentres(map);
+                if (warningCentres.Contains(cell))
+                {
+                    disarmsWarning = true;
+                }
+                (fogged ??= new List<IntVec3>()).Add(cell);
+            }
+            if (blocked || fogged == null)
+            {
+                continue;
+            }
+            int tier = (fogged.Count == size ? 0 : 1) + (disarmsWarning ? 2 : 0);
+            (tiers[tier] ??= new List<List<IntVec3>>()).Add(fogged);
+        }
+        for (int i = 0; i < tiers.Length; i++)
+        {
+            if (tiers[i] != null)
+            {
+                return tiers[i].RandomElement();
+            }
+        }
+        return null;
+    }
+
+    // True when something on the cell is asleep and would be woken by unfogging it: a pawn
+    // whose mind is inactive (Pawn.Notify_Unfogged wakes its sleep-then-assault lord) or a
+    // thing whose CompCanBeDormant is asleep (a dormant hive wakes when its own cell unfogs).
+    private static bool HoldsDormantOccupant(IntVec3 cell, Map map)
+    {
+        List<Thing> things = cell.GetThingList(map);
+        for (int i = 0; i < things.Count; i++)
+        {
+            Thing thing = things[i];
+            if (thing is Pawn pawn && pawn.mindState?.Active == false)
+            {
+                return true;
+            }
+            if (thing.TryGetComp<CompCanBeDormant>()?.Awake == false)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Centre cells of the map's live destroy-if-unfogged RectTriggers (the vanilla ancient
+    // danger warning; RectTrigger.Tick destroys the trigger once that one cell is unfogged).
+    private static HashSet<IntVec3> WarningTriggerCentres(Map map)
+    {
+        HashSet<IntVec3> centres = new HashSet<IntVec3>();
+        List<Thing> triggers = map.listerThings.ThingsOfDef(ThingDefOf.RectTrigger);
+        for (int i = 0; i < triggers.Count; i++)
+        {
+            if (triggers[i] is RectTrigger trigger && trigger.destroyIfUnfogged)
+            {
+                centres.Add(trigger.Rect.CenterCell);
+            }
+        }
+        return centres;
     }
 
     // Returns the fogged cells of one chosen deposit: a random fully-fogged cluster of the
@@ -364,14 +493,14 @@ public class CompLocalMineralScanner : CompScanner
         {
             yield break;
         }
-        ThingDef mineableThing = targetMineable.building.mineableThing;
+        ThingDef targetDisplay = MapComponent_FoggedMinerals.DisplayDef(targetMineable);
         Command_Action command = new Command_Action
         {
-            defaultLabel = "CommandSelectMineralToScanFor".Translate() + ": " + mineableThing.LabelCap,
+            defaultLabel = "CommandSelectMineralToScanFor".Translate() + ": " + targetDisplay.LabelCap,
             defaultDesc = "CommandSelectMineralToScanForDesc".Translate(),
-            icon = mineableThing.uiIcon,
-            iconAngle = mineableThing.uiIconAngle,
-            iconOffset = mineableThing.uiIconOffset,
+            icon = targetDisplay.uiIcon,
+            iconAngle = targetDisplay.uiIconAngle,
+            iconOffset = targetDisplay.uiIconOffset,
             action = delegate
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -382,13 +511,18 @@ public class CompLocalMineralScanner : CompScanner
                     {
                         continue;
                     }
-                    string label = localMineable.building.mineableThing.LabelCap;
+                    ThingDef display = MapComponent_FoggedMinerals.DisplayDef(localMineable);
+                    string label = display.LabelCap;
                     if (!foggedMinerals.AnyFoggedDepositOf(localMineable))
                     {
+                        TaggedString reason = MapComponent_FoggedMinerals.IsAncientCasket(localMineable)
+                            && !LocalMineralScannerMod.Settings.scanAncientCaskets
+                            ? "LocalMineralScanner_CasketsDisabled".Translate()
+                            : "LocalMineralScanner_NoneUndiscovered".Translate();
                         options.Add(new FloatMenuOption(
-                            label + " (" + "LocalMineralScanner_NoneUndiscovered".Translate() + ")", null,
+                            label + " (" + reason + ")", null,
                             MenuOptionPriority.Default, null, null, 29f,
-                            (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, localMineable.building.mineableThing)));
+                            (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, display)));
                         continue;
                     }
                     options.Add(new FloatMenuOption(label, delegate
@@ -405,7 +539,7 @@ public class CompLocalMineralScanner : CompScanner
                             }
                         }
                     }, MenuOptionPriority.Default, null, null, 29f,
-                    (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, localMineable.building.mineableThing)));
+                    (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, display)));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }

@@ -22,6 +22,9 @@ namespace LocalMineralScanner;
 //    built lazily once per play session; a mid-game flip reaches it on the next game load.
 //    The rule itself lives in PlaceWorker_NotUnderRoofIfRequired and the comp's CanUseNow,
 //    both of which read the setting directly.
+//  - scanAncientCaskets writes nothing: MapComponent_FoggedMinerals and the comp read the
+//    field on every query, so the tuning menu and the exhaustion gate follow the checkbox
+//    the moment it is ticked.
 // The XML carries the same values as the *Default consts below (they are what a player who
 // never opens the settings gets, and what Restore defaults returns to); the XML copies are
 // documentation, since Apply() overwrites them at startup. Keep the two in step.
@@ -45,6 +48,7 @@ public class LocalMineralScannerSettings : ModSettings
     public const int ComponentCostDefault = 4;
     public const int AdvancedComponentCostDefault = 1;
     public const float MassDefault = 40f;
+    public const bool ScanAncientCasketsDefault = false;
 
     public bool requireUnroofed = RequireUnroofedDefault;
     public bool minifiable = MinifiableDefault;
@@ -54,6 +58,7 @@ public class LocalMineralScannerSettings : ModSettings
     public int componentCost = ComponentCostDefault;
     public int advancedComponentCost = AdvancedComponentCostDefault;
     public float mass = MassDefault;
+    public bool scanAncientCaskets = ScanAncientCasketsDefault;
 
     // Trailing space each section leaves below itself.
     private const float SectionGap = 18f;
@@ -73,6 +78,7 @@ public class LocalMineralScannerSettings : ModSettings
         Scribe_Values.Look(ref componentCost, "componentCost", ComponentCostDefault);
         Scribe_Values.Look(ref advancedComponentCost, "advancedComponentCost", AdvancedComponentCostDefault);
         Scribe_Values.Look(ref mass, "mass", MassDefault);
+        Scribe_Values.Look(ref scanAncientCaskets, "scanAncientCaskets", ScanAncientCasketsDefault);
     }
 
     public void ResetToDefaults()
@@ -85,6 +91,7 @@ public class LocalMineralScannerSettings : ModSettings
         componentCost = ComponentCostDefault;
         advancedComponentCost = AdvancedComponentCostDefault;
         mass = MassDefault;
+        scanAncientCaskets = ScanAncientCasketsDefault;
     }
 
     // Writes the settings onto the live scanner def and its comp properties (see the header
@@ -221,6 +228,12 @@ public class LocalMineralScannerSettings : ModSettings
                 + VanillaTag(findGuaranteedDays, deep, deepProps.scanFindGuaranteedDays),
             "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(longRange.label, longRangeProps.scanFindGuaranteedDays.ToString("0.##")),
             findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.25f, max: 30f, step: 0.25f);
+
+        // The tooltip names the vanilla casket def by label, like the building names above.
+        listing.CheckboxLabeled(
+            "LocalMineralScanner_ScanAncientCaskets".Translate(),
+            ref scanAncientCaskets,
+            "LocalMineralScanner_ScanAncientCasketsDesc".Translate(ThingDefOf.AncientCryptosleepCasket.label));
 
         listing.Gap(SectionGap);
     }
