@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
      changes land in the stable version's section at promotion. The /release skill
      walks through all of this. -->
 
+## [1.2.1] - 2026-10-17
+
+### Changed
+
+- Preview image now shows RimWorld 1.7.
+
 ## [1.2.0] - 2026-10-15
 
 ### Added
@@ -52,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unlocked by the vanilla long-range mineral scanner research.
 - Sits directly after the long-range mineral scanner in Architect > Misc.
 
+[1.2.1]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.2.1
 [1.2.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.2.0
 [1.1.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.1.0
 [1.0.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.0.0
