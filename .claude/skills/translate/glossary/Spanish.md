@@ -18,6 +18,11 @@ below). Grounded against Core's Castilian tar only (no domain DLC).
 | ore vein (Workshop copy, "contiguous ore vein") | veta de mineral | no vanilla term found; "veta" is standard Spanish mining vocabulary for a mineral vein, paired with the existing "mineral" noun |
 | mineable ore (type) (Workshop copy, "any mineable ore type") | mineral extraíble | describes the post-update any-ore tuning (no longer a fixed vanilla list); "extraíble" avoids inventing an adjective on "minable" |
 | unfog / fogged (Workshop description) | despeja la niebla de guerra / en zonas sin revelar | Core's Spanish tar attests no fog-of-war term (`TriggerUnfogged.label` is mistranslated; bare `niebla` is the Fog weather), so the established gaming term is used. Never collapse to `revela` alone: it loses *where* the ore hides (see the Russian glossary's matching row). |
+| ancient cryptosleep casket | sarcófago de criptosueño antiguo (m.) / cápsula de criptosueño antigua (f.) | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`. The variants differ in gender, so the casket strings agree with a neutral head noun: "ningún ejemplar sin descubrir de {0}" |
+| ancient danger | peligro ancestral | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | durmiente | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | menú de sintonización | coined from "sintonizar" |
+| opt-in (Workshop bullet) | Opcional: | plain word |
 
 ## Grounding decisions
 

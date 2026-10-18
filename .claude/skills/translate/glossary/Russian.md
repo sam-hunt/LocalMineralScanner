@@ -25,6 +25,10 @@ live in `l10n/languages/Russian.md`.
 | unfog / fogged (Workshop description) | снимает туман войны / под туманом войны | `TriggerUnfogged.label` = "триггер выхода из тумана войны" attests `туман войны` for map fog; vanilla's bare `туман` is the Fog weather. Never collapse to `раскрывает`/`необнаруженный`: those lose *where* the ore hides, and a reader then takes the deep-scanner comparison as the mod's function (a 2026-10 Workshop comment asked to exclude mountains and floored base cells, i.e. read it as a deep-resource scanner). |
 | "Never strip-mine again." (Workshop tagline) | Хватит прокладывать туннели вслепую. | Mirrors the README's "tunnel blindly". `перекапывать` (to dig over soil) pointed at the ground rather than mountain rock. |
 | ore vein (Workshop description, "contiguous ore vein") | рудная жила | Plain geological term for a contiguous ore body, distinct from `скопление` (the broader "deposit" used elsewhere in this mod); used once, where the English specifically calls out contiguity rather than the general deposit concept. |
+| ancient cryptosleep casket | древний саркофаг криптосна (m.) / древняя капсула криптосна (f.) | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`. {0} arrives undeclined, so it always follows a colon: "находку: {0}", "необнаруженных объектов: {0}" |
+| ancient danger | древняя опасность | vanilla `LetterLabelAncientShrineWarning`; hand-declined ("древней опасности") outside any placeholder |
+| dormant | неактивный | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | меню настройки сканера | coined |
 
 ## Pending native review
 

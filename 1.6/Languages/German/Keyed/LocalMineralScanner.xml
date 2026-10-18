@@ -13,6 +13,24 @@
   <!-- EN: Combined scanning speed ({0} operators) -->
   <LocalMineralScanner_CombinedScanSpeed>Kombinierte Scangeschwindigkeit ({0} Benutzer)</LocalMineralScanner_CombinedScanSpeed>
 
+  <!-- Ancient cryptosleep caskets (opt-in target). The letter's {0} arrives with its article
+       ("an ancient cryptosleep casket"); the other two take the bare label ("ancient
+       cryptosleep casket"), whose grammatical gender can differ between casket variants.
+       NoFoggedCaskets is a lower-case fragment like NoFoggedDeposits. The letter stays neutral: caskets also sit in ruins
+       and quest structures that hold nothing dangerous, so it must not call them a danger. -->
+  <!-- EN: Casket located -->
+  <LocalMineralScanner_LetterLabelFoundCasket>Kapsel entdeckt</LocalMineralScanner_LetterLabelFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} hat mit dem lokalen Mineralscanner {0} in einem unentdeckten Gebiet gefunden. Was sie enthält und was sich sonst in der Nähe befindet, wird sich erst zeigen, sobald das Gebiet erkundet ist.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
+  <LocalMineralScanner_MessageExhaustedCaskets>Auf dieser Karte gibt es keine unentdeckte {0} mehr. Der lokale Mineralscanner bleibt untätig, bis er auf etwas anderes eingestellt wird.</LocalMineralScanner_MessageExhaustedCaskets>
+  <!-- EN: no undiscovered {0} left -->
+  <LocalMineralScanner_NoFoggedCaskets>keine unentdeckte {0} mehr</LocalMineralScanner_NoFoggedCaskets>
+  <!-- Shown in place of NoFoggedCaskets / NoneUndiscovered for a scanner still tuned to a
+       casket after the setting is turned off. Lower-case fragment. -->
+  <!-- EN: disabled in mod settings -->
+  <LocalMineralScanner_CasketsDisabled>in den Mod-Einstellungen deaktiviert</LocalMineralScanner_CasketsDisabled>
+
   <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
        title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
   <!-- EN: Local Mineral Scanner -->
@@ -47,6 +65,12 @@
   <LocalMineralScanner_FindGuaranteedDays>Garantierter Fund nach</LocalMineralScanner_FindGuaranteedDays>
   <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
   <LocalMineralScanner_FindGuaranteedDaysDesc>Arbeitstage, nach denen ein Fund garantiert ist, für einen Benutzer bei 100% Forschungsgeschwindigkeit. Der {0} verwendet {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
+  <!-- EN: Can scan for ancient cryptosleep caskets -->
+  <LocalMineralScanner_ScanAncientCaskets>Kann nach antiken Kryptoschlafkapseln scannen</LocalMineralScanner_ScanAncientCaskets>
+  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>Führt die {0} und ihre Varianten im Einstellmenü auf, sobald die Karte welche enthält, damit der Scanner eine Kapsel aufdecken kann, die in einer unentdeckten Struktur wie einer antiken Gefahr eingeschlossen ist. Das Aufdecken einer Kapsel weckt nichts, was in der Nähe ruht.</LocalMineralScanner_ScanAncientCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->

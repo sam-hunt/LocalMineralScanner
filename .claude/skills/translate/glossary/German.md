@@ -21,6 +21,10 @@ live in `l10n/languages/German.md`.
 | ore vein (Workshop description, "contiguous ore vein") | Erzader | Not vanilla-attested (this mechanic is mod-specific), but built on the real German mining word `Ader` (vein), as in the everyday compound `Goldader` (gold vein) — reads as ordinary German mining vocabulary rather than a calque. |
 | unfog / fogged (Workshop description) | lichtet den Kriegsnebel / unter dem Kriegsnebel | Core's German tar attests no fog-of-war term (`TriggerUnfogged.label` = "Auslöser Anti-Nebel" is a dev label; bare `Nebel` is the Fog weather), so the established German strategy-game term `Kriegsnebel` is used. Never collapse to `aufdecken`/`unentdeckt`: those lose *where* the ore hides, and the Tiefenscanner comparison then reads as the mod's function (see the Russian glossary's matching row). |
 | "Never strip-mine again." (Workshop tagline) | Nie wieder blind Tunnel graben. | Mirrors the README's "tunnel blindly"; `die ganze Karte abtragen` read as levelling the surface, not mining rock. |
+| ancient cryptosleep casket | antike Kryptoschlafkapsel | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label` (both variants share the feminine label, so "keine unentdeckte {0} mehr" agrees) |
+| ancient danger | antike Gefahr | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | ruht | vanilla `DormantCompInactive` (verb form: "was in der Nähe ruht") |
+| tuning menu (casket setting tooltip) | Einstellmenü | coined; avoids a clash with Einstellungen (settings) |
 
 ## Pending native review
 

@@ -20,6 +20,11 @@ below). Grounded against Core's French tar only (no domain DLC).
 | fogged mineable ore (Workshop FAQ) | minerai exploitable inexploré | reuses vanilla `Undiscovered` = "Inexploré" for "fogged"; "minerai exploitable" mirrors the mineable-ore stat wording |
 | minifiable (Workshop copy) | miniaturisé | matches vanilla `MinifiedThing` = "objet miniaturisé" |
 | unfog / fogged (Workshop description) | dissipe le brouillard de guerre / sous le brouillard de guerre | Core's French tar attests no fog-of-war term (`TriggerUnfogged.label` is mistranslated; bare `brouillard` is the Fog weather), so the established French gaming term is used. Never collapse to `révèle`/`inexploré` alone: those lose *where* the ore hides (see the Russian glossary's matching row). |
+| ancient cryptosleep casket | caisson d'hypersommeil antique (m.) / ancienne capsule d'hypersommeil (f.) | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`. The variants differ in gender, so the casket strings agree with a neutral head noun: "plus aucun exemplaire inexploré de {0}"; the worker elides "de" before a vowel |
+| ancient danger | danger antique | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | dormant | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | menu de réglage | coined from vanilla "Réglé sur" |
+| opt-in (Workshop bullet) | Optionnel : | plain word |
 
 ## Grounding decisions
 

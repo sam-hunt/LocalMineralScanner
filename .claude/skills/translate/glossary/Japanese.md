@@ -16,6 +16,12 @@ grounding decisions only; family-wide mechanics live in `l10n/languages/Japanese
 | "Never strip-mine again." (Workshop tagline) | もう乱掘は不要です. | Mod-coined slogan; 乱掘 (indiscriminate/strip mining) is the natural noun for the English idiom, no vanilla precedent needed for a marketing tagline |
 | contiguous ore vein (Workshop feature bullet) | 鉱脈 | Reuses the already-grounded 鉱脈 (see `確実な発見` row, from `ScanningProgressToGuaranteedFind`) rather than coining a new word |
 | fogged mineable ore (Workshop FAQ: modded ore) | 「霧に覆われた採掘可能な鉱石」 | Mod-coined descriptive phrase for the in-game classification; quoted with 「」 per `l10n/languages/Japanese.md`'s rule that 「」 marks quoted text/labels in descriptive prose (this is not a clickable UI element, so not ASCII quotes) |
+| ancient cryptosleep casket | 古代の冬眠カプセル | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`; the letter label shortens to 冬眠カプセル |
+| ancient danger | 太古の脅威 | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | 休眠 | vanilla `DormantCompInactive` |
+| variants (of a casket) | 派生型 | coined |
+| something else (casket exhausted message) | 別の対象 | replaces 別の鉱物; caskets are not minerals |
+| disabled in mod settings | MOD設定で無効化されている | MOD設定 as in the Workshop file |
 
 ## Other decisions
 

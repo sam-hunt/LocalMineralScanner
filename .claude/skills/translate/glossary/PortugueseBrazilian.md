@@ -20,6 +20,10 @@ Machine-assisted first pass (2026-09-09), pending native review. Family mechanic
 | ore vein (Workshop description, "What it does" bullet) | veio de minério | Not vanilla-attested (vanilla's own scanner descriptions say "resource"/"buried resource", never "vein"); `veio` is the ordinary Portuguese geological term for a mineral vein/lode, chosen as the literal analog to English's own choice of "vein" over "deposit" in this one bullet |
 | minifiable (Workshop description, "What it does" bullet) | miniaturizável | Not vanilla-attested in this file's sources; derived adjective from `miniaturizar`/`miniaturizado` (RimWorld's own minification mechanic), parallel formation to `sintonizável`-style coinages already implicit in this glossary |
 | unfog / fogged (Workshop description) | remove a névoa de guerra / coberto pela névoa de guerra | Core's pt-BR tar attests no fog-of-war term (`TriggerUnfogged.label` = "gatilho desarmado" is mistranslated; bare `névoa` is the Fog weather), so the established gaming term is used. Never collapse to `revela`/`inexplorado` alone: those lose *where* the ore hides (see the Russian glossary's matching row). |
+| ancient cryptosleep casket | sarcófago de criptosono antigo (m.) / cápsula de criptosono antiga (f.) | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`. The variants differ in gender and the pod is missing from the gender tables, so the casket strings agree with a neutral head noun ("nenhum exemplar inexplorado de {0}") and the letter says "Seu conteúdo" |
+| ancient danger | perigo ancestral | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | dormente | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | menu de sintonia | coined from vanilla "Sintonizado" |
 
 ## Grounding decisions worth double-checking
 

@@ -16,6 +16,24 @@
   <!-- EN: Combined scanning speed ({0} operators) -->
   <LocalMineralScanner_CombinedScanSpeed>綜合掃描速度({0}位操作員)</LocalMineralScanner_CombinedScanSpeed>
 
+  <!-- Ancient cryptosleep caskets (opt-in target). The letter's {0} arrives with its article
+       ("an ancient cryptosleep casket"); the other two take the bare label ("ancient
+       cryptosleep casket"), whose grammatical gender can differ between casket variants.
+       NoFoggedCaskets is a lower-case fragment like NoFoggedDeposits. The letter stays neutral: caskets also sit in ruins
+       and quest structures that hold nothing dangerous, so it must not call them a danger. -->
+  <!-- EN: Casket located -->
+  <LocalMineralScanner_LetterLabelFoundCasket>休眠艙尋獲</LocalMineralScanner_LetterLabelFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}透過在地礦物掃描器，在未探索的區域中發現了{0}。艙內裝著什麼，以及附近還有什麼，都要等到該區域被探索後才會知曉。</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
+  <LocalMineralScanner_MessageExhaustedCaskets>此地圖上已無未探索的{0}。在地礦物掃描器將保持閒置，直到被調整為其他目標為止。</LocalMineralScanner_MessageExhaustedCaskets>
+  <!-- EN: no undiscovered {0} left -->
+  <LocalMineralScanner_NoFoggedCaskets>已無未探索的{0}</LocalMineralScanner_NoFoggedCaskets>
+  <!-- Shown in place of NoFoggedCaskets / NoneUndiscovered for a scanner still tuned to a
+       casket after the setting is turned off. Lower-case fragment. -->
+  <!-- EN: disabled in mod settings -->
+  <LocalMineralScanner_CasketsDisabled>已在模組設定中停用</LocalMineralScanner_CasketsDisabled>
+
   <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
        title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
   <!-- EN: Local Mineral Scanner -->
@@ -50,6 +68,12 @@
   <LocalMineralScanner_FindGuaranteedDays>保證尋獲期限</LocalMineralScanner_FindGuaranteedDays>
   <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
   <LocalMineralScanner_FindGuaranteedDaysDesc>單一操作員在研究速度100%時，經過此工作天數後必定尋獲。{0}使用{1}。</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
+  <!-- EN: Can scan for ancient cryptosleep caskets -->
+  <LocalMineralScanner_ScanAncientCaskets>可以掃描遠古休眠艙</LocalMineralScanner_ScanAncientCaskets>
+  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>只要地圖上存在{0}及其變體，就會在調整選單中列出，讓掃描器能揭露封存在遠古威脅等未探索結構內的休眠艙。揭露休眠艙並不會喚醒附近任何處於休眠狀態的事物。</LocalMineralScanner_ScanAncientCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->

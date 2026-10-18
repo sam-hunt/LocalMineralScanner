@@ -13,6 +13,17 @@
   <!-- EN: Combined scanning speed ({0} operators) -->
   <LocalMineralScanner_CombinedScanSpeed>합산 탐색 속도 (조작자 {0}명)</LocalMineralScanner_CombinedScanSpeed>
 
+  <!-- EN: Casket located -->
+  <LocalMineralScanner_LetterLabelFoundCasket>동면관 발견</LocalMineralScanner_LetterLabelFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}(이)가 근거리 광물 탐색기를 사용해 안개에 덮인 지역에서 {0}(을)를 발견했습니다. 그 안에 무엇이 있는지, 그리고 근처에 또 무엇이 있는지는 지역을 탐사해야만 알 수 있습니다.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
+  <LocalMineralScanner_MessageExhaustedCaskets>이 맵에는 더 이상 미발견 {0}(이)가 남아 있지 않습니다. 다른 대상으로 조정하기 전까지 근거리 광물 탐색기는 대기 상태로 남습니다.</LocalMineralScanner_MessageExhaustedCaskets>
+  <!-- EN: no undiscovered {0} left -->
+  <LocalMineralScanner_NoFoggedCaskets>미발견 {0} 없음</LocalMineralScanner_NoFoggedCaskets>
+  <!-- EN: disabled in mod settings -->
+  <LocalMineralScanner_CasketsDisabled>모드 설정에서 비활성화됨</LocalMineralScanner_CasketsDisabled>
+
   <!-- EN: Local Mineral Scanner -->
   <LocalMineralScanner_SettingsCategory>근거리 광물 탐색기</LocalMineralScanner_SettingsCategory>
   <!-- EN: Placement -->
@@ -41,6 +52,11 @@
   <LocalMineralScanner_FindGuaranteedDays>확실한 발견까지</LocalMineralScanner_FindGuaranteedDays>
   <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
   <LocalMineralScanner_FindGuaranteedDaysDesc>조작자 한 명이 연구 속도 100%로 작업할 때 발견이 확실해지는 근무일입니다. {0}(은)는 {1}일을 사용합니다.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- EN: Can scan for ancient cryptosleep caskets -->
+  <LocalMineralScanner_ScanAncientCaskets>고대 동면관 탐색 가능</LocalMineralScanner_ScanAncientCaskets>
+  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>맵에 {0}(와)과 그 변종이 하나라도 있으면 조정 메뉴에 표시하여, 고대 위협 같은 미발견 구조물 안에 봉인된 동면관도 탐색기로 드러낼 수 있게 합니다. 동면관을 드러내도 근처에서 휴면 중인 것이 깨어나지는 않습니다.</LocalMineralScanner_ScanAncientCasketsDesc>
 
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>{0} 비용: {1}</LocalMineralScanner_ResourceCost>

@@ -24,6 +24,12 @@ inversion table live in `l10n/languages/ChineseTraditional.md`.
 | the Workshop title | 在地礦物掃描器 | Byte-identical to `LocalMineralScanner_SettingsCategory`, per `workshop.md`'s title-settings coupling rule |
 | unfog / fogged (Workshop description) | 解除……上的迷霧 / 被迷霧覆蓋的 | Grounded against `TriggerUnfogged.label` = "觸發解除迷霧". Never collapse to `揭露`/`未探索`: those lose *where* the ore hides (see the Russian glossary's matching row). |
 | "Never strip-mine again." (Workshop tagline) | 不用再盲目挖隧道了。 | Mirrors the README's "tunnel blindly"; `露天剝皮式開礦` named open-pit surface mining, not tunnelling through rock. |
+| ancient cryptosleep casket | 遠古休眠艙 / 休眠艙 | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label` |
+| ancient danger | 遠古威脅 | vanilla `LetterLabelAncientShrineWarning` |
+| dormant | 休眠 | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | 調整選單 | coined from 調整為 + 選單 |
+| something else (casket exhausted message) | 其他目標 | caskets are not minerals |
+| casket letter label | 休眠艙尋獲 | mirrors 礦脈尋獲 |
 
 ## Other decisions
 

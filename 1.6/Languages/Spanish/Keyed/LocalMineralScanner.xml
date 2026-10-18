@@ -13,6 +13,17 @@
   <!-- EN: Combined scanning speed ({0} operators) -->
   <LocalMineralScanner_CombinedScanSpeed>Velocidad de escaneo combinada ({0} operadores)</LocalMineralScanner_CombinedScanSpeed>
 
+  <!-- EN: Casket located -->
+  <LocalMineralScanner_LetterLabelFoundCasket>Sarcófago localizado</LocalMineralScanner_LetterLabelFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} ha localizado {0} en un área sin revelar usando el escáner de minerales local. Lo que contiene, y qué más hay cerca, solo se sabrá cuando se explore el área.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
+  <LocalMineralScanner_MessageExhaustedCaskets>Ya no queda ningún ejemplar sin descubrir de {0} en este mapa. El escáner de minerales local permanecerá inactivo hasta que esté sintonizado para otra cosa.</LocalMineralScanner_MessageExhaustedCaskets>
+  <!-- EN: no undiscovered {0} left -->
+  <LocalMineralScanner_NoFoggedCaskets>no queda ningún ejemplar sin descubrir de {0}</LocalMineralScanner_NoFoggedCaskets>
+  <!-- EN: disabled in mod settings -->
+  <LocalMineralScanner_CasketsDisabled>desactivado en los ajustes del mod</LocalMineralScanner_CasketsDisabled>
+
   <!-- EN: Local Mineral Scanner -->
   <LocalMineralScanner_SettingsCategory>Escáner de minerales local</LocalMineralScanner_SettingsCategory>
   <!-- EN: Placement -->
@@ -41,6 +52,11 @@
   <LocalMineralScanner_FindGuaranteedDays>Descubrimiento garantizado en</LocalMineralScanner_FindGuaranteedDays>
   <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
   <LocalMineralScanner_FindGuaranteedDaysDesc>Días laborables tras los cuales un descubrimiento está garantizado, para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+
+  <!-- EN: Can scan for ancient cryptosleep caskets -->
+  <LocalMineralScanner_ScanAncientCaskets>Puede escanear sarcófagos de criptosueño antiguos</LocalMineralScanner_ScanAncientCaskets>
+  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>Muestra el {0} y sus variantes en el menú de sintonización siempre que el mapa contenga alguno, para que el escáner pueda revelar uno sellado dentro de una estructura sin descubrir, como un peligro ancestral. Revelar un sarcófago no despierta lo que permanezca durmiente cerca.</LocalMineralScanner_ScanAncientCasketsDesc>
 
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>Coste de {0}: {1}</LocalMineralScanner_ResourceCost>

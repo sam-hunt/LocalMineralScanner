@@ -17,6 +17,12 @@ against Core-only vanilla data (this mod requires no DLC).
 | the Workshop title | 本地矿物扫描仪 | Identical to `LocalMineralScanner_SettingsCategory` (byte-for-byte), per `.steamworkshop/README.md`. |
 | ore vein (Workshop description) | 矿脉 | Reuses one of Core `LongRangeMineralScannerLump`'s own `questNameRules` `lump` variants (矿脉/矿块/矿产/矿藏/矿层/原矿), already cited above for "deposit" (矿藏); "vein" specifically maps to 矿脉 since the Workshop copy now distinguishes "contiguous ore vein" from the general "deposit" wording used elsewhere. |
 | unfog / fogged (Workshop description) | 解除……上的迷雾 / 被迷雾覆盖的 | Grounded against `TriggerUnfogged.label` = "触发解除迷雾". Never collapse to `揭示`/`尚未被揭示`: those lose *where* the ore hides (see the Russian glossary's matching row). |
+| ancient cryptosleep casket | 远古低温休眠舱 | vanilla `AncientCryptosleepCasket.label` / `AncientCryptosleepPod.label`; written in full in prose so it cannot be misread |
+| ancient danger | 远古威胁 | vanilla `LetterLabelAncientShrineWarning`; bare, no 「」, used as a category |
+| dormant | 休眠 | vanilla `DormantCompInactive` |
+| tuning menu (casket setting tooltip) | 调整菜单 | coined from the tuned-to row's 调整 |
+| something else (casket exhausted message) | 其他目标 | reuses 目标 from the vanilla tuning gizmo; caskets are not minerals |
+| casket letter label | 扫描到低温休眠舱 | mirrors 扫描到矿藏 |
 
 ## Grounding decisions
 
