@@ -11,6 +11,7 @@ Idéal pour ce moment critique où vous manquez de composants, lors d'un raid su
 [list]
 [*]Chaque découverte dissipe le brouillard de guerre sur un gisement de minerai contigu placé par la génération de la carte ou des événements existants. Rien de nouveau n'est généré
 [*]Réglez-le sur n'importe quel type de minerai exploitable, du jeu de base ou ajouté par un mod
+[*]Optionnel : trouvez les caissons d'hypersommeil antiques cachés dans des salles scellées, sans réveiller ce qui reste dormant à proximité
 [*]Deux colons peuvent l'utiliser en même temps, chacun à sa pleine vitesse de recherche
 [*]Peut être miniaturisé pour tenir dans une caravane, une navette ou une capsule de transport si besoin
 [*]Aucune nouvelle recherche : débloqué par le projet de recherche « scanner géologique à longue portée » du jeu de base

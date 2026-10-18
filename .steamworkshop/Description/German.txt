@@ -11,6 +11,7 @@ Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Üb
 [list]
 [*]Jeder Fund lichtet den Kriegsnebel über einer zusammenhängenden Erzader, die von der bestehenden Kartenerstellung oder von Ereignissen platziert wurde; nichts wird neu erzeugt
 [*]Einstellbar auf jeden abbaubaren Erztyp, ob aus dem Grundspiel oder von Mods
+[*]Optional: findet antike Kryptoschlafkapseln in versiegelten Räumen, ohne etwas zu wecken, das in der Nähe ruht
 [*]Zwei Kolonisten können ihn gleichzeitig bedienen, jeder mit voller Forschungsgeschwindigkeit
 [*]Demontierbar, um bei Bedarf in eine Karawane, Raumfähre oder Transportkapsel zu passen
 [*]Keine neue Forschung: wird durch das Forschungsprojekt des Langstreckenscanners aus dem Grundspiel freigeschaltet
