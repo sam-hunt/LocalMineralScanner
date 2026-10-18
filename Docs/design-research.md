@@ -218,9 +218,13 @@ queries rather than the tracked list, so turning it off needs no map plumbing: t
 vanish and a scanner still tuned to a casket stops through the exhaustion gate, with a
 reason naming the setting rather than a false "none undiscovered". The per-def cache tests
 every cell of a multi-cell thing, since a partial reveal can leave either casket cell
-fogged. Strings take the plural
-and the indefinite article from the active `LanguageWorker` so translators get vanilla's
-forms.
+fogged. The find letter takes the indefinite article from the active `LanguageWorker`; the
+exhausted message and inspect fragment take the bare singular label and are phrased
+around it ("no undiscovered {0} remains"). Not the plural: `Pluralize` on the multi-word
+casket label is wrong in four shipped languages (decompile- and tar-verified, 1.7). French
+and Spanish suffix the last word ("caisson d'hypersommeil antiques"), German falls back to
+the English rules ("antike Kryptoschlafkapsels"), and pt-BR returns the singular unchanged;
+none of their `WordInfo` plural tables lists the label. Only Russian has a lookup entry.
 
 ## Interaction cell mechanics (verified)
 

@@ -204,14 +204,9 @@ public class CompLocalMineralScanner : CompScanner
             return "LocalMineralScanner_NoFoggedDeposits".Translate(target.building.mineableThing.label);
         }
         return LocalMineralScannerMod.Settings.scanAncientCaskets
-            ? "LocalMineralScanner_NoFoggedCaskets".Translate(PluralLabel(target))
+            ? "LocalMineralScanner_NoFoggedCaskets".Translate(target.label)
             : "LocalMineralScanner_CasketsDisabled".Translate();
     }
-
-    // The casket strings take the plural ("ancient cryptosleep caskets"); vanilla's
-    // LanguageWorker forms it per language, resolving the noun's gender itself.
-    private static string PluralLabel(ThingDef casket) =>
-        Find.ActiveLanguageWorker.Pluralize(casket.label);
 
     // The job driver's per-tick entry point, replacing CompScanner.Used: its body verbatim
     // (decompile-verified, 1.6: stamp lastScanTick/lastUserSpeed, add speed/60000 worked
@@ -320,7 +315,7 @@ public class CompLocalMineralScanner : CompScanner
         {
             Messages.Message(
                 casket
-                    ? "LocalMineralScanner_MessageExhaustedCaskets".Translate(PluralLabel(display))
+                    ? "LocalMineralScanner_MessageExhaustedCaskets".Translate(display.label)
                     : "LocalMineralScanner_MessageExhausted".Translate(display.label),
                 parent,
                 MessageTypeDefOf.TaskCompletion);
