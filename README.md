@@ -15,7 +15,7 @@
 Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mountains, and the only ways to get at it are to tunnel blindly or to fetch it from another tile with the long-range mineral scanner. This mod adds the missing middle option: a pawn-operated 2×2 building that scans the map you are already on and unfogs the deposits map generation actually placed there.
 
 - **Reveals real ore** — each successful scan unfogs one contiguous deposit of the tuned mineral; nothing is spawned new
-- **Tunable** — pick the mineral you want, like the long-range mineral scanner, plus any modded ore the map holds
+- **Tunable** — pick the mineral you want, like the long-range mineral scanner, plus any modded ore the map holds, or "any mineral" to sweep them all
 - **Two operators** — twin consoles let two pawns scan at once, each contributing their full research speed
 
 ## Features
@@ -24,12 +24,13 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 
 - **Real deposits only**: each find unfogs one contiguous deposit that map generation placed. Fully hidden deposits are found first; partially exposed ones are the fallback
 - **Tunable target**: every ore the current map holds, vanilla or modded, asteroid ores included. A newly built scanner starts on gold, or on the most valuable mineral still hidden on the map if there is no gold
+- **Any mineral**: tune it to "any mineral" and each find reveals a deposit of a random ore still hidden on the map, so one tuning sweeps everything without retuning as each ore runs out
 - **Two operators**: two pawns can scan simultaneously, each contributing their full research speed — a genuine second seat, not queueing
 - **Same effort per find** as the vanilla ground-penetrating scanner, with results limited to the current map
 
 ### Knows When It's Done
 
-- **Pauses when exhausted**: when no undiscovered deposits of the tuned mineral remain, the scanner stops consuming pawn labor and keeps its progress
+- **Pauses when exhausted**: when no undiscovered deposits of the tuned mineral remain (or nothing at all, on "any mineral"), the scanner stops consuming pawn labor and keeps its progress
 - **Says so everywhere**: the find that reveals the last deposit says so in a message, the inspect pane explains why the scanner is idle, and the tuning menu greys out exhausted minerals
 
 ### Placement & Progression
@@ -44,6 +45,7 @@ Never strip-mine again. Vanilla RimWorld hides most of a map's ore inside the mo
 - **Scan times**: the random find interval and the guaranteed-find time
 - **Cost and mass**: steel, component and advanced component counts, and the uninstalled weight
 - **Ancient caskets** (off by default): let the scanner also be tuned to ancient cryptosleep caskets, revealing one sealed inside an undiscovered structure such as an ancient danger without waking anything
+- **Caskets in "any mineral" scans** (off by default): let an "any mineral" find turn up a casket too, with the same chance as each ore
 - All settings take effect as soon as the window closes, no restart needed
 
 ## Requirements

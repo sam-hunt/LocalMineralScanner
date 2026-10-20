@@ -25,6 +25,9 @@ namespace LocalMineralScanner;
 //  - scanAncientCaskets writes nothing: MapComponent_FoggedMinerals and the comp read the
 //    field on every query, so the tuning menu and the exhaustion gate follow the checkbox
 //    the moment it is ticked.
+//  - randomIncludesCaskets likewise: MapComponent_FoggedMinerals reads it when it defines
+//    the "any mineral" pool. It only matters with scanAncientCaskets on, so its row is drawn
+//    indented and disabled under that one.
 // The XML carries the same values as the *Default consts below (they are what a player who
 // never opens the settings gets, and what Restore defaults returns to); the XML copies are
 // documentation, since Apply() overwrites them at startup. Keep the two in step.
@@ -49,6 +52,7 @@ public class LocalMineralScannerSettings : ModSettings
     public const int AdvancedComponentCostDefault = 1;
     public const float MassDefault = 40f;
     public const bool ScanAncientCasketsDefault = false;
+    public const bool RandomIncludesCasketsDefault = false;
 
     public bool requireUnroofed = RequireUnroofedDefault;
     public bool minifiable = MinifiableDefault;
@@ -59,6 +63,7 @@ public class LocalMineralScannerSettings : ModSettings
     public int advancedComponentCost = AdvancedComponentCostDefault;
     public float mass = MassDefault;
     public bool scanAncientCaskets = ScanAncientCasketsDefault;
+    public bool randomIncludesCaskets = RandomIncludesCasketsDefault;
 
     // Trailing space each section leaves below itself.
     private const float SectionGap = 18f;
@@ -79,6 +84,7 @@ public class LocalMineralScannerSettings : ModSettings
         Scribe_Values.Look(ref advancedComponentCost, "advancedComponentCost", AdvancedComponentCostDefault);
         Scribe_Values.Look(ref mass, "mass", MassDefault);
         Scribe_Values.Look(ref scanAncientCaskets, "scanAncientCaskets", ScanAncientCasketsDefault);
+        Scribe_Values.Look(ref randomIncludesCaskets, "randomIncludesCaskets", RandomIncludesCasketsDefault);
     }
 
     public void ResetToDefaults()
@@ -92,6 +98,7 @@ public class LocalMineralScannerSettings : ModSettings
         advancedComponentCost = AdvancedComponentCostDefault;
         mass = MassDefault;
         scanAncientCaskets = ScanAncientCasketsDefault;
+        randomIncludesCaskets = RandomIncludesCasketsDefault;
     }
 
     // Writes the settings onto the live scanner def and its comp properties (see the header
@@ -234,8 +241,39 @@ public class LocalMineralScannerSettings : ModSettings
             "LocalMineralScanner_ScanAncientCaskets".Translate(),
             ref scanAncientCaskets,
             "LocalMineralScanner_ScanAncientCasketsDesc".Translate(ThingDefOf.AncientCryptosleepCasket.label));
+        DependentCheckboxRow(listing,
+            "LocalMineralScanner_RandomIncludesCaskets".Translate(),
+            ref randomIncludesCaskets,
+            "LocalMineralScanner_RandomIncludesCasketsDesc".Translate(ThingDefOf.AncientCryptosleepCasket.label),
+            enabled: scanAncientCaskets);
 
         listing.Gap(SectionGap);
+    }
+
+    // A checkbox that depends on the one above it: Listing_Standard.CheckboxLabeled's body
+    // (decompile-verified, 1.7: GetRect, highlight and tooltip, Widgets.CheckboxLabeled, the
+    // listing's vertical gap) with the indent and Widgets' disabled flag the listing's own
+    // overloads do not expose, and the label greyed to match. The tooltip stays live while
+    // disabled so the player can read what the row would do.
+    private static void DependentCheckboxRow(Listing_Standard listing, string label, ref bool value,
+        string tooltip, bool enabled)
+    {
+        const float indent = 24f;
+        Rect rect = listing.GetRect(Text.CalcHeight(label, listing.ColumnWidth - indent));
+        rect.xMin += indent;
+        if (Mouse.IsOver(rect))
+        {
+            Widgets.DrawHighlight(rect);
+        }
+        TooltipHandler.TipRegion(rect, tooltip);
+        Color prevColor = GUI.color;
+        if (!enabled)
+        {
+            GUI.color = Color.gray;
+        }
+        Widgets.CheckboxLabeled(rect, label, ref value, disabled: !enabled);
+        GUI.color = prevColor;
+        listing.Gap(listing.verticalSpacing);
     }
 
     // " (<scanner label>)" when the slider sits on that vanilla scanner's value, else

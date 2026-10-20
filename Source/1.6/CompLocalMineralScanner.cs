@@ -51,12 +51,26 @@
 //   to exhaustion (a pawn mining or exploring into the last deposit) are rare and
 //   player-caused; they get only the inspect line and job-fail text.
 // - The tuning menu greys out exhausted minerals with a parenthesised reason (the disabled
-//   FloatMenuOption idiom). No auto-retune and no "any mineral" option.
+//   FloatMenuOption idiom). No auto-retune: the "any mineral" tuning below is the player's
+//   explicit way to sweep a map.
 // - Default target: gold, for parity with CompLongRangeMineralScanner. Gold is rare (~2.9%
 //   of ore scatter), so on its FIRST spawn only, a scanner whose target is exhausted tunes
 //   itself to the most valuable mineral still undiscovered
 //   (MapComponent_FoggedMinerals.MostValuableFoggedDeposit). Save-load and reinstall never
 //   touch the saved target; pendingInitialTarget's declaration explains the one-shot plumbing.
+//
+// "Any mineral" (randomTarget) is the tuning menu's first row. Each find then draws a
+// uniformly random def from the pool MapComponent_FoggedMinerals defines (every ore with a
+// fogged cell, plus caskets when both casket settings are on) and reveals one deposit of it
+// by that def's rules; a def the reveal rules reject (a casket guarded by a dormant occupant)
+// drops out and another is drawn, so a successful roll is never wasted. Uniform per def, not
+// per deposit, and no special weighting for caskets: the player chose the pool, and two
+// casket defs on one map count twice by design. The letter names what was found; the gate,
+// inspect line and exhaustion message switch to pool-wide wording, so one ore running out
+// never stops a sweep. Nearest vanilla precedent is CompDeepScanner, whose every find rolls
+// its resource (Docs/design-research.md, "Any-mineral mode"). targetMineable stays saved
+// underneath as the leftover of the last explicit tuning; choosing any specific row clears
+// the flag. The button shows the building's own icon, since no def stands for the pool.
 //
 // The target-mineral gizmo follows CompLongRangeMineralScanner's (same FloatMenu idiom and
 // vanilla Keyed strings), retargeted at this comp so multi-select tuning works across
@@ -64,7 +78,8 @@
 // scanner's fixed list (that header has the rationale). The menu lists the ores this map
 // holds, plus the current target so the button's label always has a row and the menu is
 // never empty (vanilla's FloatMenu errors and closes on zero options); rows whose every
-// cell is already revealed are greyed, never hidden.
+// cell is already revealed are greyed, never hidden, and the "any mineral" row greys the
+// same way when its pool is empty.
 
 using System.Collections.Generic;
 using System.Text;
@@ -82,6 +97,10 @@ public class CompProperties_LocalMineralScanner : CompProperties_Scanner
 public class CompLocalMineralScanner : CompScanner
 {
     private ThingDef targetMineable;
+
+    // The "any mineral" tuning (see the header). While set, targetMineable is only the
+    // leftover of the last explicit tuning and the find draws its own def.
+    private bool randomTarget;
 
     // Cached in PostSpawnSetup (re-fetched on minify/reinstall like the base comp's
     // powerComp): Map.GetComponent is a linear scan, too heavy for CanUseNow's call rate.
@@ -135,6 +154,7 @@ public class CompLocalMineralScanner : CompScanner
     {
         base.PostExposeData();
         Scribe_Defs.Look(ref targetMineable, "targetMineable");
+        Scribe_Values.Look(ref randomTarget, "randomTarget", defaultValue: false);
         Scribe_Values.Look(ref pendingInitialTarget, "pendingInitialTarget", defaultValue: false);
         if (Scribe.mode == LoadSaveMode.PostLoadInit && targetMineable == null)
         {
@@ -160,7 +180,7 @@ public class CompLocalMineralScanner : CompScanner
             }
             if (TargetExhausted)
             {
-                return ExhaustedReason(targetMineable);
+                return ExhaustedReason();
             }
             return true;
         }
@@ -191,20 +211,28 @@ public class CompLocalMineralScanner : CompScanner
         }
     }
 
-    // True when no fogged cell of the tuned mineral remains on the map. Only meaningful while
-    // spawned: foggedMinerals is the spawn-time map's component.
-    private bool TargetExhausted => !foggedMinerals.AnyFoggedDepositOf(targetMineable);
+    // True when no fogged cell of the tuned mineral remains on the map, or in "any mineral"
+    // mode when its whole pool is revealed. Only meaningful while spawned: foggedMinerals is
+    // the spawn-time map's component.
+    private bool TargetExhausted => randomTarget
+        ? !foggedMinerals.AnyFoggedRandomTarget()
+        : !foggedMinerals.AnyFoggedDepositOf(targetMineable);
 
-    // Why the target yields nothing: the setting is off (a casket target only), or no fogged
-    // cell of it remains. The menu's greyed rows use the same text in parentheses.
-    private static TaggedString ExhaustedReason(ThingDef target)
+    // Why the tuning yields nothing: the pool is swept ("any mineral"), the setting is off (a
+    // casket target only), or no fogged cell of the target remains. The menu's greyed rows
+    // use the same text in parentheses.
+    private TaggedString ExhaustedReason()
     {
-        if (!MapComponent_FoggedMinerals.IsAncientCasket(target))
+        if (randomTarget)
         {
-            return "LocalMineralScanner_NoFoggedDeposits".Translate(target.building.mineableThing.label);
+            return "LocalMineralScanner_NothingUndiscovered".Translate();
+        }
+        if (!MapComponent_FoggedMinerals.IsAncientCasket(targetMineable))
+        {
+            return "LocalMineralScanner_NoFoggedDeposits".Translate(targetMineable.building.mineableThing.label);
         }
         return LocalMineralScannerMod.Settings.scanAncientCaskets
-            ? "LocalMineralScanner_NoFoggedCaskets".Translate(target.label)
+            ? "LocalMineralScanner_NoFoggedCaskets".Translate(targetMineable.label)
             : "LocalMineralScanner_CasketsDisabled".Translate();
     }
 
@@ -264,7 +292,7 @@ public class CompLocalMineralScanner : CompScanner
         if (parent.Spawned && TargetExhausted)
         {
             sb.AppendLine();
-            sb.Append(ExhaustedReason(targetMineable).CapitalizeFirst());
+            sb.Append(ExhaustedReason().CapitalizeFirst());
         }
         return sb.ToString();
     }
@@ -278,22 +306,26 @@ public class CompLocalMineralScanner : CompScanner
         }
         lastFindTick = tick;
         Map map = parent.Map;
-        bool casket = MapComponent_FoggedMinerals.IsAncientCasket(targetMineable);
-        List<IntVec3> revealCells = casket ? FindCasketToReveal(map) : FindDepositToReveal(map);
+        ThingDef target = targetMineable;
+        List<IntVec3> revealCells = randomTarget
+            ? FindRandomToReveal(map, out target)
+            : FindTargetToReveal(map, target);
         if (revealCells.NullOrEmpty())
         {
             // Unreachable while the CanUseNow gate and the Find*ToReveal methods agree on what
             // counts as undiscovered (the casket guard is the one deliberate gap, see the
             // header); Operate still resets the accumulator, so say so if it ever happens.
             Log.Warning("[LocalMineralScanner] Find succeeded but no undiscovered "
-                + targetMineable.defName + " was found on " + map + "; progress reset.");
+                + (randomTarget ? "target of any kind" : targetMineable.defName)
+                + " was found on " + map + "; progress reset.");
             return;
         }
         foreach (IntVec3 cell in revealCells)
         {
             map.fogGrid.Unfog(cell);
         }
-        ThingDef display = MapComponent_FoggedMinerals.DisplayDef(targetMineable);
+        bool casket = MapComponent_FoggedMinerals.IsAncientCasket(target);
+        ThingDef display = MapComponent_FoggedMinerals.DisplayDef(target);
         string letterLabel;
         TaggedString letterText;
         if (casket)
@@ -313,24 +345,51 @@ public class CompLocalMineralScanner : CompScanner
         // post-reveal state.
         if (TargetExhausted)
         {
-            Messages.Message(
-                casket
+            TaggedString message = randomTarget
+                ? "LocalMineralScanner_MessageExhaustedAll".Translate()
+                : casket
                     ? "LocalMineralScanner_MessageExhaustedCaskets".Translate(display.label)
-                    : "LocalMineralScanner_MessageExhausted".Translate(display.label),
-                parent,
-                MessageTypeDefOf.TaskCompletion);
+                    : "LocalMineralScanner_MessageExhausted".Translate(display.label);
+            Messages.Message(message, parent, MessageTypeDefOf.TaskCompletion);
         }
+    }
+
+    // One reveal of the given target by its kind's rules, or null when it has nothing left.
+    private List<IntVec3> FindTargetToReveal(Map map, ThingDef target) =>
+        MapComponent_FoggedMinerals.IsAncientCasket(target)
+            ? FindCasketToReveal(map, target)
+            : FindDepositToReveal(map, target);
+
+    // "Any mineral": a uniformly random def from the pool, then one reveal of it. A def the
+    // reveal rules reject drops out and another is drawn (see the header); null only when
+    // every def in the pool is rejected, which the CanUseNow gate cannot foresee.
+    private List<IntVec3> FindRandomToReveal(Map map, out ThingDef target)
+    {
+        List<ThingDef> pool = foggedMinerals.FoggedRandomTargets();
+        while (pool.Count > 0)
+        {
+            int index = Rand.Range(0, pool.Count);
+            List<IntVec3> cells = FindTargetToReveal(map, pool[index]);
+            if (!cells.NullOrEmpty())
+            {
+                target = pool[index];
+                return cells;
+            }
+            pool.RemoveAt(index);
+        }
+        target = null;
+        return null;
     }
 
     // Returns the fogged cells of one chosen casket of the target def, or null when none
     // remain. Candidates rank by tier, lowest first, random within a tier: 0 fully fogged,
     // 1 partially fogged, each +2 when a fogged cell is the centre of a live warning trigger
     // (see the header). A casket with a dormant occupant on a fogged cell is skipped outright.
-    private List<IntVec3> FindCasketToReveal(Map map)
+    private List<IntVec3> FindCasketToReveal(Map map, ThingDef target)
     {
         HashSet<IntVec3> warningCentres = null;
         List<List<IntVec3>>[] tiers = new List<List<IntVec3>>[4];
-        foreach (Thing casket in map.listerThings.ThingsOfDef(targetMineable))
+        foreach (Thing casket in map.listerThings.ThingsOfDef(target))
         {
             List<IntVec3> fogged = null;
             bool disarmsWarning = false;
@@ -412,9 +471,9 @@ public class CompLocalMineralScanner : CompScanner
     // Returns the fogged cells of one chosen deposit: a random fully-fogged cluster of the
     // target mineable, falling back to a random partially-fogged one; null when none remain
     // (the CanUseNow gate applies the same test, so DoFind only warns).
-    private List<IntVec3> FindDepositToReveal(Map map)
+    private List<IntVec3> FindDepositToReveal(Map map, ThingDef target)
     {
-        List<Thing> things = map.listerThings.ThingsOfDef(targetMineable);
+        List<Thing> things = map.listerThings.ThingsOfDef(target);
         if (things.Count == 0)
         {
             return null;
@@ -489,21 +548,54 @@ public class CompLocalMineralScanner : CompScanner
         {
             yield break;
         }
-        ThingDef targetDisplay = MapComponent_FoggedMinerals.DisplayDef(targetMineable);
+        string targetLabel;
+        Texture2D icon;
+        float iconAngle = 0f;
+        Vector2 iconOffset = Vector2.zero;
+        if (randomTarget)
+        {
+            targetLabel = "LocalMineralScanner_AnyMineral".Translate();
+            icon = parent.def.uiIcon;
+        }
+        else
+        {
+            ThingDef targetDisplay = MapComponent_FoggedMinerals.DisplayDef(targetMineable);
+            targetLabel = targetDisplay.LabelCap;
+            icon = targetDisplay.uiIcon;
+            iconAngle = targetDisplay.uiIconAngle;
+            iconOffset = targetDisplay.uiIconOffset;
+        }
         Command_Action command = new Command_Action
         {
-            defaultLabel = "CommandSelectMineralToScanFor".Translate() + ": " + targetDisplay.LabelCap,
+            defaultLabel = "CommandSelectMineralToScanFor".Translate() + ": " + targetLabel,
             defaultDesc = "CommandSelectMineralToScanForDesc".Translate(),
-            icon = targetDisplay.uiIcon,
-            iconAngle = targetDisplay.uiIconAngle,
-            iconOffset = targetDisplay.uiIconOffset,
+            icon = icon,
+            iconAngle = iconAngle,
+            iconOffset = iconOffset,
             action = delegate
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
+                string anyLabel = "LocalMineralScanner_AnyMineral".Translate();
+                if (foggedMinerals.AnyFoggedRandomTarget())
+                {
+                    options.Add(new FloatMenuOption(anyLabel, delegate
+                    {
+                        foreach (CompLocalMineralScanner comp in SelectedScanners())
+                        {
+                            comp.randomTarget = true;
+                        }
+                    }));
+                }
+                else
+                {
+                    options.Add(new FloatMenuOption(
+                        anyLabel + " (" + "LocalMineralScanner_NoneUndiscovered".Translate() + ")", null));
+                }
                 foreach (ThingDef mineable in foggedMinerals.TrackedDefs)
                 {
                     ThingDef localMineable = mineable;
-                    if (localMineable != targetMineable && !foggedMinerals.IsPresent(localMineable))
+                    bool isCurrent = !randomTarget && localMineable == targetMineable;
+                    if (!isCurrent && !foggedMinerals.IsPresent(localMineable))
                     {
                         continue;
                     }
@@ -523,16 +615,10 @@ public class CompLocalMineralScanner : CompScanner
                     }
                     options.Add(new FloatMenuOption(label, delegate
                     {
-                        foreach (object selectedObject in Find.Selector.SelectedObjects)
+                        foreach (CompLocalMineralScanner comp in SelectedScanners())
                         {
-                            if (selectedObject is Thing thing)
-                            {
-                                CompLocalMineralScanner comp = thing.TryGetComp<CompLocalMineralScanner>();
-                                if (comp != null)
-                                {
-                                    comp.targetMineable = localMineable;
-                                }
-                            }
+                            comp.targetMineable = localMineable;
+                            comp.randomTarget = false;
                         }
                     }, MenuOptionPriority.Default, null, null, 29f,
                     (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, display)));
@@ -541,5 +627,21 @@ public class CompLocalMineralScanner : CompScanner
             }
         };
         yield return command;
+    }
+
+    // Every selected scanner's comp, so a menu choice tunes the whole multi-selection.
+    private static IEnumerable<CompLocalMineralScanner> SelectedScanners()
+    {
+        foreach (object selectedObject in Find.Selector.SelectedObjects)
+        {
+            if (selectedObject is Thing thing)
+            {
+                CompLocalMineralScanner comp = thing.TryGetComp<CompLocalMineralScanner>();
+                if (comp != null)
+                {
+                    yield return comp;
+                }
+            }
+        }
     }
 }

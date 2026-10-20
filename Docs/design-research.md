@@ -94,8 +94,9 @@ that exhausts the tuned mineral post the drill's `Messages.Message(TaskCompletio
 targeting the scanner beside its find letter (the message is the vanilla "ran dry" channel;
 a trailing letter paragraph was tried first and read as less consistent with the drill);
 grey out exhausted minerals in the tuning menu (the disabled-`FloatMenuOption` idiom:
-`Building_Bed`'s "UseMedicalBed (NotInjured)", `Zone_Fishing`). Rejected: auto-retune /
-"any" option (no precedent, silently overrides a player setting); an Alert (none for drills
+`Building_Bed`'s "UseMedicalBed (NotInjured)", `Zone_Fishing`). Rejected: auto-retune (no
+precedent, silently overrides a player setting; the player-chosen "any mineral" tuning is
+a different thing, see the next section); an Alert (none for drills
 either; roofing is already covered by `Alert_CannotBeUsedRoofed`); a spawn-time warning like
 `MessageGroundPenetratingScannerNoBedrock` (that condition is permanent, ours is fixed by
 retuning and is visible in the inspect pane); announcing exhaustion by other routes (a pawn
@@ -125,6 +126,57 @@ reinstall; the saved value overrides the re-arm. (A never-installed minified sca
 trade or quest reward - saves the flag still set and correctly gets the fallback at its
 first install; it cannot have been tuned, as `MinifiedThing.GetGizmos` does not forward
 inner-comp gizmos.)
+
+## Any-mineral mode (verified, 1.7.4981)
+
+A tuning that sweeps the map: each find reveals a deposit of a random ore that still has
+fogged cells, so the player never has to retune as each ore runs out. Vanilla precedent,
+decompile-verified: `CompLongRangeMineralScanner` has no such mode (its gizmo offers the
+fixed `GenStep_PreciousLump.mineables` list, gold default), while `CompDeepScanner` has no
+tuning at all and rolls every find's resource
+(`DefDatabase<ThingDef>.AllDefs.RandomElementByWeight(d => d.deepCommonality)`). So "a
+scanner whose finds are random" is vanilla; "random as one option beside the fixed ones" is
+ours. It is an explicit row the player picks, which is why the Exhaustion UX rejection of
+auto-retuning does not apply: nothing is overridden.
+
+Adopted (`CompLocalMineralScanner` header has the plumbing):
+
+- **The pool** is defined once, in `MapComponent_FoggedMinerals`: every ore with a fogged
+  cell, plus every casket def with one when both `scanAncientCaskets` and
+  `randomIncludesCaskets` are on. Both settings are read at query time, so a running sweep
+  follows the checkboxes with no settings-to-map plumbing, as the casket toggle already did.
+- **Uniform per def**, not weighted by deposit count or deep commonality, and no collapsing
+  of the casket defs into one slot. Per-def uniform is what "a random type each find" means
+  to the player and surfaces rare ores sooner than a deposit-weighted draw; caskets count
+  one slot per def because a player who opted them in wants them, and a map holding both
+  Core casket defs simply offers them twice. A weighting was considered and dropped as
+  complexity without a user.
+- **Caskets opt in twice**: the random pool excludes them unless the second setting is on
+  (default off). The casket row stays a deliberate tune: it is a mineral scanner by name,
+  a casket find spends a roll on a non-mineral, and leaving caskets out by default means
+  the casket toggle alone can never change a running sweep's pool.
+- **Reject-and-redraw**: a def the reveal rules refuse (a casket whose only fogged cells
+  hold a dormant occupant, the one gap between the gate and the reveal) drops out of the
+  pool and another def is drawn, so a successful roll is never spent on the gate's blind
+  spot. The "find succeeded but nothing found" warning remains for the case where every
+  def is refused.
+- **Exhaustion** switches to pool-wide: the gate, inspect fragment and the find message
+  (`LocalMineralScanner_NothingUndiscovered`, `LocalMineralScanner_MessageExhaustedAll`)
+  say "nothing undiscovered left to find" rather than naming a mineral, so they hold
+  whether or not caskets are in the pool. A single ore running out never stops a sweep and
+  never posts the per-mineral message.
+- **Gizmo**: the button reads "Scan for: Any mineral" with the building's own `uiIcon`,
+  since no def stands for the pool and vanilla ships no "random" command texture (the
+  assembly's `UI/` strings were grepped). The row greys with the existing "(none
+  undiscovered)" reason when the pool is empty, like the per-ore rows.
+- **Saved state**: one scribed bool beside the saved target, default false, so old saves
+  load unchanged and a minified scanner keeps the mode. The saved target is left as the
+  leftover of the last explicit tuning; picking any specific row clears the flag, and the
+  menu no longer forces the leftover's row in while the flag is set.
+- **Settings row**: `randomIncludesCaskets` is drawn indented and disabled under the casket
+  toggle. `Listing_Standard.CheckboxLabeled` has no disabled overload (1.7: only the
+  `tooltip` and `tabIn` forms), so `DependentCheckboxRow` reproduces its body around
+  `Widgets.CheckboxLabeled(..., disabled:)` with the label greyed.
 
 ## Ancient cryptosleep caskets (verified, 1.7.4981; the types involved are identical on 1.6)
 
@@ -303,8 +355,8 @@ none of their `WordInfo` plural tables lists the label. Only Russian has a looku
    cannot see which list an ore belongs to, so it reads as arbitrary), plus the scanner's
    current target, the dropdown convention that also keeps the button label and the menu in
    agreement after a reinstall and guarantees a non-empty menu (`FloatMenu` logs an error
-   and closes on zero options); exhausted entries are greyed out rather than filtered; no
-   "any mineral" option (see Exhaustion UX). Presence and fog both come from the event-invalidated
+   and closes on zero options); exhausted entries are greyed out rather than filtered; an
+   "any mineral" row leads the menu (see Any-mineral mode). Presence and fog both come from the event-invalidated
    cache in `MapComponent_FoggedMinerals`, so ore added to a live map by any route (skyfaller,
    mod mechanic, debug spawn then refog) is offered at the next query. Rejected filters:
    `mineableScatterCommonality > 0` (misses asteroid and landmark ores) and `mineable &&

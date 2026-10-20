@@ -58,6 +58,13 @@
 // is the def whose label and icon stand for a target: the ore itself for a mineable, the
 // casket def for a casket.
 //
+// The "any mineral" tuning (CompLocalMineralScanner's randomTarget) draws from a pool this
+// component defines: every ore with a fogged cell, plus every casket def with one when both
+// scanAncientCaskets and randomIncludesCaskets are on (the pool is the one place the second
+// setting is read, so it too needs no plumbing). AnyFoggedRandomTarget is that mode's O(1)
+// exhaustion gate, off two flags Rebuild sets beside the per-def set; FoggedRandomTargets
+// lists the pool, in TrackedDefs order, for the find itself and nothing else.
+//
 // RimWorld instantiates every MapComponent subclass on every map automatically, so no
 // registration is needed. Subscription happens in FinalizeInit (runs on both mapgen and
 // save-load, after map systems exist); queries before that still work off the initial
@@ -74,6 +81,8 @@ public class MapComponent_FoggedMinerals : MapComponent
 {
     private readonly HashSet<ThingDef> defsPresent = new HashSet<ThingDef>();
     private readonly HashSet<ThingDef> defsWithFoggedCells = new HashSet<ThingDef>();
+    private bool anyFoggedOre;
+    private bool anyFoggedCasket;
     private bool dirty = true;
     private bool subscribed;
 
@@ -136,6 +145,42 @@ public class MapComponent_FoggedMinerals : MapComponent
             Rebuild();
         }
         return Enabled(targetDef) && defsWithFoggedCells.Contains(targetDef);
+    }
+
+    // Whether caskets belong to the "any mineral" pool (see the header).
+    private static bool RandomPoolIncludesCaskets =>
+        LocalMineralScannerMod.Settings.scanAncientCaskets && LocalMineralScannerMod.Settings.randomIncludesCaskets;
+
+    // True when the "any mineral" pool holds anything: an ore with a fogged cell, or a casket
+    // with one while caskets are in the pool.
+    public bool AnyFoggedRandomTarget()
+    {
+        if (dirty)
+        {
+            Rebuild();
+        }
+        return anyFoggedOre || (RandomPoolIncludesCaskets && anyFoggedCasket);
+    }
+
+    // The "any mineral" pool itself, in TrackedDefs order, as a fresh list the caller may
+    // consume. Empty exactly when AnyFoggedRandomTarget is false.
+    public List<ThingDef> FoggedRandomTargets()
+    {
+        if (dirty)
+        {
+            Rebuild();
+        }
+        bool caskets = RandomPoolIncludesCaskets;
+        List<ThingDef> pool = new List<ThingDef>();
+        List<ThingDef> tracked = TrackedDefs;
+        for (int i = 0; i < tracked.Count; i++)
+        {
+            if (defsWithFoggedCells.Contains(tracked[i]) && (caskets || !IsAncientCasket(tracked[i])))
+            {
+                pool.Add(tracked[i]);
+            }
+        }
+        return pool;
     }
 
     // The tracked mineable with fogged cells whose deposits are worth most per cell, or null
@@ -211,6 +256,8 @@ public class MapComponent_FoggedMinerals : MapComponent
         dirty = false;
         defsPresent.Clear();
         defsWithFoggedCells.Clear();
+        anyFoggedOre = false;
+        anyFoggedCasket = false;
         FogGrid fog = map.fogGrid;
         List<ThingDef> tracked = TrackedDefs;
         for (int d = 0; d < tracked.Count; d++)
@@ -227,6 +274,14 @@ public class MapComponent_FoggedMinerals : MapComponent
                 if (AnyCellFogged(things[i], fog))
                 {
                     defsWithFoggedCells.Add(def);
+                    if (IsAncientCasket(def))
+                    {
+                        anyFoggedCasket = true;
+                    }
+                    else
+                    {
+                        anyFoggedOre = true;
+                    }
                     break;
                 }
             }
