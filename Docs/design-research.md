@@ -165,10 +165,14 @@ Adopted (`CompLocalMineralScanner` header has the plumbing):
   say "nothing undiscovered left to find" rather than naming a mineral, so they hold
   whether or not caskets are in the pool. A single ore running out never stops a sweep and
   never posts the per-mineral message.
-- **Gizmo**: the button reads "Scan for: Any mineral" with the building's own `uiIcon`,
-  since no def stands for the pool and vanilla ships no "random" command texture (the
-  assembly's `UI/` strings were grepped). The row greys with the existing "(none
-  undiscovered)" reason when the pool is empty, like the per-ore rows.
+- **Gizmo**: the button reads "Scan for: Any mineral" with vanilla's
+  `UI/Overlays/QuestionMark` texture, since no def stands for the pool. Vanilla uses the
+  same texture as a UI icon for an unknown quest reward (`Reward_Unknown`, and the camp and
+  shuttle loot rewards), loaded the same way: a static `ContentFinder<Texture2D>.Get` on a
+  `[StaticConstructorOnStartup]` class. The building's own `uiIcon` was tried first and
+  dropped: it reads as a duplicate of the Copy gizmo that sits beside it. The row greys
+  with the existing "(none undiscovered)" reason when the pool is empty, like the per-ore
+  rows.
 - **Saved state**: one scribed bool beside the saved target, default false, so old saves
   load unchanged and a minified scanner keeps the mode. The saved target is left as the
   leftover of the last explicit tuning; picking any specific row clears the flag, and the
