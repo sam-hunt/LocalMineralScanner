@@ -70,9 +70,9 @@
 // never stops a sweep. Nearest vanilla precedent is CompDeepScanner, whose every find rolls
 // its resource (Docs/design-research.md, "Any-mineral mode"). targetMineable stays saved
 // underneath as the leftover of the last explicit tuning; choosing any specific row clears
-// the flag. No def stands for the pool, so the button shows vanilla's question-mark overlay
-// (the icon Reward_Unknown gives an unknown quest reward); the building's own icon would
-// read as a duplicate of the Copy gizmo beside it.
+// the flag. No def stands for the pool, so the button shows vanilla's question-mark icon
+// (the one Reward_PossibleFutureReward gives a not-yet-known quest reward); the building's
+// own icon would read as a duplicate of the Copy gizmo beside it.
 //
 // The target-mineral gizmo follows CompLongRangeMineralScanner's (same FloatMenu idiom and
 // vanilla Keyed strings), retargeted at this comp so multi-select tuning works across
@@ -97,11 +97,11 @@ public class CompProperties_LocalMineralScanner : CompProperties_Scanner
 }
 
 // StaticConstructorOnStartup: RandomTargetIcon must load on the main thread at startup, the
-// attribute vanilla's Reward_Unknown carries for the same texture.
+// attribute vanilla's reward classes carry for their question-mark textures.
 [StaticConstructorOnStartup]
 public class CompLocalMineralScanner : CompScanner
 {
-    private static readonly Texture2D RandomTargetIcon = ContentFinder<Texture2D>.Get("UI/Overlays/QuestionMark");
+    private static readonly Texture2D RandomTargetIcon = ContentFinder<Texture2D>.Get("UI/Icons/QuestionMark");
 
     private ThingDef targetMineable;
 

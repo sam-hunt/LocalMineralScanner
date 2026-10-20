@@ -166,13 +166,18 @@ Adopted (`CompLocalMineralScanner` header has the plumbing):
   whether or not caskets are in the pool. A single ore running out never stops a sweep and
   never posts the per-mineral message.
 - **Gizmo**: the button reads "Scan for: Any mineral" with vanilla's
-  `UI/Overlays/QuestionMark` texture, since no def stands for the pool. Vanilla uses the
-  same texture as a UI icon for an unknown quest reward (`Reward_Unknown`, and the camp and
-  shuttle loot rewards), loaded the same way: a static `ContentFinder<Texture2D>.Get` on a
-  `[StaticConstructorOnStartup]` class. The building's own `uiIcon` was tried first and
-  dropped: it reads as a duplicate of the Copy gizmo that sits beside it. The row greys
-  with the existing "(none undiscovered)" reason when the pool is empty, like the per-ore
-  rows.
+  `UI/Icons/QuestionMark` texture, since no def stands for the pool. Vanilla ships two
+  question marks at the same resolution: `UI/Icons/QuestionMark`, the icon
+  `Reward_PossibleFutureReward` shows for a not-yet-known quest reward, and
+  `UI/Overlays/QuestionMark`, which `Reward_Unknown` and the camp and shuttle loot rewards
+  use and which also backs a map overlay material. The icon variant is the one meant for UI
+  and the one Better Ground-penetrating Scanner (Workshop 3203274131) puts on its own
+  "random" scanner gizmo. Both vanilla and that mod load it the same way, a static
+  `ContentFinder<Texture2D>.Get` on a `[StaticConstructorOnStartup]` class, and leave the
+  command's icon scale, angle and offset at their defaults; so do we. The building's own
+  `uiIcon` was tried first and dropped: it reads as a duplicate of the Copy gizmo that sits
+  beside it. The row greys with the existing "(none undiscovered)" reason when the pool is
+  empty, like the per-ore rows.
 - **Saved state**: one scribed bool beside the saved target, default false, so old saves
   load unchanged and a minified scanner keeps the mode. The saved target is left as the
   leftover of the last explicit tuning; picking any specific row clears the flag, and the
