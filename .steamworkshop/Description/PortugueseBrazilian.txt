@@ -10,8 +10,8 @@ Perfeita para aquele momento crítico em que você fica sem componentes, para in
 [h2]O que ela faz[/h2]
 [list]
 [*]Cada localização remove a névoa de guerra de um veio de minério contíguo posicionado pela geração do mapa ou por eventos existentes. Nada de novo é gerado
-[*]Sintonize-a para qualquer tipo de minério minerável, seja do jogo base ou de mods, ou para "qualquer mineral" a fim de varrer o mapa inteiro, uma localização aleatória por vez
-[*]Opcional: encontre sarcófagos de criptosono antigos escondidos em salas lacradas, sem despertar nada dormente por perto, e uma segunda opção permite que as localizações de "qualquer mineral" também os revelem
+[*]Sintonize-a para qualquer tipo de minério minerável, seja do jogo base ou de mods, ou para "qualquer mineral", com um minério aleatório a cada localização
+[*]Opcional: encontre sarcófagos de criptosono antigos escondidos em salas lacradas, sem despertar nada dormente por perto
 [*]Dois colonos podem operá-la ao mesmo tempo, cada um na velocidade máxima de pesquisa
 [*]Miniaturizável para caber em uma caravana, ônibus espacial ou cápsula de transporte, se necessário
 [*]Sem pesquisa nova: desbloqueada pelo projeto da escaneadora de minerais de longo alcance padrão do jogo

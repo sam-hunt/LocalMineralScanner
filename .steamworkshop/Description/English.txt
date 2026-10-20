@@ -10,8 +10,8 @@ Perfect for that clutch moment you run out of components, enemy settlement raids
 [h2]What it does[/h2]
 [list]
 [*]Each find unfogs a contiguous ore vein that existing generation/events placed; nothing new is spawned
-[*]Tune it to any mineable ore type, vanilla or modded, or to "any mineral" to sweep the whole map one random find at a time
-[*]Opt-in: find ancient cryptosleep caskets hidden in sealed rooms, without waking anything dormant nearby; a second toggle lets "any mineral" finds turn them up too
+[*]Tune it to any mineable ore type, vanilla or modded, or to "any mineral" for a random ore each find
+[*]Opt-in: find ancient cryptosleep caskets hidden in sealed rooms, without waking anything dormant nearby
 [*]Two pawns can operate it at once, each at full research speed
 [*]Minifiable to fit in a caravan, shuttle, or transport-pod if needed
 [*]No new research: unlocked by vanilla's long-range mineral scanner project

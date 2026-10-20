@@ -10,8 +10,8 @@ Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Üb
 [h2]Was er kann[/h2]
 [list]
 [*]Jeder Fund lichtet den Kriegsnebel über einer zusammenhängenden Erzader, die von der bestehenden Kartenerstellung oder von Ereignissen platziert wurde; nichts wird neu erzeugt
-[*]Einstellbar auf jeden abbaubaren Erztyp, ob aus dem Grundspiel oder von Mods, oder auf 'Jedes Mineral', um die ganze Karte mit jeweils einem zufälligen Fund abzusuchen
-[*]Optional: findet antike Kryptoschlafkapseln in versiegelten Räumen, ohne etwas zu wecken, das in der Nähe ruht; ein zweiter Schalter lässt sie auch bei 'Jedes Mineral' zum Vorschein kommen
+[*]Einstellbar auf jeden abbaubaren Erztyp, ob aus dem Grundspiel oder von Mods, oder auf 'Jedes Mineral' für ein zufälliges Erz pro Fund
+[*]Optional: findet antike Kryptoschlafkapseln in versiegelten Räumen, ohne etwas zu wecken, das in der Nähe ruht
 [*]Zwei Kolonisten können ihn gleichzeitig bedienen, jeder mit voller Forschungsgeschwindigkeit
 [*]Demontierbar, um bei Bedarf in eine Karawane, Raumfähre oder Transportkapsel zu passen
 [*]Keine neue Forschung: wird durch das Forschungsprojekt des Langstreckenscanners aus dem Grundspiel freigeschaltet

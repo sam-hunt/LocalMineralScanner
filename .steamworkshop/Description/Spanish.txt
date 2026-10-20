@@ -10,8 +10,8 @@ Perfecto para ese momento crítico en el que te quedas sin componentes, para los
 [h2]Qué hace[/h2]
 [list]
 [*]Cada hallazgo despeja la niebla de guerra de una veta de mineral contigua que la generación del mapa o los eventos ya colocaron; no se genera nada nuevo
-[*]Sintonízalo con cualquier tipo de mineral extraíble, del juego base o añadido por mods, o con "cualquier mineral" para barrer todo el mapa con un hallazgo aleatorio cada vez
-[*]Opcional: encuentra sarcófagos de criptosueño antiguos ocultos en salas selladas, sin despertar nada durmiente cerca; un segundo ajuste permite que los hallazgos de "cualquier mineral" también los descubran
+[*]Sintonízalo con cualquier tipo de mineral extraíble, del juego base o añadido por mods, o con "cualquier mineral" para un mineral aleatorio en cada hallazgo
+[*]Opcional: encuentra sarcófagos de criptosueño antiguos ocultos en salas selladas, sin despertar nada durmiente cerca
 [*]Dos colonos pueden operarlo a la vez, cada uno a máxima velocidad de investigación
 [*]Se puede desinstalar para llevarlo en una caravana, un transbordador o una cápsula de transporte si hace falta
 [*]Sin investigación nueva: se desbloquea con el proyecto de investigación del escáner de minerales de largo alcance del juego base
