@@ -30,6 +30,7 @@ inversion table live in `l10n/languages/ChineseTraditional.md`.
 | tuning menu (casket setting tooltip) | 調整選單 | coined from 調整為 + 選單 |
 | something else (casket exhausted message) | 其他目標 | caskets are not minerals |
 | casket letter label | 休眠艙尋獲 | mirrors 礦脈尋獲 |
+| any mineral (tuning row, "any mineral" quoted as a command) | 任何礦物, quoted 「任何礦物」 | Vanilla "Any <noun>" pattern is 任何<noun> (`AutomaticPauseMode_AnyLetter`=任何事件, `AutomaticPauseMode_AnyThreat`=任何威脅); the slot after `CommandSelectMineralToScanFor`=調整為; 「」 is zh-Hant vanilla quoting for UI commands |
 
 ## Other decisions
 
@@ -62,5 +63,6 @@ inversion table live in `l10n/languages/ChineseTraditional.md`.
 - 礦脈 for "deposit": a good fit for a mining vein, but the mod's "deposit" is
   a single revealed tile rather than a vein players dig along — 礦藏/礦床 may
   read better to a native speaker.
+- 任何礦物 for "any mineral": the 任何<noun> pattern is vanilla-attested, but the compound itself is coined; `AnyWorker`=不限使用者 shows 不限 as an alternative for option-like slots.
 - General phrasing throughout: a first machine-assisted pass, no
   native-speaker review yet.

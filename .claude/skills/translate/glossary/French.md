@@ -25,6 +25,7 @@ below). Grounded against Core's French tar only (no domain DLC).
 | dormant | dormant | vanilla `DormantCompInactive` |
 | tuning menu (casket setting tooltip) | menu de réglage | coined from vanilla "Réglé sur" |
 | opt-in (Workshop bullet) | Optionnel : | plain word |
+| any mineral (tuning row, gizmo label, setting, Workshop) | Tout minéral | vanilla "Any <noun>" pattern with an agreeing determiner: `AutomaticPauseMode_AnyLetter` = "Toute alerte", `AutomaticPauseMode_AnyThreat` = "Toute menace", `AnyWorker` = "Tout travailleur"; "minéral" (masculine) is the file's existing word. Reads as "Réglé sur : Tout minéral" after `CommandSelectMineralToScanFor`. Quoted with guillemets and an ASCII space (`« tout minéral »`) where a string cites the row, as vanilla quotes a UI command the player clicks (`l10n/languages/French.md`) |
 
 ## Grounding decisions
 
@@ -54,5 +55,6 @@ below). Grounded against Core's French tar only (no domain DLC).
 - `LocalMineralScanner_NoneUndiscovered` ("aucun inexploré") is deliberately
   terse to fit `"{label} (aucun inexploré)"` in the tuning float menu — worth
   a native ear for naturalness in that exact slot.
+- "Tout minéral" is vanilla-pattern-attested ("Toute alerte", "Toute menace") but the exact noun phrase is coined; the guillemet-quoted lower-case citation in the setting and Workshop bullets, and "plus rien d'inexploré à découvrir", want a native ear.
 - The Workshop FAQ's tone (informal "vous"-form, direct address) hasn't been
   checked against how other French Workshop pages in this genre read.

@@ -23,6 +23,8 @@ against Core-only vanilla data (this mod requires no DLC).
 | tuning menu (casket setting tooltip) | 调整菜单 | coined from the tuned-to row's 调整 |
 | something else (casket exhausted message) | 其他目标 | reuses 目标 from the vanilla tuning gizmo; caskets are not minerals |
 | casket letter label | 扫描到低温休眠舱 | mirrors 扫描到矿藏 |
+| any mineral (tuning row, setting label, Workshop bullets) | 任何矿物 | vanilla "Any <noun>" pattern: Core `AutomaticPauseMode_AnyLetter`=任何事件, `AutomaticPauseMode_AnyThreat`=任何威胁, `AnyWorker`=任何工作者, so 任何 + 矿物. Quoted 「任何矿物」 where English quotes it (setting label, Workshop bullets), as a UI command the player selects (languages file, BTG lesson); bare in the tooltip, as in English. |
+| nothing undiscovered left to find | 没有未被发现的目标了 | mirrors `NoFoggedDeposits`/`NoFoggedCaskets` phrasing; 目标 (vanilla `CommandSelectMineralToScanFor`) because the random pool may hold ore or caskets |
 
 ## Grounding decisions
 
@@ -66,3 +68,6 @@ against Core-only vanilla data (this mod requires no DLC).
   rendering of "none undiscovered".
 - 可自由重新放置 for "Can be repositioned freely" — vanilla's own Chinese
   data omits the equivalent `DeepDrill` sentence, so this has no anchor.
+- 任何矿物 (quoted 「」 in the setting label and Workshop bullets) and 目标 as the
+  neutral noun in `NothingUndiscovered` / `MessageExhaustedAll` — grounded in vanilla
+  patterns but not vanilla-attested as these exact phrases.

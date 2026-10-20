@@ -31,6 +31,17 @@
   <!-- EN: disabled in mod settings -->
   <LocalMineralScanner_CasketsDisabled>已在模组设置中禁用</LocalMineralScanner_CasketsDisabled>
 
+  <!-- "Any mineral" tuning: the menu's first row, and the gizmo label after "Scan for:". Each
+       find then reveals a random undiscovered target; whether caskets can be drawn is the
+       RandomIncludesCaskets setting, so NothingUndiscovered (a lower-case fragment like
+       NoFoggedDeposits) and MessageExhaustedAll are worded to hold either way. -->
+  <!-- EN: Any mineral -->
+  <LocalMineralScanner_AnyMineral>任何矿物</LocalMineralScanner_AnyMineral>
+  <!-- EN: nothing undiscovered left to find -->
+  <LocalMineralScanner_NothingUndiscovered>没有未被发现的目标了</LocalMineralScanner_NothingUndiscovered>
+  <!-- EN: Nothing undiscovered remains on this map for the local mineral scanner to find. It will remain idle. -->
+  <LocalMineralScanner_MessageExhaustedAll>这张地图上不再有未被发现的目标可供本地矿物扫描仪扫描。它将保持闲置。</LocalMineralScanner_MessageExhaustedAll>
+
   <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
        title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
   <!-- EN: Local Mineral Scanner -->
@@ -71,6 +82,11 @@
   <LocalMineralScanner_ScanAncientCaskets>可以扫描远古低温休眠舱</LocalMineralScanner_ScanAncientCaskets>
   <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
   <LocalMineralScanner_ScanAncientCasketsDesc>只要地图上存在{0}及其变种，就会在调整菜单中列出，使扫描仪能够揭示封存于未被发现的结构（例如远古威胁）内的低温休眠舱。揭示低温休眠舱不会唤醒附近任何处于休眠状态的事物。</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
+  <!-- EN: "Any mineral" can also reveal caskets -->
+  <LocalMineralScanner_RandomIncludesCaskets>「任何矿物」也可以揭示低温休眠舱</LocalMineralScanner_RandomIncludesCaskets>
+  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>调整为扫描任何矿物时，扫描仪也可能揭示{0}或其变种，每次发现时的几率与每种矿物相同。关闭此项则任何矿物的发现结果仅限矿石；仍可直接将扫描仪调整为扫描低温休眠舱。</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->

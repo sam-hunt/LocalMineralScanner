@@ -29,6 +29,7 @@ live in `l10n/languages/Russian.md`.
 | ancient danger | древняя опасность | vanilla `LetterLabelAncientShrineWarning`; hand-declined ("древней опасности") outside any placeholder |
 | dormant | неактивный | vanilla `DormantCompInactive` |
 | tuning menu (casket setting tooltip) | меню настройки сканера | coined |
+| "Any mineral" (tuning row, gizmo label, settings checkbox) | Любой минерал / «любой минерал» (quoted mid-sentence, guillemets) | vanilla "Any <noun>" pattern: `AnyWorker` = "Любой мастер", `AutomaticPauseMode_AnyThreat` = "Любые угрозы"; the mod's word for mineral; quoted in guillemets per `l10n/languages/Russian.md`. Capitalized as a standalone label and lowercase inside the Workshop bullets. |
 
 ## Pending native review
 
@@ -43,3 +44,5 @@ live in `l10n/languages/Russian.md`.
   is a first machine-assisted pass, particularly the FAQ tone and whether
   "Часть черновой работы с кодом" reads naturally for "some of the grunt
   code".
+- "Любой минерал" (any mineral) and `NothingUndiscovered` = "не осталось ничего необнаруженного": coined from
+  the vanilla `Любой <noun>` pattern, not directly vanilla-attested as a phrase.

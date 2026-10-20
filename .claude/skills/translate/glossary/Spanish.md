@@ -23,6 +23,7 @@ below). Grounded against Core's Castilian tar only (no domain DLC).
 | dormant | durmiente | vanilla `DormantCompInactive` |
 | tuning menu (casket setting tooltip) | menú de sintonización | coined from "sintonizar" |
 | opt-in (Workshop bullet) | Opcional: | plain word |
+| any mineral (tuning row, gizmo label, settings checkbox, Workshop bullets) | Cualquier mineral (quoted as "Cualquier mineral" in prose) | vanilla "Any <noun>" pattern: `AnyWorker` = "Cualquier trabajador", `AutomaticPauseMode_AnyLetter` = "Cualquier mensaje", `AutomaticPauseMode_AnyThreat` = "Cualquier amenaza"; slots after `CommandSelectMineralToScanFor` ("Sintonizado para"). Quoted with ASCII straight quotes, as vanilla es quotes UI commands (`l10n/languages/Spanish.md`) |
 
 ## Grounding decisions
 
@@ -58,5 +59,6 @@ below). Grounded against Core's Castilian tar only (no domain DLC).
 - `LocalMineralScanner_NoneUndiscovered` ("nada sin descubrir") is
   deliberately gender-invariant to fit `"{label} (nada sin descubrir)"` in
   the tuning float menu regardless of the paired mineral's gender.
+- "Cualquier mineral" follows vanilla's "Cualquier <noun>" pattern, but no vanilla string pairs it with "mineral"; the `NothingUndiscovered` ("no queda nada sin descubrir") and `MessageExhaustedAll` phrasings are coined.
 - The Workshop FAQ's "P:"/"R:" convention (Pregunta/Respuesta, replacing
   English's "Q:"/"A:") is a translation choice, not vanilla-attested.

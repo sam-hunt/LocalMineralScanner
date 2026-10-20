@@ -31,6 +31,17 @@
   <!-- EN: disabled in mod settings -->
   <LocalMineralScanner_CasketsDisabled>in den Mod-Einstellungen deaktiviert</LocalMineralScanner_CasketsDisabled>
 
+  <!-- "Any mineral" tuning: the menu's first row, and the gizmo label after "Scan for:". Each
+       find then reveals a random undiscovered target; whether caskets can be drawn is the
+       RandomIncludesCaskets setting, so NothingUndiscovered (a lower-case fragment like
+       NoFoggedDeposits) and MessageExhaustedAll are worded to hold either way. -->
+  <!-- EN: Any mineral -->
+  <LocalMineralScanner_AnyMineral>Jedes Mineral</LocalMineralScanner_AnyMineral>
+  <!-- EN: nothing undiscovered left to find -->
+  <LocalMineralScanner_NothingUndiscovered>nichts Unentdecktes mehr zu finden</LocalMineralScanner_NothingUndiscovered>
+  <!-- EN: Nothing undiscovered remains on this map for the local mineral scanner to find. It will remain idle. -->
+  <LocalMineralScanner_MessageExhaustedAll>Auf dieser Karte gibt es nichts Unentdecktes mehr, das der lokale Mineralscanner finden könnte. Er bleibt untätig.</LocalMineralScanner_MessageExhaustedAll>
+
   <!-- Settings window. *Desc keys are hover tooltips. SettingsCategory is also the Workshop
        title and must equal the first line of .steamworkshop/Description/<Language>.txt. -->
   <!-- EN: Local Mineral Scanner -->
@@ -71,6 +82,11 @@
   <LocalMineralScanner_ScanAncientCaskets>Kann nach antiken Kryptoschlafkapseln scannen</LocalMineralScanner_ScanAncientCaskets>
   <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
   <LocalMineralScanner_ScanAncientCasketsDesc>Führt die {0} und ihre Varianten im Einstellmenü auf, sobald die Karte welche enthält, damit der Scanner eine Kapsel aufdecken kann, die in einer unentdeckten Struktur wie einer antiken Gefahr eingeschlossen ist. Das Aufdecken einer Kapsel weckt nichts, was in der Nähe ruht.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
+  <!-- EN: "Any mineral" can also reveal caskets -->
+  <LocalMineralScanner_RandomIncludesCaskets>'Jedes Mineral' kann auch Kapseln aufdecken</LocalMineralScanner_RandomIncludesCaskets>
+  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>Bei Einstellung auf jedes Mineral kann der Scanner auch die {0} oder eine ihrer Varianten aufdecken, mit derselben Wahrscheinlichkeit pro Fund wie jedes Mineral. Zum Beschränken dieser Funde auf Erz deaktivieren; Kapseln lassen sich weiterhin direkt einstellen.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->

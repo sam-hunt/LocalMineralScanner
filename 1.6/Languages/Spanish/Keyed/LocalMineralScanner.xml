@@ -24,6 +24,17 @@
   <!-- EN: disabled in mod settings -->
   <LocalMineralScanner_CasketsDisabled>desactivado en los ajustes del mod</LocalMineralScanner_CasketsDisabled>
 
+  <!-- "Any mineral" tuning: the menu's first row, and the gizmo label after "Scan for:". Each
+       find then reveals a random undiscovered target; whether caskets can be drawn is the
+       RandomIncludesCaskets setting, so NothingUndiscovered (a lower-case fragment like
+       NoFoggedDeposits) and MessageExhaustedAll are worded to hold either way. -->
+  <!-- EN: Any mineral -->
+  <LocalMineralScanner_AnyMineral>Cualquier mineral</LocalMineralScanner_AnyMineral>
+  <!-- EN: nothing undiscovered left to find -->
+  <LocalMineralScanner_NothingUndiscovered>no queda nada sin descubrir</LocalMineralScanner_NothingUndiscovered>
+  <!-- EN: Nothing undiscovered remains on this map for the local mineral scanner to find. It will remain idle. -->
+  <LocalMineralScanner_MessageExhaustedAll>Ya no queda nada sin descubrir en este mapa que el escáner de minerales local pueda encontrar. Permanecerá inactivo.</LocalMineralScanner_MessageExhaustedAll>
+
   <!-- EN: Local Mineral Scanner -->
   <LocalMineralScanner_SettingsCategory>Escáner de minerales local</LocalMineralScanner_SettingsCategory>
   <!-- EN: Placement -->
@@ -57,6 +68,11 @@
   <LocalMineralScanner_ScanAncientCaskets>Puede escanear sarcófagos de criptosueño antiguos</LocalMineralScanner_ScanAncientCaskets>
   <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
   <LocalMineralScanner_ScanAncientCasketsDesc>Muestra el {0} y sus variantes en el menú de sintonización siempre que el mapa contenga alguno, para que el escáner pueda revelar uno sellado dentro de una estructura sin descubrir, como un peligro ancestral. Revelar un sarcófago no despierta lo que permanezca durmiente cerca.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
+  <!-- EN: "Any mineral" can also reveal caskets -->
+  <LocalMineralScanner_RandomIncludesCaskets>"Cualquier mineral" también puede revelar sarcófagos</LocalMineralScanner_RandomIncludesCaskets>
+  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>Cuando esté sintonizado para cualquier mineral, el escáner también puede revelar el {0} o una de sus variantes, con la misma probabilidad por hallazgo que cada mineral. Desactívalo para que los hallazgos de cualquier mineral se limiten a minerales; aun así, los sarcófagos se pueden sintonizar directamente.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>Coste de {0}: {1}</LocalMineralScanner_ResourceCost>

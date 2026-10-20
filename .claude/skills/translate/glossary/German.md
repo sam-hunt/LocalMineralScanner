@@ -25,6 +25,7 @@ live in `l10n/languages/German.md`.
 | ancient danger | antike Gefahr | vanilla `LetterLabelAncientShrineWarning` |
 | dormant | ruht | vanilla `DormantCompInactive` (verb form: "was in der Nähe ruht") |
 | tuning menu (casket setting tooltip) | Einstellmenü | coined; avoids a clash with Einstellungen (settings) |
+| any mineral (tuning row) | Jedes Mineral | Vanilla's "Any <noun>" pattern is gender-agreed Jeder/Jede/Beliebiger (`Jeder Brief` = `AutomaticPauseMode_AnyLetter`, `Jede Bedrohung` = `AutomaticPauseMode_AnyThreat`, `Beliebiger Arbeiter` = `AnyWorker`); `Mineral` is neuter, so `Jedes Mineral`. Reads as `Eingestellt auf: Jedes Mineral` and, being neuter, is identical in the accusative (`auf jedes Mineral`). Quoted with ASCII single quotes per `German.md` style (`'Jedes Mineral'`). |
 
 ## Pending native review
 
@@ -36,6 +37,7 @@ live in `l10n/languages/German.md`.
 - "Nahbereichs-Sensoreinheit" (ThingDef description's opening noun, for
   "short-range ... sensor unit") is an analogous coinage mirroring vanilla's
   "Langstrecken-" prefix pattern in reverse; not itself vanilla-attested.
+- "Jedes Mineral" (rather than vanilla's `Beliebiger` form, which is masculine/worker-specific): the gender-agreed Jeder/Jede pattern is vanilla-attested, but the pairing with the coined "Mineral" tuning is not; also `nichts Unentdecktes mehr zu finden` (a coined lower-case fragment) and the "Zum Beschränken ... deaktivieren" tooltip wording.
 - "Kostenposten" (ResourceCostDesc's "it" substitute, avoiding gendered
   pronoun agreement across Stahl/Bauteil/Hightech-Bauteil) is a plain
   dictionary word, not vanilla-grounded — flag for a native check that it

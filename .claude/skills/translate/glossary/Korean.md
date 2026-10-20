@@ -27,6 +27,7 @@ mechanics (josa markers, register, dash policy) live in `l10n/languages/Korean.m
 | tuning menu (casket setting tooltip) | 조정 메뉴 | coined from the grounded 조정 |
 | something else (casket exhausted message) | 다른 대상 | coined; caskets are not minerals |
 | opt-in (Workshop bullet) | 선택 사항 | plain word |
+| any mineral (tuning row, gizmo label, Workshop) | 아무 광물, quoted as '아무 광물' | 아무 + noun is vanilla's "Any <noun>" pattern (`AutomaticPauseMode_AnyLetter`=아무 편지); quoting uses ASCII single quotes per `l10n/languages/Korean.md`; sits after `CommandSelectMineralToScanFor` as "조정: 아무 광물" |
 
 ## Pending native review
 
@@ -37,3 +38,4 @@ mechanics (josa markers, register, dash policy) live in `l10n/languages/Korean.m
   more directly with vanilla's own 발견/감지 vocabulary; flag if a native pass disagrees.
 - The ThingDef description's "lateral sensor unit" (측면 탐지 장치) and "twin consoles" (두 개의
   조작대) are both mod-coined phrasing with no close vanilla analogue; check for naturalness.
+- 아무 광물 for "any mineral" follows vanilla's 아무 + noun pattern but vanilla has no mineral-specific attestation (the alternative 모든 광물, as in `AnyWorker`=모든 작업자, reads as "all minerals"); check for naturalness.

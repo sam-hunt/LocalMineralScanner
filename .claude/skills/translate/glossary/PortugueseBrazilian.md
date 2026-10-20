@@ -24,6 +24,7 @@ Machine-assisted first pass (2026-09-09), pending native review. Family mechanic
 | ancient danger | perigo ancestral | vanilla `LetterLabelAncientShrineWarning` |
 | dormant | dormente | vanilla `DormantCompInactive` |
 | tuning menu (casket setting tooltip) | menu de sintonia | coined from vanilla "Sintonizado" |
+| any mineral (tuning row, button label, settings checkbox) | Qualquer mineral (quoted with ASCII `"` in prose) | vanilla "Any <noun>" pattern: `AnyWorker`=Qualquer trabalhador, `AutomaticPauseMode_AnyLetter`=Qualquer Mensagem, `NoDrugUseRequirement`=Qualquer; sentence case after `Sintonizado:` (`mineral` is lowercase noun here). Vanilla pt-BR quotes UI text with ASCII straight quotes. Lower-case `qualquer mineral` inside the Workshop bullets |
 
 ## Grounding decisions worth double-checking
 
@@ -43,6 +44,7 @@ Machine-assisted first pass (2026-09-09), pending native review. Family mechanic
 
 ## Pending native review
 
+- "Qualquer mineral" (assembled from the vanilla "Qualquer <noun>" pattern, not a vanilla string) and the fragment "nada inexplorado restante para encontrar".
 - The reordered "escaneadora local de minerais" / "escaneadoras locais de minerais" choice above —
   a native speaker should confirm it reads unambiguously and naturally in the build menu and work tab.
 - "Padrão do jogo" / "jogo base" for Workshop-description "vanilla" — a native/community reviewer

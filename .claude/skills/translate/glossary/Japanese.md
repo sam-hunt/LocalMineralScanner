@@ -22,6 +22,7 @@ grounding decisions only; family-wide mechanics live in `l10n/languages/Japanese
 | variants (of a casket) | 派生型 | coined |
 | something else (casket exhausted message) | 別の対象 | replaces 別の鉱物; caskets are not minerals |
 | disabled in mod settings | MOD設定で無効化されている | MOD設定 as in the Workshop file |
+| Any mineral (tuning row, `AnyMineral`) | あらゆる鉱物 | Vanilla "Any <noun>" pattern: `AutomaticPauseMode_AnyLetter` あらゆる通知, `AutomaticPauseMode_AnyThreat` あらゆる脅威 (`AnyWorker` 作業者(誰でも) is a different shape); reads as "調整: あらゆる鉱物" in the gizmo slot. Quoted with ASCII `"..."` where named in the settings label and Workshop bullets (UI-command slot, per `l10n/languages/Japanese.md`) |
 
 ## Other decisions
 
@@ -54,6 +55,9 @@ grounding decisions only; family-wide mechanics live in `l10n/languages/Japanese
 
 ## Pending native review
 
+- Whether あらゆる鉱物 ("any mineral") plus ASCII quotes reads naturally in the
+  `RandomIncludesCaskets` label and the two Workshop bullets; the あらゆる〜 pattern
+  is vanilla-attested, its use with 鉱物 is not.
 - Whether "twin consoles" should be a katakana loan (ツインコンソール) instead
   of 2基のコンソール.
 - Whether 近距離 (short/close-range) reads naturally as the Workshop-search

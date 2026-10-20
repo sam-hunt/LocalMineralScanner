@@ -24,6 +24,13 @@
   <!-- EN: disabled in mod settings -->
   <LocalMineralScanner_CasketsDisabled>모드 설정에서 비활성화됨</LocalMineralScanner_CasketsDisabled>
 
+  <!-- EN: Any mineral -->
+  <LocalMineralScanner_AnyMineral>아무 광물</LocalMineralScanner_AnyMineral>
+  <!-- EN: nothing undiscovered left to find -->
+  <LocalMineralScanner_NothingUndiscovered>더 찾을 미발견 대상 없음</LocalMineralScanner_NothingUndiscovered>
+  <!-- EN: Nothing undiscovered remains on this map for the local mineral scanner to find. It will remain idle. -->
+  <LocalMineralScanner_MessageExhaustedAll>이 맵에는 근거리 광물 탐색기가 찾을 수 있는 미발견 대상이 더 이상 남아 있지 않습니다. 탐색기는 대기 상태로 남습니다.</LocalMineralScanner_MessageExhaustedAll>
+
   <!-- EN: Local Mineral Scanner -->
   <LocalMineralScanner_SettingsCategory>근거리 광물 탐색기</LocalMineralScanner_SettingsCategory>
   <!-- EN: Placement -->
@@ -57,6 +64,10 @@
   <LocalMineralScanner_ScanAncientCaskets>고대 동면관 탐색 가능</LocalMineralScanner_ScanAncientCaskets>
   <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
   <LocalMineralScanner_ScanAncientCasketsDesc>맵에 {0}(와)과 그 변종이 하나라도 있으면 조정 메뉴에 표시하여, 고대 위협 같은 미발견 구조물 안에 봉인된 동면관도 탐색기로 드러낼 수 있게 합니다. 동면관을 드러내도 근처에서 휴면 중인 것이 깨어나지는 않습니다.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: "Any mineral" can also reveal caskets -->
+  <LocalMineralScanner_RandomIncludesCaskets>'아무 광물' 조정 시 동면관도 드러낼 수 있음</LocalMineralScanner_RandomIncludesCaskets>
+  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>아무 광물로 조정하면 탐색기가 {0} 또는 그 변종 중 하나도 드러낼 수 있으며, 발견당 확률은 각 광물과 같습니다. 끄면 아무 광물 발견이 광석으로 한정됩니다. 동면관은 직접 조정할 수도 있습니다.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>{0} 비용: {1}</LocalMineralScanner_ResourceCost>
