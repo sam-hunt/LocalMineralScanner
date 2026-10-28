@@ -50,6 +50,10 @@ atomically.
   `Source/1.6/LocalMineralScanner.csproj` — see that target's comments for how it globs and what it
   excludes. It is generic over folders, so a new `1.7/` or `Sounds/` needs no build change; only a
   brand-new *file type* does. Local deploy and CI release both call it, so they can't drift.
+  After the copy it rewrites every staged `.xml` without its comments (the inline
+  `StripXmlComments` task beside it); the repo files are untouched, and everything that reads
+  XML from disk (the translation checker, the probe) reads the repo, while the smoke test boots
+  the stripped copy. The Steam upload is this same local deploy, so it ships stripped too.
 - **Stop hook (`.claude/hooks/sync-mod.sh`):** rebuilds+redeploys after a Claude turn when
   mod-relevant files changed, logs to `$TMPDIR/LocalMineralScanner-build.log`. Tracked and wired
   by the tracked `.claude/settings.json`; the script is byte-identical across the mod family and
