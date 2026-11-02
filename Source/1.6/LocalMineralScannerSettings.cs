@@ -27,7 +27,7 @@ namespace LocalMineralScanner;
 //    the moment it is ticked.
 //  - randomIncludesCaskets likewise: MapComponent_FoggedMinerals reads it when it defines
 //    the "any mineral" pool. It only matters with scanAncientCaskets on, so its row is drawn
-//    indented and disabled under that one.
+//    indented under that one, and disabled and shown off while that one is off.
 // The XML carries the same values as the *Default consts below (they are what a player who
 // never opens the settings gets, and what Restore defaults returns to); the XML copies are
 // documentation, since Apply() overwrites them at startup. Keep the two in step.
@@ -253,8 +253,11 @@ public class LocalMineralScannerSettings : ModSettings
     // A checkbox that depends on the one above it: Listing_Standard.CheckboxLabeled's body
     // (decompile-verified, 1.7: GetRect, highlight and tooltip, Widgets.CheckboxLabeled, the
     // listing's vertical gap) with the indent and Widgets' disabled flag the listing's own
-    // overloads do not expose, and the label greyed to match. The tooltip stays live while
-    // disabled so the player can read what the row would do.
+    // overloads do not expose. While the parent is off the row is greyed in
+    // Widgets.InactiveColor and shows unticked, the effective state (the setting's readers
+    // require the parent too), and the stored value is left alone so the player's choice
+    // comes back when the parent is ticked again. The tooltip stays live while disabled so
+    // the player can read what the row would do.
     private static void DependentCheckboxRow(Listing_Standard listing, string label, ref bool value,
         string tooltip, bool enabled)
     {
@@ -266,13 +269,18 @@ public class LocalMineralScannerSettings : ModSettings
             Widgets.DrawHighlight(rect);
         }
         TooltipHandler.TipRegion(rect, tooltip);
-        Color prevColor = GUI.color;
-        if (!enabled)
+        if (enabled)
         {
-            GUI.color = Color.gray;
+            Widgets.CheckboxLabeled(rect, label, ref value);
         }
-        Widgets.CheckboxLabeled(rect, label, ref value, disabled: !enabled);
-        GUI.color = prevColor;
+        else
+        {
+            Color prevColor = GUI.color;
+            GUI.color = Widgets.InactiveColor;
+            bool shownOff = false;
+            Widgets.CheckboxLabeled(rect, label, ref shownOff, disabled: true);
+            GUI.color = prevColor;
+        }
         listing.Gap(listing.verticalSpacing);
     }
 
