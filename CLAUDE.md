@@ -165,6 +165,11 @@ walker. The checker refuses to run against stale expectations, so new content fo
 release skill regenerates every release. The public language roster lives in CONTRIBUTING.md and
 moves in the same commit as any language change.
 
+- **Player-facing text follows `l10n/languages/English.md`** (def labels and descriptions, `Keyed/`,
+  `About.xml`, `.steamworkshop/`): read it before writing or changing any. Its mechanical rules (no
+  dashes, semicolons, "Whether" openers or parenthetical asides) are checked by
+  `Scripts/check-translations.py` as `[player text]` warnings, which `--strict` turns into release
+  errors. Code comments, def comments and this file are unaffected.
 - **Shared l10n toolkit (`l10n/` submodule):** the checker/refresh/smoke engines, per-language
   mechanics references, cross-language lessons, and Workshop conventions come from the
   `rimworld-l10n` repo, consumed as a git submodule pinned to a semver release tag (`git submodule

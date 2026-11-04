@@ -103,6 +103,14 @@ python3 Scripts/check-translations.py --strict
   check that `samhunt.localmineralscanner` is ticked in the probe's settings
   (`Config/Mod_L10nProbe_L10nProbeMod.xml`) — the probe only dumps ticked
   mods.
+- Player text register: diff the English player-facing text since the last
+  stable tag (Keyed, def labels and descriptions, `About.xml`, the English
+  Workshop page) and read every changed string against
+  `l10n/languages/English.md` § 2. The checker's `[player text]` warnings
+  cover the mechanical tells and fail this step under `--strict`; this read
+  covers the judgment ones (a sentence frame repeated across strings,
+  telegraphese, tricolons, coinages). Fix the English before any translation
+  step, since a tell in the English ships in every language.
 - The checker then validates every shipped language against the fresh
   sidecar. CI runs the same checker non-strict against the checked-in
   sidecar; the stricter local run surfaces warnings while there is still
