@@ -16,7 +16,7 @@
        NoFoggedCaskets is a lower-case fragment like NoFoggedDeposits. The letter stays neutral: caskets also sit in ruins
        and quest structures that hold nothing dangerous, so it must not call them a danger. -->
   <LocalMineralScanner_LetterLabelFoundCasket>Casket located</LocalMineralScanner_LetterLabelFoundCasket>
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored.</LocalMineralScanner_LetterFoundCasket>
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby.</LocalMineralScanner_LetterFoundCasket>
   <LocalMineralScanner_MessageExhaustedCaskets>No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else.</LocalMineralScanner_MessageExhaustedCaskets>
   <LocalMineralScanner_NoFoggedCaskets>no undiscovered {0} left</LocalMineralScanner_NoFoggedCaskets>
   <!-- Shown in place of NoFoggedCaskets / NoneUndiscovered for a scanner still tuned to a
@@ -43,24 +43,25 @@
 
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <LocalMineralScanner_RequireUnroofed>Doesn't work under a roof</LocalMineralScanner_RequireUnroofed>
-  <LocalMineralScanner_RequireUnroofedDesc>Like the {0}, it can't be placed or operated under a roof. Turn off to allow.</LocalMineralScanner_RequireUnroofedDesc>
+  <LocalMineralScanner_RequireUnroofedDesc>When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere.</LocalMineralScanner_RequireUnroofedDesc>
   <LocalMineralScanner_Minifiable>Can be uninstalled</LocalMineralScanner_Minifiable>
-  <LocalMineralScanner_MinifiableDesc>Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed.</LocalMineralScanner_MinifiableDesc>
-  <LocalMineralScanner_MassDesc>Weight of the uninstalled scanner when hauled or carried by a caravan.</LocalMineralScanner_MassDesc>
+  <LocalMineralScanner_MinifiableDesc>When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed.</LocalMineralScanner_MinifiableDesc>
+  <LocalMineralScanner_MassDesc>The mass of the uninstalled scanner when it is hauled or carried by a caravan.</LocalMineralScanner_MassDesc>
 
-  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
-  <LocalMineralScanner_FindMtbDaysDesc>Average working days between finds for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindMtbDaysDesc>
-  <LocalMineralScanner_FindGuaranteedDays>Guaranteed find within</LocalMineralScanner_FindGuaranteedDays>
-  <LocalMineralScanner_FindGuaranteedDaysDesc>Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting, already
+       carrying its unit (vanilla PeriodDays, "3 days"). -->
+  <LocalMineralScanner_FindMtbDaysDesc>The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <LocalMineralScanner_FindGuaranteedDays>Guaranteed find interval</LocalMineralScanner_FindGuaranteedDays>
+  <LocalMineralScanner_FindGuaranteedDaysDesc>The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
   <LocalMineralScanner_ScanAncientCaskets>Can scan for ancient cryptosleep caskets</LocalMineralScanner_ScanAncientCaskets>
-  <LocalMineralScanner_ScanAncientCasketsDesc>Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <LocalMineralScanner_ScanAncientCasketsDesc>When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby.</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <LocalMineralScanner_RandomIncludesCaskets>"Any mineral" can also reveal caskets</LocalMineralScanner_RandomIncludesCaskets>
-  <LocalMineralScanner_RandomIncludesCasketsDesc>When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly.</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <LocalMineralScanner_RandomIncludesCasketsDesc>When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <LocalMineralScanner_ResourceCost>{0} cost: {1}</LocalMineralScanner_ResourceCost>
-  <LocalMineralScanner_ResourceCostDesc>Amount of {0} needed to build one scanner. 0 removes it from the cost.</LocalMineralScanner_ResourceCostDesc>
+  <LocalMineralScanner_ResourceCostDesc>The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

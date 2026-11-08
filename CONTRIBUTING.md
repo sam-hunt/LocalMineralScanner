@@ -50,7 +50,7 @@ for it is welcome in its own right rather than as edits to this one.
   from `Scripts/expected-injections.json`: one `ThingDef`, one `JobDef` and
   one `WorkGiverDef`.
 - Every translated entry carries the current English source in a comment
-  directly above it, e.g. `<!-- EN: Guaranteed find within -->` — this is how
+  directly above it, e.g. `<!-- EN: Guaranteed find interval -->` — this is how
   stale translations are detected when the English changes.
 - Placeholders (`{0}`, `{1}`, ...) must match the English exactly.
 - Vanilla def types use bare DefInjected folder names (`ThingDef`, `JobDef`,

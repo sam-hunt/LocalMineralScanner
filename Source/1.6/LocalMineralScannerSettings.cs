@@ -227,13 +227,15 @@ public class LocalMineralScannerSettings : ModSettings
             "ScanAverageInterval".Translate() + ": " + "PeriodDays".Translate(findMtbDays.ToString("0.##"))
                 + VanillaTag(findMtbDays, longRange, longRangeProps.scanFindMtbDays)
                 + VanillaTag(findMtbDays, deep, deepProps.scanFindMtbDays),
-            "LocalMineralScanner_FindMtbDaysDesc".Translate(longRange.label, longRangeProps.scanFindMtbDays.ToString("0.##")),
+            "LocalMineralScanner_FindMtbDaysDesc".Translate(longRange.label,
+                "PeriodDays".Translate(longRangeProps.scanFindMtbDays.ToString("0.##"))),
             findMtbDays, FindMtbDaysDefault, min: 0.25f, max: 15f, step: 0.25f);
         findGuaranteedDays = SliderRow(listing,
             "LocalMineralScanner_FindGuaranteedDays".Translate() + ": " + "PeriodDays".Translate(findGuaranteedDays.ToString("0.##"))
                 + VanillaTag(findGuaranteedDays, longRange, longRangeProps.scanFindGuaranteedDays)
                 + VanillaTag(findGuaranteedDays, deep, deepProps.scanFindGuaranteedDays),
-            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(longRange.label, longRangeProps.scanFindGuaranteedDays.ToString("0.##")),
+            "LocalMineralScanner_FindGuaranteedDaysDesc".Translate(longRange.label,
+                "PeriodDays".Translate(longRangeProps.scanFindGuaranteedDays.ToString("0.##"))),
             findGuaranteedDays, FindGuaranteedDaysDefault, min: 0.25f, max: 30f, step: 0.25f);
 
         // The tooltip names the vanilla casket def by label, like the building names above.
