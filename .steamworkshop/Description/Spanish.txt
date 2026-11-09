@@ -38,9 +38,6 @@ R: Sí. Todo lo que el juego clasifique como mineral extraíble en zonas sin rev
 [b]P: ¿Por qué no lo usa nadie?[/b]
 R: El panel de inspección indica el motivo. Normalmente es porque el mineral sintonizado ya está totalmente revelado, el escáner está bajo techo o sin energía, o nadie tiene activado el trabajo de Investigador.
 
-[b]P: ¿Esto se hizo con ayuda de un LLM?[/b]
-R: Parte del código más mecánico, y la mayoría de las localizaciones. Soy ingeniero de software de profesión y llevo 25 años escribiendo código. Todo el código se revisa y se prueba manualmente; todos los informes de errores y conflictos entre mods se atienden personalmente según el tiempo y el detalle lo permitan. Todo el arte está encargado a personas, hecho a mano en Krita, o ambas cosas.
-
 [b]P: ¿Combat Extended?[/b]
 R: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 

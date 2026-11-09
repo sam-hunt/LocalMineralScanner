@@ -38,9 +38,6 @@ A: Yes. Anything the game classes as fogged mineable ore on the scanner's map is
 [b]Q: Why is nobody using the scanner?[/b]
 A: The inspect pane says why. Usually the tuned mineral is fully revealed, the scanner is roofed or unpowered, or nobody has Research work enabled.
 
-[b]Q: Was this made with LLM assistance?[/b]
-A: Some of the grunt code, and most localizations. I'm a software engineer by trade, and have been writing code for 25 years. All code is manually reviewed and tested; all bug reports and mod conflicts followed up personally as time and detail allows. All art is either commissioned from humans, hand-authored in Krita, or both.
-
 [b]Q: Combat Extended?[/b]
 A: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 

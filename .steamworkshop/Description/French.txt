@@ -38,9 +38,6 @@ R : Oui. Tout ce que le jeu considère comme un minerai exploitable sous le brou
 [b]Q : Pourquoi personne n'utilise le scanner ?[/b]
 R : Le panneau d'inspection en indique la raison. Généralement, le minéral réglé est entièrement révélé, le scanner est sous un toit ou n'est pas alimenté, ou personne n'a activé le travail de Recherche.
 
-[b]Q : Est-ce que ça a été fait avec l'aide d'une IA ?[/b]
-R : Une partie du code répétitif, et la plupart des localisations. Je suis ingénieur logiciel de métier, et j'écris du code depuis 25 ans. Tout le code est relu et testé manuellement. Tous les rapports de bugs et les conflits entre mods sont suivis personnellement, selon le temps et les détails disponibles. Tous les visuels sont soit commandés à des artistes humains, soit réalisés à la main dans Krita, soit les deux.
-
 [b]Q : Combat Extended ?[/b]
 R : [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 

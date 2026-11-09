@@ -38,9 +38,6 @@ A: Ja. Alles, was das Spiel auf der Karte des Scanners als abbaubares Erz unter 
 [b]F: Warum benutzt ihn niemand?[/b]
 A: Die Infoleiste verrät den Grund. Meist ist das eingestellte Mineral bereits vollständig aufgedeckt, der Scanner steht unter einem Dach oder ohne Strom, oder niemand hat die Arbeit 'Forschen' aktiviert.
 
-[b]F: Wurde das mit LLM-Unterstützung erstellt?[/b]
-A: Ein Teil der Fleißarbeit im Code, und die meisten Lokalisierungen. Ich bin von Beruf Softwareentwickler und schreibe seit 25 Jahren Code. Aller Code wird manuell überprüft und getestet; alle Fehlermeldungen und Mod-Konflikte werden persönlich nachverfolgt, soweit Zeit und Details es zulassen. Alle Grafiken sind entweder bei Menschen in Auftrag gegeben, von Hand in Krita erstellt, oder beides.
-
 [b]F: Combat Extended?[/b]
 A: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 

@@ -38,9 +38,6 @@ R: Sim. Qualquer minério minerável que o jogo classifique como coberto pela n�
 [b]P: Por que ninguém está usando a escaneadora?[/b]
 R: O painel de inspeção mostra o motivo. Geralmente o mineral sintonizado já foi totalmente revelado, a escaneadora está coberta por um telhado ou sem energia, ou ninguém está com o trabalho de pesquisa habilitado.
 
-[b]P: Isso foi feito com assistência de LLMs?[/b]
-R: Parte do código mais repetitivo, e a maioria das localizações. Sou engenheiro de software de profissão e escrevo código há 25 anos. Todo o código é revisado e testado manualmente. Todos os relatos de bugs e conflitos de mods são acompanhados pessoalmente, conforme o tempo e os detalhes permitirem. Toda a arte é encomendada de humanos, feita à mão no Krita, ou ambos.
-
 [b]P: Combat Extended?[/b]
 R: [noparse]ദ്ദി(ㆆ_ㆆꐦ)ദ്ദി[/noparse]
 
