@@ -3,7 +3,7 @@ Escáner de minerales local
 Nunca más tengas que excavar el mapa entero en busca de minerales.
 
 [h1]Acerca de[/h1]
-Un escáner compacto de 2x2, operado por colonos, que revela depósitos minerales sin descubrir en el mapa en el que ya estás. El mismo trabajo por hallazgo que el escáner de profundidad (valor predeterminado ajustable), pero ocupando menos espacio y con sitio para dos operadores.
+Un escáner compacto de 2x2, operado por colonos, que revela depósitos minerales sin descubrir en el mapa en el que ya estás. Por defecto, el mismo trabajo por hallazgo que el escáner de profundidad, pero ocupando menos espacio y con sitio para dos operadores.
 
 Perfecto para ese momento crítico en el que te quedas sin componentes, para los asaltos a asentamientos enemigos, o para las oportunidades de minería en asteroides cuando apenas aparece mineral expuesto.
 
@@ -22,7 +22,7 @@ Perfecto para ese momento crítico en el que te quedas sin componentes, para los
 
 [h1]Compatibilidad[/h1]
 [list]
-[*]Solo requiere RimWorld 1.6+; sin DLC, sin Harmony
+[*]Solo requiere RimWorld 1.6 o posterior. Sin DLC, sin Harmony
 [*]Seguro de añadir a partidas existentes
 [*]Seguro de quitar una vez desarmados todos los escáneres (solo unos pocos errores puntuales en rojo la siguiente vez que cargues)
 [/list]

@@ -3,7 +3,7 @@ Lokaler Mineralscanner
 Nie wieder blind Tunnel graben.
 
 [h1]Über[/h1]
-Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Gleicher Arbeitsaufwand pro Fund wie beim Tiefenscanner (anpassbarer Standardwert), aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
+Ein kompakter, von Kolonisten bedienter 2x2-Scanner, der unentdeckte Mineralvorkommen auf der Karte aufdeckt, auf der du dich bereits befindest. Standardmäßig gleicher Arbeitsaufwand pro Fund wie beim Tiefenscanner, aber mit kleinerer Grundfläche und Platz für zwei Benutzer.
 
 Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Überfälle auf feindliche Siedlungen oder für den Abbau auf Asteroiden, wo kaum oder gar kein Erz frei zutage liegt.
 
@@ -22,7 +22,7 @@ Perfekt für den entscheidenden Moment, wenn dir die Bauteile ausgehen, für Üb
 
 [h1]Kompatibilität[/h1]
 [list]
-[*]Benötigt nur RimWorld 1.6+; kein DLC, kein Harmony
+[*]Benötigt nur RimWorld 1.6 oder neuer. Kein DLC, kein Harmony
 [*]Kann gefahrlos zu bestehenden Spielständen hinzugefügt werden
 [*]Kann gefahrlos entfernt werden, sobald jeder Scanner abgerissen wurde (beim nächsten Laden erscheinen einmalig nur ein paar rote Fehler)
 [/list]
