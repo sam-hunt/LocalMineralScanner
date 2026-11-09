@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
      changes land in the stable version's section at promotion. The /release skill
      walks through all of this. -->
 
+## [1.4.1] - 2026-11-09
+
+### Fixed
+
+- The "any mineral" casket setting now shows as off while casket scanning is off.
+- The scan time settings now show the vanilla scanner's value in days.
+
+### Changed
+
+- Clearer settings tooltips and casket letter in every language.
+- Smaller download.
+
 ## [1.4.0] - 2026-10-21
 
 ### Added
@@ -71,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unlocked by the vanilla long-range mineral scanner research.
 - Sits directly after the long-range mineral scanner in Architect > Misc.
 
+[1.4.1]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.4.1
 [1.4.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.4.0
 [1.3.0]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.3.0
 [1.2.1]: https://github.com/sam-hunt/LocalMineralScanner/releases/tag/v1.2.1
