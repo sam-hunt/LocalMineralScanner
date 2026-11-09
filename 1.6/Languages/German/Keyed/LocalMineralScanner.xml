@@ -20,8 +20,8 @@
        and quest structures that hold nothing dangerous, so it must not call them a danger. -->
   <!-- EN: Casket located -->
   <LocalMineralScanner_LetterLabelFoundCasket>Kapsel entdeckt</LocalMineralScanner_LetterLabelFoundCasket>
-  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} hat mit dem lokalen Mineralscanner {0} in einem unentdeckten Gebiet gefunden. Was sie enthält und was sich sonst in der Nähe befindet, wird sich erst zeigen, sobald das Gebiet erkundet ist.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} hat mit dem lokalen Mineralscanner {0} in einem unentdeckten Gebiet gefunden. Erkunde das Gebiet, um herauszufinden, was sie enthält und was sich sonst in der Nähe befindet.</LocalMineralScanner_LetterFoundCasket>
   <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
   <LocalMineralScanner_MessageExhaustedCaskets>Auf dieser Karte gibt es keine unentdeckte {0} mehr. Der lokale Mineralscanner bleibt untätig, bis er auf etwas anderes eingestellt wird.</LocalMineralScanner_MessageExhaustedCaskets>
   <!-- EN: no undiscovered {0} left -->
@@ -60,37 +60,37 @@
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>Funktioniert nicht unter einem Dach</LocalMineralScanner_RequireUnroofed>
-  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
-  <LocalMineralScanner_RequireUnroofedDesc>Wie der {0} kann er nicht unter einem Dach aufgestellt oder bedient werden. Zum Erlauben deaktivieren.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere. -->
+  <LocalMineralScanner_RequireUnroofedDesc>Wenn aktiviert, kann der Scanner nicht unter einem Dach gebaut oder bedient werden, wie der {0}. Wenn deaktiviert, funktioniert er überall.</LocalMineralScanner_RequireUnroofedDesc>
   <!-- EN: Can be uninstalled -->
   <LocalMineralScanner_Minifiable>Kann demontiert werden</LocalMineralScanner_Minifiable>
-  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
-  <LocalMineralScanner_MinifiableDesc>Erlaubt es, den Scanner zu demontieren und zu versetzen, wie den {0}. Wird dies deaktiviert, kann er nur abgerissen werden.</LocalMineralScanner_MinifiableDesc>
-  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
-  <LocalMineralScanner_MassDesc>Gewicht des demontierten Scanners, wenn er transportiert oder von einer Karawane mitgeführt wird.</LocalMineralScanner_MassDesc>
+  <!-- EN: When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>Wenn aktiviert, kann der Scanner demontiert und versetzt werden, wie der {0}. Wenn deaktiviert, kann er nur abgerissen werden.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: The mass of the uninstalled scanner when it is hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>Die Masse des demontierten Scanners, wenn er transportiert oder von einer Karawane mitgeführt wird.</LocalMineralScanner_MassDesc>
 
   <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
-  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindMtbDaysDesc>Durchschnittliche Arbeitstage zwischen zwei Funden für einen Benutzer bei 100% Forschungsgeschwindigkeit. Der {0} verwendet {1}.</LocalMineralScanner_FindMtbDaysDesc>
-  <!-- EN: Guaranteed find within -->
-  <LocalMineralScanner_FindGuaranteedDays>Garantierter Fund nach</LocalMineralScanner_FindGuaranteedDays>
-  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindGuaranteedDaysDesc>Arbeitstage, nach denen ein Fund garantiert ist, für einen Benutzer bei 100% Forschungsgeschwindigkeit. Der {0} verwendet {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- EN: The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Die durchschnittliche Anzahl der Arbeitstage zwischen zwei Funden für einen Benutzer bei 100% Forschungsgeschwindigkeit. Beim {0} sind es {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find interval -->
+  <LocalMineralScanner_FindGuaranteedDays>Intervall bis zum garantierten Fund</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Die Anzahl der Arbeitstage bis zu einem garantierten Fund für einen Benutzer bei 100% Forschungsgeschwindigkeit. Beim {0} sind es {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
   <!-- EN: Can scan for ancient cryptosleep caskets -->
   <LocalMineralScanner_ScanAncientCaskets>Kann nach antiken Kryptoschlafkapseln scannen</LocalMineralScanner_ScanAncientCaskets>
-  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
-  <LocalMineralScanner_ScanAncientCasketsDesc>Führt die {0} und ihre Varianten im Einstellmenü auf, sobald die Karte welche enthält, damit der Scanner eine Kapsel aufdecken kann, die in einer unentdeckten Struktur wie einer antiken Gefahr eingeschlossen ist. Das Aufdecken einer Kapsel weckt nichts, was in der Nähe ruht.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>Wenn aktiviert, kann der Scanner auf die {0} und ihre Varianten eingestellt werden, um eine Kapsel aufzudecken, die in einer unentdeckten Struktur wie einer antiken Gefahr eingeschlossen ist. Das Aufdecken einer Kapsel weckt nichts, was in der Nähe ruht.</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <!-- EN: "Any mineral" can also reveal caskets -->
   <LocalMineralScanner_RandomIncludesCaskets>'Jedes Mineral' kann auch Kapseln aufdecken</LocalMineralScanner_RandomIncludesCaskets>
-  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
-  <LocalMineralScanner_RandomIncludesCasketsDesc>Bei Einstellung auf jedes Mineral kann der Scanner auch die {0} oder eine ihrer Varianten aufdecken, mit derselben Wahrscheinlichkeit pro Fund wie jedes Mineral. Zum Beschränken dieser Funde auf Erz deaktivieren; Kapseln lassen sich weiterhin direkt einstellen.</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <!-- EN: When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>Wenn aktiviert, kann ein auf jedes Mineral eingestellter Scanner auch die {0} oder eine ihrer Varianten aufdecken. Wenn deaktiviert, deckt er nur Erz auf, aber Kapseln lassen sich weiterhin im Einstellmenü auswählen.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>Kosten für {0}: {1}</LocalMineralScanner_ResourceCost>
-  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
-  <LocalMineralScanner_ResourceCostDesc>Menge an {0}, die zum Bau eines Scanners benötigt wird. Bei 0 entfällt dieser Kostenposten.</LocalMineralScanner_ResourceCostDesc>
+  <!-- EN: The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>Die Menge an {0}, die zum Bau eines Scanners benötigt wird. Bei 0 entfällt dieser Kostenposten.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

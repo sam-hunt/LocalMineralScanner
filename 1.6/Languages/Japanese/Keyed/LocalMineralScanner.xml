@@ -20,8 +20,8 @@
        and quest structures that hold nothing dangerous, so it must not call them a danger. -->
   <!-- EN: Casket located -->
   <LocalMineralScanner_LetterLabelFoundCasket>冬眠カプセルを発見</LocalMineralScanner_LetterLabelFoundCasket>
-  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}は近距離鉱物探査スキャナーを使用して,未知の区域で{0}を発見した.中身と周辺に何があるかは,その区域を探索するまで分からない.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}は近距離鉱物探査スキャナーを使用して,未知の区域で{0}を発見した.その区域を探索すれば,中身や周辺に何があるかが分かる.</LocalMineralScanner_LetterFoundCasket>
   <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
   <LocalMineralScanner_MessageExhaustedCaskets>このマップには,これ以上未知の{0}は残っていません.近距離鉱物探査スキャナーは,別の対象に調整されるまで待機します.</LocalMineralScanner_MessageExhaustedCaskets>
   <!-- EN: no undiscovered {0} left -->
@@ -60,37 +60,37 @@
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>屋根の下では機能しない</LocalMineralScanner_RequireUnroofed>
-  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
-  <LocalMineralScanner_RequireUnroofedDesc>{0}と同様に,屋根の下では設置も稼働もできません.オフにすると許可されます.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere. -->
+  <LocalMineralScanner_RequireUnroofedDesc>有効にすると,{0}と同様に,スキャナーは屋根の下で建設も稼働もできなくなります.無効にすると,どこでも機能します.</LocalMineralScanner_RequireUnroofedDesc>
   <!-- EN: Can be uninstalled -->
   <LocalMineralScanner_Minifiable>撤去可能</LocalMineralScanner_Minifiable>
-  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
-  <LocalMineralScanner_MinifiableDesc>{0}と同様に,スキャナーを撤去して移動できるようにします.オフにすると解体のみ可能になります.</LocalMineralScanner_MinifiableDesc>
-  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
+  <!-- EN: When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>有効にすると,{0}と同様に,スキャナーを撤去して移動できるようになります.無効にすると,解体のみ可能です.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: The mass of the uninstalled scanner when it is hauled or carried by a caravan. -->
   <LocalMineralScanner_MassDesc>撤去したスキャナーを運搬したり,キャラバン隊で持ち運んだりする際の重量です.</LocalMineralScanner_MassDesc>
 
   <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
-  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindMtbDaysDesc>研究速度100%のオペレーター1人あたりの,発見までの平均稼働日数です.{0}は{1}を使用しています.</LocalMineralScanner_FindMtbDaysDesc>
-  <!-- EN: Guaranteed find within -->
-  <LocalMineralScanner_FindGuaranteedDays>確実な発見まで</LocalMineralScanner_FindGuaranteedDays>
-  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindGuaranteedDaysDesc>研究速度100%のオペレーター1人が確実に発見できるようになるまでの稼働日数です.{0}は{1}を使用しています.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- EN: The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>研究速度100%のオペレーター1人あたりの,発見までの平均稼働日数です.{0}では{1}です.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find interval -->
+  <LocalMineralScanner_FindGuaranteedDays>確実な鉱脈検出の間隔</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>研究速度100%のオペレーター1人が確実に発見できるようになるまでの稼働日数です.{0}では{1}です.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
   <!-- EN: Can scan for ancient cryptosleep caskets -->
   <LocalMineralScanner_ScanAncientCaskets>古代の冬眠カプセルをスキャン可能</LocalMineralScanner_ScanAncientCaskets>
-  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
-  <LocalMineralScanner_ScanAncientCasketsDesc>マップ上に存在する場合に限り,調整メニューに{0}とその派生型を表示します.これにより,太古の脅威のような未知の構造物の中に封じられたカプセルを,スキャナーで発見できるようになります.カプセルを発見しても,近くで休眠しているものが目を覚ますことはありません.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>有効にすると,スキャナーを{0}とその派生型に調整して,太古の脅威のような未知の構造物の中に封じられたカプセルを発見できます.カプセルを発見しても,近くで休眠しているものが目を覚ますことはありません.</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <!-- EN: "Any mineral" can also reveal caskets -->
   <LocalMineralScanner_RandomIncludesCaskets>"あらゆる鉱物"でカプセルも発見可能</LocalMineralScanner_RandomIncludesCaskets>
-  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
-  <LocalMineralScanner_RandomIncludesCasketsDesc>あらゆる鉱物に調整されている場合,スキャナーは{0}とその派生型も発見することがあります.発見1回あたりの確率は各鉱物と同じです.オフにすると,あらゆる鉱物での発見は鉱石のみになります.カプセルは直接調整することもできます.</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <!-- EN: When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>有効にすると,あらゆる鉱物に調整されたスキャナーは{0}とその派生型も発見することがあります.無効にすると,鉱石のみを発見しますが,カプセルは調整メニューから選択できます.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>{0}のコスト: {1}</LocalMineralScanner_ResourceCost>
-  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
-  <LocalMineralScanner_ResourceCostDesc>スキャナーを1台建造するために必要な{0}の量です.0にするとコストから除外されます.</LocalMineralScanner_ResourceCostDesc>
+  <!-- EN: The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>スキャナーを1台建造するために必要な{0}の量です.0に設定するとコストから除外されます.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

@@ -20,8 +20,8 @@
        and quest structures that hold nothing dangerous, so it must not call them a danger. -->
   <!-- EN: Casket located -->
   <LocalMineralScanner_LetterLabelFoundCasket>Caisson découvert</LocalMineralScanner_LetterLabelFoundCasket>
-  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} a localisé {0} dans une zone inexplorée à l'aide du scanner géologique local. Son contenu, ainsi que ce qui se trouve à proximité, ne sera connu qu'une fois la zone explorée.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} a localisé {0} dans une zone inexplorée à l'aide du scanner géologique local. Explorez la zone pour découvrir son contenu et ce qui se trouve à proximité.</LocalMineralScanner_LetterFoundCasket>
   <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
   <LocalMineralScanner_MessageExhaustedCaskets>Il ne reste plus aucun exemplaire inexploré de {0} sur cette carte. Le scanner géologique local restera inactif jusqu'à ce qu'il soit réglé sur autre chose.</LocalMineralScanner_MessageExhaustedCaskets>
   <!-- EN: no undiscovered {0} left -->
@@ -60,37 +60,37 @@
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>Ne fonctionne pas sous un toit</LocalMineralScanner_RequireUnroofed>
-  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
-  <LocalMineralScanner_RequireUnroofedDesc>Comme le {0}, il ne peut pas être installé ni utilisé sous un toit. Désactivez cette option pour l'autoriser.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere. -->
+  <LocalMineralScanner_RequireUnroofedDesc>Lorsqu'elle est activée, le scanner ne peut pas être construit ni utilisé sous un toit, comme le {0}. Lorsqu'elle est désactivée, il fonctionnera n'importe où.</LocalMineralScanner_RequireUnroofedDesc>
   <!-- EN: Can be uninstalled -->
   <LocalMineralScanner_Minifiable>Peut être désinstallé</LocalMineralScanner_Minifiable>
-  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
-  <LocalMineralScanner_MinifiableDesc>Permet de désinstaller et de déplacer le scanner, comme le {0}. Désactivez cette option pour qu'il ne puisse être que démoli.</LocalMineralScanner_MinifiableDesc>
-  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
-  <LocalMineralScanner_MassDesc>Poids du scanner désinstallé lorsqu'il est transporté à la main ou par une caravane.</LocalMineralScanner_MassDesc>
+  <!-- EN: When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>Lorsqu'elle est activée, le scanner peut être désinstallé et déplacé, comme le {0}. Lorsqu'elle est désactivée, il ne peut être que démoli.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: The mass of the uninstalled scanner when it is hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>Le poids du scanner désinstallé quand on le transporte à la main ou en caravane.</LocalMineralScanner_MassDesc>
 
   <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
-  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindMtbDaysDesc>Nombre moyen de jours de travail entre deux découvertes pour un opérateur à 100% de vitesse de recherche. Le {0} utilise {1}.</LocalMineralScanner_FindMtbDaysDesc>
-  <!-- EN: Guaranteed find within -->
-  <LocalMineralScanner_FindGuaranteedDays>Découverte garantie sous</LocalMineralScanner_FindGuaranteedDays>
-  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindGuaranteedDaysDesc>Nombre de jours de travail après lesquels une découverte est garantie, pour un opérateur à 100% de vitesse de recherche. Le {0} utilise {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- EN: The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Le nombre moyen de jours de travail entre deux découvertes pour un opérateur à 100% de vitesse de recherche. Le {0} utilise {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find interval -->
+  <LocalMineralScanner_FindGuaranteedDays>Intervalle de découverte garantie</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Le nombre de jours de travail avant qu'une découverte soit garantie, pour un opérateur à 100% de vitesse de recherche. Le {0} utilise {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
   <!-- EN: Can scan for ancient cryptosleep caskets -->
   <LocalMineralScanner_ScanAncientCaskets>Peut détecter les caissons d'hypersommeil antiques</LocalMineralScanner_ScanAncientCaskets>
-  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
-  <LocalMineralScanner_ScanAncientCasketsDesc>Propose le {0} et ses variantes dans le menu de réglage dès que la carte en contient, afin que le scanner puisse révéler un caisson scellé dans une structure inexplorée, comme un danger antique. Révéler un caisson ne réveille pas ce qui reste dormant à proximité.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>Lorsqu'elle est activée, le scanner peut être réglé sur le {0} et ses variantes, afin de révéler un caisson scellé dans une structure inexplorée, comme un danger antique. Révéler un caisson ne réveillera rien à proximité.</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <!-- EN: "Any mineral" can also reveal caskets -->
   <LocalMineralScanner_RandomIncludesCaskets>« Tout minéral » peut aussi révéler des caissons</LocalMineralScanner_RandomIncludesCaskets>
-  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
-  <LocalMineralScanner_RandomIncludesCasketsDesc>Lorsque le scanner est réglé sur « tout minéral », il peut aussi révéler le {0} ou l'une de ses variantes, avec la même probabilité par découverte que chaque minéral. Désactivez cette option pour limiter ces découvertes aux minerais ; vous pouvez toujours régler le scanner directement sur un caisson.</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <!-- EN: When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>Lorsqu'elle est activée, un scanner réglé sur « tout minéral » peut aussi révéler le {0} ou l'une de ses variantes. Lorsqu'elle est désactivée, il ne révélera que des minerais, mais vous pouvez toujours choisir un caisson dans le menu de réglage.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>coût en {0} : {1}</LocalMineralScanner_ResourceCost>
-  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
-  <LocalMineralScanner_ResourceCostDesc>Quantité de {0} nécessaire pour construire un scanner. 0 la retire du coût.</LocalMineralScanner_ResourceCostDesc>
+  <!-- EN: The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>La quantité de {0} nécessaire pour construire un scanner. Réglez sur 0 pour l'exclure du coût.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

@@ -15,8 +15,8 @@
 
   <!-- EN: Casket located -->
   <LocalMineralScanner_LetterLabelFoundCasket>Sarcófago localizado</LocalMineralScanner_LetterLabelFoundCasket>
-  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} ha localizado {0} en un área sin revelar usando el escáner de minerales local. Lo que contiene, y qué más hay cerca, solo se sabrá cuando se explore el área.</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef} ha localizado {0} en un área sin revelar con el escáner de minerales local. Explora el área para descubrir qué contiene y qué más hay cerca.</LocalMineralScanner_LetterFoundCasket>
   <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
   <LocalMineralScanner_MessageExhaustedCaskets>Ya no queda ningún ejemplar sin descubrir de {0} en este mapa. El escáner de minerales local permanecerá inactivo hasta que esté sintonizado para otra cosa.</LocalMineralScanner_MessageExhaustedCaskets>
   <!-- EN: no undiscovered {0} left -->
@@ -48,34 +48,34 @@
 
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>No funciona bajo techo</LocalMineralScanner_RequireUnroofed>
-  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
-  <LocalMineralScanner_RequireUnroofedDesc>Al igual que {0}, no se puede colocar ni operar bajo techo. Desactívalo para permitirlo.</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere. -->
+  <LocalMineralScanner_RequireUnroofedDesc>Cuando esté activado, el escáner no se puede construir ni operar bajo techo, al igual que {0}. Cuando esté desactivado, funcionará en cualquier lugar.</LocalMineralScanner_RequireUnroofedDesc>
   <!-- EN: Can be uninstalled -->
   <LocalMineralScanner_Minifiable>Se puede desinstalar</LocalMineralScanner_Minifiable>
-  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
-  <LocalMineralScanner_MinifiableDesc>Permite desinstalar y trasladar el escáner, igual que {0}. Desactívalo y solo podrá ser desarmado.</LocalMineralScanner_MinifiableDesc>
-  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
-  <LocalMineralScanner_MassDesc>Masa del escáner desinstalado al ser transportado o llevado en una caravana.</LocalMineralScanner_MassDesc>
+  <!-- EN: When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>Cuando esté activado, el escáner se puede desinstalar y trasladar, al igual que {0}. Cuando esté desactivado, solo se puede desarmar.</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: The mass of the uninstalled scanner when it is hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>Masa del escáner desinstalado cuando se transporta o se lleva en una caravana.</LocalMineralScanner_MassDesc>
 
-  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindMtbDaysDesc>Media de días laborables entre hallazgos para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindMtbDaysDesc>
-  <!-- EN: Guaranteed find within -->
-  <LocalMineralScanner_FindGuaranteedDays>Descubrimiento garantizado en</LocalMineralScanner_FindGuaranteedDays>
-  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindGuaranteedDaysDesc>Días laborables tras los cuales un descubrimiento está garantizado, para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- EN: The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>Media de días laborables entre hallazgos, para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find interval -->
+  <LocalMineralScanner_FindGuaranteedDays>Intervalo de descubrimiento garantizado</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>Número de días laborables necesarios para garantizar un descubrimiento, para un operador al 100% de velocidad de investigación. El {0} usa {1}.</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- EN: Can scan for ancient cryptosleep caskets -->
   <LocalMineralScanner_ScanAncientCaskets>Puede escanear sarcófagos de criptosueño antiguos</LocalMineralScanner_ScanAncientCaskets>
-  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
-  <LocalMineralScanner_ScanAncientCasketsDesc>Muestra el {0} y sus variantes en el menú de sintonización siempre que el mapa contenga alguno, para que el escáner pueda revelar uno sellado dentro de una estructura sin descubrir, como un peligro ancestral. Revelar un sarcófago no despierta lo que permanezca durmiente cerca.</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>Cuando esté activado, el escáner se puede sintonizar para el {0} y sus variantes, con lo que podrá revelar uno sellado dentro de una estructura sin descubrir, como un peligro ancestral. Revelar un sarcófago no despertará nada cerca.</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <!-- EN: "Any mineral" can also reveal caskets -->
   <LocalMineralScanner_RandomIncludesCaskets>"Cualquier mineral" también puede revelar sarcófagos</LocalMineralScanner_RandomIncludesCaskets>
-  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
-  <LocalMineralScanner_RandomIncludesCasketsDesc>Cuando esté sintonizado para cualquier mineral, el escáner también puede revelar el {0} o una de sus variantes, con la misma probabilidad por hallazgo que cada mineral. Desactívalo para que los hallazgos de cualquier mineral se limiten a minerales; aun así, los sarcófagos se pueden sintonizar directamente.</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <!-- EN: When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>Cuando esté activado, un escáner sintonizado para cualquier mineral también puede revelar el {0} o una de sus variantes. Cuando esté desactivado, solo revelará minerales, pero los sarcófagos se pueden seguir eligiendo en el menú de sintonización.</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>Coste de {0}: {1}</LocalMineralScanner_ResourceCost>
-  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
-  <LocalMineralScanner_ResourceCostDesc>Cantidad de {0} necesaria para construir un escáner. 0 lo elimina del coste.</LocalMineralScanner_ResourceCostDesc>
+  <!-- EN: The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>Cantidad de {0} necesaria para construir un escáner. Pon 0 para eliminarlo del coste.</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

@@ -23,8 +23,8 @@
        and quest structures that hold nothing dangerous, so it must not call them a danger. -->
   <!-- EN: Casket located -->
   <LocalMineralScanner_LetterLabelFoundCasket>休眠艙尋獲</LocalMineralScanner_LetterLabelFoundCasket>
-  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. What it holds, and what else lies nearby, will only be known once the area is explored. -->
-  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}透過在地礦物掃描器，在未探索的區域中發現了{0}。艙內裝著什麼，以及附近還有什麼，都要等到該區域被探索後才會知曉。</LocalMineralScanner_LetterFoundCasket>
+  <!-- EN: {FINDER_nameDef} has located {0} in an undiscovered area using the local mineral scanner. Explore the area to find out what is inside and what else lies nearby. -->
+  <LocalMineralScanner_LetterFoundCasket>{FINDER_nameDef}透過在地礦物掃描器，在未探索的區域中發現了{0}。探索那個區域，就能知道艙裡裝著什麼，附近還有些什麼。</LocalMineralScanner_LetterFoundCasket>
   <!-- EN: No undiscovered {0} remains on this map. The local mineral scanner will remain idle until it is tuned to something else. -->
   <LocalMineralScanner_MessageExhaustedCaskets>此地圖上已無未探索的{0}。在地礦物掃描器將保持閒置，直到被調整為其他目標為止。</LocalMineralScanner_MessageExhaustedCaskets>
   <!-- EN: no undiscovered {0} left -->
@@ -63,37 +63,37 @@
   <!-- {0} = vanilla building label (long-range mineral scanner / deep drill). -->
   <!-- EN: Doesn't work under a roof -->
   <LocalMineralScanner_RequireUnroofed>無法在屋頂下運作</LocalMineralScanner_RequireUnroofed>
-  <!-- EN: Like the {0}, it can't be placed or operated under a roof. Turn off to allow. -->
-  <LocalMineralScanner_RequireUnroofedDesc>如同{0}，它無法在屋頂下放置或操作。關閉後即可允許。</LocalMineralScanner_RequireUnroofedDesc>
+  <!-- EN: When enabled, the scanner can't be built or operated under a roof, like the {0}. When disabled, it will work anywhere. -->
+  <LocalMineralScanner_RequireUnroofedDesc>啟用後，掃描器和{0}一樣，無法在屋頂下建造或操作。禁用後，則可在任何地方運作。</LocalMineralScanner_RequireUnroofedDesc>
   <!-- EN: Can be uninstalled -->
   <LocalMineralScanner_Minifiable>可以移除</LocalMineralScanner_Minifiable>
-  <!-- EN: Lets the scanner be uninstalled and moved, like the {0}. Turn off and it can only be deconstructed. -->
-  <LocalMineralScanner_MinifiableDesc>讓掃描器可以像{0}一樣被移除並搬運。關閉後就只能拆除。</LocalMineralScanner_MinifiableDesc>
-  <!-- EN: Weight of the uninstalled scanner when hauled or carried by a caravan. -->
-  <LocalMineralScanner_MassDesc>移除安裝後的掃描器，由搬運或旅隊攜帶時的質量。</LocalMineralScanner_MassDesc>
+  <!-- EN: When enabled, the scanner can be uninstalled and moved, like the {0}. When disabled, it can only be deconstructed. -->
+  <LocalMineralScanner_MinifiableDesc>啟用後，掃描器可以像{0}一樣移除並搬運。禁用後，就只能拆除。</LocalMineralScanner_MinifiableDesc>
+  <!-- EN: The mass of the uninstalled scanner when it is hauled or carried by a caravan. -->
+  <LocalMineralScanner_MassDesc>已移除安裝的掃描器在搬運或由旅隊攜帶時的質量。</LocalMineralScanner_MassDesc>
 
   <!-- {0} = the long-range mineral scanner's label, {1} = its own value for this setting. -->
-  <!-- EN: Average working days between finds for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindMtbDaysDesc>單一操作員在研究速度100%時，兩次尋獲之間的平均工作天數。{0}使用{1}。</LocalMineralScanner_FindMtbDaysDesc>
-  <!-- EN: Guaranteed find within -->
-  <LocalMineralScanner_FindGuaranteedDays>保證尋獲期限</LocalMineralScanner_FindGuaranteedDays>
-  <!-- EN: Working days after which a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
-  <LocalMineralScanner_FindGuaranteedDaysDesc>單一操作員在研究速度100%時，經過此工作天數後必定尋獲。{0}使用{1}。</LocalMineralScanner_FindGuaranteedDaysDesc>
+  <!-- EN: The average number of working days between finds, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindMtbDaysDesc>一名操作員以100%研究速度工作時，平均要工作幾天才會再尋獲一次。{0}使用{1}。</LocalMineralScanner_FindMtbDaysDesc>
+  <!-- EN: Guaranteed find interval -->
+  <LocalMineralScanner_FindGuaranteedDays>保證尋獲間隔</LocalMineralScanner_FindGuaranteedDays>
+  <!-- EN: The number of working days until a find is guaranteed, for one operator at 100% research speed. The {0} uses {1}. -->
+  <LocalMineralScanner_FindGuaranteedDaysDesc>一名操作員以100%研究速度工作時，要工作幾天才必定會尋獲。{0}使用{1}。</LocalMineralScanner_FindGuaranteedDaysDesc>
 
   <!-- {0} = the vanilla ancient cryptosleep casket's label. -->
   <!-- EN: Can scan for ancient cryptosleep caskets -->
   <LocalMineralScanner_ScanAncientCaskets>可以掃描遠古休眠艙</LocalMineralScanner_ScanAncientCaskets>
-  <!-- EN: Lists the {0} and its variants in the tuning menu whenever the map holds any, so the scanner can reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket does not wake whatever lies dormant nearby. -->
-  <LocalMineralScanner_ScanAncientCasketsDesc>只要地圖上存在{0}及其變體，就會在調整選單中列出，讓掃描器能揭露封存在遠古威脅等未探索結構內的休眠艙。揭露休眠艙並不會喚醒附近任何處於休眠狀態的事物。</LocalMineralScanner_ScanAncientCasketsDesc>
+  <!-- EN: When enabled, the scanner can be tuned to the {0} and its variants, to reveal one sealed inside an undiscovered structure such as an ancient danger. Revealing a casket will not wake anything nearby. -->
+  <LocalMineralScanner_ScanAncientCasketsDesc>啟用後，掃描器可以調整為{0}及其變體，用來揭露遠古威脅等未探索結構裡封存的休眠艙。揭露休眠艙不會喚醒附近的任何東西。</LocalMineralScanner_ScanAncientCasketsDesc>
   <!-- Drawn indented under ScanAncientCaskets and disabled while that is off. -->
   <!-- EN: "Any mineral" can also reveal caskets -->
   <LocalMineralScanner_RandomIncludesCaskets>「任何礦物」也可能揭露休眠艙</LocalMineralScanner_RandomIncludesCaskets>
-  <!-- EN: When tuned to any mineral, the scanner may also reveal the {0} or one of its variants, with the same chance per find as each mineral. Turn off to keep any-mineral finds to ore; caskets can still be tuned to directly. -->
-  <LocalMineralScanner_RandomIncludesCasketsDesc>調整為任何礦物時，掃描器也可能揭露{0}或其變體，每次尋獲的機率與各礦物相同。關閉後，任何礦物的尋獲結果將僅限於礦物；仍可直接將掃描器調整為休眠艙。</LocalMineralScanner_RandomIncludesCasketsDesc>
+  <!-- EN: When enabled, a scanner tuned to any mineral can also reveal the {0} or one of its variants. When disabled, it will only reveal ore, but caskets can still be chosen from the tuning menu. -->
+  <LocalMineralScanner_RandomIncludesCasketsDesc>啟用後，掃描器調整為任何礦物時，也可能揭露{0}或其變體。禁用後，則只會揭露礦物，但仍可從調整選單中選擇休眠艙。</LocalMineralScanner_RandomIncludesCasketsDesc>
 
   <!-- {0} = resource label (lower case, row is CapitalizeFirst()ed), {1} = count. -->
   <!-- EN: {0} cost: {1} -->
   <LocalMineralScanner_ResourceCost>{0}消費：{1}</LocalMineralScanner_ResourceCost>
-  <!-- EN: Amount of {0} needed to build one scanner. 0 removes it from the cost. -->
-  <LocalMineralScanner_ResourceCostDesc>建造一台掃描器所需的{0}數量。設為0則會從建造成本中移除。</LocalMineralScanner_ResourceCostDesc>
+  <!-- EN: The amount of {0} needed to build one scanner. Set to 0 to remove it from the cost. -->
+  <LocalMineralScanner_ResourceCostDesc>建造一台掃描器所需的{0}數量。設為0即可從建造成本中移除。</LocalMineralScanner_ResourceCostDesc>
 </LanguageData>

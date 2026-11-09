@@ -47,9 +47,8 @@ inversion table live in `l10n/languages/ChineseTraditional.md`.
   freely" (可以重新放置安裝。) and `LongRangeMineralScanner.description`'s
   "can be tuned to find a specific X" clause (可以調整掃描器來找到特定X).
 - `{0}`/`{1}` in `FindMtbDaysDesc`/`FindGuaranteedDaysDesc` are left bare
-  (`{0}使用{1}。`), matching English, which never appends a unit to `{1}`
-  either (a raw day count, not a pre-formatted `PeriodDays` string) —
-  confirmed against the C# call sites.
+  (`{0}使用{1}。`): `{1}` is a pre-formatted vanilla `PeriodDays` string
+  that already carries its unit (`3天`), so nothing may follow it.
 - `LocalMineralScanner_FindGuaranteedDays`/`_DefaultSuffix` are concatenated
   onto other text by C# with a literal ASCII `": "` / a bare suffix, not one
   `Translate()` call — full-width ： could not be applied there without a
